@@ -6,6 +6,9 @@ Aplicación creada por alumnos del centro CIFP Ciudad Jardin (Vitoria) en colabo
 La finalidad de la app es que sea usada por niños para hacer una excursión y conocer mejor Oñate.
 Esta app consta de varias actividades diferentes que se podrán realizar cuando el dispositivo esté a una distancia pequeña de los monumentos/ lugares a los que se refieren.
 
+<b>Cualquier ayuda es bienvenida. </br>
+Any help is welcome.</b>
+
 
 APIs Utilizadas
 ------------------------------------------------------------------------
