@@ -1,10 +1,10 @@
 package com.app.didaktikapp.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.app.didaktikapp.R;
 import com.mapbox.mapboxsdk.Mapbox;
@@ -29,10 +29,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private Context context;
 
 
-private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
-        .include(new LatLng(43.042073, -2.422996)) // Northeast
-        .include(new LatLng(43.028919, -2.405703)) // Southwest
-        .build();
+    private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
+            .include(new LatLng(43.042073, -2.422996)) // Northeast
+            .include(new LatLng(43.028919, -2.405703)) // Southwest
+            .build();
 
 
     @Override
