@@ -15,20 +15,23 @@ Mapas -  https://www.mapbox.com/
 
 Seguimiento
 ------------------------------------------------------------------------
-19/11/2019 Reunidos Todos
+<h4>19/11/2019 Reunidos Todos</h4>
+
 - Primer contacto
 - Toma de decisiones
 - Compromisos, normas
 - Reconocimiento de tareas, recursos faltantes
 - Elegir representante
 
-20/11/2019 Reunidos Todos
+<h4>20/11/2019 Reunidos Todos</h4>
+
 - Toma de decisiones visuales
 - Toma de contacto con UPV
 - Mandar sugerencias (Correo de contacto)
 - Creación de proyecto en github con dos ramas (master y branch1)
 
-21/11/2019 Trabajo de desarrollo
+<h4>21/11/2019 Trabajo de desarrollo</h4>
+
 - Logos del login (falta el logo de Oñate)
 - Login preparado
 - Imagenes para Markers
