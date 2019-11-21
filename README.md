@@ -1,5 +1,15 @@
 # Didaktikapp
-DIDAKTIKAPP
+
+<img src="https://www.theblocklearning.com/wp-content/uploads/2018/09/mobile.png" alt="Imagen">
+
+Aplicación creada por alumnos del centro CIFP Ciudad Jardin (Vitoria) en colaboración con los alumnos de magisterio de la UPV en Leioa.
+La finalidad de la app es que sea usada por niños para hacer una excursión y conocer mejor Oñate.
+Esta app consta de varias actividades diferentes que se podrán realizar cuando el dispositivo esté a una distancia pequeña de los monumentos/ lugares a los que se refieren.
+
+
+APIs Utilizadas
+------------------------------------------------------------------------
+Mapas -  https://www.mapbox.com/
 
 
 
