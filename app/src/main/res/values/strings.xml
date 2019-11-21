@@ -1,3 +1,7 @@
 <resources>
+    <!-- Clave mapa -->
+    <string name="mapbox_access_token">pk.eyJ1IjoiZGlkYWt0aWt1cHYiLCJhIjoiY2szNzhiNmt6MDNlbTNjbm8yMDNmeTZyNiJ9.10ubJTPv5AC6X6tDYZRhNw</string>
+
+
     <string name="app_name">Didaktikapp</string>
 </resources>
