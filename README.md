@@ -26,3 +26,4 @@ Seguimiento
 - Comienzo de implantación de ubicación real del dispositivo (https://docs.mapbox.com/android/maps/examples/show-a-users-location/)
 - Ideas de implantación de las actividades a realizar por los usuarios (¿Fragments?)
 - Resolución de conflictos en GitHub
+- Mejoras del proyecto en github y creación de licencia de uso MIT
