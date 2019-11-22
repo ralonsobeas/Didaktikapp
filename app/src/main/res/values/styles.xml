@@ -9,4 +9,11 @@
 
     </style>
 
+    <style name="StyleFragment" >
+        <!-- Customize your theme here. -->
+        <item name="android:textColor">@color/negroFondo</item>
+        <item name="android:background">@color/gray</item>
+
+    </style>
+
 </resources>

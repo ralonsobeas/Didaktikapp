@@ -32,4 +32,21 @@
     <string name="SanMiguelPregunta1OpcionA">XVI</string>
     <string name="SanMiguelPregunta1OpcionB">XII</string>
     <string name="SanMiguelPregunta1OpcionC">XV</string>
+    <!-- Pregunta 2 -->
+    <string name="SanMiguelPregunta2Titulo">2. Noiz egiten dute dantza bertan?</string>
+    <string name="SanMiguelPregunta2OpcionA">Herriko Jaietan</string>
+    <string name="SanMiguelPregunta2OpcionB">Korpusetan</string>
+    <string name="SanMiguelPregunta2OpcionC">Gabonetan</string>
+    <!-- Pregunta 3 -->
+    <string name="SanMiguelPregunta3Titulo">3. Zenbat nabe ditu?</string>
+    <string name="SanMiguelPregunta3OpcionA">2</string>
+    <string name="SanMiguelPregunta3OpcionB">5</string>
+    <string name="SanMiguelPregunta3OpcionC">4</string>
+    <!-- Pregunta 4 -->
+    <string name="SanMiguelPregunta4Titulo">4. Noiz egiten dute dantza bertan?</string>
+    <string name="SanMiguelPregunta4OpcionA">Altare azpitik</string>
+    <string name="SanMiguelPregunta4OpcionB">Klaustro azpitik</string>
+    <string name="SanMiguelPregunta4OpcionC">Eliza ondotik</string>
+    <string name="Contunuar">continuar</string>
+
 </resources>
