@@ -2,15 +2,20 @@ package com.app.didaktikapp.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.graphics.Color;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.app.didaktikapp.Fragments.FragmentSanMiguel;
 import com.app.didaktikapp.Location.LocationListeningCallback;
 import com.app.didaktikapp.Modelo.Lugar;
 import com.app.didaktikapp.R;
@@ -49,7 +54,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, PermissionsListener {
+public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, PermissionsListener, FragmentSanMiguel.OnFragmentInteractionListener {
 
     private MapView mapView;
     private MapboxMap mapboxMap;
@@ -147,7 +152,15 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
                 Icon iconoverde = iconFactory.fromResource(R.drawable.pin_hecho);
                 if(marker.getPosition().getLatitude()==43.035000 && marker.getPosition().getLongitude()==-2.412889){
                     marker.setIcon(iconoverde);
+                    Toast.makeText(MapActivity.this,"HOLA",Toast.LENGTH_SHORT).show();
+                    FragmentSanMiguel fragment = new FragmentSanMiguel();
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.fragment_frame, fragment);
+                    transaction.commit();
+
                 }
+
+
                 return false;
             }
         });
@@ -285,6 +298,11 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
         }
     }
 
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
     private static class LocationChangeListeningActivityLocationCallback
             implements LocationEngineCallback<LocationEngineResult> {
 
@@ -310,19 +328,28 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
                     return;
                 }
 
-// Create a Toast which displays the new location's coordinates
-                Toast.makeText(activity, ""+R.string.new_location +", "+
-                        String.valueOf(result.getLastLocation().getLatitude()) + ", "+
-                        String.valueOf(result.getLastLocation().getLongitude()),
-                        Toast.LENGTH_SHORT).show();
+                // Create a Toast which displays the new location's coordinates
+//                Toast.makeText(activity, ""+R.string.new_location +", "+
+//                        String.valueOf(result.getLastLocation().getLatitude()) + ", "+
+//                        String.valueOf(result.getLastLocation().getLongitude()),
+//                        Toast.LENGTH_SHORT).show();
 
-// Pass the new location to the Maps SDK's LocationComponent
+                double latitud = result.getLastLocation().getLatitude();
+
+                double longitud = result.getLastLocation().getLongitude();
+
+                // Pass the new location to the Maps SDK's LocationComponent
                 if (activity.mapboxMap != null && result.getLastLocation() != null) {
                     activity.mapboxMap.getLocationComponent().forceLocationUpdate(result.getLastLocation());
                 }
 
 
                 //Lanzar fragments cuando la distancia sea corta a los puntos.
+//                Toast.makeText(activity,latitud+", "+longitud,Toast.LENGTH_SHORT).show();
+//                Log.i("LATITUD",Double.toString(latitud));
+//                Log.i("LONGITUD",Double.toString(longitud));
+
+
             }
         }
 

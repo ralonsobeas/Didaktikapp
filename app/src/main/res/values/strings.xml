@@ -7,18 +7,29 @@
 
 
     <!-- Lugares -->
-    <string name="nombreLugar1" >Zumeltzegi dorrea</string>
-    <string name="nombreLugar2" >Sancti Spiritus unibertsitatea</string>
-    <string name="nombreLugar3" >San Miguel Parrokia</string>
-    <string name="nombreLugar4" >Trena</string>
-    <string name="nombreLugar5" >Errota (turismo bulegoa)</string>
-    <string name="nombreLugar6" >Arantzazuko Santutegia</string>
-    <string name="nombreLugar7" >Araotz auzoa</string>
-    <string name="nombreLugar8" >Arrikrutzeko kobak</string>
-    
+    <string name="nombreLugar1">Zumeltzegi dorrea</string>
+    <string name="nombreLugar2">Sancti Spiritus unibertsitatea</string>
+    <string name="nombreLugar3">San Miguel Parrokia</string>
+    <string name="nombreLugar4">Trena</string>
+    <string name="nombreLugar5">Errota (turismo bulegoa)</string>
+    <string name="nombreLugar6">Arantzazuko Santutegia</string>
+    <string name="nombreLugar7">Araotz auzoa</string>
+    <string name="nombreLugar8">Arrikrutzeko kobak</string>
+
     <string name="new_location">Nueva localización</string>
 
     <!-- Explicaciones para usuario -->
     <string name="user_location_permission_explanation">Permisos para la loaclización.</string>
     <string name="user_location_permission_not_granted">No existen permisos para la localización.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Actividad San Miguel -->
+    <string name="SanMiguelTitulo">San Miguel Test</string>
+    <!-- Pregunta 1 -->
+    <string name="SanMiguelPregunta1Titulo">1. Zein urtetan eraiki zen?</string>
+    <string name="SanMiguelPregunta1OpcionA">XVI</string>
+    <string name="SanMiguelPregunta1OpcionB">XII</string>
+    <string name="SanMiguelPregunta1OpcionC">XV</string>
 </resources>
