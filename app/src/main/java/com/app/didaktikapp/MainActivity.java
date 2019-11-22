@@ -3,6 +3,7 @@ package com.app.didaktikapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,7 +18,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_inicio);
+//        try {
+//            Thread.sleep(4000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         setContentView(R.layout.activity_main);
+
+        Intent i = new Intent(MainActivity.this,InicioActivity.class);
+        startActivity(i);
 
         layout = findViewById(R.id.layout);
 
