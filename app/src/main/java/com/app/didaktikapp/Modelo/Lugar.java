@@ -1,5 +1,7 @@
 package com.app.didaktikapp.Modelo;
 
+import androidx.fragment.app.Fragment;
+
 import com.mapbox.mapboxsdk.geometry.LatLng;
 
 import java.util.Objects;
@@ -8,6 +10,7 @@ public class Lugar {
 
     private String nombre;
     private LatLng coordenadas;
+    private Fragment fragment;
 
     public String getNombre() {
         return nombre;

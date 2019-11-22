@@ -16,6 +16,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.app.didaktikapp.Fragments.FragmentSanMiguel;
+import com.app.didaktikapp.Fragments.FragmentUnibertsitatea;
 import com.app.didaktikapp.Location.LocationListeningCallback;
 import com.app.didaktikapp.Modelo.Lugar;
 import com.app.didaktikapp.R;
@@ -154,6 +155,15 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
                     marker.setIcon(iconoverde);
                     Toast.makeText(MapActivity.this,"HOLA",Toast.LENGTH_SHORT).show();
                     FragmentSanMiguel fragment = new FragmentSanMiguel();
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.fragment_frame, fragment);
+                    transaction.commit();
+                    transaction.addToBackStack("Fragment");
+
+                }else if(marker.getPosition().getLatitude()==43.035000 && marker.getPosition().getLongitude()==-2.412889){
+                    marker.setIcon(iconoverde);
+                    Toast.makeText(MapActivity.this,"HOLA",Toast.LENGTH_SHORT).show();
+                    FragmentUnibertsitatea fragment = new FragmentUnibertsitatea();
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.fragment_frame, fragment);
                     transaction.commit();
