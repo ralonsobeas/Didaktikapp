@@ -49,3 +49,11 @@ Seguimiento
 - Ideas de implantación de las actividades a realizar por los usuarios (¿Fragments?)
 - Resolución de conflictos en GitHub
 - Mejoras del proyecto en github y creación de licencia de uso MIT
+
+<h4>22/11/2019 Trabajo de desarrollo</h4>
+
+- Implantación terminada de ubicación en tiempo real
+- Intento de lanzar fragment mediante ubicación
+- Comienzo de implantación de los fragments con las actividades a realizar con algunas funcionalidades no deseadas (¿botón de volver?,¿click fuera?,¿mover el mapa mientras se está en el fragment?)
+- Comienzo de actividad con sopa de letras
+- Merge de Branch1 con Master
