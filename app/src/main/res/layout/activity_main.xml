@@ -17,16 +17,20 @@
         android:layout_marginBottom="60dp"
         android:background="#B3FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <Button
             android:id="@+id/btnIniciar"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="144dp"
-            android:layout_marginTop="120dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="96dp"
+            android:layout_marginEnd="16dp"
             android:text="INICIAR"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,20 +38,24 @@
             android:id="@+id/btnContinuar"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="64dp"
+            android:layout_marginEnd="16dp"
             android:enabled="false"
             android:text="CONTINUAR"
-            app:layout_constraintStart_toStartOf="@+id/btnIniciar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnIniciar" />
 
         <Button
             android:id="@+id/btnSalir"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="204dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
             android:text="SALIR"
-            app:layout_constraintStart_toStartOf="@+id/btnContinuar"
-            app:layout_constraintTop_toBottomOf="@+id/btnContinuar"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
