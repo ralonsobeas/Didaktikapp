@@ -17,7 +17,7 @@ This app is made by different activities that can be done when the device is nea
 
 
 APIs Utilizadas
-------------------------------------------------------------------------79
+------------------------------------------------------------------------
 Mapas -  https://www.mapbox.com/
 
 
