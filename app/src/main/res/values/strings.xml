@@ -4,4 +4,15 @@
 
 
     <string name="app_name">Didaktikapp</string>
+
+
+    <!-- Lugares -->
+    <string name="nombreLugar1" >Zumeltzegi dorrea</string>
+    <string name="nombreLugar2" >Sancti Spiritus unibertsitatea</string>
+    <string name="nombreLugar3" >San Miguel Parrokia</string>
+    <string name="nombreLugar4" >Trena</string>
+    <string name="nombreLugar5" >Errota (turismo bulegoa)</string>
+    <string name="nombreLugar6" >Arantzazuko Santutegia</string>
+    <string name="nombreLugar7" >Araotz auzoa</string>
+    <string name="nombreLugar8" >Arrikrutzeko kobak</string>
 </resources>
