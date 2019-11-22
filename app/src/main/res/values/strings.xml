@@ -15,4 +15,10 @@
     <string name="nombreLugar6" >Arantzazuko Santutegia</string>
     <string name="nombreLugar7" >Araotz auzoa</string>
     <string name="nombreLugar8" >Arrikrutzeko kobak</string>
+    
+    <string name="new_location">Nueva localización</string>
+
+    <!-- Explicaciones para usuario -->
+    <string name="user_location_permission_explanation">Permisos para la loaclización.</string>
+    <string name="user_location_permission_not_granted">No existen permisos para la localización.</string>
 </resources>

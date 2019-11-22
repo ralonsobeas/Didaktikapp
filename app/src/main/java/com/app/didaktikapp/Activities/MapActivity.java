@@ -3,6 +3,7 @@ package com.app.didaktikapp.Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.location.Location;
@@ -14,9 +15,11 @@ import com.app.didaktikapp.Location.LocationListeningCallback;
 import com.app.didaktikapp.Modelo.Lugar;
 import com.app.didaktikapp.R;
 import com.mapbox.android.core.location.LocationEngine;
+import com.mapbox.android.core.location.LocationEngineCallback;
 import com.mapbox.android.core.location.LocationEngineProvider;
 
 import com.mapbox.android.core.location.LocationEngineRequest;
+import com.mapbox.android.core.location.LocationEngineResult;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.mapboxsdk.Mapbox;
@@ -40,8 +43,10 @@ import com.mapbox.mapboxsdk.maps.Style;
 import com.mapbox.mapboxsdk.style.layers.Layer;
 
 import java.io.Console;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, PermissionsListener {
@@ -50,9 +55,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private MapboxMap mapboxMap;
     private PermissionsManager permissionsManager;
 
+    private static final long DEFAULT_INTERVAL_IN_MILLISECONDS = 1000L;
+    private static final long DEFAULT_MAX_WAIT_TIME = DEFAULT_INTERVAL_IN_MILLISECONDS * 5;
     private LocationEngine locationEngine;
+    private LocationChangeListeningActivityLocationCallback callback =
+            new LocationChangeListeningActivityLocationCallback(this);
     private LocationEngineRequest locationEngineRequest;
-    private LocationListeningCallback callback;
+
 
     private String UNIQUE_LAYER_ID = "landuse";
     private Layer layer;
@@ -121,7 +130,7 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
             public void onStyleLoaded(@NonNull Style style) {
 
                 // Map is set up and the style has loaded. Now you can add data or make other map adjustments
-
+                enableLocationComponent(style);
 
             }
         });
@@ -143,7 +152,7 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
             }
         });
 
-        enableLocation();
+
 
 
     }
@@ -193,102 +202,168 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
     }
 
 
-    private void enableLocation(){
-        //condicion para comprobar los permisos que necesita la aplicacion
-        if(PermissionsManager.areLocationPermissionsGranted(this)){
-            initializeLocationEngine();
-            initializeLocationLayer();
-        }else{
-            //La aplicacion no tiene permisos, se piden
-            permissionsManager = new PermissionsManager(this);
-            permissionsManager.requestLocationPermissions(this);
-        }
-
-    }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         permissionsManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
-    @SuppressWarnings("MissingPermission")
-    private void initializeLocationEngine(){
-
-        callback = new LocationListeningCallback(this);
-
-        long DEFAULT_INTERVAL_IN_MILLISECONDS = 1000L;
-        long DEFAULT_MAX_WAIT_TIME = DEFAULT_INTERVAL_IN_MILLISECONDS * 5;
-
-        locationEngine = LocationEngineProvider.getBestLocationEngine(context);
-
-        LocationEngineRequest request = new LocationEngineRequest.Builder(DEFAULT_INTERVAL_IN_MILLISECONDS)
-                .setPriority(LocationEngineRequest.PRIORITY_NO_POWER)
-                .setMaxWaitTime(DEFAULT_MAX_WAIT_TIME)
-                .build();
-
-        locationEngine.requestLocationUpdates(request, callback, getMainLooper());
-        locationEngine.getLastLocation(callback);
 
 
+
+    @SuppressWarnings( {"MissingPermission"})
+    private void enableLocationComponent(@NonNull Style loadedMapStyle) {
+        // Check if permissions are enabled and if not request
+        if (PermissionsManager.areLocationPermissionsGranted(this)) {
+
+            // Create and customize the LocationComponent's options
+            LocationComponentOptions customLocationComponentOptions = LocationComponentOptions.builder(this)
+                    .elevation(5)
+                    .accuracyAlpha(.6f)
+                    .foregroundDrawable(R.drawable.trotar)
+                    .build();
+
+        // Get an instance of the component
+            LocationComponent locationComponent = mapboxMap.getLocationComponent();
+
+        // Activate with options
+            locationComponent.activateLocationComponent(
+                    LocationComponentActivationOptions.builder(this, loadedMapStyle)
+                            .locationComponentOptions(customLocationComponentOptions)
+                            .build());
+
+            // Enable to make component visible
+            locationComponent.setLocationComponentEnabled(true);
+
+            // Set the component's camera mode
+            locationComponent.setCameraMode(CameraMode.TRACKING);
+
+            // Set the component's render mode
+            locationComponent.setRenderMode(RenderMode.COMPASS);
+
+            initLocationEngine();
+        } else {
+            permissionsManager = new PermissionsManager(this);
+            permissionsManager.requestLocationPermissions(this);
+        }
 
 
     }
 
+    /**
+     * Set up the LocationEngine and the parameters for querying the device's location
+     */
+    @SuppressLint("MissingPermission")
+    private void initLocationEngine() {
+        locationEngine = LocationEngineProvider.getBestLocationEngine(this);
 
-    @SuppressWarnings("MissingPermission")
-    private void initializeLocationLayer(){
+        LocationEngineRequest request = new LocationEngineRequest.Builder(DEFAULT_INTERVAL_IN_MILLISECONDS)
+                .setPriority(LocationEngineRequest.PRIORITY_HIGH_ACCURACY)
+                .setMaxWaitTime(DEFAULT_MAX_WAIT_TIME).build();
 
-//
-//        //OPCIONES DEL ZOOM
-//        LocationComponent options = LocationComponentOptions.builder(this)
-//                .maxZoom(17)
-//                .minZoom(12)
-//                .build();
-//
-//
-//
-//        //locationPlayerPlugin, el punto de localizacion. En estas líneas le damos formato.
-//        locationLayerPlugin = new LocationLayerPlugin(mapView, mapboxMap, locationEngine, options);
-//        //locationLayerPlugin = new LocationLayerPlugin(mapView, mapboxMap, locationEngine);
-//
-//        locationLayerPlugin.setLocationLayerEnabled(true);
-//        locationLayerPlugin.setCameraMode(CameraMode.TRACKING_COMPASS);
-//        locationLayerPlugin.setRenderMode(RenderMode.COMPASS);
-
-        LocationComponent locationComponent ;
-
-        LocationComponentOptions locationComponentOptions = LocationComponentOptions.builder(this)
-                .layerBelow(UNIQUE_LAYER_ID)
-                .bearingTintColor(Color.RED)
-                .build();
-
-//-------------------------------------------------------_____----------------------_________------------
-//        LocationComponentActivationOptions locationComponentActivationOptions = LocationComponentActivationOptions
-//                .builder(this, mapboxMap.getStyle() )
-//                .locationComponentOptions(locationComponentOptions)
-//                .useDefaultLocationEngine(true)
-//                .build();
-//
-//        locationComponent = mapboxMap.getLocationComponent();
-//        locationComponent.activateLocationComponent(locationComponentActivationOptions);
-
-
+        locationEngine.requestLocationUpdates(request, callback, getMainLooper());
+        locationEngine.getLastLocation(callback);
     }
 
 
     @Override
     public void onExplanationNeeded(List<String> permissionsToExplain) {
-
+        Toast.makeText(this, R.string.user_location_permission_explanation, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onPermissionResult(boolean granted) {
-
+        if (granted) {
+            mapboxMap.getStyle(new Style.OnStyleLoaded() {
+                @Override
+                public void onStyleLoaded(@NonNull Style style) {
+                    enableLocationComponent(style);
+                }
+            });
+        } else {
+            Toast.makeText(this, R.string.user_location_permission_not_granted, Toast.LENGTH_LONG).show();
+            finish();
+        }
     }
 
+    private static class LocationChangeListeningActivityLocationCallback
+            implements LocationEngineCallback<LocationEngineResult> {
+
+        private final WeakReference<MapActivity> activityWeakReference;
+
+        LocationChangeListeningActivityLocationCallback(MapActivity activity) {
+            this.activityWeakReference = new WeakReference<>(activity);
+        }
+
+        /**
+         * The LocationEngineCallback interface's method which fires when the device's location has changed.
+         *
+         * @param result the LocationEngineResult object which has the last known location within it.
+         */
+        @Override
+        public void onSuccess(LocationEngineResult result) {
+            MapActivity activity = activityWeakReference.get();
+
+            if (activity != null) {
+                Location location = result.getLastLocation();
+
+                if (location == null) {
+                    return;
+                }
+
+// Create a Toast which displays the new location's coordinates
+                Toast.makeText(activity, ""+R.string.new_location +", "+
+                        String.valueOf(result.getLastLocation().getLatitude()) + ", "+
+                        String.valueOf(result.getLastLocation().getLongitude()),
+                        Toast.LENGTH_SHORT).show();
+
+// Pass the new location to the Maps SDK's LocationComponent
+                if (activity.mapboxMap != null && result.getLastLocation() != null) {
+                    activity.mapboxMap.getLocationComponent().forceLocationUpdate(result.getLastLocation());
+                }
+
+
+                //Lanzar fragments cuando la distancia sea corta a los puntos.
+            }
+        }
+
+        /**
+         * The LocationEngineCallback interface's method which fires when the device's location can't be captured
+         *
+         * @param exception the exception message
+         */
+        @Override
+        public void onFailure(@NonNull Exception exception) {
+            Log.d("LocationChangeActivity", exception.getLocalizedMessage());
+            MapActivity activity = activityWeakReference.get();
+            if (activity != null) {
+                Toast.makeText(activity, exception.getLocalizedMessage(),
+                        Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    @Override
+    @SuppressWarnings( {"MissingPermission"})
+    protected void onStart() {
+        super.onStart();
+        mapView.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mapView.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mapView.onPause();
+    }
 
     @Override
     protected void onStop() {
+
         super.onStop();
 
         if (locationEngine != null) {
@@ -297,4 +372,25 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
 
         mapView.onStop();
     }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mapView.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mapView.onDestroy();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mapView.onLowMemory();
+    }
 }
+
+
+
