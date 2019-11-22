@@ -10,10 +10,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.app.didaktikapp.Activities.MapActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     private ConstraintLayout layout;
-    private Button boton;
+    private Button botonSalir, botonInicio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,16 +41,25 @@ public class MainActivity extends AppCompatActivity {
         int num = (int) (Math.random()*fondos.length);
         layout.setBackgroundResource(fondos[num]);
 
-        boton = findViewById(R.id.btnSalir);
+        botonSalir = findViewById(R.id.btnSalir);
+        botonInicio = findViewById(R.id.btnIniciar);
 
         eventos();
     }
 
     private void eventos(){
-        boton.setOnClickListener(new View.OnClickListener() {
+        botonSalir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 salir(v);
+            }
+        });
+        botonInicio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, MapActivity.class);
+
+                startActivity(i);
             }
         });
     }
