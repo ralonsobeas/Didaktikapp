@@ -17,7 +17,7 @@ This app is made by different activities that can be done when the device is nea
 
 
 APIs Utilizadas
-------------------------------------------------------------------------
+------------------------------------------------------------------------79
 Mapas -  https://www.mapbox.com/
 
 
@@ -57,3 +57,4 @@ Seguimiento
 - Comienzo de implantación de los fragments con las actividades a realizar con algunas funcionalidades no deseadas (¿botón de volver?,¿click fuera?,¿mover el mapa mientras se está en el fragment?)
 - Comienzo de actividad con sopa de letras
 - Merge de Branch1 con Master
+- Comienzo de actividad San Miguel (test) Actividad número 2
