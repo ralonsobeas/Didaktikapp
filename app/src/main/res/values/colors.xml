@@ -6,4 +6,8 @@
 
     <color name="negroFondo">#202020</color>
     <color name="gray">#B3808080</color>
+
+    <color name="greenFilter">#414CAF50</color>
+
+    <color name="backgroundTransparente">#00999999</color>
 </resources>

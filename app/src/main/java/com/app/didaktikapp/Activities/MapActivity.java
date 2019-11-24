@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.graphics.Color;
@@ -13,9 +14,12 @@ import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.Window;
 import android.widget.Toast;
 
 import com.app.didaktikapp.Fragments.FragmentSanMiguel;
+import com.app.didaktikapp.Fragments.FragmentSanMiguelImagenes;
 import com.app.didaktikapp.Fragments.FragmentUnibertsitatea;
 import com.app.didaktikapp.Location.LocationListeningCallback;
 import com.app.didaktikapp.Modelo.Lugar;
@@ -55,7 +59,9 @@ import java.util.List;
 import java.util.Map;
 
 
-public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, PermissionsListener, FragmentSanMiguel.OnFragmentInteractionListener {
+public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, PermissionsListener
+        , FragmentSanMiguel.OnFragmentInteractionListener
+        , FragmentSanMiguelImagenes.OnFragmentInteractionListener{
 
     private MapView mapView;
     private MapboxMap mapboxMap;
@@ -87,6 +93,8 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
 
         this.context = getApplicationContext();
@@ -103,6 +111,8 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
         mapView = (MapView) findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
+
+
 
 
 
@@ -153,12 +163,13 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
                 Icon iconoverde = iconFactory.fromResource(R.drawable.pin_hecho);
                 if(marker.getPosition().getLatitude()==43.035000 && marker.getPosition().getLongitude()==-2.412889){
                     marker.setIcon(iconoverde);
-                    Toast.makeText(MapActivity.this,"HOLA",Toast.LENGTH_SHORT).show();
                     FragmentSanMiguel fragment = new FragmentSanMiguel();
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
                     transaction.replace(R.id.fragment_frame, fragment);
                     transaction.commit();
                     transaction.addToBackStack("Fragment");
+
 
                 }else if(marker.getPosition().getLatitude()==43.035000 && marker.getPosition().getLongitude()==-2.412889){
                     marker.setIcon(iconoverde);

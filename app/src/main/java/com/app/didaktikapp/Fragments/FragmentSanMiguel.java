@@ -6,8 +6,8 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -190,7 +190,7 @@ public class FragmentSanMiguel extends Fragment {
 
                 if(checkedId == R.id.rbtnPregunta3_C){
 
-                    radioPregunta3B.setTextColor(Color.GREEN);
+                    radioPregunta3C.setTextColor(Color.GREEN);
 
 
                     btnContinuar.setEnabled(true);
@@ -228,10 +228,22 @@ public class FragmentSanMiguel extends Fragment {
                     radioPregunta4B.setTextColor(Color.GREEN);
 
                     btnContinuar.setEnabled(true);
+
+                    btnContinuar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            FragmentSanMiguelImagenes fragment = new FragmentSanMiguelImagenes();
+                            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                            transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
+                            transaction.replace(R.id.fragment_frame, fragment);
+                            transaction.commit();
+                            transaction.addToBackStack("Fragment");
+                        }
+                    });
                 }
 
                 if(checkedId == R.id.rbtnPregunta4_C){
-                    radioPregunta4B.setTextColor(Color.RED);
+                    radioPregunta4C.setTextColor(Color.RED);
                 }
 
 
@@ -245,7 +257,7 @@ public class FragmentSanMiguel extends Fragment {
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_fragment_san_miguel, container, false);
+        view = inflater.inflate(R.layout.fragment_san_miguel, container, false);
 
 
 
@@ -292,10 +304,7 @@ public class FragmentSanMiguel extends Fragment {
                     cuartaPregunta();
                     return;
                 }
-                if(contpregunta==4){
 
-
-                }
 
             }
         });
