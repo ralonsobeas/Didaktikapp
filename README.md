@@ -66,8 +66,5 @@ Seguimiento
 - Animaciones de entrada/salida de fragments
 - Animaciones en botones
 - Problemas con la documentación aportada y espera de un correo de respuesta por parte de los alumnos de la UPV
-
-
 - Link source code sopa de letras https://github.com/abdularis/Word-Search-Game
-
 - Link source code puzle https://dragosholban.com/2018/03/09/how-to-build-a-jigsaw-puzzle-android-game/
