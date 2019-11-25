@@ -60,6 +60,7 @@ Seguimiento
 - Comienzo de actividad San Miguel (test) Actividad número 2
 
 <h4>25/11/2019 Trabajo de desarrollo</h4>
+
 - Trabajo sobre actividad San Miguel
 - Avances en Sopa de letras
 - Animaciones de entrada/salida de fragments
