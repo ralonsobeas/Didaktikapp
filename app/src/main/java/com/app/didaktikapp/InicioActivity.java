@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telecom.Call;
 import android.transition.Explode;
+import android.transition.Transition;
+import android.transition.TransitionInflater;
 import android.util.Log;
 import android.view.Window;
 import android.view.animation.Animation;
@@ -15,6 +17,7 @@ public class InicioActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
@@ -49,5 +52,7 @@ public class InicioActivity extends AppCompatActivity {
         splashTread.start();
 
     }
+
+
 
 }

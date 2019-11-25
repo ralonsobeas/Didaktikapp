@@ -3,6 +3,7 @@
     package="com.app.didaktikapp">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA"> </uses-permission>
 
     <application
         android:allowBackup="true"
@@ -11,7 +12,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SopaSopa"></activity>
         <activity android:name=".Sopa" />
         <activity android:name=".InicioActivity" />
         <activity android:name=".Activities.MapActivity" />

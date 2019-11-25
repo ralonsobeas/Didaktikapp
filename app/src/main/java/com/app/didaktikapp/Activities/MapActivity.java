@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.app.didaktikapp.Fragments.FragmentSanMiguel;
 import com.app.didaktikapp.Fragments.FragmentSanMiguelImagenes;
 import com.app.didaktikapp.Fragments.FragmentUnibertsitatea;
+import com.app.didaktikapp.Fragments.FragmentZumeltzegi;
 import com.app.didaktikapp.Location.LocationListeningCallback;
 import com.app.didaktikapp.Modelo.Lugar;
 import com.app.didaktikapp.R;
@@ -61,7 +62,8 @@ import java.util.Map;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, PermissionsListener
         , FragmentSanMiguel.OnFragmentInteractionListener
-        , FragmentSanMiguelImagenes.OnFragmentInteractionListener{
+        , FragmentSanMiguelImagenes.OnFragmentInteractionListener
+        , FragmentZumeltzegi.OnFragmentInteractionListener{
 
     private MapView mapView;
     private MapboxMap mapboxMap;
@@ -169,6 +171,12 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
                     transaction.replace(R.id.fragment_frame, fragment);
                     transaction.commit();
                     transaction.addToBackStack("Fragment");
+//                    FragmentZumeltzegi fragment = new FragmentZumeltzegi();
+//                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//                    transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
+//                    transaction.replace(R.id.fragment_frame, fragment);
+//                    transaction.commit();
+//                    transaction.addToBackStack("Fragment");
 
 
                 }else if(marker.getPosition().getLatitude()==43.035000 && marker.getPosition().getLongitude()==-2.412889){

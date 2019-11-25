@@ -49,19 +49,19 @@
                     android:id="@+id/imageView3"
                     android:layout_width="130dp"
                     android:layout_height="150dp"
-                    android:src="@android:color/background_dark" />
+                    android:src="@drawable/sanmiguelcorrecta1" />
 
                 <ImageView
                     android:id="@+id/imageView4"
                     android:layout_width="130dp"
                     android:layout_height="150dp"
-                    android:src="@android:color/holo_red_dark" />
+                    android:src="@drawable/sanmiguelincorrecta1" />
 
                 <ImageView
                     android:id="@+id/imageView5"
                     android:layout_width="130dp"
                     android:layout_height="150dp"
-                    android:src="@android:color/holo_blue_bright" />
+                    android:src="@drawable/sanmiguelcorrecta2" />
             </TableRow>
 
             <TableRow
@@ -73,19 +73,19 @@
                     android:id="@+id/imageView6"
                     android:layout_width="130dp"
                     android:layout_height="150dp"
-                    android:src="@android:color/holo_red_light" />
+                    android:src="@drawable/sanmiguelincorrecta2" />
 
                 <ImageView
                     android:id="@+id/imageView7"
                     android:layout_width="130dp"
                     android:layout_height="150dp"
-                    android:src="@android:color/holo_green_light" />
+                    android:src="@drawable/sanmiguelincorrecta3" />
 
                 <ImageView
                     android:id="@+id/imageView8"
                     android:layout_width="130dp"
                     android:layout_height="150dp"
-                    android:src="@android:color/holo_orange_light" />
+                    android:src="@drawable/sanmiguelcorrecta3" />
             </TableRow>
 
 

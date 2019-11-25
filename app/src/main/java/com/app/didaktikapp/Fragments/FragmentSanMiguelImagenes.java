@@ -5,17 +5,20 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.app.didaktikapp.R;
 
@@ -25,6 +28,9 @@ import com.zomato.photofilters.imageprocessors.subfilters.BrightnessSubfilter;
 import com.zomato.photofilters.imageprocessors.subfilters.ColorOverlaySubfilter;
 import com.zomato.photofilters.imageprocessors.subfilters.ContrastSubfilter;
 import com.zomato.photofilters.imageprocessors.subfilters.ToneCurveSubfilter;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -95,19 +101,51 @@ public class FragmentSanMiguelImagenes extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_san_miguel_imagenes, container, false);
 
-        ImageView imageView1 = view.findViewById(R.id.imageView3);
-        ImageView imageView2 = view.findViewById(R.id.imageView4);
-        ImageView imageView3 = view.findViewById(R.id.imageView5);
-        ImageView imageView4 = view.findViewById(R.id.imageView6);
-        ImageView imageView5 = view.findViewById(R.id.imageView7);
-        ImageView imageView6 = view.findViewById(R.id.imageView8);
+        ArrayList<String> arrayimagenes = new ArrayList<String>();
+        int[] arrayRecurso  = {R.id.imageView3,R.id.imageView4,R.id.imageView5,R.id.imageView6,R.id.imageView7,R.id.imageView8};
 
-        imageView1.setOnClickListener(new ListenerCorrecta());
-        imageView2.setOnClickListener(new ListenerIncorrecta());
-        imageView3.setOnClickListener(new ListenerCorrecta());
-        imageView4.setOnClickListener(new ListenerIncorrecta());
-        imageView5.setOnClickListener(new ListenerCorrecta());
-        imageView6.setOnClickListener(new ListenerIncorrecta());
+        arrayimagenes.add("sanmiguelcorrecta1");
+        arrayimagenes.add("sanmiguelcorrecta2");
+        arrayimagenes.add("sanmiguelcorrecta3");
+        arrayimagenes.add("sanmiguelincorrecta1");
+        arrayimagenes.add("sanmiguelincorrecta2");
+        arrayimagenes.add("sanmiguelincorrecta3");
+        int i=0;
+        for(String imagen : arrayimagenes){
+
+
+            ImageView imageView = view.findViewById(arrayRecurso[i]);
+            imageView.setImageResource();
+            imageView.setTag(imagen);
+            imageView.setOnClickListener(new ListenerImagen());
+            i++;
+        }
+
+//        ImageView imageView1 = view.findViewById(R.id.imageView3);
+//        imageView1.setTag("sanmiguelcorrecta1");
+//        arrayimagenes.add(imageView1);
+//        ImageView imageView2 = view.findViewById(R.id.imageView4);
+//        imageView2.setTag("sanmiguelincorrecta1");
+//        arrayimagenes.add(imageView2);
+//        ImageView imageView3 = view.findViewById(R.id.imageView5);
+//        imageView3.setTag("sanmiguelcorrecta2");
+//        arrayimagenes.add(imageView3);
+//        ImageView imageView4 = view.findViewById(R.id.imageView6);
+//        imageView4.setTag("sanmiguelincorrecta2");
+//        arrayimagenes.add(imageView4);
+//        ImageView imageView5 = view.findViewById(R.id.imageView7);
+//        imageView5.setTag("sanmiguelincorrecta3");
+//        arrayimagenes.add(imageView5);
+//        ImageView imageView6 = view.findViewById(R.id.imageView8);
+//        imageView6.setTag("sanmiguelcorrecta3");
+//        arrayimagenes.add(imageView6);
+//
+//        imageView1.setOnClickListener(new ListenerImagen());
+//        imageView2.setOnClickListener(new ListenerImagen());
+//        imageView3.setOnClickListener(new ListenerImagen());
+//        imageView4.setOnClickListener(new ListenerImagen());
+//        imageView5.setOnClickListener(new ListenerImagen());
+//        imageView6.setOnClickListener(new ListenerImagen());
 
         btnContinuar = view.findViewById(R.id.btnContinuar);
         btnContinuar.setOnClickListener(new View.OnClickListener() {
@@ -161,47 +199,67 @@ public class FragmentSanMiguelImagenes extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    private class ListenerCorrecta implements View.OnClickListener {
+    private class ListenerImagen implements View.OnClickListener {
 
         @Override
         public void onClick(View view) {
             view.setEnabled(false);
 
+            ImageView imageView = view.findViewById(view.getId());
+
+            String tag = imageView.getTag().toString();
+
+            if(tag.equals("sanmiguelcorrecta1") || tag.equals("sanmiguelcorrecta2") || tag.equals("sanmiguelcorrecta3") ){
+                filtroVerde(imageView,true);
+                contadorCorrectas++;
+                if(contadorCorrectas == 3){
+                    btnContinuar.setEnabled(true);
+                }
+            }else{
+                filtroVerde(imageView,false);
+            }
+
+
+
+
+        }
+
+        private void filtroVerde(ImageView imageView, boolean verde){
             Filter imageFilter = new Filter();
             Point[] rgbKnots;
             rgbKnots = new Point[3];
             rgbKnots[0] = new Point(0, 0);
             rgbKnots[1] = new Point(175, 139);
             rgbKnots[2] = new Point(255, 255);
-            imageFilter.addSubFilter(new ColorOverlaySubfilter(100, .2f, .5f, .0f));
+            if(verde)
+                imageFilter.addSubFilter(new ColorOverlaySubfilter(100, .2f, .5f, .0f));
+            else
+                imageFilter.addSubFilter(new ColorOverlaySubfilter(100, .5f, .0f, .0f));
+
             imageFilter.addSubFilter(new ToneCurveSubfilter(rgbKnots, null, null, null));
             imageFilter.addSubFilter(new BrightnessSubfilter(30));
             imageFilter.addSubFilter(new ContrastSubfilter(1.1f));
 
+            Log.i("TAG",imageView.getTag().toString());
+            Log.i("TAG",getActivity().getPackageName());
+            int id = getResources().getIdentifier(imageView.getTag().toString(),
+                    "drawable", getActivity().getPackageName());
+
+
+
             BitmapFactory.Options opts = new BitmapFactory.Options();
             opts.inMutable = true;
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(),
-                    R.drawable.cjoriginal, opts);
+               id, opts);
 
             Bitmap outputImage = imageFilter.processFilter(bitmap);
 
-            ImageView imageView = view.findViewById(view.getId());
-
             imageView.setImageBitmap(outputImage);
-            contadorCorrectas++;
-            if(contadorCorrectas == 3){
-                btnContinuar.setEnabled(true);
-            }
-        }
-    }
-
-    private class ListenerIncorrecta implements View.OnClickListener{
-
-        @Override
-        public void onClick(View view) {
 
         }
     }
+
+
 }
 
 

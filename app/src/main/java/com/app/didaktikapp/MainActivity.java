@@ -8,7 +8,11 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.SyncStateContract;
+import android.transition.Slide;
+import android.transition.Transition;
+import android.transition.TransitionInflater;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -29,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+
         super.onCreate(savedInstanceState);
 
 //        setContentView(R.layout.activity_inicio);
@@ -39,8 +44,9 @@ public class MainActivity extends AppCompatActivity {
 //        }
         setContentView(R.layout.activity_main);
 
-        Intent i = new Intent(MainActivity.this,Sopa.class);
+        Intent i = new Intent(MainActivity.this,InicioActivity.class);
         startActivity(i);
+
 
 
         layout = findViewById(R.id.layout);
@@ -58,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         botonContinuar = findViewById(R.id.btnContinuar);
 
         eventos();
+
     }
 
     private void eventos(){
@@ -71,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, MapActivity.class);
-
                 startActivity(i);
             }
         });
@@ -109,7 +115,6 @@ public class MainActivity extends AppCompatActivity {
     private void salir(View v){
         finish();
     }
-
 
 
 
