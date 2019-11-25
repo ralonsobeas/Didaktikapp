@@ -61,3 +61,4 @@ Seguimiento
 
 
 -Link source code sopa de letras https://github.com/abdularis/Word-Search-Game
+-Liks source code puzle https://dragosholban.com/2018/03/09/how-to-build-a-jigsaw-puzzle-android-game/
