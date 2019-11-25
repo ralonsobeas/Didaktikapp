@@ -31,6 +31,10 @@ import com.zomato.photofilters.imageprocessors.subfilters.ToneCurveSubfilter;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -101,51 +105,31 @@ public class FragmentSanMiguelImagenes extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_san_miguel_imagenes, container, false);
 
-        ArrayList<String> arrayimagenes = new ArrayList<String>();
+
         int[] arrayRecurso  = {R.id.imageView3,R.id.imageView4,R.id.imageView5,R.id.imageView6,R.id.imageView7,R.id.imageView8};
+        HashMap<String,Integer> mapaDrawable = new HashMap<>();
 
-        arrayimagenes.add("sanmiguelcorrecta1");
-        arrayimagenes.add("sanmiguelcorrecta2");
-        arrayimagenes.add("sanmiguelcorrecta3");
-        arrayimagenes.add("sanmiguelincorrecta1");
-        arrayimagenes.add("sanmiguelincorrecta2");
-        arrayimagenes.add("sanmiguelincorrecta3");
+        mapaDrawable.put("sanmiguelcorrecta1",R.drawable.sanmiguelcorrecta1);
+        mapaDrawable.put("sanmiguelcorrecta2",R.drawable.sanmiguelcorrecta2);
+        mapaDrawable.put("sanmiguelcorrecta3",R.drawable.sanmiguelcorrecta3);
+        mapaDrawable.put("sanmiguelincorrecta1",R.drawable.sanmiguelincorrecta1);
+        mapaDrawable.put("sanmiguelincorrecta2",R.drawable.sanmiguelincorrecta2);
+        mapaDrawable.put("sanmiguelincorrecta3",R.drawable.sanmiguelincorrecta3);
+
+        List<String> keys = new ArrayList<String>(mapaDrawable.keySet());
+        Collections.shuffle(keys);
+
         int i=0;
-        for(String imagen : arrayimagenes){
-
+        for(String imagen : keys) {
 
             ImageView imageView = view.findViewById(arrayRecurso[i]);
-            imageView.setImageResource();
+            imageView.setImageResource(mapaDrawable.get(imagen));
             imageView.setTag(imagen);
             imageView.setOnClickListener(new ListenerImagen());
             i++;
+
         }
 
-//        ImageView imageView1 = view.findViewById(R.id.imageView3);
-//        imageView1.setTag("sanmiguelcorrecta1");
-//        arrayimagenes.add(imageView1);
-//        ImageView imageView2 = view.findViewById(R.id.imageView4);
-//        imageView2.setTag("sanmiguelincorrecta1");
-//        arrayimagenes.add(imageView2);
-//        ImageView imageView3 = view.findViewById(R.id.imageView5);
-//        imageView3.setTag("sanmiguelcorrecta2");
-//        arrayimagenes.add(imageView3);
-//        ImageView imageView4 = view.findViewById(R.id.imageView6);
-//        imageView4.setTag("sanmiguelincorrecta2");
-//        arrayimagenes.add(imageView4);
-//        ImageView imageView5 = view.findViewById(R.id.imageView7);
-//        imageView5.setTag("sanmiguelincorrecta3");
-//        arrayimagenes.add(imageView5);
-//        ImageView imageView6 = view.findViewById(R.id.imageView8);
-//        imageView6.setTag("sanmiguelcorrecta3");
-//        arrayimagenes.add(imageView6);
-//
-//        imageView1.setOnClickListener(new ListenerImagen());
-//        imageView2.setOnClickListener(new ListenerImagen());
-//        imageView3.setOnClickListener(new ListenerImagen());
-//        imageView4.setOnClickListener(new ListenerImagen());
-//        imageView5.setOnClickListener(new ListenerImagen());
-//        imageView6.setOnClickListener(new ListenerImagen());
 
         btnContinuar = view.findViewById(R.id.btnContinuar);
         btnContinuar.setOnClickListener(new View.OnClickListener() {
