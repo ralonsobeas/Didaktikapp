@@ -59,6 +59,14 @@ Seguimiento
 - Merge de Branch1 con Master
 - Comienzo de actividad San Miguel (test) Actividad número 2
 
+<h4>25/11/2019 Trabajo de desarrollo</h4>
+- Trabajo sobre actividad San Miguel
+- Avances en Sopa de letras
+- Animaciones de entrada/salida de fragments
+- Animaciones en botones
+- Problemas con la documentación aportada y espera de un correo de respuesta por parte de los alumnos de la UPV
 
--Link source code sopa de letras https://github.com/abdularis/Word-Search-Game
--Liks source code puzle https://dragosholban.com/2018/03/09/how-to-build-a-jigsaw-puzzle-android-game/
+
+- Link source code sopa de letras https://github.com/abdularis/Word-Search-Game
+
+- Liks source code puzle https://dragosholban.com/2018/03/09/how-to-build-a-jigsaw-puzzle-android-game/
