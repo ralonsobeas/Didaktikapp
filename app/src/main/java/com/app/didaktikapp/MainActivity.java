@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 //        }
         setContentView(R.layout.activity_main);
 
-        Intent i = new Intent(MainActivity.this,InicioActivity.class);
+        Intent i = new Intent(MainActivity.this,Sopa.class);
         startActivity(i);
 
 
