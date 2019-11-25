@@ -25,6 +25,13 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!-- Actividad Zumeltzegi -->
+    <string name="ZumeltzegiSopaZumeltzegi">Zumeltzegi</string>
+    <string name="ZumeltzegiSopaDefentsa">Defentsa</string>
+    <string name="ZumeltzegiSopaKondea">Kondea</string>
+    <string name="ZumeltzegiSopaHotela">Hotela</string>
+    <string name="ZumeltzegiSopaSiguiente">Siguiente</string>
+
     <!-- Actividad San Miguel -->
     <string name="SanMiguelTitulo">San Miguel Test</string>
     <!-- Pregunta 1 -->
