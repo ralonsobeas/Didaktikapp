@@ -1,0 +1,308 @@
+package com.app.didaktikapp.Fragments;
+
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Bundle;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
+
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+
+import com.app.didaktikapp.Puzzle.PuzzlePiece;
+import com.app.didaktikapp.R;
+
+import java.util.ArrayList;
+
+import static java.lang.Math.abs;
+import static java.lang.Math.pow;
+import static java.lang.Math.sqrt;
+
+/**
+ * A simple {@link Fragment} subclass.
+ * Activities that contain this fragment must implement the
+ * {@link FragmentTren.OnFragmentInteractionListener} interface
+ * to handle interaction events.
+ * Use the {@link FragmentTren#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class FragmentTren extends Fragment {
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
+
+    private View view;
+    private ArrayList<PuzzlePiece> pieces;
+    private ImageView imageView;
+
+    private OnFragmentInteractionListener mListener;
+
+    public FragmentTren() {
+        // Required empty public constructor
+    }
+
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment FragmentTren.
+     */
+    // TODO: Rename and change types and number of parameters
+    public static FragmentTren newInstance(String param1, String param2) {
+        FragmentTren fragment = new FragmentTren();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        view =  inflater.inflate(R.layout.fragment_tren, container, false);
+
+        final RelativeLayout layout = view.findViewById(R.id.layout);
+        imageView = view.findViewById(R.id.imageView);
+
+        // run image related code after the view was laid out
+        // to have all dimensions calculated
+        imageView.post(new Runnable() {
+            @Override
+            public void run() {
+                pieces = splitImage();
+                TouchListener touchListener = new TouchListener();
+                for(PuzzlePiece piece : pieces) {
+
+                    piece.setOnTouchListener(touchListener);
+                    layout.addView(piece);
+                }
+            }
+        });
+        return view;
+    }
+
+    // TODO: Rename method, update argument and hook method into UI event
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
+        }
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
+    }
+
+    private ArrayList<PuzzlePiece> splitImage() {
+        int piecesNumber = 12;
+        int rows = 4;
+        int cols = 3;
+
+        ImageView imageView = view.findViewById(R.id.imageView);
+        ArrayList<PuzzlePiece> pieces = new ArrayList<>(piecesNumber);
+
+        // Get the scaled bitmap of the source image
+        BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
+        Bitmap bitmap = drawable.getBitmap();
+
+        int[] dimensions = getBitmapPositionInsideImageView(imageView);
+        int scaledBitmapLeft = dimensions[0];
+        int scaledBitmapTop = dimensions[1];
+        int scaledBitmapWidth = dimensions[2];
+        int scaledBitmapHeight = dimensions[3];
+
+        int croppedImageWidth = scaledBitmapWidth - 2 * abs(scaledBitmapLeft);
+        int croppedImageHeight = scaledBitmapHeight - 2 * abs(scaledBitmapTop);
+
+        Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, scaledBitmapWidth, scaledBitmapHeight, true);
+        Bitmap croppedBitmap = Bitmap.createBitmap(scaledBitmap, abs(scaledBitmapLeft), abs(scaledBitmapTop), croppedImageWidth, croppedImageHeight);
+
+        // Calculate the with and height of the pieces
+        int pieceWidth = croppedImageWidth/cols;
+        int pieceHeight = croppedImageHeight/rows;
+
+        // Create each bitmap piece and add it to the resulting array
+        int yCoord = 0;
+        for (int row = 0; row < rows; row++) {
+            int xCoord = 0;
+            for (int col = 0; col < cols; col++) {
+                // calculate offset for each piece
+                int offsetX = 0;
+                int offsetY = 0;
+                if (col > 0) {
+                    offsetX = pieceWidth / 3;
+                }
+                if (row > 0) {
+                    offsetY = pieceHeight / 3;
+                }
+
+                // apply the offset to each piece
+                Bitmap pieceBitmap = Bitmap.createBitmap(croppedBitmap,  xCoord - offsetX, yCoord - offsetY, pieceWidth + offsetX, pieceHeight + offsetY);
+                PuzzlePiece piece = new PuzzlePiece(getActivity().getApplicationContext());
+                piece.setImageBitmap(pieceBitmap);
+                piece.xCoord = xCoord - offsetX + imageView.getLeft();
+                piece.yCoord = yCoord - offsetY + imageView.getTop();
+                piece.pieceWidth = pieceWidth + offsetX;
+                piece.pieceHeight = pieceHeight + offsetY;
+
+                pieces.add(piece);
+                xCoord += pieceWidth;
+            }
+            yCoord += pieceHeight;
+        }
+
+        return pieces;
+    }
+
+
+
+    private int[] getBitmapPositionInsideImageView(ImageView imageView) {
+        int[] ret = new int[4];
+
+        if (imageView == null || imageView.getDrawable() == null)
+            return ret;
+
+        // Get image dimensions
+        // Get image matrix values and place them in an array
+        float[] f = new float[9];
+        imageView.getImageMatrix().getValues(f);
+
+        // Extract the scale values using the constants (if aspect ratio maintained, scaleX == scaleY)
+        final float scaleX = f[Matrix.MSCALE_X];
+        final float scaleY = f[Matrix.MSCALE_Y];
+
+        // Get the drawable (could also get the bitmap behind the drawable and getWidth/getHeight)
+        final Drawable d = imageView.getDrawable();
+        final int origW = d.getIntrinsicWidth();
+        final int origH = d.getIntrinsicHeight();
+
+        // Calculate the actual dimensions
+        final int actW = Math.round(origW * scaleX);
+        final int actH = Math.round(origH * scaleY);
+
+        ret[2] = actW;
+        ret[3] = actH;
+
+        // Get image position
+        // We assume that the image is centered into ImageView
+        int imgViewW = imageView.getWidth();
+        int imgViewH = imageView.getHeight();
+
+        int top = (int) (imgViewH - actH)/2;
+        int left = (int) (imgViewW - actW)/2;
+
+        ret[0] = left;
+        ret[1] = top;
+
+        return ret;
+    }
+
+    public class TouchListener implements View.OnTouchListener {
+        private float xDelta;
+        private float yDelta;
+
+        @Override
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            float x = motionEvent.getRawX();
+            float y = motionEvent.getRawY();
+
+            final double tolerance = sqrt(pow(view.getWidth(), 2) + pow(view.getHeight(), 2)) / 10;
+
+            PuzzlePiece piece = (PuzzlePiece) view;
+            if (!piece.canMove) {
+                return true;
+            }
+
+            RelativeLayout.LayoutParams lParams = (RelativeLayout.LayoutParams) view.getLayoutParams();
+            switch (motionEvent.getAction() & MotionEvent.ACTION_MASK) {
+                case MotionEvent.ACTION_DOWN:
+                    xDelta = x - lParams.leftMargin;
+                    yDelta = y - lParams.topMargin;
+                    piece.bringToFront();
+                    break;
+                case MotionEvent.ACTION_MOVE:
+                    lParams.leftMargin = (int) (x - xDelta);
+                    lParams.topMargin = (int) (y - yDelta);
+                    view.setLayoutParams(lParams);
+                    break;
+
+                    case MotionEvent.ACTION_UP:
+                    int xDiff = abs(piece.xCoord - lParams.leftMargin);
+                    int yDiff = abs(piece.yCoord - lParams.topMargin);
+                    if (xDiff <= tolerance && yDiff <= tolerance) {
+                        lParams.leftMargin = piece.xCoord;
+                        lParams.topMargin = piece.yCoord;
+                        piece.setLayoutParams(lParams);
+                        piece.canMove = false;
+                        sendViewToBack(piece);
+                    }
+                    break;
+            }
+
+            return true;
+        }
+
+        public void sendViewToBack(final View child) {
+            final ViewGroup parent = (ViewGroup)child.getParent();
+            if (null != parent) {
+                parent.removeView(child);
+                parent.addView(child, 0);
+            }
+        }
+    }
+
+}
