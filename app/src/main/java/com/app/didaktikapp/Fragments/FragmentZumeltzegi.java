@@ -2,23 +2,30 @@ package com.app.didaktikapp.Fragments;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.MediaController;
@@ -27,6 +34,11 @@ import android.widget.VideoView;
 
 import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.R;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,7 +55,8 @@ public class FragmentZumeltzegi extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
 
-    final int REQUEST_IMAGE_CAPTURE = 1888;
+    final int REQUEST_IMAGE_CAPTURE1 = 1888;
+    final int REQUEST_IMAGE_CAPTURE2 = 1889;
 
     private ImageView ivPregunta1,ivPregunta2;
 
@@ -93,11 +106,34 @@ public class FragmentZumeltzegi extends Fragment {
         // Inflate the layout for this fragment
 
         view = inflater.inflate(R.layout.fragment_zumeltzegi, container, false);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            //Verifica permisos para Android 6.0+
+            int permissionCheck = ContextCompat.checkSelfPermission(
+                    getActivity().getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+
+                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 225);
+            } else {
+
+            }
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            //Verifica permisos para Android 6.0+
+            int permissionCheck = ContextCompat.checkSelfPermission(
+                    getActivity().getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE);
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+
+                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 225);
+            } else {
+
+            }
+        }
 
         if (ContextCompat.checkSelfPermission(getActivity().getApplicationContext(),Manifest.permission.CAMERA)
                 != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.CAMERA},
-                    REQUEST_IMAGE_CAPTURE);
+                    REQUEST_IMAGE_CAPTURE1);
         }
 
 //        final VideoView videoView = view.findViewById(R.id.videoView);
@@ -122,10 +158,25 @@ public class FragmentZumeltzegi extends Fragment {
 //            }
 //        });
 
+
+        ivPregunta1 = view.findViewById(R.id.ivPregunta1);
+        ivPregunta2 = view.findViewById(R.id.ivPregunta2);
+
         ImageButton btnPregunta1 = view.findViewById(R.id.btnCameraPregunta1);
         btnPregunta1.setOnClickListener(new ListenerBoton());
 
         ImageButton btnPregunta2 = view.findViewById(R.id.btnCameraPregunta2);
+        btnPregunta2.setOnClickListener(new ListenerBoton());
+
+        Button btnContinuar = view.findViewById(R.id.btnContinuar);
+        btnContinuar.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                guardarImagen(ivPregunta1);
+                guardarImagen(ivPregunta2);
+            }
+        });
 
         return view;
     }
@@ -137,15 +188,23 @@ public class FragmentZumeltzegi extends Fragment {
 
 
 
-            dispatchTakePictureIntent();
+            dispatchTakePictureIntent(v);
 
         }
 
 
-        private void dispatchTakePictureIntent(){
+        private void dispatchTakePictureIntent(View v){
             Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+            int request;
+            if(v == view.findViewById(R.id.btnCameraPregunta1)){
+                request = REQUEST_IMAGE_CAPTURE1;
+            }else{
+                request = REQUEST_IMAGE_CAPTURE2;
+            }
+
             if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                startActivityForResult(takePictureIntent, request);
             }
         }
 
@@ -195,10 +254,19 @@ public class FragmentZumeltzegi extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
+        if ((requestCode == REQUEST_IMAGE_CAPTURE1 || requestCode == REQUEST_IMAGE_CAPTURE2) && resultCode == Activity.RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
-            ivPregunta1.setImageBitmap(imageBitmap);
+
+            if (requestCode == REQUEST_IMAGE_CAPTURE1)
+                ivPregunta1.setImageBitmap(Bitmap.createScaledBitmap(imageBitmap,1000,1000,false));
+            else
+                ivPregunta2.setImageBitmap(Bitmap.createScaledBitmap(imageBitmap,1000,1000,false));
+
+        }
+
+        if(ivPregunta1.getDrawable() != null && ivPregunta2.getDrawable() != null){
+            view.findViewById(R.id.btnContinuar).setEnabled(true);
         }
     }
 
@@ -207,5 +275,33 @@ public class FragmentZumeltzegi extends Fragment {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    public void guardarImagen(ImageView iv){
+        //to get the image from the ImageView (say iv)
+        BitmapDrawable draw = (BitmapDrawable) iv.getDrawable();
+        Bitmap bitmap = draw.getBitmap();
+
+        FileOutputStream outStream = null;
+        File sdCard = Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES);
+        File dir = new File(sdCard.getAbsolutePath() + "/Didaktikapp");
+        dir.mkdirs();
+        String fileName = String.format("%d.jpg", System.currentTimeMillis());
+        Log.i("FILE",fileName);
+        Log.i("DIR",dir.getPath());
+        File outFile = new File(dir, fileName);
+        try {
+            outStream = new FileOutputStream(outFile);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outStream);
+            outStream.flush();
+            outStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        MediaStore.Images.Media.insertImage(getActivity().getContentResolver(), bitmap, "Titulo" , "descripcion");
     }
 }

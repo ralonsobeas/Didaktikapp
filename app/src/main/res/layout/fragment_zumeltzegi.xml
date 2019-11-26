@@ -15,65 +15,84 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="60dp"
         android:layout_marginBottom="60dp"
         android:background="@color/gray"
-        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
-        <TextView
-            android:id="@+id/tvTitulo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/ZumeltzegiTitulo"
-            android:textSize="30sp" />
-
-        <TextView
-            android:id="@+id/tvPregunta1"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/ZumeltzegiPregunta1Titulo" />
+            android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/ivPregunta1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@color/colorPrimary" />
+            <TextView
+                android:id="@+id/tvTitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/ZumeltzegiTitulo"
+                android:textSize="30sp" />
 
-        <ImageButton
-            android:id="@+id/btnCameraPregunta1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_camera" />
+            <TextView
+                android:id="@+id/tvPregunta1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ZumeltzegiPregunta1Titulo" />
 
-        <TextView
-            android:id="@+id/tvPregunta2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/ZumeltzegiPregunta2Titulo" />
+            <ImageView
+                android:id="@+id/ivPregunta1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-        <ImageView
-            android:id="@+id/ivPregunta2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@color/colorPrimary" />
+            <ImageButton
+                android:id="@+id/btnCameraPregunta1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_camera" />
 
-        <ImageButton
-            android:id="@+id/btnCameraPregunta2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_camera" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tvPregunta2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ZumeltzegiPregunta2Titulo" />
+
+            <ImageView
+                android:id="@+id/ivPregunta2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <ImageButton
+                android:id="@+id/btnCameraPregunta2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_camera" />
+
+            <Button
+                android:id="@+id/btnContinuar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="307dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/ripple_boton_bg"
+                android:clickable="true"
+                android:enabled="false"
+                android:text="@string/Contunuar" />
+        </LinearLayout>
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
