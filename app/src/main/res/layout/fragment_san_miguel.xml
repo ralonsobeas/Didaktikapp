@@ -71,128 +71,128 @@
             </RadioGroup>
         </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/layoutPregunta2"
+        <LinearLayout
+            android:id="@+id/layoutPregunta2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitulo"
+            android:visibility="invisible">
+
+            <TextView
+                android:id="@+id/tvPregunta2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/SanMiguelPregunta2Titulo" />
+
+            <RadioGroup
+                android:id="@+id/rgroupPregunta2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RadioButton
+                    android:id="@+id/rbtnPregunta2.A"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvTitulo"
-                    android:visibility="invisible">
+                    android:text="@string/SanMiguelPregunta2OpcionA" />
 
-                    <TextView
-                        android:id="@+id/tvPregunta2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/SanMiguelPregunta2Titulo" />
+                <RadioButton
+                    android:id="@+id/rbtnPregunta2.B"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/SanMiguelPregunta2OpcionB" />
 
-                    <RadioGroup
-                        android:id="@+id/rgroupPregunta2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                <RadioButton
+                    android:id="@+id/rbtnPregunta2.C"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/SanMiguelPregunta2OpcionC" />
+            </RadioGroup>
+        </LinearLayout>
 
-                        <RadioButton
-                            android:id="@+id/rbtnPregunta2.A"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/SanMiguelPregunta2OpcionA" />
+        <LinearLayout
+            android:id="@+id/layoutPregunta3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitulo"
+            android:visibility="invisible">
 
-                        <RadioButton
-                            android:id="@+id/rbtnPregunta2.B"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/SanMiguelPregunta2OpcionB" />
+            <TextView
+                android:id="@+id/tvPregunta3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/SanMiguelPregunta3Titulo" />
 
-                        <RadioButton
-                            android:id="@+id/rbtnPregunta2.C"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/SanMiguelPregunta2OpcionC" />
-                    </RadioGroup>
-                </LinearLayout>
+            <RadioGroup
+                android:id="@+id/rgroupPregunta3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                    <LinearLayout
-                        android:id="@+id/layoutPregunta3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tvTitulo"
-                        android:visibility="invisible">
+                <RadioButton
+                    android:id="@+id/rbtnPregunta3.A"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/SanMiguelPregunta3OpcionA" />
 
-                        <TextView
-                            android:id="@+id/tvPregunta3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/SanMiguelPregunta3Titulo" />
+                <RadioButton
+                    android:id="@+id/rbtnPregunta3.B"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/SanMiguelPregunta3OpcionB" />
 
-                        <RadioGroup
-                            android:id="@+id/rgroupPregunta3"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                <RadioButton
+                    android:id="@+id/rbtnPregunta3.C"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/SanMiguelPregunta3OpcionC" />
+            </RadioGroup>
+        </LinearLayout>
 
-                            <RadioButton
-                                android:id="@+id/rbtnPregunta3.A"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/SanMiguelPregunta3OpcionA" />
+        <LinearLayout
+            android:id="@+id/layoutPregunta4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitulo"
+            android:visibility="invisible">
 
-                            <RadioButton
-                                android:id="@+id/rbtnPregunta3.B"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/SanMiguelPregunta3OpcionB" />
+            <TextView
+                android:id="@+id/tvPregunta4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/SanMiguelPregunta4Titulo" />
 
-                            <RadioButton
-                                android:id="@+id/rbtnPregunta3.C"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/SanMiguelPregunta3OpcionC" />
-                        </RadioGroup>
-                    </LinearLayout>
+            <RadioGroup
+                android:id="@+id/rgroupPregunta4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                    <LinearLayout
-                        android:id="@+id/layoutPregunta4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tvTitulo"
-                        android:visibility="invisible">
+                <RadioButton
+                    android:id="@+id/rbtnPregunta4.A"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/SanMiguelPregunta4OpcionA" />
 
-                        <TextView
-                            android:id="@+id/tvPregunta4"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/SanMiguelPregunta4Titulo" />
+                <RadioButton
+                    android:id="@+id/rbtnPregunta4.B"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/SanMiguelPregunta4OpcionB" />
 
-                        <RadioGroup
-                            android:id="@+id/rgroupPregunta4"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <RadioButton
-                                android:id="@+id/rbtnPregunta4.A"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/SanMiguelPregunta4OpcionA" />
-
-                            <RadioButton
-                                android:id="@+id/rbtnPregunta4.B"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/SanMiguelPregunta4OpcionB" />
-
-                            <RadioButton
-                                android:id="@+id/rbtnPregunta4.C"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/SanMiguelPregunta4OpcionC" />
-                        </RadioGroup>
-                    </LinearLayout>
+                <RadioButton
+                    android:id="@+id/rbtnPregunta4.C"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/SanMiguelPregunta4OpcionC" />
+            </RadioGroup>
+        </LinearLayout>
 
         <Button
             android:id="@+id/btnContinuar"

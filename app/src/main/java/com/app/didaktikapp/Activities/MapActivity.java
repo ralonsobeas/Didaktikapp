@@ -179,7 +179,7 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
 //                    transaction.addToBackStack("Fragment");
 
 
-                }else if(marker.getPosition().getLatitude()==43.035000 && marker.getPosition().getLongitude()==-2.412889){
+                }else if(marker.getPosition().getLatitude()==43.033944 && marker.getPosition().getLongitude()==-2.415361){
                     marker.setIcon(iconoverde);
                     Toast.makeText(MapActivity.this,"HOLA",Toast.LENGTH_SHORT).show();
                     FragmentUnibertsitatea fragment = new FragmentUnibertsitatea();

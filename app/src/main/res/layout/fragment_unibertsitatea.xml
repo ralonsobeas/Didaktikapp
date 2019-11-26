@@ -2,19 +2,149 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:foreground="@drawable/unibersitatea"
-    tools:context=".Fragments.FragmentUnibertsitatea">
+    android:orientation="vertical"
+    tools:context=".Fragments.FragmentUnibertsitatea"
+    android:background="@color/backgroundTransparente">
 
-    <TextView
-        android:id="@+id/idTitulo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Unibersitatea"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!-- TODO: Update blank fragment layout -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="60dp"
+        android:background="@color/gray"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/uniTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Unibertsitatea"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <LinearLayout
+            android:id="@+id/uniTextoBreveLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/uniTitulo">
+
+            <TextView
+                android:id="@+id/uniTextoBreve"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Unibertsitatearen sortzailea Rodrigo Mercado de Zuazola izan zen eta 1548. urtean sortu zuen. Eraikin hau, oso garrantzitsua da Euskal Herriko lehen unibertsitatea izan baitzen. Hiru mendeetan zehar honako ikasketak egin izan dira berta: medikuntza, filosofia, letrak eta teologia. Gaur egun ordea, ez da klaserik ematen bertan. Gainera, arkitektura adierazgarria dauka eta bere barruan klaustro ikusgarri bat eta Oteizaren eskultura bat daude. " />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/uniPreguntasLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/uniTitulo">
+
+            <TextView
+                android:id="@+id/uniPregunta1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1. Oñatiko unibertsitatea Euskal Herriko bigarren unibertsitatea izan zen." />
+
+            <RadioGroup
+                android:id="@+id/grupoPregunta1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RadioButton
+                    android:id="@+id/radioPregunta1Si"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="BAI" />
+
+                <RadioButton
+                    android:id="@+id/radioPregunta1No"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="EZ" />
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/uniPregunta2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/SanMiguelPregunta2Titulo" />
+
+            <RadioGroup
+                android:id="@+id/grupoPregunta2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RadioButton
+                    android:id="@+id/radioPregunta2Si"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="BAI" />
+
+                <RadioButton
+                    android:id="@+id/radioPregunta2No"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="EZ" />
+
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/uniFotosLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/uniTitulo">
+
+            <TextView
+                android:id="@+id/tvPregunta3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Relizar 3 fotografias de la universidad desde lados distintos" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnContinuar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="307dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/ripple_boton_bg"
+            android:clickable="true"
+            android:enabled="true"
+            android:text="@string/Contunuar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

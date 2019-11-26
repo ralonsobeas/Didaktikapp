@@ -1,26 +1,29 @@
 package com.app.didaktikapp.Fragments;
 
 import android.content.Context;
-import android.net.Uri;
+import android.opengl.Visibility;
 import android.os.Bundle;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RadioGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.app.didaktikapp.R;
 
 
 public class FragmentUnibertsitatea extends Fragment {
 
-    private ConstraintLayout layout;
-
 
     private View view;
+
+    private LinearLayout textoBreveLayout, preguntasLayout, fotosLayout;
+
+    private Button btnContinuar;
+
 
     public FragmentUnibertsitatea() {
 
@@ -45,6 +48,32 @@ public class FragmentUnibertsitatea extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_unibertsitatea, container, false);
+        textoBreveLayout = view.findViewById(R.id.uniTextoBreveLayout);
+        textoBreveLayout.setVisibility(View.VISIBLE);
+        preguntasLayout = view.findViewById(R.id.uniPreguntasLayout);
+        preguntasLayout.setVisibility(View.INVISIBLE);
+        fotosLayout = view.findViewById(R.id.uniFotosLayout);
+        fotosLayout.setVisibility(View.INVISIBLE);
+
+        btnContinuar = view.findViewById(R.id.btnContinuar);
+        btnContinuar.setText("CONTINUAR");
+        btnContinuar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(textoBreveLayout.getVisibility() == View.VISIBLE){
+                    textoBreveLayout.setVisibility(View.INVISIBLE);
+                    preguntasLayout.setVisibility(View.VISIBLE);
+                }else if(preguntasLayout.getVisibility() == View.VISIBLE){
+                    preguntasLayout.setVisibility(View.INVISIBLE);
+                    fotosLayout.setVisibility(View.VISIBLE);
+                    btnContinuar.setText("FINALIZAR");
+                }else if(fotosLayout.getVisibility() == View.VISIBLE){
+                    getFragmentManager().beginTransaction().remove(FragmentUnibertsitatea.this).commit();
+                }
+
+            }
+        });
         return view;
     }
 
@@ -60,5 +89,7 @@ public class FragmentUnibertsitatea extends Fragment {
         super.onDetach();
 
     }
+
+
 
 }
