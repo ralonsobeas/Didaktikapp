@@ -69,3 +69,10 @@ Seguimiento
 - Link source code sopa de letras https://github.com/abdularis/Word-Search-Game
 - Link source code puzle https://dragosholban.com/2018/03/09/how-to-build-a-jigsaw-puzzle-android-game/
 - Posible uso de script de python desde java https://github.com/chaquo/chaquopy ; https://github.com/chaquo/chaquopy-console
+
+<h4>26/11/2019 Trabajo de desarrollo</h4>
+
+- Trabajo sobre sopa de letras
+- Actividades universidad y san miguel casi terminadas. Falta solucionar videos
+- Inicio de puzle
+- Creación de algunos estilos comunes entre fragments
