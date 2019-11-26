@@ -1,19 +1,31 @@
 package com.app.didaktikapp.Fragments;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.MediaController;
+import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.R;
 
 /**
@@ -29,6 +41,11 @@ public class FragmentZumeltzegi extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+
+    final int REQUEST_IMAGE_CAPTURE = 1888;
+
+    private ImageView ivPregunta1,ivPregunta2;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -74,7 +91,14 @@ public class FragmentZumeltzegi extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         view = inflater.inflate(R.layout.fragment_zumeltzegi, container, false);
+
+        if (ContextCompat.checkSelfPermission(getActivity().getApplicationContext(),Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.CAMERA},
+                    REQUEST_IMAGE_CAPTURE);
+        }
 
 //        final VideoView videoView = view.findViewById(R.id.videoView);
 //        String path = "android.resource://" + getActivity().getPackageName() + "/" + R.raw.sanmiguele;
@@ -98,11 +122,37 @@ public class FragmentZumeltzegi extends Fragment {
 //            }
 //        });
 
+        ImageButton btnPregunta1 = view.findViewById(R.id.btnCameraPregunta1);
+        btnPregunta1.setOnClickListener(new ListenerBoton());
+
+        ImageButton btnPregunta2 = view.findViewById(R.id.btnCameraPregunta2);
 
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
+    private class ListenerBoton implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+
+
+
+
+            dispatchTakePictureIntent();
+
+        }
+
+
+        private void dispatchTakePictureIntent(){
+            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+            }
+        }
+
+
+    }
+
+        // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -139,5 +189,23 @@ public class FragmentZumeltzegi extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            ivPregunta1.setImageBitmap(imageBitmap);
+        }
+    }
+
+    @Override
+
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }

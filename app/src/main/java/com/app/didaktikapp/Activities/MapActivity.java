@@ -165,18 +165,18 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
                 Icon iconoverde = iconFactory.fromResource(R.drawable.pin_hecho);
                 if(marker.getPosition().getLatitude()==43.035000 && marker.getPosition().getLongitude()==-2.412889){
                     marker.setIcon(iconoverde);
-                    FragmentSanMiguel fragment = new FragmentSanMiguel();
-                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
-                    transaction.replace(R.id.fragment_frame, fragment);
-                    transaction.commit();
-                    transaction.addToBackStack("Fragment");
-//                    FragmentZumeltzegi fragment = new FragmentZumeltzegi();
+//                    FragmentSanMiguel fragment = new FragmentSanMiguel();
 //                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 //                    transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
 //                    transaction.replace(R.id.fragment_frame, fragment);
 //                    transaction.commit();
 //                    transaction.addToBackStack("Fragment");
+                    FragmentZumeltzegi fragment = new FragmentZumeltzegi();
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
+                    transaction.replace(R.id.fragment_frame, fragment);
+                    transaction.commit();
+                    transaction.addToBackStack("Fragment");
 
 
                 }else if(marker.getPosition().getLatitude()==43.033944 && marker.getPosition().getLongitude()==-2.415361){

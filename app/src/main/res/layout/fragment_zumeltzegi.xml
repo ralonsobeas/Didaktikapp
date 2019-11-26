@@ -18,14 +18,62 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvPregunta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="PREGUNTA 1"
-        app:layout_constraintEnd_toStartOf="@+id/videoView"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="60dp"
+        android:background="@color/gray"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/ZumeltzegiTitulo"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/tvPregunta1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ZumeltzegiPregunta1Titulo" />
+
+        <ImageView
+            android:id="@+id/ivPregunta1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@color/colorPrimary" />
+
+        <ImageButton
+            android:id="@+id/btnCameraPregunta1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_camera" />
+
+        <TextView
+            android:id="@+id/tvPregunta2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ZumeltzegiPregunta2Titulo" />
+
+        <ImageView
+            android:id="@+id/ivPregunta2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@color/colorPrimary" />
+
+        <ImageButton
+            android:id="@+id/btnCameraPregunta2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_camera" />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

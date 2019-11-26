@@ -60,7 +60,7 @@ public class FragmentSanMiguelImagenes extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private View view;
+    private View view = null;
 
     private OnFragmentInteractionListener mListener;
 
@@ -201,12 +201,37 @@ public class FragmentSanMiguelImagenes extends Fragment {
                 }
             }else{
                 filtroVerde(imageView,false);
+                int[] arrayRecurso  = {R.id.imageView3,R.id.imageView4,R.id.imageView5,R.id.imageView6,R.id.imageView7,R.id.imageView8};
+                HashMap<String,Integer> mapaDrawable = new HashMap<>();
+
+                mapaDrawable.put("sanmiguelcorrecta1",R.drawable.sanmiguelcorrecta1);
+                mapaDrawable.put("sanmiguelcorrecta2",R.drawable.sanmiguelcorrecta2);
+                mapaDrawable.put("sanmiguelcorrecta3",R.drawable.sanmiguelcorrecta3);
+                mapaDrawable.put("sanmiguelincorrecta1",R.drawable.sanmiguelincorrecta1);
+                mapaDrawable.put("sanmiguelincorrecta2",R.drawable.sanmiguelincorrecta2);
+                mapaDrawable.put("sanmiguelincorrecta3",R.drawable.sanmiguelincorrecta3);
+
+                List<String> keys = new ArrayList<String>(mapaDrawable.keySet());
+                Collections.shuffle(keys);
+
+                int i=0;
+                for(String imagen : keys) {
+
+                    ImageView imageView1 = view.getRootView().findViewById(arrayRecurso[i]);
+                    imageView1.setImageResource(mapaDrawable.get(imagen));
+                    imageView1.setTag(imagen);
+                    imageView1.setOnClickListener(new ListenerImagen());
+                    i++;
+
+                }
+
+                view.getRootView().findViewById(R.id.btnContinuar).setEnabled(false);
+                contadorCorrectas=0;
             }
 
-
-
-
         }
+
+
 
         private void filtroVerde(ImageView imageView, boolean verde){
             Filter imageFilter = new Filter();
