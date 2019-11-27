@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.app.didaktikapp.Activities.MapActivity;
+import com.app.didaktikapp.SopaLetras.features.mainmenu.MainMenuActivity;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -115,7 +116,5 @@ public class MainActivity extends AppCompatActivity {
     private void salir(View v){
         finish();
     }
-
-
 
 }
