@@ -221,7 +221,7 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
 
     private void crearIconos(){
         IconFactory iconFactory = IconFactory.getInstance(context);
-        Icon iconorojo = iconFactory.fromResource(R.drawable.pin2);
+        Icon iconorojo = iconFactory.fromResource(R.drawable.pin);
 //        Icon iconoamarillo = iconFactory.fromResource(R.drawable.yellow_marker);
         Icon iconoverde = iconFactory.fromResource(R.drawable.pin_hecho);
 //        Icon iconogris = iconFactory.fromResource(R.drawable.grey_marker);

@@ -22,7 +22,23 @@ import javax.inject.Inject;
  */
 
 @SuppressLint("Registered")
-public class FullscreenActivity extends AppCompatActivity {
+public class FullscreenActivity extends AppCompatActivity {/*implementation 'com.jakewharton:butterknife:10.2.0'
+      implementation 'com.google.dagger:dagger:2.25.2'
+      implementation 'androidx.appcompat:appcompat:1.1.0'
+      implementation 'androidx.recyclerview:recyclerview:1.1.0'
+      implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+      implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
+      implementation 'androidx.lifecycle:lifecycle-viewmodel:2.1.0'
+      implementation 'io.reactivex.rxjava2:rxjava:2.1.6'
+      implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+      implementation 'com.github.abdularis:CircularImageView:v1.2'
+      implementation 'com.jakewharton:butterknife:10.2.0'
+      annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
+      testImplementation 'junit:junit:4.12'
+      annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
+      annotationProcessor 'com.google.dagger:dagger-compiler:2.25.2'
+      androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+      androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'*/
 
     @Inject
     Preferences mPreferences;
