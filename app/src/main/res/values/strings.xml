@@ -79,4 +79,7 @@
     <string name="SanMiguelPregunta4OpcionC">Eliza ondotik</string>
     <string name="Contunuar">continuar</string>
 
+    <!-- Actividad Tren -->
+    <string name="TrenTexto">Oñatin garai batean trena aurkitzen zen, gaur egun, ……………… den eraikina da lehengo tren estazioa. 1887 urtean sortu zen eta azken bidaia, 1967 urtean izan zen. ……………… deitzen zen eta Bergaratik Lizarraraino heltzen zen, ……………… pasata. </string>
+
 </resources>

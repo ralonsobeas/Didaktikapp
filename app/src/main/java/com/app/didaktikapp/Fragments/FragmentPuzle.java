@@ -59,6 +59,9 @@ public class FragmentPuzle extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    private MediaPlayer mediaPlayer;
+
+
     public FragmentPuzle() {
         // Required empty public constructor
     }
@@ -396,7 +399,7 @@ public class FragmentPuzle extends Fragment {
         public void checkGameOver() {
             if (isGameOver()) {
                 if(imagen == R.drawable.tren) {
-                    MediaPlayer mediaPlayer = MediaPlayer.create(getContext(), R.raw.trena);
+                    mediaPlayer = MediaPlayer.create(getContext(), R.raw.trena);
                     mediaPlayer.start();
                 }
             }
@@ -414,7 +417,15 @@ public class FragmentPuzle extends Fragment {
 
     }
 
+    @Override
+    public void onDestroy() {
+        mediaPlayer.stop();
+        super.onDestroy();
+    }
 
-
-
+    @Override
+    public void onPause() {
+        mediaPlayer.stop();
+        super.onPause();
+    }
 }
