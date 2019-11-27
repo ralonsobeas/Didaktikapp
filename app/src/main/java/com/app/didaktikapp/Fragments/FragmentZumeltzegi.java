@@ -29,6 +29,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.MediaController;
+import android.widget.ScrollView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -58,7 +59,7 @@ public class FragmentZumeltzegi extends Fragment {
     final int REQUEST_IMAGE_CAPTURE1 = 1888;
     final int REQUEST_IMAGE_CAPTURE2 = 1889;
 
-    private ImageView ivPregunta1,ivPregunta2;
+    private ImageView ivPregunta1, ivPregunta2;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -159,6 +160,7 @@ public class FragmentZumeltzegi extends Fragment {
 //        });
 
 
+        ScrollView scroll = view.findViewById(R.id.scroll);
         ivPregunta1 = view.findViewById(R.id.ivPregunta1);
         ivPregunta2 = view.findViewById(R.id.ivPregunta2);
 
@@ -175,6 +177,7 @@ public class FragmentZumeltzegi extends Fragment {
             public void onClick(View v) {
                 guardarImagen(ivPregunta1);
                 guardarImagen(ivPregunta2);
+
             }
         });
 

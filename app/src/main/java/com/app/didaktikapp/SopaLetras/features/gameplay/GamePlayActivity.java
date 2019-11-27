@@ -88,7 +88,7 @@ public class GamePlayActivity extends FullscreenActivity {
         setContentView(R.layout.sopa_activity_game_play);
 
         ButterKnife.bind(this);
-        ((WordSearchApp) getApplication()).getAppComponent().inject(this);
+
 
         mLetterBoard.getStreakView().setEnableOverrideStreakLineColor(getPreferences().grayscale());
         mLetterBoard.getStreakView().setOverrideStreakLineColor(mGrayColor);
@@ -142,6 +142,8 @@ public class GamePlayActivity extends FullscreenActivity {
 
         mLetterBoard.getStreakView().setSnapToGrid(getPreferences().getSnapToGrid());
         mFinishedText.setVisibility(View.GONE);
+
+        ((WordSearchApp) getApplication()).getAppComponent().inject(this);
     }
 
     @Override

@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,8 +19,13 @@ import com.app.didaktikapp.Fragments.FragmentSanMiguel;
 import com.app.didaktikapp.Fragments.FragmentSanMiguelImagenes;
 import com.app.didaktikapp.Fragments.FragmentUnibertsitatea;
 import com.app.didaktikapp.Fragments.FragmentZumeltzegi;
+import com.app.didaktikapp.InicioActivity;
+import com.app.didaktikapp.MainActivity;
 import com.app.didaktikapp.Modelo.Lugar;
 import com.app.didaktikapp.R;
+import com.app.didaktikapp.Sopa;
+import com.app.didaktikapp.SopaLetras.features.gameplay.GamePlayActivity;
+import com.app.didaktikapp.SopaLetras.features.mainmenu.MainMenuActivity;
 import com.mapbox.android.core.location.LocationEngine;
 import com.mapbox.android.core.location.LocationEngineCallback;
 import com.mapbox.android.core.location.LocationEngineProvider;
@@ -157,16 +163,16 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
             public boolean onMarkerClick(@NonNull Marker marker) {
                 IconFactory iconFactory = IconFactory.getInstance(context);
                 Icon iconoverde = iconFactory.fromResource(R.drawable.pin_hecho);
-                if (marker.getPosition().getLatitude() == 43.035000 && marker.getPosition().getLongitude() == -2.412889) {
+                if(marker.getPosition().getLatitude()==43.035000 && marker.getPosition().getLongitude()==-2.412889){
                     marker.setIcon(iconoverde);
                     FragmentZumeltzegi fragment = new FragmentZumeltzegi();
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
+                    transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
                     transaction.replace(R.id.fragment_frame, fragment);
                     transaction.commit();
                     transaction.addToBackStack("Fragment");
 
-                } else if (marker.getPosition().getLatitude() == 43.033944 && marker.getPosition().getLongitude() == -2.415361) {
+                }else if(marker.getPosition().getLatitude()==43.033944 && marker.getPosition().getLongitude()==-2.415361){
                     marker.setIcon(iconoverde);
                     FragmentUnibertsitatea fragment = new FragmentUnibertsitatea();
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -174,23 +180,23 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
                     transaction.commit();
                     transaction.addToBackStack("Fragment");
 
-                } else if (marker.getPosition().getLatitude() == 43.033417 && marker.getPosition().getLongitude() == -2.413917) {
+                }else if(marker.getPosition().getLatitude()==43.033417 && marker.getPosition().getLongitude()==-2.413917){
                     marker.setIcon(iconoverde);
                     FragmentSanMiguel fragment = new FragmentSanMiguel();
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
+                    transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
                     transaction.replace(R.id.fragment_frame, fragment);
                     transaction.commit();
                     transaction.addToBackStack("Fragment");
 
-                } else if (marker.getPosition().getLatitude() == 43.033833 && marker.getPosition().getLongitude() == -2.416111) {
+                }else if(marker.getPosition().getLatitude()==43.033833 && marker.getPosition().getLongitude()==-2.416111){
                     marker.setIcon(iconoverde);
                     FragmentPuzle fragment = new FragmentPuzle();
                     Bundle bundle = new Bundle();
                     bundle.putInt(FragmentPuzle.ARG_IMAGEN, R.drawable.tren);
                     fragment.setArguments(bundle);
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
+                    transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
                     transaction.replace(R.id.fragment_frame, fragment);
                     transaction.commit();
                     transaction.addToBackStack("Fragment");
@@ -203,6 +209,14 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
                     transaction.replace(R.id.fragment_frame, fragment);
                     transaction.commit();
                     transaction.addToBackStack("Fragment");
+                }else if(marker.getPosition().getLatitude()==43.000583 && marker.getPosition().getLongitude()==-2.433250){
+                    marker.setIcon(iconoverde);
+                    Log.i("tag","s");
+                    Intent intent = new Intent(MapActivity.this, GamePlayActivity.class);
+                    intent.putExtra(GamePlayActivity.EXTRA_ROW_COUNT, 5);
+                    intent.putExtra(GamePlayActivity.EXTRA_COL_COUNT, 5);
+                    startActivity(intent);
+
                 }
 
 
@@ -230,7 +244,7 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
 
     private void crearIconos(){
         IconFactory iconFactory = IconFactory.getInstance(context);
-        Icon iconorojo = iconFactory.fromResource(R.drawable.pin_sinhacer);
+        Icon iconorojo = iconFactory.fromResource(R.drawable.pin2);
 //        Icon iconoamarillo = iconFactory.fromResource(R.drawable.yellow_marker);
         Icon iconoverde = iconFactory.fromResource(R.drawable.pin_hecho);
 //        Icon iconogris = iconFactory.fromResource(R.drawable.grey_marker);
