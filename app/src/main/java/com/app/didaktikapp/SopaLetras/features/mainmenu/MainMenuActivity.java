@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -51,12 +52,12 @@ public class MainMenuActivity extends FullscreenActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sopa_activity_main_menu);
-
+        Log.i("tag","mma");
         ButterKnife.bind(this);
-        ((WordSearchApp) getApplication()).getAppComponent().inject(this);
+
 
         mViewModel = ViewModelProviders.of(this, mViewModelFactory).get(MainMenuViewModel.class);
-        //mViewModel.getOnGameThemeLoaded().observe(this, this::showGameThemeList);
+        mViewModel.getOnGameThemeLoaded().observe(this, this::showGameThemeList);
 
 
         mAdapter = new MultiTypeAdapter();
@@ -94,6 +95,8 @@ public class MainMenuActivity extends FullscreenActivity {
         mRv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
         mViewModel.loadData();
+        ((WordSearchApp) getApplication()).getAppComponent().inject(this);
+
     }
 
     public void showGameThemeList(List<GameTheme> gameThemes) {

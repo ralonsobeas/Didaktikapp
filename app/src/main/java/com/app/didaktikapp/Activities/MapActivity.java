@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,8 +18,13 @@ import com.app.didaktikapp.Fragments.FragmentSanMiguel;
 import com.app.didaktikapp.Fragments.FragmentSanMiguelImagenes;
 import com.app.didaktikapp.Fragments.FragmentUnibertsitatea;
 import com.app.didaktikapp.Fragments.FragmentZumeltzegi;
+import com.app.didaktikapp.InicioActivity;
+import com.app.didaktikapp.MainActivity;
 import com.app.didaktikapp.Modelo.Lugar;
 import com.app.didaktikapp.R;
+import com.app.didaktikapp.Sopa;
+import com.app.didaktikapp.SopaLetras.features.gameplay.GamePlayActivity;
+import com.app.didaktikapp.SopaLetras.features.mainmenu.MainMenuActivity;
 import com.mapbox.android.core.location.LocationEngine;
 import com.mapbox.android.core.location.LocationEngineCallback;
 import com.mapbox.android.core.location.LocationEngineProvider;
@@ -182,7 +188,7 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
                     transaction.commit();
                     transaction.addToBackStack("Fragment");
 
-                }else if(marker.getPosition().getLatitude()==43.033944 && marker.getPosition().getLongitude()==-2.415361){
+                }else if(marker.getPosition().getLatitude()==43.033833 && marker.getPosition().getLongitude()==-2.416111){
                     marker.setIcon(iconoverde);
                     FragmentPuzle fragment = new FragmentPuzle();
                     Bundle bundle = new Bundle();
@@ -193,6 +199,14 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
                     transaction.replace(R.id.fragment_frame, fragment);
                     transaction.commit();
                     transaction.addToBackStack("Fragment");
+
+                }else if(marker.getPosition().getLatitude()==43.000583 && marker.getPosition().getLongitude()==-2.433250){
+                    marker.setIcon(iconoverde);
+                    Log.i("tag","s");
+                    Intent intent = new Intent(MapActivity.this, GamePlayActivity.class);
+                    intent.putExtra(GamePlayActivity.EXTRA_ROW_COUNT, 5);
+                    intent.putExtra(GamePlayActivity.EXTRA_COL_COUNT, 5);
+                    startActivity(intent);
 
                 }
 

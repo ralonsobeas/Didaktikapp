@@ -13,9 +13,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:name=".SopaLetras.WordSearchApp">
 <!--        <activity android:name=".SopaSopa"></activity>-->
         <activity android:name=".Sopa" />
+        <activity android:name=".SopaLetras.features.gameplay.GamePlayActivity" />
         <activity android:name=".InicioActivity" />
         <activity android:name=".Activities.MapActivity" />
         <activity android:name=".MainActivity">
@@ -28,5 +30,6 @@
         <activity android:name=".SopaLetras.features.mainmenu.MainMenuActivity" />
         <activity android:name=".SopaLetras.WordSearchApp" />
     </application>
+
 
 </manifest>

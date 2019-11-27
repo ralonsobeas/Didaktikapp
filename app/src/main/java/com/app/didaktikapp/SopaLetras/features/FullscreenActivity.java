@@ -11,6 +11,7 @@ import android.view.WindowManager;
 
 import com.app.didaktikapp.R;
 import com.app.didaktikapp.SopaLetras.WordSearchApp;
+import com.app.didaktikapp.SopaLetras.features.mainmenu.MainMenuActivity;
 import com.app.didaktikapp.SopaLetras.features.settings.Preferences;
 
 import javax.inject.Inject;
@@ -47,13 +48,9 @@ public class FullscreenActivity extends AppCompatActivity {/*implementation 'com
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ((WordSearchApp) getApplication()).getAppComponent().inject(this);
 
-        if (mPreferences.enableFullscreen()) {
-            requestWindowFeature(Window.FEATURE_NO_TITLE);
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        }
+
+
     }
 
     @Override
@@ -65,6 +62,12 @@ public class FullscreenActivity extends AppCompatActivity {/*implementation 'com
     @Override
     public void startActivity(Intent intent) {
         super.startActivity(intent);
+        ((WordSearchApp) getApplication()).getAppComponent().inject(this);
+        if (mPreferences.enableFullscreen()) {
+            requestWindowFeature(Window.FEATURE_NO_TITLE);
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        }
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
     }
 
