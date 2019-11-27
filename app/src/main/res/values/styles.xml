@@ -40,4 +40,9 @@
         <item name="android:windowSharedElementExitTransition">
             @transition/change_image_transform</item>
     </style>
+    <style name="Sopa">
+        <item name="android:textColor">@color/negroFondo</item>
+        <item name="android:colorBackground">@color/blancoFondo</item>
+    </style>
+
 </resources>

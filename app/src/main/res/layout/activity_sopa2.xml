@@ -31,7 +31,7 @@
                     android:id="@+id/txt1_1"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="E"
+                    android:text="S"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -41,7 +41,7 @@
                     android:id="@+id/txt1_2"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="A"
+                    android:text="R"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -51,7 +51,7 @@
                     android:id="@+id/txt1_3"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="R"
+                    android:text="F"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -81,7 +81,7 @@
                     android:id="@+id/txt1_6"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="J"
+                    android:text="H"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -91,7 +91,7 @@
                     android:id="@+id/txt1_7"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="N"
+                    android:text="D"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -101,7 +101,7 @@
                     android:id="@+id/txt1_8"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="S"
+                    android:text="A"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -111,7 +111,7 @@
                     android:id="@+id/txt1_9"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="T"
+                    android:text="H"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -121,47 +121,7 @@
                     android:id="@+id/txt1_10"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="D"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt1_11"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="W"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt1_12"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="C"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt1_13"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="T"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt1_14"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="J"
+                    android:text="K"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -177,7 +137,7 @@
                     android:id="@+id/txt2_1"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="S"
+                    android:text="O"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -187,7 +147,7 @@
                     android:id="@+id/txt2_2"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="R"
+                    android:text="J"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -197,7 +157,7 @@
                     android:id="@+id/txt2_3"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="F"
+                    android:text="I"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -207,7 +167,7 @@
                     android:id="@+id/txt2_4"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="H"
+                    android:text="T"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -217,7 +177,7 @@
                     android:id="@+id/txt2_5"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="J"
+                    android:text="A"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -227,7 +187,7 @@
                     android:id="@+id/txt2_6"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="Y"
+                    android:text="X"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -237,7 +197,7 @@
                     android:id="@+id/txt2_7"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="V"
+                    android:text="L"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -247,7 +207,7 @@
                     android:id="@+id/txt2_8"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="D"
+                    android:text="S"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -257,7 +217,7 @@
                     android:id="@+id/txt2_9"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="C"
+                    android:text="U"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -267,47 +227,7 @@
                     android:id="@+id/txt2_10"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="T"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt2_11"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="K"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt2_12"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="E"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt2_13"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="A"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt2_14"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="S"
+                    android:text="Z"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -323,7 +243,7 @@
                     android:id="@+id/txt3_1"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="E"
+                    android:text="I"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -333,7 +253,7 @@
                     android:id="@+id/txt3_2"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="I"
+                    android:text="N"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -343,7 +263,7 @@
                     android:id="@+id/txt3_3"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="R"
+                    android:text="E"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -353,7 +273,7 @@
                     android:id="@+id/txt3_4"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="O"
+                    android:text="K"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -363,7 +283,7 @@
                     android:id="@+id/txt3_5"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="F"
+                    android:text="A"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -373,7 +293,7 @@
                     android:id="@+id/txt3_6"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="D"
+                    android:text="L"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -393,7 +313,7 @@
                     android:id="@+id/txt3_8"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="S"
+                    android:text="T"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -403,7 +323,7 @@
                     android:id="@+id/txt3_9"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="N"
+                    android:text="O"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -411,46 +331,6 @@
 
                 <TextView
                     android:id="@+id/txt3_10"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="E"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt3_11"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="D"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt3_12"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="S"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt3_13"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="Y"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt3_14"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
                     android:text="H"
@@ -469,7 +349,7 @@
                     android:id="@+id/txt4_1"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="E"
+                    android:text="R"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -479,7 +359,7 @@
                     android:id="@+id/txt4_2"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="H"
+                    android:text="B"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -489,7 +369,7 @@
                     android:id="@+id/txt4_3"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="U"
+                    android:text="D"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -499,7 +379,7 @@
                     android:id="@+id/txt4_4"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="E"
+                    android:text="O"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -509,7 +389,7 @@
                     android:id="@+id/txt4_5"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="Y"
+                    android:text="W"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -519,7 +399,7 @@
                     android:id="@+id/txt4_6"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="W"
+                    android:text="S"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -529,7 +409,7 @@
                     android:id="@+id/txt4_7"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="V"
+                    android:text="T"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -539,7 +419,7 @@
                     android:id="@+id/txt4_8"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="Y"
+                    android:text="N"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -549,7 +429,7 @@
                     android:id="@+id/txt4_9"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="R"
+                    android:text="L"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -559,47 +439,7 @@
                     android:id="@+id/txt4_10"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="G"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt4_11"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="S"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt4_12"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="A"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt4_13"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="Z"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt4_14"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="D"
+                    android:text="I"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -615,7 +455,7 @@
                     android:id="@+id/txt5_1"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="Z"
+                    android:text="E"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -625,7 +465,7 @@
                     android:id="@+id/txt5_2"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="Y"
+                    android:text="F"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -635,7 +475,7 @@
                     android:id="@+id/txt5_3"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="T"
+                    android:text="E"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -645,7 +485,7 @@
                     android:id="@+id/txt5_4"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="K"
+                    android:text="N"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -655,7 +495,7 @@
                     android:id="@+id/txt5_5"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="G"
+                    android:text="Y"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -665,7 +505,7 @@
                     android:id="@+id/txt5_6"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="L"
+                    android:text="F"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -675,7 +515,7 @@
                     android:id="@+id/txt5_7"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="O"
+                    android:text="D"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -685,7 +525,7 @@
                     android:id="@+id/txt5_8"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="K"
+                    android:text="E"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -695,7 +535,7 @@
                     android:id="@+id/txt5_9"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="X"
+                    android:text="F"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -705,47 +545,7 @@
                     android:id="@+id/txt5_10"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="G"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt5_11"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="K"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt5_12"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="L"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt5_13"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="I"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt5_14"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="O"
+                    android:text="T"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -761,7 +561,7 @@
                     android:id="@+id/txt6_1"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="F"
+                    android:text="U"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -771,7 +571,7 @@
                     android:id="@+id/txt6_2"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="G"
+                    android:text="C"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -781,7 +581,7 @@
                     android:id="@+id/txt6_3"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="H"
+                    android:text="F"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -791,7 +591,7 @@
                     android:id="@+id/txt6_4"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="L"
+                    android:text="D"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -801,7 +601,7 @@
                     android:id="@+id/txt6_5"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="T"
+                    android:text="K"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -811,7 +611,7 @@
                     android:id="@+id/txt6_6"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="I"
+                    android:text="E"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -821,7 +621,7 @@
                     android:id="@+id/txt6_7"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="N"
+                    android:text="M"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -831,7 +631,7 @@
                     android:id="@+id/txt6_8"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="G"
+                    android:text="F"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -841,7 +641,7 @@
                     android:id="@+id/txt6_9"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="E"
+                    android:text="D"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -851,47 +651,7 @@
                     android:id="@+id/txt6_10"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="L"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt6_11"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
                     android:text="E"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt6_12"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="S"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt6_13"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="A"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt6_14"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="O"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -907,7 +667,7 @@
                     android:id="@+id/txt7_1"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="A"
+                    android:text="Z"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -917,7 +677,7 @@
                     android:id="@+id/txt7_2"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="G"
+                    android:text="U"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -927,7 +687,7 @@
                     android:id="@+id/txt7_3"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="E"
+                    android:text="M"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -947,7 +707,7 @@
                     android:id="@+id/txt7_5"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="Z"
+                    android:text="L"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -967,7 +727,7 @@
                     android:id="@+id/txt7_7"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="O"
+                    android:text="Z"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -977,7 +737,7 @@
                     android:id="@+id/txt7_8"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="K"
+                    android:text="E"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -987,7 +747,7 @@
                     android:id="@+id/txt7_9"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="Z"
+                    android:text="G"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -997,47 +757,7 @@
                     android:id="@+id/txt7_10"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="X"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt7_11"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="E"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt7_12"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="M"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt7_13"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="Y"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt7_14"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="R"
+                    android:text="I"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -1053,7 +773,7 @@
                     android:id="@+id/txt8_1"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="D"
+                    android:text="I"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -1063,7 +783,7 @@
                     android:id="@+id/txt8_2"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="G"
+                    android:text="S"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -1073,7 +793,7 @@
                     android:id="@+id/txt8_3"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="P"
+                    android:text="O"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -1083,7 +803,7 @@
                     android:id="@+id/txt8_4"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="K"
+                    android:text="A"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -1093,7 +813,7 @@
                     android:id="@+id/txt8_5"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="E"
+                    android:text="I"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -1103,7 +823,7 @@
                     android:id="@+id/txt8_6"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="R"
+                    android:text="U"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -1113,7 +833,7 @@
                     android:id="@+id/txt8_7"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="T"
+                    android:text="U"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -1123,7 +843,7 @@
                     android:id="@+id/txt8_8"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="N"
+                    android:text="D"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -1133,7 +853,7 @@
                     android:id="@+id/txt8_9"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:text="Z"
+                    android:text="A"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
@@ -1148,47 +868,6 @@
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
                     android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt8_11"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="A"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt8_12"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="I"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt8_13"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="O"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt8_14"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="R"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
             </TableRow>
 
             <TableRow
@@ -1295,47 +974,6 @@
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
                     android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt9_11"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="A"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt9_12"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="T"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt9_13"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="E"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt9_14"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="A"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
             </TableRow>
 
             <TableRow
@@ -1442,635 +1080,6 @@
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="20sp"
                     android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt10_11"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="C"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt10_12"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="H"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt10_13"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="S"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt10_14"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="C"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center">
-
-                <TextView
-                    android:id="@+id/txt11_1"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="U"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt11_2"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="Q"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt11_3"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="C"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt11_4"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="K"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt11_5"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="E"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt11_6"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="A"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt11_7"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="E"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt11_8"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="S"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt11_9"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="R"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt11_10"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="T"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt11_11"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="I"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt11_12"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="E"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt11_13"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="D"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt11_14"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="U"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center">
-
-                <TextView
-                    android:id="@+id/txt12_1"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="S"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt12_2"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="O"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt12_3"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="T"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt12_4"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="O"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt12_5"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="A"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt12_6"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="R"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt12_7"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="S"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt12_8"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="E"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt12_9"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="A"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt12_10"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="D"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt12_11"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="E"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt12_12"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="S"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt12_13"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="F"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt12_14"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="H"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center">
-
-                <TextView
-                    android:id="@+id/txt13_1"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="A"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt13_2"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="R"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt13_3"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="T"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt13_4"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="A"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt13_5"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="V"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt13_6"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="E"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt13_7"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="A"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt13_8"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="R"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt13_9"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="D"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt13_10"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="R"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt13_11"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="T"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt13_12"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="A"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt13_13"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="T"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt13_14"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="C"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center">
-
-                <TextView
-                    android:id="@+id/txt14_1"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="E"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt14_2"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="I"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt14_3"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="O"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt14_4"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="E"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt14_5"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="G"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt14_6"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="R"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt14_7"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="Z"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt14_8"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="Y"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt14_9"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="E"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt14_10"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="D"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt14_11"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="F"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt14_12"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="T"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt14_13"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="E"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt14_14"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:text="A"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
             </TableRow>
 
         </TableLayout>
@@ -2089,7 +1098,7 @@
                     android:id="@+id/respuesta1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="RESP1"
+                    android:text="@string/ZumeltzegiSopaZumeltzegi"
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
@@ -2112,7 +1121,7 @@
                     android:id="@+id/respuesta2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ssss"
+                    android:text="@string/ZumeltzegiSopaDefentsa"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="16sp" />
@@ -2134,27 +1143,13 @@
                     android:id="@+id/respuesta3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ssss"
+                    android:text="@string/ZumeltzegiSopaKondea"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="16sp" />
 
                 <ImageView
-                    android:id="@+id/imgCheck3_1"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:visibility="invisible"
-                    app:srcCompat="@color/greenFilter" />
-
-                <ImageView
-                    android:id="@+id/imgCheck3_2"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:visibility="invisible"
-                    app:srcCompat="@color/greenFilter" />
-
-                <ImageView
-                    android:id="@+id/imgCheck3_3"
+                    android:id="@+id/imgCheck3"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:visibility="invisible"
@@ -2170,20 +1165,13 @@
                     android:id="@+id/respuesta4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="aaaa"
+                    android:text="@string/ZumeltzegiSopaHotela"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="16sp" />
 
                 <ImageView
-                    android:id="@+id/imgCheck4_1"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:visibility="invisible"
-                    app:srcCompat="@color/greenFilter" />
-
-                <ImageView
-                    android:id="@+id/imgCheck4_2"
+                    android:id="@+id/imgCheck4"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:visibility="invisible"
@@ -2198,6 +1186,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:text="prueba"
         android:clickable="true"
         app:backgroundTint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"

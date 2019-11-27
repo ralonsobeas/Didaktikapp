@@ -14,6 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+<!--        <activity android:name=".SopaSopa"></activity>-->
         <activity android:name=".Sopa" />
         <activity android:name=".InicioActivity" />
         <activity android:name=".Activities.MapActivity" />
@@ -24,6 +25,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SopaLetras.features.mainmenu.MainMenuActivity" />
+        <activity android:name=".SopaLetras.WordSearchApp" />
     </application>
 
 </manifest>

@@ -10,4 +10,5 @@
     <color name="greenFilter">#414CAF50</color>
 
     <color name="backgroundTransparente">#00999999</color>
+    <color name="blancoFondo">#FAFAFA</color>
 </resources>
