@@ -79,4 +79,7 @@
     <string name="SanMiguelPregunta4OpcionC">Eliza ondotik</string>
     <string name="Contunuar">continuar</string>
 
+    <!-- Actividad San Miguel Errota -->
+    <string name="ErrotaTitulo">San Miguel Errota</string>
+
 </resources>

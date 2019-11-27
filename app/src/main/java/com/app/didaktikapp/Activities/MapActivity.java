@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.app.didaktikapp.Fragments.FragmentErrota;
 import com.app.didaktikapp.Fragments.FragmentPuzle;
 import com.app.didaktikapp.Fragments.FragmentSanMiguel;
 import com.app.didaktikapp.Fragments.FragmentSanMiguelImagenes;
@@ -156,16 +157,16 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
             public boolean onMarkerClick(@NonNull Marker marker) {
                 IconFactory iconFactory = IconFactory.getInstance(context);
                 Icon iconoverde = iconFactory.fromResource(R.drawable.pin_hecho);
-                if(marker.getPosition().getLatitude()==43.035000 && marker.getPosition().getLongitude()==-2.412889){
+                if (marker.getPosition().getLatitude() == 43.035000 && marker.getPosition().getLongitude() == -2.412889) {
                     marker.setIcon(iconoverde);
                     FragmentZumeltzegi fragment = new FragmentZumeltzegi();
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
+                    transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
                     transaction.replace(R.id.fragment_frame, fragment);
                     transaction.commit();
                     transaction.addToBackStack("Fragment");
 
-                }else if(marker.getPosition().getLatitude()==43.033944 && marker.getPosition().getLongitude()==-2.415361){
+                } else if (marker.getPosition().getLatitude() == 43.033944 && marker.getPosition().getLongitude() == -2.415361) {
                     marker.setIcon(iconoverde);
                     FragmentUnibertsitatea fragment = new FragmentUnibertsitatea();
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -173,27 +174,35 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
                     transaction.commit();
                     transaction.addToBackStack("Fragment");
 
-                }else if(marker.getPosition().getLatitude()==43.033417 && marker.getPosition().getLongitude()==-2.413917){
+                } else if (marker.getPosition().getLatitude() == 43.033417 && marker.getPosition().getLongitude() == -2.413917) {
                     marker.setIcon(iconoverde);
                     FragmentSanMiguel fragment = new FragmentSanMiguel();
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
+                    transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
                     transaction.replace(R.id.fragment_frame, fragment);
                     transaction.commit();
                     transaction.addToBackStack("Fragment");
 
-                }else if(marker.getPosition().getLatitude()==43.033944 && marker.getPosition().getLongitude()==-2.415361){
+                } else if (marker.getPosition().getLatitude() == 43.033833 && marker.getPosition().getLongitude() == -2.416111) {
                     marker.setIcon(iconoverde);
                     FragmentPuzle fragment = new FragmentPuzle();
                     Bundle bundle = new Bundle();
                     bundle.putInt(FragmentPuzle.ARG_IMAGEN, R.drawable.tren);
                     fragment.setArguments(bundle);
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
+                    transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
                     transaction.replace(R.id.fragment_frame, fragment);
                     transaction.commit();
                     transaction.addToBackStack("Fragment");
 
+                }else if(marker.getPosition().getLatitude()==43.032917 && marker.getPosition().getLongitude()==-2.415750){
+                    marker.setIcon(iconoverde);
+                    FragmentErrota fragment = new FragmentErrota();
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
+                    transaction.replace(R.id.fragment_frame, fragment);
+                    transaction.commit();
+                    transaction.addToBackStack("Fragment");
                 }
 
 
@@ -221,7 +230,7 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
 
     private void crearIconos(){
         IconFactory iconFactory = IconFactory.getInstance(context);
-        Icon iconorojo = iconFactory.fromResource(R.drawable.pin2);
+        Icon iconorojo = iconFactory.fromResource(R.drawable.pin_sinhacer);
 //        Icon iconoamarillo = iconFactory.fromResource(R.drawable.yellow_marker);
         Icon iconoverde = iconFactory.fromResource(R.drawable.pin_hecho);
 //        Icon iconogris = iconFactory.fromResource(R.drawable.grey_marker);

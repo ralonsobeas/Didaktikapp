@@ -12,5 +12,8 @@
     <color name="backgroundTransparente">#00999999</color>
     <color name="blancoFondo">#FAFAFA</color>
 
+    <color name="naranja">#FF4500</color>
+    <color name="verde">#00FF00</color>
+<!--    <color name="rojo">#FF4500</color>-->
 
 </resources>
