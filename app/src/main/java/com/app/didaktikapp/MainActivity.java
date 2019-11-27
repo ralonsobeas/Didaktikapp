@@ -2,24 +2,40 @@ package com.app.didaktikapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityOptionsCompat;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.SyncStateContract;
+import android.transition.Slide;
+import android.transition.Transition;
+import android.transition.TransitionInflater;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import com.app.didaktikapp.Activities.MapActivity;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class MainActivity extends AppCompatActivity {
 
     private ConstraintLayout layout;
-    private Button botonSalir, botonInicio;
+    private Button botonSalir, botonInicio, botonContinuar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
+
 //        setContentView(R.layout.activity_inicio);
 //        try {
 //            Thread.sleep(4000);
@@ -30,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
 
         Intent i = new Intent(MainActivity.this,InicioActivity.class);
         startActivity(i);
+
+
 
         layout = findViewById(R.id.layout);
 
@@ -43,8 +61,10 @@ public class MainActivity extends AppCompatActivity {
 
         botonSalir = findViewById(R.id.btnSalir);
         botonInicio = findViewById(R.id.btnIniciar);
+        botonContinuar = findViewById(R.id.btnContinuar);
 
         eventos();
+
     }
 
     private void eventos(){
@@ -58,10 +78,30 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, MapActivity.class);
-
                 startActivity(i);
             }
         });
+        botonContinuar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //PRUEBA PARA PYTHON
+
+                try {
+                    String prg = "import sys";
+                    BufferedWriter out = new BufferedWriter(new FileWriter("path/a.py"));
+                    out.write(prg);
+                    out.close();
+                    Process p = Runtime.getRuntime().exec("python path/a.py");
+                    BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+                    String ret = in.readLine();
+                    System.out.println("value is : "+ret);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+
     }
 
     private void iniciar(View v){
@@ -75,7 +115,6 @@ public class MainActivity extends AppCompatActivity {
     private void salir(View v){
         finish();
     }
-
 
 
 

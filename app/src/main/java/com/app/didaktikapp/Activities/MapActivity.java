@@ -2,21 +2,21 @@ package com.app.didaktikapp.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
-import android.app.FragmentManager;
 import android.content.Context;
-import android.graphics.Color;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.app.didaktikapp.Fragments.FragmentPuzle;
 import com.app.didaktikapp.Fragments.FragmentSanMiguel;
-import com.app.didaktikapp.Location.LocationListeningCallback;
+import com.app.didaktikapp.Fragments.FragmentSanMiguelImagenes;
+import com.app.didaktikapp.Fragments.FragmentUnibertsitatea;
+import com.app.didaktikapp.Fragments.FragmentZumeltzegi;
 import com.app.didaktikapp.Modelo.Lugar;
 import com.app.didaktikapp.R;
 import com.mapbox.android.core.location.LocationEngine;
@@ -47,14 +47,16 @@ import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
 import com.mapbox.mapboxsdk.style.layers.Layer;
 
-import java.io.Console;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 
-public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, PermissionsListener, FragmentSanMiguel.OnFragmentInteractionListener {
+public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, PermissionsListener
+        , FragmentSanMiguel.OnFragmentInteractionListener
+        , FragmentSanMiguelImagenes.OnFragmentInteractionListener
+        , FragmentZumeltzegi.OnFragmentInteractionListener
+        , FragmentPuzle.OnFragmentInteractionListener{
 
     private MapView mapView;
     private MapboxMap mapboxMap;
@@ -86,6 +88,8 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
 
         this.context = getApplicationContext();
@@ -105,10 +109,12 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
 
 
 
+
+
     }
 
     @Override
-    public void onMapReady(@NonNull MapboxMap mapboxMap) {
+    public void onMapReady(@NonNull final MapboxMap mapboxMap) {
 
         this.mapboxMap = mapboxMap;
 
@@ -152,11 +158,41 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
                 Icon iconoverde = iconFactory.fromResource(R.drawable.pin_hecho);
                 if(marker.getPosition().getLatitude()==43.035000 && marker.getPosition().getLongitude()==-2.412889){
                     marker.setIcon(iconoverde);
-                    Toast.makeText(MapActivity.this,"HOLA",Toast.LENGTH_SHORT).show();
-                    FragmentSanMiguel fragment = new FragmentSanMiguel();
+                    FragmentZumeltzegi fragment = new FragmentZumeltzegi();
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
+                    transaction.replace(R.id.fragment_frame, fragment);
+                    transaction.commit();
+                    transaction.addToBackStack("Fragment");
+
+                }else if(marker.getPosition().getLatitude()==43.033944 && marker.getPosition().getLongitude()==-2.415361){
+                    marker.setIcon(iconoverde);
+                    FragmentUnibertsitatea fragment = new FragmentUnibertsitatea();
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.fragment_frame, fragment);
                     transaction.commit();
+                    transaction.addToBackStack("Fragment");
+
+                }else if(marker.getPosition().getLatitude()==43.033417 && marker.getPosition().getLongitude()==-2.413917){
+                    marker.setIcon(iconoverde);
+                    FragmentSanMiguel fragment = new FragmentSanMiguel();
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
+                    transaction.replace(R.id.fragment_frame, fragment);
+                    transaction.commit();
+                    transaction.addToBackStack("Fragment");
+
+                }else if(marker.getPosition().getLatitude()==43.033944 && marker.getPosition().getLongitude()==-2.415361){
+                    marker.setIcon(iconoverde);
+                    FragmentPuzle fragment = new FragmentPuzle();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt(FragmentPuzle.ARG_IMAGEN, R.drawable.tren);
+                    fragment.setArguments(bundle);
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
+                    transaction.replace(R.id.fragment_frame, fragment);
+                    transaction.commit();
+                    transaction.addToBackStack("Fragment");
 
                 }
 
@@ -369,6 +405,22 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
         }
     }
 
+    public static double distanciaCoord(double lat1, double lng1, double lat2, double lng2) {
+        //double radioTierra = 3958.75;//en millas
+        double radioTierra = 6371;//en kilómetros
+        double dLat = Math.toRadians(lat2 - lat1);
+        double dLng = Math.toRadians(lng2 - lng1);
+        double sindLat = Math.sin(dLat / 2);
+        double sindLng = Math.sin(dLng / 2);
+        double va1 = Math.pow(sindLat, 2) + Math.pow(sindLng, 2)
+                * Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2));
+        double va2 = 2 * Math.atan2(Math.sqrt(va1), Math.sqrt(1 - va1));
+        double distancia = radioTierra * va2;
+
+        return distancia;
+    }
+
+
     @Override
     @SuppressWarnings( {"MissingPermission"})
     protected void onStart() {
@@ -416,6 +468,15 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
     public void onLowMemory() {
         super.onLowMemory();
         mapView.onLowMemory();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (getFragmentManager().getBackStackEntryCount() > 0) {
+            getFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
+        }
     }
 }
 

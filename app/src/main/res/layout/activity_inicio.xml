@@ -5,11 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/negroFondo"
-    tools:context=".InicioActivity">
+    tools:context=".InicioActivity"
+    >
 
 
     <ImageView
-        android:id="@+id/ivLogo"
+        android:id="@+id/ivLogoOniate"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
@@ -23,7 +24,7 @@
         app:srcCompat="@drawable/placeholder" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/ivLogoCJ"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="32dp"
@@ -37,7 +38,7 @@
         app:srcCompat="@drawable/cjoriginal" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/ivLogoUPV"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"

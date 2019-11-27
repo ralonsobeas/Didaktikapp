@@ -3,16 +3,29 @@ package com.app.didaktikapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.telecom.Call;
+import android.transition.Explode;
+import android.transition.Transition;
+import android.transition.TransitionInflater;
 import android.util.Log;
+import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 public class InicioActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
 
-//        ImageView logo = findViewById(R.id.ivLogo);
+        ImageView imageViewOniate = findViewById(R.id.ivLogoOniate);
+        ImageView imageViewCJ = findViewById(R.id.ivLogoCJ);
+        ImageView imageViewUPV = findViewById(R.id.ivLogoUPV);
+
 //
 //        logo.setImageResource(R.drawable.espanita);
 
@@ -33,9 +46,13 @@ public class InicioActivity extends AppCompatActivity {
                     Log.i("Error", "Esperando a cerrar la pantalla de inicio");
                 }
                 finish();
+
             }
         };
         splashTread.start();
 
     }
+
+
+
 }

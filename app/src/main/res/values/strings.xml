@@ -25,6 +25,36 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!-- Actividad Zumeltzegi -->
+    <string name="ZumeltzegiSopaZumeltzegi">Zumeltzegi</string>
+    <string name="ZumeltzegiSopaDefentsa">Defentsa</string>
+    <string name="ZumeltzegiSopaKondea">Kondea</string>
+    <string name="ZumeltzegiSopaHotela">Hotelak</string>
+    <string name="ZumeltzegiSopaSiguiente">Siguiente</string>
+    <string name="ZumeltzegiGame_data_desc">:gridSize Grid, :wordCount Words</string>
+    <string name="ZumeltzegiSopaMain_menu">Menu principal</string>
+    <string name="ZumeltzegiSopaCongratulations">Me quiero morir</string>
+
+    <string name="ZumeltzegiSopaPref_showGridLine">showGridLine</string>
+    <string name="ZumeltzegiSopaPref_snapToGrid">snapToGrid</string>
+    <string name="ZumeltzegiSopaPref_enableSound">enableSound</string>
+    <string name="ZumeltzegiSopaPref_deleteAfterFinish">deleteAfterFinish</string>
+    <string name="ZumeltzegiSopaPref_enableFullscreen">enableFullscreen</string>
+    <string name="ZumeltzegiSopaPref_autoScaleGrid">autoScaleGrid</string>
+    <string name="ZumeltzegiSopaSnap_to_grid_def_val">ALWAYS_SNAP</string>
+    <string name="ZumeltzegiSopaPref_reverseMatching">reverseMatching</string>
+    <string name="ZumeltzegiSopaPref_grayscale">grayscale</string>
+    <string name="ZumeltzegiSopaSettings">Settings</string>
+    <string name="ZumeltzegiSopaFinished">Acabado</string>
+    <string name="ZumeltzegiSopaNew_game">Nuevo juego</string>
+    <string name="ZumeltzegiSopaFinish_text">You have just finished :gridSize grid with :uwCount words in :duration</string>
+
+    <string name="ZumeltzegiTitulo">Zumeltzegi Test</string>
+    <string name="ZumeltzegiPregunta1Titulo">1.Zertarako eraiki zen dorretxea?</string>
+
+    <string name="ZumeltzegiPregunta2Titulo">2. Ze familia bizi zen dorretxean XV. Mendean?</string>
+
+
     <!-- Actividad San Miguel -->
     <string name="SanMiguelTitulo">San Miguel Test</string>
     <!-- Pregunta 1 -->
@@ -32,4 +62,24 @@
     <string name="SanMiguelPregunta1OpcionA">XVI</string>
     <string name="SanMiguelPregunta1OpcionB">XII</string>
     <string name="SanMiguelPregunta1OpcionC">XV</string>
+    <!-- Pregunta 2 -->
+    <string name="SanMiguelPregunta2Titulo">2. Noiz egiten dute dantza bertan?</string>
+    <string name="SanMiguelPregunta2OpcionA">Herriko Jaietan</string>
+    <string name="SanMiguelPregunta2OpcionB">Korpusetan</string>
+    <string name="SanMiguelPregunta2OpcionC">Gabonetan</string>
+    <!-- Pregunta 3 -->
+    <string name="SanMiguelPregunta3Titulo">3. Zenbat nabe ditu?</string>
+    <string name="SanMiguelPregunta3OpcionA">2</string>
+    <string name="SanMiguelPregunta3OpcionB">5</string>
+    <string name="SanMiguelPregunta3OpcionC">4</string>
+    <!-- Pregunta 4 -->
+    <string name="SanMiguelPregunta4Titulo">4. Noiz egiten dute dantza bertan?</string>
+    <string name="SanMiguelPregunta4OpcionA">Altare azpitik</string>
+    <string name="SanMiguelPregunta4OpcionB">Klaustro azpitik</string>
+    <string name="SanMiguelPregunta4OpcionC">Eliza ondotik</string>
+    <string name="Contunuar">continuar</string>
+
+    <!-- Actividad Tren -->
+    <string name="TrenTexto">Oñatin garai batean trena aurkitzen zen, gaur egun, ……………… den eraikina da lehengo tren estazioa. 1887 urtean sortu zen eta azken bidaia, 1967 urtean izan zen. ……………… deitzen zen eta Bergaratik Lizarraraino heltzen zen, ……………… pasata. </string>
+
 </resources>
