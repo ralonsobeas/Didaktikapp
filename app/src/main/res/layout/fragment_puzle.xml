@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.FragmentTren"
+    tools:context=".Fragments.FragmentPuzle"
     android:id="@+id/layoutC">
 
     <ImageView
@@ -22,7 +22,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/login2"
+        app:srcCompat="@drawable/tren"
         android:alpha="0.5"/>
 
     <RelativeLayout

@@ -10,10 +10,10 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -22,11 +22,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
+import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.Puzzle.PuzzlePiece;
 import com.app.didaktikapp.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 
 import static java.lang.Math.abs;
 import static java.lang.Math.pow;
@@ -35,20 +39,19 @@ import static java.lang.Math.sqrt;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link FragmentTren.OnFragmentInteractionListener} interface
+ * {@link FragmentPuzle.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link FragmentTren#newInstance} factory method to
+ * Use the {@link FragmentPuzle#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentTren extends Fragment {
+public class FragmentPuzle extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
+    public static final String ARG_IMAGEN = "imagen";
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private int imagen;
 
     private View view;
     private ArrayList<PuzzlePiece> pieces;
@@ -56,7 +59,7 @@ public class FragmentTren extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public FragmentTren() {
+    public FragmentPuzle() {
         // Required empty public constructor
     }
 
@@ -64,16 +67,14 @@ public class FragmentTren extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FragmentTren.
+     * @param imagen Parameter 1.
+     * @return A new instance of fragment FragmentPuzle.
      */
     // TODO: Rename and change types and number of parameters
-    public static FragmentTren newInstance(String param1, String param2) {
-        FragmentTren fragment = new FragmentTren();
+    public static FragmentPuzle newInstance(String imagen, String param2) {
+        FragmentPuzle fragment = new FragmentPuzle();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+//        args.putInt(ARG_IMAGEN, imagen);
         fragment.setArguments(args);
         return fragment;
     }
@@ -82,8 +83,8 @@ public class FragmentTren extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            imagen = getArguments().getInt(ARG_IMAGEN);
+
         }
     }
 
@@ -91,10 +92,11 @@ public class FragmentTren extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view =  inflater.inflate(R.layout.fragment_tren, container, false);
+        view =  inflater.inflate(R.layout.fragment_puzle, container, false);
 
         final RelativeLayout layout = view.findViewById(R.id.layout);
         imageView = view.findViewById(R.id.imageView);
+        imageView.setImageResource(imagen);
 
         // run image related code after the view was laid out
         // to have all dimensions calculated
@@ -103,10 +105,16 @@ public class FragmentTren extends Fragment {
             public void run() {
                 pieces = splitImage();
                 TouchListener touchListener = new TouchListener();
-                for(PuzzlePiece piece : pieces) {
-
+                // shuffle pieces order
+                Collections.shuffle(pieces);
+                for (PuzzlePiece piece : pieces) {
                     piece.setOnTouchListener(touchListener);
                     layout.addView(piece);
+                    // randomize position, on the bottom of the screen
+                    RelativeLayout.LayoutParams lParams = (RelativeLayout.LayoutParams) piece.getLayoutParams();
+                    lParams.leftMargin = new Random().nextInt(layout.getWidth() - piece.pieceWidth);
+                    lParams.topMargin = layout.getHeight() - piece.pieceHeight;
+                    piece.setLayoutParams(lParams);
                 }
             }
         });
@@ -153,8 +161,8 @@ public class FragmentTren extends Fragment {
     }
 
     private ArrayList<PuzzlePiece> splitImage() {
-        int piecesNumber = 12;
-        int rows = 4;
+        int piecesNumber = 9;
+        int rows = 3;
         int cols = 3;
 
         ImageView imageView = view.findViewById(R.id.imageView);
@@ -369,6 +377,7 @@ public class FragmentTren extends Fragment {
                         piece.setLayoutParams(lParams);
                         piece.canMove = false;
                         sendViewToBack(piece);
+                        checkGameOver();
                     }
                     break;
             }
@@ -383,6 +392,29 @@ public class FragmentTren extends Fragment {
                 parent.addView(child, 0);
             }
         }
+
+        public void checkGameOver() {
+            if (isGameOver()) {
+                if(imagen == R.drawable.tren) {
+                    MediaPlayer mediaPlayer = MediaPlayer.create(getContext(), R.raw.trena);
+                    mediaPlayer.start();
+                }
+            }
+        }
+
+        private boolean isGameOver() {
+            for (PuzzlePiece piece : pieces) {
+                if (piece.canMove) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
     }
+
+
+
 
 }

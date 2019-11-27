@@ -2,28 +2,21 @@ package com.app.didaktikapp.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
-import android.app.ActionBar;
-import android.app.FragmentManager;
 import android.content.Context;
-import android.graphics.Color;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.view.Window;
 import android.widget.Toast;
 
+import com.app.didaktikapp.Fragments.FragmentPuzle;
 import com.app.didaktikapp.Fragments.FragmentSanMiguel;
 import com.app.didaktikapp.Fragments.FragmentSanMiguelImagenes;
-import com.app.didaktikapp.Fragments.FragmentTren;
 import com.app.didaktikapp.Fragments.FragmentUnibertsitatea;
 import com.app.didaktikapp.Fragments.FragmentZumeltzegi;
-import com.app.didaktikapp.Location.LocationListeningCallback;
 import com.app.didaktikapp.Modelo.Lugar;
 import com.app.didaktikapp.R;
 import com.mapbox.android.core.location.LocationEngine;
@@ -54,18 +47,16 @@ import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
 import com.mapbox.mapboxsdk.style.layers.Layer;
 
-import java.io.Console;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, PermissionsListener
         , FragmentSanMiguel.OnFragmentInteractionListener
         , FragmentSanMiguelImagenes.OnFragmentInteractionListener
         , FragmentZumeltzegi.OnFragmentInteractionListener
-        , FragmentTren.OnFragmentInteractionListener{
+        , FragmentPuzle.OnFragmentInteractionListener{
 
     private MapView mapView;
     private MapboxMap mapboxMap;
@@ -182,7 +173,10 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
 //                    transaction.commit();
 //                    transaction.addToBackStack("Fragment");
 
-                    FragmentTren fragment = new FragmentTren();
+                    FragmentPuzle fragment = new FragmentPuzle();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt(FragmentPuzle.ARG_IMAGEN, R.drawable.tren);
+                    fragment.setArguments(bundle);
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                     transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
                     transaction.replace(R.id.fragment_frame, fragment);
