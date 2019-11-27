@@ -76,3 +76,10 @@ Seguimiento
 - Actividades universidad y san miguel casi terminadas. Falta solucionar videos
 - Inicio de puzle
 - Creación de algunos estilos comunes entre fragments
+
+<h4>27/11/2019 Trabajo de desarrollo</h4>
+
+- Problemas con sopa de letras, intento de busqueda de otro repositorio mmas simple
+- Puzle terminado y audio al terminarlo incluido
+- Trabajo sobre estilos comunes
+- Comienzo de trabajo sobre actividad San Miguel Errota
