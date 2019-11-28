@@ -83,3 +83,12 @@ Seguimiento
 - Puzle terminado y audio al terminarlo incluido
 - Trabajo sobre estilos comunes
 - Comienzo de trabajo sobre actividad San Miguel Errota
+
+
+<h4>28/11/2019 Trabajo de desarrollo</h4>
+
+- Sopa de letras eliminada y se trabaja sobre el clone de la sopa de letras original para eliminar todo lo no necesario y que sea funcional
+- Trabajo sobre actividad de Tren texto con huecos
+- Actividad San Miguel Errota casi terminada
+
+
