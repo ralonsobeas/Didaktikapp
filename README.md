@@ -17,6 +17,7 @@ This app is made by different activities that can be done when the device is nea
 
 Hall of Fame
 ------------------------------------------------------------------------
+
 [![](https://sourcerer.io/fame/gennakk/gennakk/Didaktikapp/images/0)](https://sourcerer.io/fame/gennakk/gennakk/Didaktikapp/links/0)[![](https://sourcerer.io/fame/gennakk/gennakk/Didaktikapp/images/1)](https://sourcerer.io/fame/gennakk/gennakk/Didaktikapp/links/1)[![](https://sourcerer.io/fame/gennakk/gennakk/Didaktikapp/images/2)](https://sourcerer.io/fame/gennakk/gennakk/Didaktikapp/links/2)[![](https://sourcerer.io/fame/gennakk/gennakk/Didaktikapp/images/3)](https://sourcerer.io/fame/gennakk/gennakk/Didaktikapp/links/3)[![](https://sourcerer.io/fame/gennakk/gennakk/Didaktikapp/images/4)](https://sourcerer.io/fame/gennakk/gennakk/Didaktikapp/links/4)[![](https://sourcerer.io/fame/gennakk/gennakk/Didaktikapp/images/5)](https://sourcerer.io/fame/gennakk/gennakk/Didaktikapp/links/5)[![](https://sourcerer.io/fame/gennakk/gennakk/Didaktikapp/images/6)](https://sourcerer.io/fame/gennakk/gennakk/Didaktikapp/links/6)[![](https://sourcerer.io/fame/gennakk/gennakk/Didaktikapp/images/7)](https://sourcerer.io/fame/gennakk/gennakk/Didaktikapp/links/7)
 
 
