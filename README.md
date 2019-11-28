@@ -98,4 +98,20 @@ Seguimiento
 - [x] Actividad San Miguel Errota casi terminada
 
 
+Funcionamiento de la app
+------------------------------------------------------------------------
+
+
+<pre>
+stateDiagram
+[*] --> Menu
+Menu --> [*]
+Menu --> Mapa
+Mapa --> Fragment
+Fragments --> Mapa
+Fragment --> Error
+Error --> [*]
+</pre>
+
+
 :yum:
