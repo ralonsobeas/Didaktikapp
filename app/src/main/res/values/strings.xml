@@ -84,5 +84,7 @@
 
     <!-- Actividad San Miguel Errota -->
     <string name="ErrotaTitulo">San Miguel Errota</string>
+    <string name="ErrotaPregunta1">Zer da tobera edo kaxa?</string>
+    <string name="ErrotaPregunta2">Zein urtean erosi zuten Santa Ana Komentuko mojek errota?</string>
 
 </resources>

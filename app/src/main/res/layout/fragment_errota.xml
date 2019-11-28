@@ -155,6 +155,72 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/errotaVideoLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="vertical"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/errotaTitulo">
+
+            <VideoView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/errotaVideo" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/errotaSacarFotos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="vertical"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/errotaTitulo">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ErrotaPregunta1" />
+
+            <ImageView
+                android:id="@+id/ivErrotaPregunta1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <ImageButton
+                android:id="@+id/btnErrotaPregunta1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_camera" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ErrotaPregunta2" />
+
+            <ImageView
+                android:id="@+id/ivErrotaPregunta2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <ImageButton
+                android:id="@+id/btnErrotaPregunta2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_camera" />
+        </LinearLayout>
+
 <!--        <LinearLayout
             android:id="@+id/uniPreguntasLayout"
             android:layout_width="match_parent"
