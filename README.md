@@ -1,6 +1,6 @@
 # Didaktikapp
 
-<img src="https://www.theblocklearning.com/wp-content/uploads/2018/09/mobile.png" alt="Imagen">
+<p align="center"><img src="https://www.theblocklearning.com/wp-content/uploads/2018/09/mobile.png" alt="Imagen"></p>
 
 Aplicación creada por alumnos del centro CIFP Ciudad Jardin (Vitoria) en colaboración con los alumnos de magisterio de la UPV en Leioa.
 La finalidad de la app es que sea usada por niños para hacer una excursión y conocer mejor Oñate.
@@ -31,71 +31,71 @@ Seguimiento
 ------------------------------------------------------------------------
 <h4>19/11/2019 Reunidos Todos</h4>
 
-- Primer contacto
-- Toma de decisiones
-- Compromisos, normas
-- Reconocimiento de tareas, recursos faltantes
-- Elegir representante
+- [x] Primer contacto
+- [x] Toma de decisiones
+- [x] Compromisos, normas
+- [x] Reconocimiento de tareas, recursos faltantes
+- [x] Elegir representante
 
 <h4>20/11/2019 Reunidos Todos</h4>
 
-- Toma de decisiones visuales
-- Toma de contacto con UPV
-- Mandar sugerencias (Correo de contacto)
-- Creación de proyecto en github con dos ramas (master y branch1)
+- [x] Toma de decisiones visuales
+- [x] Toma de contacto con UPV
+- [x] Mandar sugerencias (Correo de contacto)
+- [x] Creación de proyecto en github con dos ramas (master y branch1)
 
 <h4>21/11/2019 Trabajo de desarrollo</h4>
 
-- Logos del login (falta el logo de Oñate)
-- Login preparado
-- Imagenes para Markers
-- Implantación del mapa en dispositivo y carga de los Markers necesarios
-- Comienzo de implantación de ubicación real del dispositivo (https://docs.mapbox.com/android/maps/examples/show-a-users-location/)
-- Ideas de implantación de las actividades a realizar por los usuarios (¿Fragments?)
-- Resolución de conflictos en GitHub
-- Mejoras del proyecto en github y creación de licencia de uso MIT
+- [x] Logos del login (falta el logo de Oñate)
+- [x] Login preparado
+- [x] Imagenes para Markers
+- [x] Implantación del mapa en dispositivo y carga de los Markers necesarios
+- [x] Comienzo de implantación de ubicación real del dispositivo (https://docs.mapbox.com/android/maps/examples/show-a-users-location/)
+- [x] Ideas de implantación de las actividades a realizar por los usuarios (¿Fragments?)
+- [x] Resolución de conflictos en GitHub
+- [x] Mejoras del proyecto en github y creación de licencia de uso MIT
 
 <h4>22/11/2019 Trabajo de desarrollo</h4>
 
-- Implantación terminada de ubicación en tiempo real
-- Intento de lanzar fragment mediante ubicación
-- Comienzo de implantación de los fragments con las actividades a realizar con algunas funcionalidades no deseadas (¿botón de volver?,¿click fuera?,¿mover el mapa mientras se está en el fragment?)
-- Comienzo de actividad con sopa de letras
-- Merge de Branch1 con Master #1
-- Comienzo de actividad San Miguel (test) Actividad número 2
+- [x] Implantación terminada de ubicación en tiempo real
+- [ ] Intento de lanzar fragment mediante ubicación
+- [x] Comienzo de implantación de los fragments con las actividades a realizar con algunas funcionalidades no deseadas (¿botón de volver?,¿click fuera?,¿mover el mapa mientras se está en el fragment?)
+- [x] Comienzo de actividad con sopa de letras
+- [x] Merge de Branch1 con Master #1
+- [x] Comienzo de actividad San Miguel (test) Actividad número 2
 
 <h4>25/11/2019 Trabajo de desarrollo</h4>
 
-- Trabajo sobre actividad San Miguel
-- Avances en Sopa de letras
-- Animaciones de entrada/salida de fragments
-- Animaciones en botones
-- Problemas con la documentación aportada y espera de un correo de respuesta por parte de los alumnos de la UPV
-- Link source code sopa de letras https://github.com/abdularis/Word-Search-Game
-- Link source code puzle https://dragosholban.com/2018/03/09/how-to-build-a-jigsaw-puzzle-android-game/
-- Posible uso de script de python desde java https://github.com/chaquo/chaquopy ; https://github.com/chaquo/chaquopy-console
+- [x] Trabajo sobre actividad San Miguel
+- [ ] Avances en Sopa de letras
+- [x] Animaciones de entrada/salida de fragments
+- [x] Animaciones en botones
+- [ ] Problemas con la documentación aportada y espera de un correo de respuesta por parte de los alumnos de la UPV
+- [ ] Link source code sopa de letras https://github.com/abdularis/Word-Search-Game
+- [ ] Link source code puzle https://dragosholban.com/2018/03/09/how-to-build-a-jigsaw-puzzle-android-game/
+- [ ] Posible uso de script de python desde java https://github.com/chaquo/chaquopy ; https://github.com/chaquo/chaquopy-console
 
 <h4>26/11/2019 Trabajo de desarrollo</h4>
 
-- Trabajo sobre sopa de letras
-- Actividades universidad y san miguel casi terminadas. Falta solucionar videos
-- Inicio de puzle
-- Creación de algunos estilos comunes entre fragments
-- Merge de Branch1 con Master #2
+- [x] Trabajo sobre sopa de letras
+- [x] Actividades universidad y san miguel casi terminadas. Falta solucionar videos
+- [x] Inicio de puzle
+- [x] Creación de algunos estilos comunes entre fragments
+- [x] Merge de Branch1 con Master #2
 
 <h4>27/11/2019 Trabajo de desarrollo</h4>
 
-- Problemas con sopa de letras, intento de busqueda de otro repositorio mmas simple
-- Puzle terminado y audio al terminarlo incluido
-- Trabajo sobre estilos comunes
-- Comienzo de trabajo sobre actividad San Miguel Errota
+- [x] Problemas con sopa de letras, intento de busqueda de otro repositorio mmas simple
+- [x] Puzle terminado y audio al terminarlo incluido
+- [x] Trabajo sobre estilos comunes
+- [x] Comienzo de trabajo sobre actividad San Miguel Errota
 
 
 <h4>28/11/2019 Trabajo de desarrollo</h4>
 
-- Sopa de letras eliminada y se trabaja sobre el clone de la sopa de letras original para eliminar todo lo no necesario y que sea funcional
-- Trabajo sobre actividad de Tren texto con huecos
-- Actividad San Miguel Errota casi terminada
+- [x] Sopa de letras eliminada y se trabaja sobre el clone de la sopa de letras original para eliminar todo lo no necesario y que sea funcional
+- [x] Trabajo sobre actividad de Tren texto con huecos
+- [x] Actividad San Miguel Errota casi terminada
 
 
 :yum:
