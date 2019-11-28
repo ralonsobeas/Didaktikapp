@@ -56,7 +56,7 @@ Seguimiento
 - Intento de lanzar fragment mediante ubicación
 - Comienzo de implantación de los fragments con las actividades a realizar con algunas funcionalidades no deseadas (¿botón de volver?,¿click fuera?,¿mover el mapa mientras se está en el fragment?)
 - Comienzo de actividad con sopa de letras
-- Merge de Branch1 con Master
+- Merge de Branch1 con Master #1
 - Comienzo de actividad San Miguel (test) Actividad número 2
 
 <h4>25/11/2019 Trabajo de desarrollo</h4>
@@ -76,6 +76,7 @@ Seguimiento
 - Actividades universidad y san miguel casi terminadas. Falta solucionar videos
 - Inicio de puzle
 - Creación de algunos estilos comunes entre fragments
+- Merge de Branch1 con Master #2
 
 <h4>27/11/2019 Trabajo de desarrollo</h4>
 
