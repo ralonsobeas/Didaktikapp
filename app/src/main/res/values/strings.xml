@@ -86,5 +86,11 @@
     <string name="ErrotaTitulo">San Miguel Errota</string>
     <string name="ErrotaPregunta1">Zer da tobera edo kaxa?</string>
     <string name="ErrotaPregunta2">Zein urtean erosi zuten Santa Ana Komentuko mojek errota?</string>
+    <string name="Terminar">Terminar</string>
+    <string name="ErrotaPareja1">1905 urtean, Santa Ana Komentuko mojek erosi egin zioten San Miguel errota Juan Gordoa y Perea jaunari.</string>
+    <string name="ErrotaPareja2">Berrikuntza lan garrantzitsuak egin ziren 1923 eta 1926 artean.</string>
+    <string name="ErrotaPareja3">Oñatiko Udalak erosi zion Santa Ana komentuari San Miguel errota izandakoa 1983an.</string>
+    <string name="ErrotaPareja4">Turtikinen funtzionamendua indarrez ardatzak eta harriak biraka jarriz alea ehotzeko era azaltzen duena.</string>
+    <string name="ErrotaPareja5">Toberak edo kaxak kono alderantzizkatuen itxuran, berriak egin dira Lasturko Lastur-Goikoa errotakoak eredutzat hartuta.</string>
 
 </resources>

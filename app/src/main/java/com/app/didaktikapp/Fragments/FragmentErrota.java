@@ -9,6 +9,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,8 +23,10 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.MediaController;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -58,6 +61,7 @@ public class FragmentErrota extends Fragment {
 
     private ImageView img1_1,img1_2,img1_3,img1_4,img2_1,img2_2,img2_3,img2_4,img3_1,img3_2,anterior,ivPregunta1,ivPregunta2;
     private ImageButton ib1,ib2;
+    private TextView resultadoPareja;
 
     private String imgSelec;
     private String mParam1;
@@ -140,11 +144,11 @@ public class FragmentErrota extends Fragment {
 
                 if(fotosLayout.getVisibility() == View.VISIBLE){
                     fotosLayout.setVisibility(View.INVISIBLE);
-//                    videoLayout.setVisibility(View.VISIBLE);
-//                    VideoView empezar = view.findViewById(R.id.errotaVideo);
-//                    empezar.start();
+                    videoLayout.setVisibility(View.VISIBLE);
+                    VideoView empezar = view.findViewById(R.id.errotaVideo);
+                    empezar.start();
 //                    videoLayout.setVisibility(View.INVISIBLE);
-                    preguntasLayout.setVisibility(View.VISIBLE);
+//                    preguntasLayout.setVisibility(View.VISIBLE);
                     btnContinuar.setEnabled(false);
                 }
 //                else if(preguntasLayout.getVisibility() == View.VISIBLE){
@@ -206,6 +210,7 @@ public class FragmentErrota extends Fragment {
         sele1 = false;
         sele2 = false;
         imgSelec = "";
+        resultadoPareja = view.findViewById(R.id.errotaImagenResultado);
 
         ImageView[] iva = new ImageView[] {img1_1,img1_2,img1_3,img1_4,img2_1,img2_2,img2_3,img2_4,img3_1,img3_2};
         List<ImageView> list = Arrays.asList(iva);
@@ -229,12 +234,14 @@ public class FragmentErrota extends Fragment {
                                     if (imgSelec.equals("a2")) {
                                         sela1 = true;
                                         sela2 = true;
+                                        resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja1));
                                         list.get(finalX).setColorFilter(R.color.verde);
                                         anterior.setColorFilter(R.color.verde);
                                         if (sela1&&selb1&&selc1&&seld1&&sele1)
                                             btnContinuar.setEnabled(true);
                                     } else {
                                         anterior.setColorFilter(null);
+                                        resultadoPareja.setText("");
                                     }
                                     imgSelec = "";
                                 }
@@ -258,12 +265,14 @@ public class FragmentErrota extends Fragment {
                                     if (imgSelec.equals("a1")) {
                                         sela1 = true;
                                         sela2 = true;
+                                        resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja1));
                                         list.get(finalX).setColorFilter(R.color.verde);
                                         anterior.setColorFilter(R.color.verde);
                                         if (sela1&&selb1&&selc1&&seld1&&sele1)
                                             btnContinuar.setEnabled(true);
                                     } else {
                                         anterior.setColorFilter(null);
+                                        resultadoPareja.setText("");
                                     }
                                     imgSelec = "";
                                 }
@@ -287,12 +296,14 @@ public class FragmentErrota extends Fragment {
                                     if (imgSelec.equals("b2")) {
                                         selb1 = true;
                                         selb2 = true;
+                                        resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja2));
                                         list.get(finalX).setColorFilter(R.color.verde);
                                         anterior.setColorFilter(R.color.verde);
                                         if (sela1&&selb1&&selc1&&seld1&&sele1)
                                             btnContinuar.setEnabled(true);
                                     } else {
                                         anterior.setColorFilter(null);
+                                        resultadoPareja.setText("");
                                     }
                                     imgSelec = "";
                                 }
@@ -316,12 +327,14 @@ public class FragmentErrota extends Fragment {
                                     if (imgSelec.equals("b1")) {
                                         selb1 = true;
                                         selb2 = true;
+                                        resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja2));
                                         list.get(finalX).setColorFilter(R.color.verde);
                                         anterior.setColorFilter(R.color.verde);
                                         if (sela1&&selb1&&selc1&&seld1&&sele1)
                                             btnContinuar.setEnabled(true);
                                     } else {
                                         anterior.setColorFilter(null);
+                                        resultadoPareja.setText("");
                                     }
                                     imgSelec = "";
                                 }
@@ -345,12 +358,14 @@ public class FragmentErrota extends Fragment {
                                     if (imgSelec.equals("c2")) {
                                         selc1 = true;
                                         selc2 = true;
+                                        resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja3));
                                         list.get(finalX).setColorFilter(R.color.verde);
                                         anterior.setColorFilter(R.color.verde);
                                         if (sela1&&selb1&&selc1&&seld1&&sele1)
                                             btnContinuar.setEnabled(true);
                                     } else {
                                         anterior.setColorFilter(null);
+                                        resultadoPareja.setText("");
                                     }
                                     imgSelec = "";
                                 }
@@ -374,12 +389,14 @@ public class FragmentErrota extends Fragment {
                                     if (imgSelec.equals("c1")) {
                                         selc1 = true;
                                         selc2 = true;
+                                        resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja3));
                                         list.get(finalX).setColorFilter(R.color.verde);
                                         anterior.setColorFilter(R.color.verde);
                                         if (sela1&&selb1&&selc1&&seld1&&sele1)
                                             btnContinuar.setEnabled(true);
                                     } else {
                                         anterior.setColorFilter(null);
+                                        resultadoPareja.setText("");
                                     }
                                     imgSelec = "";
                                 }
@@ -403,12 +420,14 @@ public class FragmentErrota extends Fragment {
                                     if (imgSelec.equals("d2")) {
                                         seld1 = true;
                                         seld2 = true;
+                                        resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja4));
                                         list.get(finalX).setColorFilter(R.color.verde);
                                         anterior.setColorFilter(R.color.verde);
                                         if (sela1&&selb1&&selc1&&seld1&&sele1)
                                             btnContinuar.setEnabled(true);
                                     } else {
                                         anterior.setColorFilter(null);
+                                        resultadoPareja.setText("");
                                     }
                                     imgSelec = "";
                                 }
@@ -432,12 +451,14 @@ public class FragmentErrota extends Fragment {
                                     if (imgSelec.equals("d1")) {
                                         seld1 = true;
                                         seld2 = true;
+                                        resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja4));
                                         list.get(finalX).setColorFilter(R.color.verde);
                                         anterior.setColorFilter(R.color.verde);
                                         if (sela1&&selb1&&selc1&&seld1&&sele1)
                                             btnContinuar.setEnabled(true);
                                     } else {
                                         anterior.setColorFilter(null);
+                                        resultadoPareja.setText("");
                                     }
                                     imgSelec = "";
                                 }
@@ -461,12 +482,14 @@ public class FragmentErrota extends Fragment {
                                     if (imgSelec.equals("e2")) {
                                         sele1 = true;
                                         sele2 = true;
+                                        resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja5));
                                         list.get(finalX).setColorFilter(R.color.verde);
                                         anterior.setColorFilter(R.color.verde);
                                         if (sela1&&selb1&&selc1&&seld1&&sele1)
                                             btnContinuar.setEnabled(true);
                                     } else {
                                         anterior.setColorFilter(null);
+                                        resultadoPareja.setText("");
                                     }
                                     imgSelec = "";
                                 }
@@ -490,12 +513,14 @@ public class FragmentErrota extends Fragment {
                                     if (imgSelec.equals("e1")) {
                                         sele1 = true;
                                         sele2 = true;
+                                        resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja5));
                                         list.get(finalX).setColorFilter(R.color.verde);
                                         anterior.setColorFilter(R.color.verde);
                                         if (sela1&&selb1&&selc1&&seld1&&sele1)
                                             btnContinuar.setEnabled(true);
                                     } else {
                                         anterior.setColorFilter(null);
+                                        resultadoPareja.setText("");
                                     }
                                     imgSelec = "";
                                 }
@@ -510,10 +535,27 @@ public class FragmentErrota extends Fragment {
     }
 
     public void crearVideo(View view) {
-        Uri path = Uri.parse("android.resource://com.app.didaktikapp/" + R.raw.videoprueba);
+        Uri path = Uri.parse("android.resource://"+getActivity().getPackageName()+"/"+R.raw.videoprueba);
         VideoView video = view.findViewById(R.id.errotaVideo);
         video.setVideoURI(path);
+
+        MediaController mediaController = new MediaController(getActivity());
+        video.setMediaController(mediaController);
+        mediaController.setAnchorView(video);
+        video.setZOrderOnTop(true);
+
         video.setVisibility(View.VISIBLE);
+        video.requestFocus();
+
+        video.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                Log.i("video","Video terminado");
+                video.setVisibility(View.INVISIBLE);
+                videoLayout.setVisibility(View.INVISIBLE);
+                preguntasLayout.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     public void crearPreguntas(View view) {
@@ -569,7 +611,10 @@ public class FragmentErrota extends Fragment {
                 ivPregunta2.setImageBitmap(Bitmap.createScaledBitmap(imageBitmap,1000,1000,false));
                 ib2.setVisibility(View.INVISIBLE);
                 img2 = true;
-                if (img1) btnContinuar.setEnabled(true);
+                if (img1) {
+                    btnContinuar.setText(getResources().getString(R.string.Terminar));
+                    btnContinuar.setEnabled(true);
+                }
             }
 
         }
