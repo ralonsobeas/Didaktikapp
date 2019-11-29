@@ -71,52 +71,52 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void aaa(View view) {
-        EditText et = findViewById(R.id.etPruebas);
-        TextView tv = findViewById(R.id.textView3);
-
-        String texto = tv.getText().toString();
-        String introducido = et.getText().toString();
-        //"Esta es la ________, esta la ________ y esta la ________"
-        //(todos son 8 _)
-
-        switch (introducido) {
-            case "prueba 1":
-                if (!prueba1) {
-                    int location = texto.indexOf("________");
-                    String pp = texto.substring(0,location);
-                    String sp = texto.substring(location+8);
-                    tv.setText(pp+"prueba 1"+sp);
-                    prueba1 = true;
-                }
-                break;
-            case "prueba 2":
-                if (!prueba2) {
-                    int location = texto.indexOf("________");
-                    if (!prueba1)
-                        location = texto.indexOf("________",location+9);
-                    String pp = texto.substring(0,location);
-                    String sp = texto.substring(location+8);
-                    tv.setText(pp+"prueba 2"+sp);
-                    prueba2 = true;
-                }
-                break;
-            case "prueba 3":
-                if (!prueba3) {
-                    int location = texto.indexOf("________");
-                    if (!prueba1)
-                        location = texto.indexOf("________",location+9);
-                    if (!prueba2)
-                        location = texto.indexOf("________",location+9);
-                    String pp = texto.substring(0,location);
-                    String sp = texto.substring(location+8);
-                    tv.setText(pp+"prueba 3"+sp);
-                    prueba3 = true;
-                }
-                break;
-        }
-
-    }
+//    public void aaa(View view) {
+//        EditText et = findViewById(R.id.etPruebas);
+//        TextView tv = findViewById(R.id.textView3);
+//
+//        String texto = tv.getText().toString();
+//        String introducido = et.getText().toString();
+//        //"Esta es la ________, esta la ________ y esta la ________"
+//        //(todos son 8 _)
+//
+//        switch (introducido) {
+//            case "prueba 1":
+//                if (!prueba1) {
+//                    int location = texto.indexOf("________");
+//                    String pp = texto.substring(0,location);
+//                    String sp = texto.substring(location+8);
+//                    tv.setText(pp+"prueba 1"+sp);
+//                    prueba1 = true;
+//                }
+//                break;
+//            case "prueba 2":
+//                if (!prueba2) {
+//                    int location = texto.indexOf("________");
+//                    if (!prueba1)
+//                        location = texto.indexOf("________",location+9);
+//                    String pp = texto.substring(0,location);
+//                    String sp = texto.substring(location+8);
+//                    tv.setText(pp+"prueba 2"+sp);
+//                    prueba2 = true;
+//                }
+//                break;
+//            case "prueba 3":
+//                if (!prueba3) {
+//                    int location = texto.indexOf("________");
+//                    if (!prueba1)
+//                        location = texto.indexOf("________",location+9);
+//                    if (!prueba2)
+//                        location = texto.indexOf("________",location+9);
+//                    String pp = texto.substring(0,location);
+//                    String sp = texto.substring(location+8);
+//                    tv.setText(pp+"prueba 3"+sp);
+//                    prueba3 = true;
+//                }
+//                break;
+//        }
+//
+//    }
 
     private void eventos(){
         botonSalir.setOnClickListener(new View.OnClickListener() {
