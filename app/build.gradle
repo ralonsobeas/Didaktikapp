@@ -47,6 +47,9 @@ dependencies {
 
     //Filtro
     implementation 'com.github.zomato:androidphotofilters:1.0.1'
+
+    //Material design
+    implementation 'com.google.android.material:material:1.1.0-alpha09'
 }
 
 /*implementation 'com.jakewharton:butterknife:10.2.0'
