@@ -80,7 +80,15 @@
     <string name="Contunuar">continuar</string>
 
     <!-- Actividad Tren -->
-    <string name="TrenTexto">Oñatin garai batean trena aurkitzen zen, gaur egun, ……………… den eraikina da lehengo tren estazioa. 1887 urtean sortu zen eta azken bidaia, 1967 urtean izan zen. ……………… deitzen zen eta Bergaratik Lizarraraino heltzen zen, ……………… pasata. </string>
+    <string name="TrenTextoTitulo">Trena</string>
+    <string name="TrenTextoCambiar">Oñatin garai batean trena aurkitzen zen, gaur egun, (1) ________ den eraikina da lehengo tren estazioa. 1887 urtean sortu zen eta azken bidaia, 1967 urtean izan zen. (2) ________ deitzen zen eta Bergaratik Lizarraraino heltzen zen, (3) ________ pasata. </string>
+    <string-array name="TrenTextoCambiar">
+        <item>Gasteizetik</item>
+        <item>Postetxea</item>
+        <item>Vasco-Navarro</item>
+    </string-array>
+    <string name="TrenTextoError">Ez da </string>
+
 
     <!-- Actividad San Miguel Errota -->
     <string name="ErrotaTitulo">San Miguel Errota</string>
