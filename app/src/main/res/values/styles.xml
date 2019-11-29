@@ -45,4 +45,8 @@
         <item name="android:colorBackground">@color/blancoFondo</item>
     </style>
 
+    <style name="SplashScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/bg_splash</item>
+    </style>
+
 </resources>

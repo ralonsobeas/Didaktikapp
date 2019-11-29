@@ -20,7 +20,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.didaktikapp.Activities.MapActivity;
-import com.app.didaktikapp.SopaLetras.features.mainmenu.MainMenuActivity;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

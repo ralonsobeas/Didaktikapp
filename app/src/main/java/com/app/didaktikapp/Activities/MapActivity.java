@@ -24,8 +24,8 @@ import com.app.didaktikapp.MainActivity;
 import com.app.didaktikapp.Modelo.Lugar;
 import com.app.didaktikapp.R;
 import com.app.didaktikapp.Sopa;
-import com.app.didaktikapp.SopaLetras.features.gameplay.GamePlayActivity;
-import com.app.didaktikapp.SopaLetras.features.mainmenu.MainMenuActivity;
+import com.app.didaktikapp.wordsearch.features.SplashScreenActivity;
+import com.app.didaktikapp.wordsearch.features.gameplay.GamePlayActivity;
 import com.mapbox.android.core.location.LocationEngine;
 import com.mapbox.android.core.location.LocationEngineCallback;
 import com.mapbox.android.core.location.LocationEngineProvider;
@@ -212,9 +212,9 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
                 }else if(marker.getPosition().getLatitude()==43.000583 && marker.getPosition().getLongitude()==-2.433250){
                     marker.setIcon(iconoverde);
                     Log.i("tag","s");
-                    Intent intent = new Intent(MapActivity.this, GamePlayActivity.class);
-                    intent.putExtra(GamePlayActivity.EXTRA_ROW_COUNT, 5);
-                    intent.putExtra(GamePlayActivity.EXTRA_COL_COUNT, 5);
+                    Intent intent = new Intent(MapActivity.this, SplashScreenActivity.class);
+                    intent.putExtra(GamePlayActivity.EXTRA_ROW_COUNT, 10);
+                    intent.putExtra(GamePlayActivity.EXTRA_COL_COUNT, 10);
                     startActivity(intent);
 
                 }
