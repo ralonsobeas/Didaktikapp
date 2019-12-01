@@ -20,6 +20,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.didaktikapp.Activities.MapActivity;
+import com.chaquo.python.PyObject;
+import com.chaquo.python.Python;
+import com.chaquo.python.android.AndroidPlatform;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -27,10 +30,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import at.markushi.ui.CircleButton;
+
 public class MainActivity extends AppCompatActivity {
 
     private ConstraintLayout layout;
-    private Button botonSalir, botonInicio, botonContinuar;
+    private CircleButton  botonInicio,botonContinuar;
+    private Button botonSalir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +44,12 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
+        // "context" must be an Activity, Service or Application object from your app.
+        if (! Python.isStarted()) {
+            Python.start(new AndroidPlatform(getBaseContext()));
+        }
+        Python py = Python.getInstance();
+        PyObject sys = py.getModule("prueba").callAttr("main");
 //        setContentView(R.layout.activity_inicio);
 //        try {
 //            Thread.sleep(4000);

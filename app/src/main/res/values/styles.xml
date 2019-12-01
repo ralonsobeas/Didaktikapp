@@ -7,7 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorOnPrimary">@color/colorOnPrimary</item>
-
+        <item name="shapeAppearanceOverlay">@style/MyShapeAppearance</item>
     </style>
 
     <style name="StyleFragment" parent="Theme.MaterialComponents.Light">
@@ -49,6 +49,17 @@
 
     <style name="SplashScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/bg_splash</item>
+    </style>
+
+    <style name="MyShapeAppearance">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">20dp</item>
+        <item name="cornerSizeBottomRight">20dp</item>
+        <item name="cornerSizeTopLeft">20dp</item>
+        <item name="cornerSizeBottomLeft">20dp</item>
+    </style>
+    <style name="noStyle" parent="Theme.AppCompat">
+        <item name="materialThemeOverlay">@drawable/roundedbutton</item>
     </style>
 
 </resources>

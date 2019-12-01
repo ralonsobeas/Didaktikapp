@@ -19,6 +19,8 @@ import android.widget.RadioGroup;
 
 import com.app.didaktikapp.R;
 
+import in.codeshuffle.typewriterview.TypeWriterView;
+
 
 public class FragmentUnibertsitatea extends Fragment {
 
@@ -59,6 +61,21 @@ public class FragmentUnibertsitatea extends Fragment {
         view = inflater.inflate(R.layout.fragment_unibertsitatea, container, false);
         textoBreveLayout = view.findViewById(R.id.uniTextoBreveLayout);
         textoBreveLayout.setVisibility(View.VISIBLE);
+        //Create Object and refer to layout view
+        TypeWriterView typeWriterView=(TypeWriterView)view.findViewById(R.id.uniTextoBreve);
+
+        //Setting each character animation delay
+        typeWriterView.setDelay(3);
+
+        //Setting music effect On/Off
+        typeWriterView.setWithMusic(true);
+
+        //Animating Text
+        typeWriterView.animateText(getString(R.string.TextoUniversidad));
+
+
+
+
         preguntasLayout = view.findViewById(R.id.uniPreguntasLayout);
         preguntasLayout.setVisibility(View.INVISIBLE);
         fotosLayout = view.findViewById(R.id.uniFotosLayout);

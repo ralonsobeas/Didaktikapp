@@ -105,6 +105,9 @@
     <string name="summary_about">Word search game is a puzzle game, where the player try to find words in a grid of letters in horizontal, vertical and diagonal direction.</string>
     <string name="finished">Finished!</string>
 
+    <!-- Actividad Universidad -->
+    <string name="TextoUniversidad" >Unibertsitatearen sortzailea Rodrigo Mercado de Zuazola izan zen eta 1548. urtean sortu zuen. Eraikin hau, oso garrantzitsua da Euskal Herriko lehen unibertsitatea izan baitzen. Hiru mendeetan zehar honako ikasketak egin izan dira berta: medikuntza, filosofia, letrak eta teologia. Gaur egun ordea, ez da klaserik ematen bertan. Gainera, arkitektura adierazgarria dauka eta bere barruan klaustro ikusgarri bat eta Oteizaren eskultura bat daude. </string>
+
     <!-- prefs -->
     <string name="pref_showGridLine">showGridLine</string>
     <string name="pref_snapToGrid">snapToGrid</string>

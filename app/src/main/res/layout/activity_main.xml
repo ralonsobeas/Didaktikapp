@@ -23,28 +23,37 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
 
-        <Button
+        <at.markushi.ui.CircleButton
             android:id="@+id/btnIniciar"
-            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="96dp"
+            android:layout_marginTop="50dp"
             android:layout_marginEnd="16dp"
             android:clickable="true"
+            android:src="@drawable/ic_play_arrow_black_24dp"
+            app:cb_color="@color/colorPrimary"
             android:text="INICIAR"
+            app:cb_pressedRingWidth="8dip"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+
+
+            />
 
         <!-- android:background="@drawable/ripple_boton_bg" -->
 
-        <Button
+        <at.markushi.ui.CircleButton
             android:id="@+id/btnContinuar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="30dp"
             android:enabled="false"
             android:text="CONTINUAR"
+            android:src="@drawable/ic_fast_forward_black_24dp"
+            app:cb_color="@color/colorPrimary"
+            app:cb_pressedRingWidth="8dip"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnIniciar" />

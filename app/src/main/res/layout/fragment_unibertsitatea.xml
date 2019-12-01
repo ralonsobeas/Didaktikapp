@@ -46,11 +46,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/uniTitulo">
 
-            <TextView
+            <in.codeshuffle.typewriterview.TypeWriterView
                 android:id="@+id/uniTextoBreve"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Unibertsitatearen sortzailea Rodrigo Mercado de Zuazola izan zen eta 1548. urtean sortu zuen. Eraikin hau, oso garrantzitsua da Euskal Herriko lehen unibertsitatea izan baitzen. Hiru mendeetan zehar honako ikasketak egin izan dira berta: medikuntza, filosofia, letrak eta teologia. Gaur egun ordea, ez da klaserik ematen bertan. Gainera, arkitektura adierazgarria dauka eta bere barruan klaustro ikusgarri bat eta Oteizaren eskultura bat daude. "
+                android:text=""
                 android:textColor="#000000"
                 android:textSize="24sp" />
 
