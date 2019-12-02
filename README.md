@@ -125,6 +125,9 @@ Seguimiento
 - [x] Icono para aplicación
 - [x] <b><u>Merge de Branch1 con Master #4</u></b>
 - [ ] https://medium.com/@andkulikov/animate-all-the-things-transitions-in-android-914af5477d50
+- [ ] https://medium.com/mindorks/android-top-animation-libraries-57bc02aeb6f0
+- [ ] https://netpeak.net/blog/20-best-android-animation-ui-ux-libraries/
+- [ ] https://uxplanet.org/16-android-menu-open-source-ui-animation-components-libraries-java-kotlin-9f3e54f64280
 
 
 Funcionamiento de la app
