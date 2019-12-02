@@ -99,7 +99,7 @@ Seguimiento
 
 <h4>29/11/2019 Trabajo de desarrollo</h4>
 
-- [x] Compilador de python en android
+- [x] Compilador de python en android #Chaquopy
 - [x] Colores y estilos unificados
 - [x] Cambio de algunos layouts de los fragments
 
