@@ -15,6 +15,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -401,6 +402,19 @@ public class FragmentPuzle extends Fragment {
                 if(imagen == R.drawable.tren) {
                     mediaPlayer = MediaPlayer.create(getContext(), R.raw.trena);
                     mediaPlayer.start();
+                    mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                        @Override
+                        public void onCompletion(MediaPlayer mp) {
+                            FragmentTrenTexto fragment = new FragmentTrenTexto();
+                            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                            transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
+                            transaction.replace(R.id.fragment_frame, fragment);
+                            transaction.commit();
+                            transaction.addToBackStack("Fragment");
+                        }
+
+                    });
                 }
             }
         }
