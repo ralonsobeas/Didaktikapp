@@ -73,7 +73,7 @@ Seguimiento
 - [ ] Intento de lanzar fragment mediante ubicación
 - [x] Comienzo de implantación de los fragments con las actividades a realizar con algunas funcionalidades no deseadas (¿botón de volver?,¿click fuera?,¿mover el mapa mientras se está en el fragment?)
 - [x] Comienzo de actividad con sopa de letras
-- [x] Merge de Branch1 con Master #1
+- [x] <b><u>Merge de Branch1 con Master #1</u></b>
 - [x] Comienzo de actividad San Miguel (test) Actividad número 2
 
 <h4>25/11/2019 Trabajo de desarrollo</h4>
@@ -93,7 +93,7 @@ Seguimiento
 - [x] Actividades universidad y san miguel casi terminadas. Falta solucionar videos
 - [x] Inicio de puzle
 - [x] Creación de algunos estilos comunes entre fragments
-- [x] Merge de Branch1 con Master #2
+- [x] <b><u>Merge de Branch1 con Master #2</u></b>
 
 <h4>27/11/2019 Trabajo de desarrollo</h4>
 
@@ -123,6 +123,7 @@ Seguimiento
 - [x] Nuevas fuentes para texto
 - [x] Cambio de forma de botones
 - [x] Icono para aplicación
+- [x] <b><u>Merge de Branch1 con Master #4</u></b>
 
 
 Funcionamiento de la app
