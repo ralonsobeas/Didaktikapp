@@ -24,6 +24,7 @@ Hall of Fame
 Herramientas Utilizadas
 ------------------------------------------------------------------------
 Mapas (Mapbox) -  https://www.mapbox.com/
+
 Python SDK (Chaquopy) - https://chaquo.com/chaquopy/
 
 
