@@ -99,7 +99,6 @@ public class FragmentUnibertsitatea extends Fragment {
                         new int[]{android.R.attr.state_focused},
                         new int[]{android.R.attr.state_pressed}
 
-
                 },
                 new int[]{Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE}
         );
@@ -154,6 +153,7 @@ public class FragmentUnibertsitatea extends Fragment {
                 radio2S.setEnabled(false);
                 radio2N.setEnabled(false);
                 btnContinuar.setEnabled(true);
+                btnCorregir.setEnabled(false);
 
             }
         });

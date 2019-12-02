@@ -9,7 +9,6 @@
     android:orientation="vertical"
     tools:context=".Fragments.FragmentUnibertsitatea">
 
-    <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -52,6 +51,7 @@
                 android:layout_height="wrap_content"
                 android:text=""
                 android:textColor="#000000"
+                android:justificationMode="inter_word"
                 android:textSize="24sp" />
 
         </LinearLayout>
@@ -168,7 +168,7 @@
                 android:id="@+id/tvPregunta3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Relizar 3 fotografias de la universidad desde lados distintos"
+                android:text="Egin itzazu unibertsitatearen 3 argazki alde ezbedinetatik."
                 android:textColor="#000000"
                 android:textSize="24sp" />
 
