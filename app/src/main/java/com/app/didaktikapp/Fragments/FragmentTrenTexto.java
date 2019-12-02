@@ -12,11 +12,17 @@ import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.R;
@@ -44,6 +50,14 @@ public class FragmentTrenTexto extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     private View view;
+
+    private LinearLayout textoLayout;
+
+    private Spinner sp;
+
+    private TextView textoCambiar,textoPregunta,textoError;
+
+    boolean primerError;
 
     public FragmentTrenTexto() {
         // Required empty public constructor
@@ -81,6 +95,78 @@ public class FragmentTrenTexto extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_tren_texto, container, false);
+
+        textoLayout = view.findViewById(R.id.trenTextoLayout);
+        textoLayout.setVisibility(View.VISIBLE);
+
+        textoCambiar = view.findViewById(R.id.trenTextoCambiar);
+        textoPregunta = view.findViewById(R.id.trenTextoPregunta);
+        textoError = view.findViewById(R.id.trenTextoError);
+
+        //Al iniciar la actividad detecta que ha habido un click en el spinner,
+        //asi que este booleano evita que salga el mensaje de error la primera vez
+        primerError = false;
+
+        sp = view.findViewById(R.id.trenTextoSpinner);
+        sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+
+                String seleccionado = sp.getSelectedItem().toString();
+                String pregunta = textoPregunta.getText().toString();
+                String texto = textoCambiar.getText().toString();
+
+                if (pregunta.equals("(1) ->")) {
+                    if (seleccionado.equals("Postetxea")) {
+                        textoError.setText("");
+                        textoPregunta.setText("(2) ->");
+                        int location = texto.indexOf("________");
+                        String pp = texto.substring(0,location);
+                        String sp = texto.substring(location+8);
+                        textoCambiar.setText(pp+"postetxea"+sp);
+                    } else {
+                        if (primerError)
+                            textoError.setText(getResources().getString(R.string.TrenTextoError)+" "+seleccionado);
+                        else
+                            primerError = true;
+                    }
+
+                } else if (pregunta.equals("(2) ->")) {
+                    if (seleccionado.equals("Vasco-Navarro")) {
+                        textoError.setText("");
+                        textoPregunta.setText("(3) ->");
+                        int location = texto.indexOf("________");
+                        String pp = texto.substring(0,location);
+                        String sp = texto.substring(location+8);
+                        textoCambiar.setText(pp+"vasco-navarro"+sp);
+                    } else {
+                        textoError.setText(getResources().getString(R.string.TrenTextoError)+" "+seleccionado);
+                    }
+
+                } else if (pregunta.equals("(3) ->")) {
+                    if (seleccionado.equals("Gasteizetik")) {
+                        textoError.setText("");
+                        int location = texto.indexOf("________");
+                        String pp = texto.substring(0,location);
+                        String sp = texto.substring(location+8);
+                        textoCambiar.setText(pp+"gasteizetik"+sp);
+                    } else {
+                        textoError.setText(getResources().getString(R.string.TrenTextoError)+" "+seleccionado);
+                    }
+
+                }
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                textoError.setText("");
+
+            }
+        });
+
         return view;
     }
 
@@ -94,12 +180,12 @@ public class FragmentTrenTexto extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
+//        if (context instanceof OnFragmentInteractionListener) {
+//            mListener = (OnFragmentInteractionListener) context;
+//        } else {
+//            throw new RuntimeException(context.toString()
+//                    + " must implement OnFragmentInteractionListener");
+//        }
     }
 
     @Override
@@ -123,29 +209,54 @@ public class FragmentTrenTexto extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    private void palabrasClickables(){
-        SpannableString ss = new SpannableString(getString(R.string.TrenTexto));
-        ClickableSpan clickableSpan = new ClickableSpan()
-        {
-            @Override
-            public void onClick(View textView)
-            {
-                //do Anything you want
-                Toast.makeText(getContext(),"CLICK",Toast.LENGTH_SHORT).show();
-            }
-            @Override
-            public void updateDrawState(TextPaint ds)
-            {
-                super.updateDrawState(ds);
-                ds.setUnderlineText(false);
-            }
-        };
-        //6 and 11 are length of part of text you want
-        //In this is is Here!
-        ss.setSpan(clickableSpan, 6, 11, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        TextView textView = (TextView) view.findViewById(R.id.tvTexto);
-        textView.setText(ss);
-        textView.setMovementMethod(LinkMovementMethod.getInstance());
-        textView.setHighlightColor(Color.TRANSPARENT);
+    private void palabrasClickables(View view){
+        TextView tvc = view.findViewById(R.id.trenTextoCambiar);
+        TextView tvp = view.findViewById(R.id.trenTextoPregunta);
+        Spinner sp = view.findViewById(R.id.trenTextoSpinner);
+
+        String texto = tvc.getText().toString();
+        int introducido = sp.getSelectedItemPosition();
+        //"Esta es la ________, esta la ________ y esta la ________"
+        //(todos son 8 _)
+
+        switch (introducido) {
+            case 0:
+                Log.i("tag","0");
+//                if (!prueba1) {
+//                    int location = texto.indexOf("________");
+//                    String pp = texto.substring(0,location);
+//                    String sp = texto.substring(location+8);
+//                    tv.setText(pp+"prueba 1"+sp);
+//                    prueba1 = true;
+//                }
+                break;
+            case 1:
+                Log.i("tag","1");
+//                if (!prueba2) {
+//                    int location = texto.indexOf("________");
+//                    if (!prueba1)
+//                        location = texto.indexOf("________",location+9);
+//                    String pp = texto.substring(0,location);
+//                    String sp = texto.substring(location+8);
+//                    tv.setText(pp+"prueba 2"+sp);
+//                    prueba2 = true;
+//                }
+                break;
+            case 2:
+//                if (!prueba3) {
+//                    int location = texto.indexOf("________");
+//                    if (!prueba1)
+//                        location = texto.indexOf("________",location+9);
+//                    if (!prueba2)
+//                        location = texto.indexOf("________",location+9);
+//                    String pp = texto.substring(0,location);
+//                    String sp = texto.substring(location+8);
+//                    tv.setText(pp+"prueba 3"+sp);
+//                    prueba3 = true;
+//                }
+                break;
+        }
+
+
     }
 }

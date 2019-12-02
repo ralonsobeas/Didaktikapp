@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.chaquo.python'
 
 android {
     compileSdkVersion 29
@@ -10,6 +11,18 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        python {
+            // If Chaquopy fails to find Python on your build machine, enable the following
+            // line and edit it to point to Python 3.4 or later.
+            // buildPython "C:/Python36/python.exe"
+            pip {
+
+                    install "imageai"
+            }
+        }
+        ndk {
+            abiFilters "armeabi-v7a", "x86"
+        }
     }
     buildTypes {
         release {
@@ -47,6 +60,15 @@ dependencies {
 
     //Filtro
     implementation 'com.github.zomato:androidphotofilters:1.0.1'
+
+    //Material design
+    implementation 'com.google.android.material:material:1.1.0-alpha09'
+
+    //Circle button
+    implementation 'com.github.markushi:circlebutton:1.1'
+
+    //Typewriter
+    implementation 'in.codeshuffle:typewriterview:1.1.0'
 }
 
 /*implementation 'com.jakewharton:butterknife:10.2.0'

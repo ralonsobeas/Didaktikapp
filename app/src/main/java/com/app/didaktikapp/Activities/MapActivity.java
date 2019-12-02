@@ -6,19 +6,27 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.app.didaktikapp.Fragments.FragmentErrota;
 import com.app.didaktikapp.Fragments.FragmentPuzle;
 import com.app.didaktikapp.Fragments.FragmentSanMiguel;
 import com.app.didaktikapp.Fragments.FragmentSanMiguelImagenes;
+import com.app.didaktikapp.Fragments.FragmentTrenTexto;
 import com.app.didaktikapp.Fragments.FragmentUnibertsitatea;
 import com.app.didaktikapp.Fragments.FragmentZumeltzegi;
+import com.app.didaktikapp.InicioActivity;
+import com.app.didaktikapp.MainActivity;
 import com.app.didaktikapp.Modelo.Lugar;
 import com.app.didaktikapp.R;
+import com.app.didaktikapp.Sopa;
+import com.app.didaktikapp.wordsearch.features.SplashScreenActivity;
+import com.app.didaktikapp.wordsearch.features.gameplay.GamePlayActivity;
 import com.mapbox.android.core.location.LocationEngine;
 import com.mapbox.android.core.location.LocationEngineCallback;
 import com.mapbox.android.core.location.LocationEngineProvider;
@@ -182,7 +190,7 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
                     transaction.commit();
                     transaction.addToBackStack("Fragment");
 
-                }else if(marker.getPosition().getLatitude()==43.033944 && marker.getPosition().getLongitude()==-2.415361){
+                }else if(marker.getPosition().getLatitude()==43.033833 && marker.getPosition().getLongitude()==-2.416111){
                     marker.setIcon(iconoverde);
                     FragmentPuzle fragment = new FragmentPuzle();
                     Bundle bundle = new Bundle();
@@ -193,6 +201,33 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
                     transaction.replace(R.id.fragment_frame, fragment);
                     transaction.commit();
                     transaction.addToBackStack("Fragment");
+
+                }else if(marker.getPosition().getLatitude()==43.032917 && marker.getPosition().getLongitude()==-2.415750){
+                    marker.setIcon(iconoverde);
+                    FragmentErrota fragment = new FragmentErrota();
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
+                    transaction.replace(R.id.fragment_frame, fragment);
+                    transaction.commit();
+                    transaction.addToBackStack("Fragment");
+                }else if(marker.getPosition().getLatitude()==43.000583 && marker.getPosition().getLongitude()==-2.433250){
+                    marker.setIcon(iconoverde);
+                    Log.i("tag","s");
+                    Intent intent = new Intent(MapActivity.this, SplashScreenActivity.class);
+                    intent.putExtra(GamePlayActivity.EXTRA_ROW_COUNT, 10);
+                    intent.putExtra(GamePlayActivity.EXTRA_COL_COUNT, 10);
+                    startActivity(intent);
+
+                }else if(marker.getPosition().getLatitude()==42.979194 && marker.getPosition().getLongitude()==-2.398583){
+//                    Este punto es el de Arantsasu, al sur del mapa
+//
+//                    marker.setIcon(iconoverde);
+//                    FragmentTrenTexto fragment = new FragmentTrenTexto();
+//                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//                    transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
+//                    transaction.replace(R.id.fragment_frame, fragment);
+//                    transaction.commit();
+//                    transaction.addToBackStack("Fragment");
 
                 }
 

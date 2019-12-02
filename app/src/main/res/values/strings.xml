@@ -4,6 +4,10 @@
 
 
     <string name="app_name">Didaktikapp</string>
+    <string name="html_app_name">
+        <![CDATA[ <b><font color=#222020>Didaktik</b><b><font color=#2B82C5>app </b>
+        ]]>
+    </string>
 
 
     <!-- Lugares -->
@@ -56,7 +60,7 @@
 
 
     <!-- Actividad San Miguel -->
-    <string name="SanMiguelTitulo">San Miguel Test</string>
+    <string name="SanMiguelTitulo">San Miguel</string>
     <!-- Pregunta 1 -->
     <string name="SanMiguelPregunta1Titulo">1. Zein urtetan eraiki zen?</string>
     <string name="SanMiguelPregunta1OpcionA">XVI</string>
@@ -80,6 +84,63 @@
     <string name="Contunuar">continuar</string>
 
     <!-- Actividad Tren -->
-    <string name="TrenTexto">Oñatin garai batean trena aurkitzen zen, gaur egun, ……………… den eraikina da lehengo tren estazioa. 1887 urtean sortu zen eta azken bidaia, 1967 urtean izan zen. ……………… deitzen zen eta Bergaratik Lizarraraino heltzen zen, ……………… pasata. </string>
+    <string name="TrenTextoTitulo">Trena</string>
+    <string name="TrenTextoCambiar">Oñatin garai batean trena aurkitzen zen, gaur egun, (1) ________ den eraikina da lehengo tren estazioa. 1887 urtean sortu zen eta azken bidaia, 1967 urtean izan zen. (2) ________ deitzen zen eta Bergaratik Lizarraraino heltzen zen, (3) ________ pasata. </string>
+    <string-array name="TrenTextoCambiar">
+        <item>Gasteizetik</item>
+        <item>Postetxea</item>
+        <item>Vasco-Navarro</item>
+    </string-array>
+    <string name="TrenTextoError">Ez da </string>
+
+
+    <!-- Actividad San Miguel Errota -->
+    <string name="ErrotaTitulo">San Miguel Errota</string>
+    <string name="ErrotaPregunta1">Zer da tobera edo kaxa?</string>
+    <string name="ErrotaPregunta2">Zein urtean erosi zuten Santa Ana Komentuko mojek errota?</string>
+    <string name="Terminar">Terminar</string>
+    <string name="ErrotaPareja1">1905 urtean, Santa Ana Komentuko mojek erosi egin zioten San Miguel errota Juan Gordoa y Perea jaunari.</string>
+    <string name="ErrotaPareja2">Berrikuntza lan garrantzitsuak egin ziren 1923 eta 1926 artean.</string>
+    <string name="ErrotaPareja3">Oñatiko Udalak erosi zion Santa Ana komentuari San Miguel errota izandakoa 1983an.</string>
+    <string name="ErrotaPareja4">Turtikinen funtzionamendua indarrez ardatzak eta harriak biraka jarriz alea ehotzeko era azaltzen duena.</string>
+    <string name="ErrotaPareja5">Toberak edo kaxak kono alderantzizkatuen itxuran, berriak egin dira Lasturko Lastur-Goikoa errotakoak eredutzat hartuta.</string>
+
+    <string name="new_game_loading_text">Generating game data…</string>
+    <string name="summary_about">Word search game is a puzzle game, where the player try to find words in a grid of letters in horizontal, vertical and diagonal direction.</string>
+    <string name="finished">Finished!</string>
+
+    <!-- Actividad Universidad -->
+    <string name="TextoUniversidad" >Unibertsitatearen sortzailea Rodrigo Mercado de Zuazola izan zen eta 1548. urtean sortu zuen. Eraikin hau, oso garrantzitsua da Euskal Herriko lehen unibertsitatea izan baitzen. Hiru mendeetan zehar honako ikasketak egin izan dira berta: medikuntza, filosofia, letrak eta teologia. Gaur egun ordea, ez da klaserik ematen bertan. Gainera, arkitektura adierazgarria dauka eta bere barruan klaustro ikusgarri bat eta Oteizaren eskultura bat daude. </string>
+
+    <!-- prefs -->
+    <string name="pref_showGridLine">showGridLine</string>
+    <string name="pref_snapToGrid">snapToGrid</string>
+    <string name="pref_enableSound">enableSound</string>
+    <string name="pref_deleteAfterFinish">deleteAfterFinish</string>
+    <string name="pref_enableFullscreen">enableFullscreen</string>
+    <string name="pref_autoScaleGrid">autoScaleGrid</string>
+    <string name="snap_to_grid_def_val">ALWAYS_SNAP</string>
+    <string name="show_grid_line">Show Grid Line</string>
+    <string name="snap_to_grid">Snap To Grid</string>
+    <string name="about">About</string>
+    <string name="saved_game">Saved game data</string>
+    <string name="enable_sound">Enable Sound</string>
+    <string name="about_credit">Developer: Abdul Aris R.</string>
+    <string name="delete_finish">Delete Finish</string>
+    <string name="enable_fullscreen">Fullscreen</string>
+    <string name="auto_scale_grid">Auto Scale Grid</string>
+    <string name="finish_text">You have just finished :gridSize grid with :uwCount words in :duration</string>
+    <string name="version">Version</string>
+    <string name="version_num">1.0</string>
+    <string name="settings">Settings</string>
+    <string name="congratulations">Congratulations!</string>
+    <string name="main_menu">Main Menu</string>
+    <string name="new_game">NEW GAME</string>
+    <string name="auto_scale_grid_summary">Automatically scale grid based on the screen width</string>
+    <string name="pref_reverseMatching">reverseMatching</string>
+    <string name="reverse_matching">Reverse matching</string>
+    <string name="pref_grayscale">grayscale</string>
+    <string name="grayscale">Grayscale</string>
+    <string name="game_data_desc">:gridSize Grid, :wordCount Words</string>
 
 </resources>

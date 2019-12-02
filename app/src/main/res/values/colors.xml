@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimary">#2B82C5</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#2B82C5</color>
+
+    <color name="colorOnPrimary">#000000</color>
 
     <color name="negroFondo">#202020</color>
     <color name="gray">#B3808080</color>
@@ -12,5 +14,10 @@
     <color name="backgroundTransparente">#00999999</color>
     <color name="blancoFondo">#FAFAFA</color>
 
+    <color name="naranja">#FF4500</color>
+    <color name="verde">#00FF00</color>
+<!--    <color name="rojo">#FF4500</color>-->
+
+    <color name="selTextBgColor">#2B82C5</color>
 
 </resources>

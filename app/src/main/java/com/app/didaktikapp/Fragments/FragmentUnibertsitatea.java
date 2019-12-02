@@ -19,6 +19,8 @@ import android.widget.RadioGroup;
 
 import com.app.didaktikapp.R;
 
+import in.codeshuffle.typewriterview.TypeWriterView;
+
 
 public class FragmentUnibertsitatea extends Fragment {
 
@@ -59,6 +61,21 @@ public class FragmentUnibertsitatea extends Fragment {
         view = inflater.inflate(R.layout.fragment_unibertsitatea, container, false);
         textoBreveLayout = view.findViewById(R.id.uniTextoBreveLayout);
         textoBreveLayout.setVisibility(View.VISIBLE);
+        //Create Object and refer to layout view
+        TypeWriterView typeWriterView=(TypeWriterView)view.findViewById(R.id.uniTextoBreve);
+
+        //Setting each character animation delay
+        typeWriterView.setDelay(10);
+
+        //Setting music effect On/Off
+        typeWriterView.setWithMusic(true);
+
+        //Animating Text
+        typeWriterView.animateText(getString(R.string.TextoUniversidad));
+
+
+
+
         preguntasLayout = view.findViewById(R.id.uniPreguntasLayout);
         preguntasLayout.setVisibility(View.INVISIBLE);
         fotosLayout = view.findViewById(R.id.uniFotosLayout);
@@ -75,21 +92,28 @@ public class FragmentUnibertsitatea extends Fragment {
         radio2N = view.findViewById(R.id.radioPregunta2No);
         radio2N.setTextColor(Color.BLACK);
 
-        ColorStateList defaultStateList = new ColorStateList(
-                new int[][]{
-                        new int[]{android.R.attr.state_enabled},
-                        new int[]{-android.R.attr.state_enabled},
-                        new int[]{android.R.attr.state_focused},
-                        new int[]{android.R.attr.state_pressed}
+//        ColorStateList defaultStateList = new ColorStateList(
+//                new int[][]{
+//                        new int[]{android.R.attr.state_enabled},
+//                        new int[]{-android.R.attr.state_enabled},
+//                        new int[]{android.R.attr.state_focused},
+//                        new int[]{android.R.attr.state_pressed}});
 
-
-                },
-                new int[]{Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE}
-        );
-        radio1S.setButtonTintList(defaultStateList);
-        radio1N.setButtonTintList(defaultStateList);
-        radio2S.setButtonTintList(defaultStateList);
-        radio2N.setButtonTintList(defaultStateList);
+//        ColorStateList defaultStateList = new ColorStateList(
+//                new int[][]{
+//                        new int[]{android.R.attr.state_enabled},
+//                        new int[]{-android.R.attr.state_enabled},
+//                        new int[]{android.R.attr.state_focused},
+//                        new int[]{android.R.attr.state_pressed}
+//
+//
+//                },
+//                new int[]{Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE}
+//        );
+//        radio1S.setButtonTintList(defaultStateList);
+//        radio1N.setButtonTintList(defaultStateList);
+//        radio2S.setButtonTintList(defaultStateList);
+//        radio2N.setButtonTintList(defaultStateList);
 
         grupo1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -137,6 +161,7 @@ public class FragmentUnibertsitatea extends Fragment {
                 radio2S.setEnabled(false);
                 radio2N.setEnabled(false);
                 btnContinuar.setEnabled(true);
+                btnCorregir.setEnabled(false);
 
             }
         });

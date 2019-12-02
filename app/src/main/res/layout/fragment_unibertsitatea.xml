@@ -26,11 +26,11 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Unibertsitatea"
-            android:textColor="#000000"
-            android:textSize="30sp"
+            android:textSize="80sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:fontFamily="@font/youthtouch"/>
 
 
         <LinearLayout
@@ -46,13 +46,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/uniTitulo">
 
-            <TextView
+            <in.codeshuffle.typewriterview.TypeWriterView
                 android:id="@+id/uniTextoBreve"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Unibertsitatearen sortzailea Rodrigo Mercado de Zuazola izan zen eta 1548. urtean sortu zuen. Eraikin hau, oso garrantzitsua da Euskal Herriko lehen unibertsitatea izan baitzen. Hiru mendeetan zehar honako ikasketak egin izan dira berta: medikuntza, filosofia, letrak eta teologia. Gaur egun ordea, ez da klaserik ematen bertan. Gainera, arkitektura adierazgarria dauka eta bere barruan klaustro ikusgarri bat eta Oteizaren eskultura bat daude. "
-                android:textColor="#000000"
-                android:textSize="24sp" />
+                android:text=""
+                android:textSize="24sp"
+                android:justificationMode="inter_word" />
 
         </LinearLayout>
 
@@ -89,8 +89,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="BAI"
-                    android:textColor="@android:color/black"
-                    android:textSize="24sp" />
+                    android:textColor="@color/negroFondo"
+                    android:textSize="24sp"
+                    />
 
                 <RadioButton
                     android:id="@+id/radioPregunta1No"
@@ -98,8 +99,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="EZ"
-                    android:textColor="#000000"
-                    android:textSize="24sp" />
+                    android:textSize="24sp"
+                    android:textColor="@color/negroFondo"/>
 
             </RadioGroup>
 
@@ -109,7 +110,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="2. Oñatiko unibertsitatea XV mendean eraiki zen."
-                android:textColor="#000000"
                 android:textSize="24sp" />
 
             <RadioGroup
@@ -124,8 +124,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="BAI"
-                    android:textColor="#000000"
-                    android:textSize="24sp" />
+                    android:textSize="24sp"
+                    android:textColor="@color/negroFondo"/>
 
                 <RadioButton
                     android:id="@+id/radioPregunta2No"
@@ -133,8 +133,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="EZ"
-                    android:textColor="#000000"
-                    android:textSize="24sp" />
+                    android:textSize="24sp"
+                    android:textColor="@color/negroFondo"/>
 
             </RadioGroup>
 
@@ -168,8 +168,7 @@
                 android:id="@+id/tvPregunta3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Relizar 3 fotografias de la universidad desde lados distintos"
-                android:textColor="#000000"
+                android:text="Egin itzazu unibertsitatearen 3 argazki alde ezbedinetatik."
                 android:textSize="24sp" />
 
             <LinearLayout

@@ -8,14 +8,14 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".wordsearch.WordSearchApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-<!--        <activity android:name=".SopaSopa"></activity>-->
-        <activity android:name=".Sopa" />
+        android:theme="@style/AppTheme"
+        android:screenOrientation = "portrait">
         <activity android:name=".InicioActivity" />
         <activity android:name=".Activities.MapActivity" />
         <activity android:name=".MainActivity">
@@ -25,8 +25,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SopaLetras.features.mainmenu.MainMenuActivity" />
-        <activity android:name=".SopaLetras.WordSearchApp" />
+        <activity android:name=".wordsearch.features.gameplay.GamePlayActivity">
+        </activity>
+        <activity android:name=".wordsearch.features.gameover.GameOverActivity">
+        </activity>
+        <activity android:name=".wordsearch.features.SplashScreenActivity">
+        </activity>
     </application>
+
 
 </manifest>
