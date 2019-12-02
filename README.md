@@ -98,11 +98,13 @@ Seguimiento
 - [x] Actividad San Miguel Errota casi terminada
 
 <h4>29/11/2019 Trabajo de desarrollo</h4>
+
 - [x] Compilador de python en android
 - [x] Colores y estilos unificados
 - [x] Cambio de algunos layouts de los fragments
 
 <h4>02/12/2019 Trabajo de desarrollo</h4>
+
 - [ ] Comienzo presentación pptx
 - [x] Pantalla de inicio con logos y animaciones terminada
 - [x] Animación texto universidad
