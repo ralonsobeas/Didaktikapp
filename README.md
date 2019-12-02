@@ -124,6 +124,7 @@ Seguimiento
 - [x] Cambio de forma de botones
 - [x] Icono para aplicación
 - [x] <b><u>Merge de Branch1 con Master #4</u></b>
+- [ ] https://medium.com/@andkulikov/animate-all-the-things-transitions-in-android-914af5477d50
 
 
 Funcionamiento de la app
