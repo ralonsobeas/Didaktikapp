@@ -24,9 +24,10 @@
             android:id="@+id/tvTitulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/youthtouch"
             android:gravity="center"
             android:text="@string/SanMiguelTitulo"
-            android:textSize="30sp"
+            android:textSize="80sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -45,7 +46,8 @@
                 android:id="@+id/tvPregunta1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/SanMiguelPregunta1Titulo" />
+                android:text="@string/SanMiguelPregunta1Titulo"
+                android:textSize="30sp" />
 
             <RadioGroup
                 android:id="@+id/rgroupPregunta1"
@@ -56,19 +58,25 @@
                     android:id="@+id/rbtnPregunta1.A"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/SanMiguelPregunta1OpcionA" />
+                    android:text="@string/SanMiguelPregunta1OpcionA"
+                    android:textSize="30sp"
+                    android:textColor="@color/negroFondo"/>
 
                 <RadioButton
                     android:id="@+id/rbtnPregunta1.B"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/SanMiguelPregunta1OpcionB" />
+                    android:text="@string/SanMiguelPregunta1OpcionB"
+                    android:textSize="30sp"
+                    android:textColor="@color/negroFondo"/>
 
                 <RadioButton
                     android:id="@+id/rbtnPregunta1.C"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/SanMiguelPregunta1OpcionC" />
+                    android:text="@string/SanMiguelPregunta1OpcionC"
+                    android:textSize="30sp"
+                    android:textColor="@color/negroFondo"/>
             </RadioGroup>
         </LinearLayout>
 
@@ -86,7 +94,8 @@
                 android:id="@+id/tvPregunta2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/SanMiguelPregunta2Titulo" />
+                android:text="@string/SanMiguelPregunta2Titulo"
+                android:textSize="30sp" />
 
             <RadioGroup
                 android:id="@+id/rgroupPregunta2"
@@ -97,19 +106,24 @@
                     android:id="@+id/rbtnPregunta2.A"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/SanMiguelPregunta2OpcionA" />
+                    android:text="@string/SanMiguelPregunta2OpcionA"
+                    android:textSize="30sp"
+                    android:textColor="@color/negroFondo"/>
 
                 <RadioButton
                     android:id="@+id/rbtnPregunta2.B"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/SanMiguelPregunta2OpcionB" />
+                    android:text="@string/SanMiguelPregunta2OpcionB"
+                    android:textSize="30sp" />
 
                 <RadioButton
                     android:id="@+id/rbtnPregunta2.C"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/SanMiguelPregunta2OpcionC" />
+                    android:text="@string/SanMiguelPregunta2OpcionC"
+                    android:textSize="30sp"
+                    android:textColor="@color/negroFondo"/>
             </RadioGroup>
         </LinearLayout>
 
@@ -127,7 +141,8 @@
                 android:id="@+id/tvPregunta3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/SanMiguelPregunta3Titulo" />
+                android:text="@string/SanMiguelPregunta3Titulo"
+                android:textSize="30sp" />
 
             <RadioGroup
                 android:id="@+id/rgroupPregunta3"
@@ -138,19 +153,25 @@
                     android:id="@+id/rbtnPregunta3.A"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/SanMiguelPregunta3OpcionA" />
+                    android:text="@string/SanMiguelPregunta3OpcionA"
+                    android:textSize="30sp"
+                    android:textColor="@color/negroFondo"/>
 
                 <RadioButton
                     android:id="@+id/rbtnPregunta3.B"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/SanMiguelPregunta3OpcionB" />
+                    android:text="@string/SanMiguelPregunta3OpcionB"
+                    android:textSize="30sp"
+                    android:textColor="@color/negroFondo"/>
 
                 <RadioButton
                     android:id="@+id/rbtnPregunta3.C"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/SanMiguelPregunta3OpcionC" />
+                    android:text="@string/SanMiguelPregunta3OpcionC"
+                    android:textSize="30sp"
+                    android:textColor="@color/negroFondo"/>
             </RadioGroup>
         </LinearLayout>
 
@@ -168,7 +189,8 @@
                 android:id="@+id/tvPregunta4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/SanMiguelPregunta4Titulo" />
+                android:text="@string/SanMiguelPregunta4Titulo"
+                android:textSize="30sp" />
 
             <RadioGroup
                 android:id="@+id/rgroupPregunta4"
@@ -179,19 +201,25 @@
                     android:id="@+id/rbtnPregunta4.A"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/SanMiguelPregunta4OpcionA" />
+                    android:text="@string/SanMiguelPregunta4OpcionA"
+                    android:textSize="30sp"
+                    android:textColor="@color/negroFondo"/>
 
                 <RadioButton
                     android:id="@+id/rbtnPregunta4.B"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/SanMiguelPregunta4OpcionB" />
+                    android:text="@string/SanMiguelPregunta4OpcionB"
+                    android:textSize="30sp"
+                    android:textColor="@color/negroFondo"/>
 
                 <RadioButton
                     android:id="@+id/rbtnPregunta4.C"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/SanMiguelPregunta4OpcionC" />
+                    android:text="@string/SanMiguelPregunta4OpcionC"
+                    android:textSize="30sp"
+                    android:textColor="@color/negroFondo"/>
             </RadioGroup>
         </LinearLayout>
 

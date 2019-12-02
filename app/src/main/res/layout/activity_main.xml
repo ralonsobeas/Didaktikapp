@@ -23,24 +23,34 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
 
+        <TextView
+            android:id="@+id/tvTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textSize="100sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
         <at.markushi.ui.CircleButton
             android:id="@+id/btnIniciar"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="16dp"
             android:clickable="true"
             android:src="@drawable/ic_play_arrow_black_24dp"
-            app:cb_color="@color/colorPrimary"
             android:text="INICIAR"
+            app:cb_color="@color/colorPrimary"
             app:cb_pressedRingWidth="8dip"
             app:layout_constraintEnd_toEndOf="parent"
+
+
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-
-
-            />
+            app:layout_constraintTop_toBottomOf="@+id/tvTitulo" />
 
         <!-- android:background="@drawable/ripple_boton_bg" -->
 

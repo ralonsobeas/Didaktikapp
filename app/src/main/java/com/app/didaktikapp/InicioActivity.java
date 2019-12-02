@@ -11,9 +11,12 @@ import android.util.Log;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 
 public class InicioActivity extends AppCompatActivity {
+
+    private ImageView imageViewOniate,imageViewCJ,imageViewUPV,imageViewLetrasOniate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +25,12 @@ public class InicioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
 
-        ImageView imageViewOniate = findViewById(R.id.ivLogoOniate);
-        ImageView imageViewCJ = findViewById(R.id.ivLogoCJ);
-        ImageView imageViewUPV = findViewById(R.id.ivLogoUPV);
+        imageViewOniate = findViewById(R.id.ivLogoOniate);
+        imageViewLetrasOniate = findViewById(R.id.ivLetrasOniate);
+        imageViewCJ = findViewById(R.id.ivLogoCJ);
+        imageViewUPV = findViewById(R.id.ivLogoUPV);
+
+        animation();
 
 //
 //        logo.setImageResource(R.drawable.espanita);
@@ -37,11 +43,12 @@ public class InicioActivity extends AppCompatActivity {
 //            finish();
 //        }
 
+
         Thread splashTread = new Thread() {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(4000);
+                    Thread.sleep(4500);
                 } catch (InterruptedException e) {
                     Log.i("Error", "Esperando a cerrar la pantalla de inicio");
                 }
@@ -52,6 +59,47 @@ public class InicioActivity extends AppCompatActivity {
         splashTread.start();
 
     }
+
+    private void animation() {
+
+        Animation  rotateAnimation= AnimationUtils.loadAnimation(this,R.anim.rotate);
+        imageViewOniate.startAnimation(rotateAnimation);
+        rotateAnimation.setAnimationListener(new Animation.AnimationListener() {
+
+            @Override
+            public void onAnimationStart(Animation animation) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                Animation  animationmove= new TranslateAnimation(Animation.ABSOLUTE,-250,Animation.ABSOLUTE,Animation.ABSOLUTE);
+                animationmove.setDuration(1000);
+                animationmove.setFillAfter(true);
+                imageViewOniate.startAnimation(animationmove);
+
+                Animation myFadeInAnimation = AnimationUtils.loadAnimation(getBaseContext(), R.anim.fadein);
+                myFadeInAnimation.setStartOffset(500);
+                imageViewLetrasOniate.startAnimation(myFadeInAnimation);
+
+                imageViewCJ.startAnimation(myFadeInAnimation);
+
+                imageViewUPV.startAnimation(myFadeInAnimation);
+
+            }
+        });
+
+
+    }
+
+
 
 
 

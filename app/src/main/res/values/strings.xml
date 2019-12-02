@@ -4,6 +4,10 @@
 
 
     <string name="app_name">Didaktikapp</string>
+    <string name="html_app_name">
+        <![CDATA[ <b><font color=#222020>Didaktik</b><b><font color=#2B82C5>app </b>
+        ]]>
+    </string>
 
 
     <!-- Lugares -->
@@ -56,7 +60,7 @@
 
 
     <!-- Actividad San Miguel -->
-    <string name="SanMiguelTitulo">San Miguel Test</string>
+    <string name="SanMiguelTitulo">San Miguel</string>
     <!-- Pregunta 1 -->
     <string name="SanMiguelPregunta1Titulo">1. Zein urtetan eraiki zen?</string>
     <string name="SanMiguelPregunta1OpcionA">XVI</string>

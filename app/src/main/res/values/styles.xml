@@ -8,6 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorOnPrimary">@color/colorOnPrimary</item>
         <item name="shapeAppearanceOverlay">@style/MyShapeAppearance</item>
+        <item name="android:fontFamily">@font/kaushanscript</item>
     </style>
 
     <style name="StyleFragment" parent="Theme.MaterialComponents.Light">

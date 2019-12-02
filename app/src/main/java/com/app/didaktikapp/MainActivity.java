@@ -2,27 +2,17 @@ package com.app.didaktikapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.content.res.ResourcesCompat;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
-import android.provider.SyncStateContract;
-import android.transition.Slide;
-import android.transition.Transition;
-import android.transition.TransitionInflater;
-import android.util.Log;
-import android.view.Gravity;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.didaktikapp.Activities.MapActivity;
-import com.chaquo.python.PyObject;
-import com.chaquo.python.Python;
-import com.chaquo.python.android.AndroidPlatform;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -45,11 +35,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // "context" must be an Activity, Service or Application object from your app.
-        if (! Python.isStarted()) {
-            Python.start(new AndroidPlatform(getBaseContext()));
-        }
-        Python py = Python.getInstance();
-        PyObject sys = py.getModule("prueba").callAttr("main");
+//        if (! Python.isStarted()) {
+//            Python.start(new AndroidPlatform(getBaseContext()));
+//        }
+//        Python py = Python.getInstance();
+//        PyObject sys = py.getModule("prueba").callAttr("main");
 //        setContentView(R.layout.activity_inicio);
 //        try {
 //            Thread.sleep(4000);
@@ -57,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
 //            e.printStackTrace();
 //        }
         setContentView(R.layout.activity_main);
+
+        TextView tv=(TextView)findViewById(R.id.tvTitulo);
+        Typeface type =  ResourcesCompat.getFont(this, R.font.youthtouch);
+        tv.setTypeface(type);
+        tv.setText(Html.fromHtml(getString(R.string.html_app_name)));
 
         Intent i = new Intent(MainActivity.this,InicioActivity.class);
         startActivity(i);

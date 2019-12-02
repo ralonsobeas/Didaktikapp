@@ -65,7 +65,7 @@ public class FragmentUnibertsitatea extends Fragment {
         TypeWriterView typeWriterView=(TypeWriterView)view.findViewById(R.id.uniTextoBreve);
 
         //Setting each character animation delay
-        typeWriterView.setDelay(3);
+        typeWriterView.setDelay(10);
 
         //Setting music effect On/Off
         typeWriterView.setWithMusic(true);
@@ -92,20 +92,28 @@ public class FragmentUnibertsitatea extends Fragment {
         radio2N = view.findViewById(R.id.radioPregunta2No);
         radio2N.setTextColor(Color.BLACK);
 
-        ColorStateList defaultStateList = new ColorStateList(
-                new int[][]{
-                        new int[]{android.R.attr.state_enabled},
-                        new int[]{-android.R.attr.state_enabled},
-                        new int[]{android.R.attr.state_focused},
-                        new int[]{android.R.attr.state_pressed}
+//        ColorStateList defaultStateList = new ColorStateList(
+//                new int[][]{
+//                        new int[]{android.R.attr.state_enabled},
+//                        new int[]{-android.R.attr.state_enabled},
+//                        new int[]{android.R.attr.state_focused},
+//                        new int[]{android.R.attr.state_pressed}});
 
-                },
-                new int[]{Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE}
-        );
-        radio1S.setButtonTintList(defaultStateList);
-        radio1N.setButtonTintList(defaultStateList);
-        radio2S.setButtonTintList(defaultStateList);
-        radio2N.setButtonTintList(defaultStateList);
+//        ColorStateList defaultStateList = new ColorStateList(
+//                new int[][]{
+//                        new int[]{android.R.attr.state_enabled},
+//                        new int[]{-android.R.attr.state_enabled},
+//                        new int[]{android.R.attr.state_focused},
+//                        new int[]{android.R.attr.state_pressed}
+//
+//
+//                },
+//                new int[]{Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE}
+//        );
+//        radio1S.setButtonTintList(defaultStateList);
+//        radio1N.setButtonTintList(defaultStateList);
+//        radio2S.setButtonTintList(defaultStateList);
+//        radio2N.setButtonTintList(defaultStateList);
 
         grupo1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
