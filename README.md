@@ -27,6 +27,16 @@ Mapas (Mapbox) -  https://www.mapbox.com/
 
 Python SDK (Chaquopy) - https://chaquo.com/chaquopy/
 
+Round button / Posible cambio - https://github.com/markushi/android-circlebutton
+
+Animación texto máquina de escribir (TypeWriterView) - https://github.com/skymansandy/typewriterview
+
+Estilos para la app, botones, colores etc... (Material Design) - https://material.io/design/
+
+Sopa de letras (Word Search) - https://github.com/abdularis/Word-Search-Game
+
+Puzle (Jigsaw Puzzle) - https://dragosholban.com/2018/03/09/how-to-build-a-jigsaw-puzzle-android-game/
+
 
 
 Seguimiento
