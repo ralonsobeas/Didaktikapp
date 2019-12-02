@@ -97,6 +97,19 @@ Seguimiento
 - [x] Trabajo sobre actividad de Tren texto con huecos
 - [x] Actividad San Miguel Errota casi terminada
 
+<h4>29/11/2019 Trabajo de desarrollo</h4>
+- [x] Compilador de python en android
+- [x] Colores y estilos unificados
+- [x] Cambio de algunos layouts de los fragments
+
+<h4>02/12/2019 Trabajo de desarrollo</h4>
+- [ ] Comienzo presentación pptx
+- [x] Pantalla de inicio con logos y animaciones terminada
+- [x] Animación texto universidad
+- [x] Nuevas fuentes para texto
+- [x] Cambio de forma de botones
+- [x] Icono para aplicación
+
 
 Funcionamiento de la app
 ------------------------------------------------------------------------
