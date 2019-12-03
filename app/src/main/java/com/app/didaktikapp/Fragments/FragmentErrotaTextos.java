@@ -212,6 +212,7 @@ public class FragmentErrotaTextos extends Fragment {
         Collections.shuffle(list1);
         for (int x=0;x<list1.size();x++) {
             int txt = R.string.ErrotaFrase11;
+            int num = x+1;
             switch (x) {
                 case 0:
                     txt = R.string.ErrotaFrase11;
@@ -223,20 +224,19 @@ public class FragmentErrotaTextos extends Fragment {
                                 if (txtSelec.equals("")) {
                                     txtSelec = "a1";
                                     anterior = list1.get(finalX);
-                                    list1.get(finalX).setTextColor(getResources().getColor(R.color.naranja));
+                                    list1.get(finalX).setTextColor(getResources().getColor(R.color.negroFondo));
                                 }
                                 else {
                                     if (txtSelec.equals("a2")) {
                                         sela1 = true;
                                         sela2 = true;
                                         resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja1));
-                                        list1.get(finalX).setTextColor(getResources().getColor(R.color.verde));
-                                        anterior.setTextColor(getResources().getColor(R.color.verde));
+                                        list1.get(finalX).setTextColor(getResources().getColor(R.color.verdeOscuro));
+                                        anterior.setTextColor(getResources().getColor(R.color.verdeOscuro));
                                         if (sela1&&selb1&&selc1&&seld1&&sele1)
                                             btnContinuar.setEnabled(true);
                                     } else {
-                                        anterior.setTextColor(getResources().getColor(R.color.negro));
-                                        //resultadoPareja.setText("");
+                                        anterior.setTextColor(getResources().getColor(R.color.azulOscuro));
                                     }
                                     txtSelec = "";
                                 }
@@ -254,19 +254,19 @@ public class FragmentErrotaTextos extends Fragment {
                                 if (txtSelec.equals("")) {
                                     txtSelec = "b1";
                                     anterior = list1.get(finalX);
-                                    list1.get(finalX).setTextColor(getResources().getColor(R.color.naranja));
+                                    list1.get(finalX).setTextColor(getResources().getColor(R.color.negroFondo));
                                 }
                                 else {
                                     if (txtSelec.equals("b2")) {
                                         selb1 = true;
                                         selb2 = true;
                                         resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja2));
-                                        list1.get(finalX).setTextColor(getResources().getColor(R.color.verde));
-                                        anterior.setTextColor(getResources().getColor(R.color.verde));
+                                        list1.get(finalX).setTextColor(getResources().getColor(R.color.verdeOscuro));
+                                        anterior.setTextColor(getResources().getColor(R.color.verdeOscuro));
                                         if (sela1&&selb1&&selc1&&seld1&&sele1)
                                             btnContinuar.setEnabled(true);
                                     } else {
-                                        anterior.setTextColor(getResources().getColor(R.color.negro));
+                                        anterior.setTextColor(getResources().getColor(R.color.azulOscuro));
                                         //resultadoPareja.setText("");
                                     }
                                     txtSelec = "";
@@ -285,19 +285,19 @@ public class FragmentErrotaTextos extends Fragment {
                                 if (txtSelec.equals("")) {
                                     txtSelec = "c1";
                                     anterior = list1.get(finalX);
-                                    list1.get(finalX).setTextColor(getResources().getColor(R.color.naranja));
+                                    list1.get(finalX).setTextColor(getResources().getColor(R.color.negroFondo));
                                 }
                                 else {
                                     if (txtSelec.equals("c2")) {
                                         selc1 = true;
                                         selc2 = true;
                                         resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja3));
-                                        list1.get(finalX).setTextColor(getResources().getColor(R.color.verde));
-                                        anterior.setTextColor(getResources().getColor(R.color.verde));
+                                        list1.get(finalX).setTextColor(getResources().getColor(R.color.verdeOscuro));
+                                        anterior.setTextColor(getResources().getColor(R.color.verdeOscuro));
                                         if (sela1&&selb1&&selc1&&seld1&&sele1)
                                             btnContinuar.setEnabled(true);
                                     } else {
-                                        anterior.setTextColor(getResources().getColor(R.color.negro));
+                                        anterior.setTextColor(getResources().getColor(R.color.azulOscuro));
                                         //resultadoPareja.setText("");
                                     }
                                     txtSelec = "";
@@ -316,19 +316,19 @@ public class FragmentErrotaTextos extends Fragment {
                                 if (txtSelec.equals("")) {
                                     txtSelec = "d1";
                                     anterior = list1.get(finalX);
-                                    list1.get(finalX).setTextColor(getResources().getColor(R.color.naranja));
+                                    list1.get(finalX).setTextColor(getResources().getColor(R.color.negroFondo));
                                 }
                                 else {
                                     if (txtSelec.equals("d2")) {
                                         seld1 = true;
                                         seld2 = true;
                                         resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja4));
-                                        list1.get(finalX).setTextColor(getResources().getColor(R.color.verde));
-                                        anterior.setTextColor(getResources().getColor(R.color.verde));
+                                        list1.get(finalX).setTextColor(getResources().getColor(R.color.verdeOscuro));
+                                        anterior.setTextColor(getResources().getColor(R.color.verdeOscuro));
                                         if (sela1&&selb1&&selc1&&seld1&&sele1)
                                             btnContinuar.setEnabled(true);
                                     } else {
-                                        anterior.setTextColor(getResources().getColor(R.color.negro));
+                                        anterior.setTextColor(getResources().getColor(R.color.azulOscuro));
                                         //resultadoPareja.setText("");
                                     }
                                     txtSelec = "";
@@ -347,19 +347,19 @@ public class FragmentErrotaTextos extends Fragment {
                                 if (txtSelec.equals("")) {
                                     txtSelec = "e1";
                                     anterior = list1.get(finalX);
-                                    list1.get(finalX).setTextColor(getResources().getColor(R.color.naranja));
+                                    list1.get(finalX).setTextColor(getResources().getColor(R.color.negroFondo));
                                 }
                                 else {
                                     if (txtSelec.equals("e2")) {
                                         sele1 = true;
                                         sele2 = true;
                                         resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja5));
-                                        list1.get(finalX).setTextColor(getResources().getColor(R.color.verde));
-                                        anterior.setTextColor(getResources().getColor(R.color.verde));
+                                        list1.get(finalX).setTextColor(getResources().getColor(R.color.verdeOscuro));
+                                        anterior.setTextColor(getResources().getColor(R.color.verdeOscuro));
                                         if (sela1&&selb1&&selc1&&seld1&&sele1)
                                             btnContinuar.setEnabled(true);
                                     } else {
-                                        anterior.setTextColor(getResources().getColor(R.color.negro));
+                                        anterior.setTextColor(getResources().getColor(R.color.azulOscuro));
                                         //resultadoPareja.setText("");
                                     }
                                     txtSelec = "";
@@ -369,7 +369,8 @@ public class FragmentErrotaTextos extends Fragment {
                     });
                     break;
             }
-            list1.get(x).setText(getResources().getString(txt));
+            String text = list1.get(x).getText().toString();
+            list1.get(x).setText(text+" "+getResources().getString(txt));
         }
 
         TextView[] tva2 = new TextView[] {tv21,tv22,tv23,tv24,tv25};
@@ -377,6 +378,7 @@ public class FragmentErrotaTextos extends Fragment {
         Collections.shuffle(list2);
         for (int x=0;x<list2.size();x++) {
             int txt = R.string.ErrotaFrase12;
+            int num = x+1;
             switch (x) {
                 case 0:
                     txt = R.string.ErrotaFrase12;
@@ -388,19 +390,19 @@ public class FragmentErrotaTextos extends Fragment {
                                 if (txtSelec.equals("")) {
                                     txtSelec = "a2";
                                     anterior = list2.get(finalX);
-                                    list2.get(finalX).setTextColor(getResources().getColor(R.color.naranja));
+                                    list2.get(finalX).setTextColor(getResources().getColor(R.color.negroFondo));
                                 }
                                 else {
                                     if (txtSelec.equals("a1")) {
                                         sela1 = true;
                                         sela2 = true;
                                         resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja1));
-                                        list2.get(finalX).setTextColor(getResources().getColor(R.color.verde));
-                                        anterior.setTextColor(getResources().getColor(R.color.verde));
+                                        list2.get(finalX).setTextColor(getResources().getColor(R.color.verdeOscuro));
+                                        anterior.setTextColor(getResources().getColor(R.color.verdeOscuro));
                                         if (sela1&&selb1&&selc1&&seld1&&sele1)
                                             btnContinuar.setEnabled(true);
                                     } else {
-                                        anterior.setTextColor(getResources().getColor(R.color.negro));
+                                        anterior.setTextColor(getResources().getColor(R.color.azulOscuro));
                                         //resultadoPareja.setText("");
                                     }
                                     txtSelec = "";
@@ -419,19 +421,19 @@ public class FragmentErrotaTextos extends Fragment {
                                 if (txtSelec.equals("")) {
                                     txtSelec = "b2";
                                     anterior = list2.get(finalX);
-                                    list2.get(finalX).setTextColor(getResources().getColor(R.color.naranja));
+                                    list2.get(finalX).setTextColor(getResources().getColor(R.color.negroFondo));
                                 }
                                 else {
                                     if (txtSelec.equals("b1")) {
                                         selb1 = true;
                                         selb2 = true;
                                         resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja2));
-                                        list2.get(finalX).setTextColor(getResources().getColor(R.color.verde));
-                                        anterior.setTextColor(getResources().getColor(R.color.verde));
+                                        list2.get(finalX).setTextColor(getResources().getColor(R.color.verdeOscuro));
+                                        anterior.setTextColor(getResources().getColor(R.color.verdeOscuro));
                                         if (sela1&&selb1&&selc1&&seld1&&sele1)
                                             btnContinuar.setEnabled(true);
                                     } else {
-                                        anterior.setTextColor(getResources().getColor(R.color.negro));
+                                        anterior.setTextColor(getResources().getColor(R.color.azulOscuro));
                                         //resultadoPareja.setText("");
                                     }
                                     txtSelec = "";
@@ -450,19 +452,19 @@ public class FragmentErrotaTextos extends Fragment {
                                 if (txtSelec.equals("")) {
                                     txtSelec = "c2";
                                     anterior = list2.get(finalX);
-                                    list2.get(finalX).setTextColor(getResources().getColor(R.color.naranja));
+                                    list2.get(finalX).setTextColor(getResources().getColor(R.color.negroFondo));
                                 }
                                 else {
                                     if (txtSelec.equals("c1")) {
                                         selc1 = true;
                                         selc2 = true;
                                         resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja3));
-                                        list2.get(finalX).setTextColor(getResources().getColor(R.color.verde));
-                                        anterior.setTextColor(getResources().getColor(R.color.verde));
+                                        list2.get(finalX).setTextColor(getResources().getColor(R.color.verdeOscuro));
+                                        anterior.setTextColor(getResources().getColor(R.color.verdeOscuro));
                                         if (sela1&&selb1&&selc1&&seld1&&sele1)
                                             btnContinuar.setEnabled(true);
                                     } else {
-                                        anterior.setTextColor(getResources().getColor(R.color.negro));
+                                        anterior.setTextColor(getResources().getColor(R.color.azulOscuro));
                                         //resultadoPareja.setText("");
                                     }
                                     txtSelec = "";
@@ -481,19 +483,19 @@ public class FragmentErrotaTextos extends Fragment {
                                 if (txtSelec.equals("")) {
                                     txtSelec = "d2";
                                     anterior = list2.get(finalX);
-                                    list2.get(finalX).setTextColor(getResources().getColor(R.color.naranja));
+                                    list2.get(finalX).setTextColor(getResources().getColor(R.color.negroFondo));
                                 }
                                 else {
                                     if (txtSelec.equals("d1")) {
                                         seld1 = true;
                                         seld2 = true;
                                         resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja4));
-                                        list2.get(finalX).setTextColor(getResources().getColor(R.color.verde));
-                                        anterior.setTextColor(getResources().getColor(R.color.verde));
+                                        list2.get(finalX).setTextColor(getResources().getColor(R.color.verdeOscuro));
+                                        anterior.setTextColor(getResources().getColor(R.color.verdeOscuro));
                                         if (sela1&&selb1&&selc1&&seld1&&sele1)
                                             btnContinuar.setEnabled(true);
                                     } else {
-                                        anterior.setTextColor(getResources().getColor(R.color.negro));
+                                        anterior.setTextColor(getResources().getColor(R.color.azulOscuro));
                                         //resultadoPareja.setText("");
                                     }
                                     txtSelec = "";
@@ -512,19 +514,19 @@ public class FragmentErrotaTextos extends Fragment {
                                 if (txtSelec.equals("")) {
                                     txtSelec = "e2";
                                     anterior = list2.get(finalX);
-                                    list2.get(finalX).setTextColor(getResources().getColor(R.color.naranja));
+                                    list2.get(finalX).setTextColor(getResources().getColor(R.color.negroFondo));
                                 }
                                 else {
                                     if (txtSelec.equals("e1")) {
                                         sele1 = true;
                                         sele2 = true;
                                         resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja5));
-                                        list2.get(finalX).setTextColor(getResources().getColor(R.color.verde));
-                                        anterior.setTextColor(getResources().getColor(R.color.verde));
+                                        list2.get(finalX).setTextColor(getResources().getColor(R.color.verdeOscuro));
+                                        anterior.setTextColor(getResources().getColor(R.color.verdeOscuro));
                                         if (sela1&&selb1&&selc1&&seld1&&sele1)
                                             btnContinuar.setEnabled(true);
                                     } else {
-                                        anterior.setTextColor(getResources().getColor(R.color.negro));
+                                        anterior.setTextColor(getResources().getColor(R.color.azulOscuro));
                                         //resultadoPareja.setText("");
                                     }
                                     txtSelec = "";
@@ -534,7 +536,8 @@ public class FragmentErrotaTextos extends Fragment {
                     });
                     break;
             }
-            list2.get(x).setText(getResources().getString(txt));
+            String text = list2.get(x).getText().toString();
+            list2.get(x).setText(text+" "+getResources().getString(txt));
         }
 
     }

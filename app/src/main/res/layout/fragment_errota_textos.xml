@@ -55,27 +55,47 @@
                 <TextView
                     android:id="@+id/errotaTexto1_1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:text="1."
+                    android:textColor="@color/azulOscuro"/>
 
                 <TextView
                     android:id="@+id/errotaTexto1_2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:text="2."
+                    android:textColor="@color/azulOscuro"/>
 
                 <TextView
                     android:id="@+id/errotaTexto1_3"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:text="3."
+                    android:textColor="@color/azulOscuro"/>
 
                 <TextView
                     android:id="@+id/errotaTexto1_4"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:text="4."
+                    android:textColor="@color/azulOscuro"/>
 
                 <TextView
                     android:id="@+id/errotaTexto1_5"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:text="5."
+                    android:textColor="@color/azulOscuro"/>
 
             </LinearLayout>
 
@@ -89,9 +109,10 @@
                 <TextView
                     android:id="@+id/errotaImagenResultado"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="80dp"
                     android:gravity="center"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:textColor="#FFFFFF"/>
 
             </LinearLayout>
 
@@ -104,27 +125,47 @@
                 <TextView
                     android:id="@+id/errotaTexto2_1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:text="1."
+                    android:textColor="@color/azulOscuro"/>
 
                 <TextView
                     android:id="@+id/errotaTexto2_2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:text="2."
+                    android:textColor="@color/azulOscuro"/>
 
                 <TextView
                     android:id="@+id/errotaTexto2_3"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:text="3."
+                    android:textColor="@color/azulOscuro"/>
 
                 <TextView
                     android:id="@+id/errotaTexto2_4"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:text="4."
+                    android:textColor="@color/azulOscuro"/>
 
                 <TextView
                     android:id="@+id/errotaTexto2_5"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:text="5."
+                    android:textColor="@color/azulOscuro"/>
 
             </LinearLayout>
 
