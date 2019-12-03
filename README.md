@@ -140,6 +140,7 @@ Seguimiento
 - [x] Cambios en Sopa de letras(quitar número de palabras 0/4, hacer palabras en la parte inferior más pequeñas)
 - [ ] Falta cambiar algunos colores en la Sopa de letra
 - [ ] Falta arreglar audio en fragmento Puzle, la aparición de alguna pieza en blanco y el cambio del tamaño de la imagen dependiendo del dispositivo 
+- [x] Primeras pruebas en dispositivos reales
 
 
 
