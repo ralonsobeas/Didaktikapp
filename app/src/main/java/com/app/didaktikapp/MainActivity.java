@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
@@ -117,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
                     case 0:
                         Intent i = new Intent(MainActivity.this, MapActivity.class);
                         startActivity(i);
+
                         break;
                     case 1:
                         break;
@@ -163,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, MapActivity.class);
                 startActivity(i);
+
             }
         });
         botonContinuar.setOnClickListener(new View.OnClickListener() {
@@ -188,6 +192,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+
     private void iniciar(View v){
         //carga el mapa
     }
@@ -200,4 +206,15 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
+    @Override
+    protected void onPause() {
+
+        super.onPause();
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+
+    }
 }

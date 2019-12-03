@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
@@ -185,15 +186,25 @@ public class FragmentErrotaTextos extends Fragment {
 
     public void crearImagenes(View view) {
         tv11 = view.findViewById(R.id.errotaTexto1_1);
+        tv11.setText(R.string.ErrotaFrase11);
         tv12 = view.findViewById(R.id.errotaTexto1_2);
+        tv12.setText(R.string.ErrotaFrase12);
         tv13 = view.findViewById(R.id.errotaTexto1_3);
+        tv13.setText(R.string.ErrotaFrase21);
         tv14 = view.findViewById(R.id.errotaTexto1_4);
+        tv14.setText(R.string.ErrotaFrase22);
         tv15 = view.findViewById(R.id.errotaTexto1_5);
+        tv15.setText(R.string.ErrotaFrase31);
         tv21 = view.findViewById(R.id.errotaTexto2_1);
+        tv21.setText(R.string.ErrotaFrase32);
         tv22 = view.findViewById(R.id.errotaTexto2_2);
+        tv22.setText(R.string.ErrotaFrase41);
         tv23 = view.findViewById(R.id.errotaTexto2_3);
+        tv23.setText(R.string.ErrotaFrase42);
         tv24 = view.findViewById(R.id.errotaTexto2_4);
+        tv24.setText(R.string.ErrotaFrase51);
         tv25 = view.findViewById(R.id.errotaTexto2_5);
+        tv25.setText(R.string.ErrotaFrase52);
         sela1 = false;
         sela2 = false;
         selb1 = false;
@@ -206,6 +217,7 @@ public class FragmentErrotaTextos extends Fragment {
         sele2 = false;
         imgSelec = "";
         resultadoPareja = view.findViewById(R.id.errotaImagenResultado);
+        Drawable color = tv11.getBackground();
 
         TextView[] tva = new TextView[] {tv11,tv12,tv13,tv14,tv15,tv21,tv22,tv23,tv24,tv25};
         List<TextView> list = Arrays.asList(tva);
@@ -223,19 +235,19 @@ public class FragmentErrotaTextos extends Fragment {
                                 if (imgSelec.equals("")) {
                                     imgSelec = "a1";
                                     anterior = list.get(finalX);
-                                    list.get(finalX).setColorFilter(R.color.naranja);
+                                    list.get(finalX).setBackgroundColor(ContextCompat.getColor(getContext(),R.color.naranja));
                                 }
                                 else {
                                     if (imgSelec.equals("a2")) {
                                         sela1 = true;
                                         sela2 = true;
                                         resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja1));
-                                        list.get(finalX).setColorFilter(R.color.verde);
-                                        anterior.setColorFilter(R.color.verde);
+                                        list.get(finalX).setBackgroundColor(ContextCompat.getColor(getContext(),R.color.verde));
+                                        anterior.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.verde));
                                         if (sela1&&selb1&&selc1&&seld1&&sele1)
                                             btnContinuar.setEnabled(true);
                                     } else {
-                                        anterior.setColorFilter(null);
+                                        anterior.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.backgroundTransparente));
                                         resultadoPareja.setText("");
                                     }
                                     imgSelec = "";
@@ -254,19 +266,19 @@ public class FragmentErrotaTextos extends Fragment {
                                 if (imgSelec.equals("")) {
                                     imgSelec = "a2";
                                     anterior = list.get(finalX);
-                                    list.get(finalX).setColorFilter(R.color.naranja);
+                                    list.get(finalX).setBackgroundColor(ContextCompat.getColor(getContext(),R.color.naranja));
                                 }
                                 else {
                                     if (imgSelec.equals("a1")) {
                                         sela1 = true;
                                         sela2 = true;
                                         resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja1));
-                                        list.get(finalX).setColorFilter(R.color.verde);
-                                        anterior.setColorFilter(R.color.verde);
+                                        list.get(finalX).setBackgroundColor(ContextCompat.getColor(getContext(),R.color.verde));
+                                        anterior.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.verde));
                                         if (sela1&&selb1&&selc1&&seld1&&sele1)
                                             btnContinuar.setEnabled(true);
                                     } else {
-                                        anterior.setColorFilter(null);
+                                        anterior.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.backgroundTransparente));
                                         resultadoPareja.setText("");
                                     }
                                     imgSelec = "";
@@ -285,19 +297,19 @@ public class FragmentErrotaTextos extends Fragment {
                                 if (imgSelec.equals("")) {
                                     imgSelec = "b1";
                                     anterior = list.get(finalX);
-                                    list.get(finalX).setColorFilter(R.color.naranja);
+                                    list.get(finalX).setBackgroundColor(ContextCompat.getColor(getContext(),R.color.naranja));
                                 }
                                 else {
                                     if (imgSelec.equals("b2")) {
                                         selb1 = true;
                                         selb2 = true;
                                         resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja2));
-                                        list.get(finalX).setColorFilter(R.color.verde);
-                                        anterior.setColorFilter(R.color.verde);
+                                        list.get(finalX).setBackgroundColor(ContextCompat.getColor(getContext(),R.color.verde));
+                                        anterior.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.verde));
                                         if (sela1&&selb1&&selc1&&seld1&&sele1)
                                             btnContinuar.setEnabled(true);
                                     } else {
-                                        anterior.setColorFilter(null);
+                                        anterior.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.backgroundTransparente));
                                         resultadoPareja.setText("");
                                     }
                                     imgSelec = "";
@@ -316,19 +328,19 @@ public class FragmentErrotaTextos extends Fragment {
                                 if (imgSelec.equals("")) {
                                     imgSelec = "b2";
                                     anterior = list.get(finalX);
-                                    list.get(finalX).setColorFilter(R.color.naranja);
+                                    list.get(finalX).setBackgroundColor(ContextCompat.getColor(getContext(),R.color.naranja));
                                 }
                                 else {
                                     if (imgSelec.equals("b1")) {
                                         selb1 = true;
                                         selb2 = true;
                                         resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja2));
-                                        list.get(finalX).setColorFilter(R.color.verde);
-                                        anterior.setColorFilter(R.color.verde);
+                                        list.get(finalX).setBackgroundColor(ContextCompat.getColor(getContext(),R.color.verde));
+                                        anterior.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.verde));
                                         if (sela1&&selb1&&selc1&&seld1&&sele1)
                                             btnContinuar.setEnabled(true);
                                     } else {
-                                        anterior.setColorFilter(null);
+                                        anterior.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.backgroundTransparente));
                                         resultadoPareja.setText("");
                                     }
                                     imgSelec = "";
@@ -347,19 +359,19 @@ public class FragmentErrotaTextos extends Fragment {
                                 if (imgSelec.equals("")) {
                                     imgSelec = "c1";
                                     anterior = list.get(finalX);
-                                    list.get(finalX).setColorFilter(R.color.naranja);
+                                    list.get(finalX).setBackgroundColor(ContextCompat.getColor(getContext(),R.color.naranja));
                                 }
                                 else {
                                     if (imgSelec.equals("c2")) {
                                         selc1 = true;
                                         selc2 = true;
                                         resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja3));
-                                        list.get(finalX).setColorFilter(R.color.verde);
-                                        anterior.setColorFilter(R.color.verde);
+                                        list.get(finalX).setBackgroundColor(ContextCompat.getColor(getContext(),R.color.verde));
+                                        anterior.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.verde));
                                         if (sela1&&selb1&&selc1&&seld1&&sele1)
                                             btnContinuar.setEnabled(true);
                                     } else {
-                                        anterior.setColorFilter(null);
+                                        anterior.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.backgroundTransparente));
                                         resultadoPareja.setText("");
                                     }
                                     imgSelec = "";
@@ -378,19 +390,19 @@ public class FragmentErrotaTextos extends Fragment {
                                 if (imgSelec.equals("")) {
                                     imgSelec = "c2";
                                     anterior = list.get(finalX);
-                                    list.get(finalX).setColorFilter(R.color.naranja);
+                                    list.get(finalX).setBackgroundColor(ContextCompat.getColor(getContext(),R.color.naranja));
                                 }
                                 else {
                                     if (imgSelec.equals("c1")) {
                                         selc1 = true;
                                         selc2 = true;
                                         resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja3));
-                                        list.get(finalX).setColorFilter(R.color.verde);
-                                        anterior.setColorFilter(R.color.verde);
+                                        list.get(finalX).setBackgroundColor(ContextCompat.getColor(getContext(),R.color.verde));
+                                        anterior.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.verde));
                                         if (sela1&&selb1&&selc1&&seld1&&sele1)
                                             btnContinuar.setEnabled(true);
                                     } else {
-                                        anterior.setColorFilter(null);
+                                        anterior.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.backgroundTransparente));
                                         resultadoPareja.setText("");
                                     }
                                     imgSelec = "";
@@ -409,19 +421,19 @@ public class FragmentErrotaTextos extends Fragment {
                                 if (imgSelec.equals("")) {
                                     imgSelec = "d1";
                                     anterior = list.get(finalX);
-                                    list.get(finalX).setColorFilter(R.color.naranja);
+                                    list.get(finalX).setBackgroundColor(ContextCompat.getColor(getContext(),R.color.naranja));
                                 }
                                 else {
                                     if (imgSelec.equals("d2")) {
                                         seld1 = true;
                                         seld2 = true;
                                         resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja4));
-                                        list.get(finalX).setColorFilter(R.color.verde);
-                                        anterior.setColorFilter(R.color.verde);
+                                        list.get(finalX).setBackgroundColor(ContextCompat.getColor(getContext(),R.color.verde));
+                                        anterior.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.verde));
                                         if (sela1&&selb1&&selc1&&seld1&&sele1)
                                             btnContinuar.setEnabled(true);
                                     } else {
-                                        anterior.setColorFilter(null);
+                                        anterior.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.backgroundTransparente));
                                         resultadoPareja.setText("");
                                     }
                                     imgSelec = "";
@@ -440,19 +452,19 @@ public class FragmentErrotaTextos extends Fragment {
                                 if (imgSelec.equals("")) {
                                     imgSelec = "d2";
                                     anterior = list.get(finalX);
-                                    list.get(finalX).setColorFilter(R.color.naranja);
+                                    list.get(finalX).setBackgroundColor(ContextCompat.getColor(getContext(),R.color.naranja));
                                 }
                                 else {
                                     if (imgSelec.equals("d1")) {
                                         seld1 = true;
                                         seld2 = true;
                                         resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja4));
-                                        list.get(finalX).setColorFilter(R.color.verde);
-                                        anterior.setColorFilter(R.color.verde);
+                                        list.get(finalX).setBackgroundColor(ContextCompat.getColor(getContext(),R.color.verde));
+                                        anterior.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.verde));
                                         if (sela1&&selb1&&selc1&&seld1&&sele1)
                                             btnContinuar.setEnabled(true);
                                     } else {
-                                        anterior.setColorFilter(null);
+                                        anterior.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.backgroundTransparente));
                                         resultadoPareja.setText("");
                                     }
                                     imgSelec = "";
@@ -471,19 +483,19 @@ public class FragmentErrotaTextos extends Fragment {
                                 if (imgSelec.equals("")) {
                                     imgSelec = "e1";
                                     anterior = list.get(finalX);
-                                    list.get(finalX).setColorFilter(R.color.naranja);
+                                    list.get(finalX).setBackgroundColor(ContextCompat.getColor(getContext(),R.color.naranja));
                                 }
                                 else {
                                     if (imgSelec.equals("e2")) {
                                         sele1 = true;
                                         sele2 = true;
                                         resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja5));
-                                        list.get(finalX).setColorFilter(R.color.verde);
-                                        anterior.setColorFilter(R.color.verde);
+                                        list.get(finalX).setBackgroundColor(ContextCompat.getColor(getContext(),R.color.verde));
+                                        anterior.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.verde));
                                         if (sela1&&selb1&&selc1&&seld1&&sele1)
                                             btnContinuar.setEnabled(true);
                                     } else {
-                                        anterior.setColorFilter(null);
+                                        anterior.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.backgroundTransparente));
                                         resultadoPareja.setText("");
                                     }
                                     imgSelec = "";
@@ -502,19 +514,19 @@ public class FragmentErrotaTextos extends Fragment {
                                 if (imgSelec.equals("")) {
                                     imgSelec = "e2";
                                     anterior = list.get(finalX);
-                                    list.get(finalX).setColorFilter(R.color.naranja);
+                                    list.get(finalX).setBackgroundColor(ContextCompat.getColor(getContext(),R.color.naranja));
                                 }
                                 else {
                                     if (imgSelec.equals("e1")) {
                                         sele1 = true;
                                         sele2 = true;
                                         resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja5));
-                                        list.get(finalX).setColorFilter(R.color.verde);
-                                        anterior.setColorFilter(R.color.verde);
+                                        list.get(finalX).setBackgroundColor(ContextCompat.getColor(getContext(),R.color.verde));
+                                        anterior.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.verde));
                                         if (sela1&&selb1&&selc1&&seld1&&sele1)
                                             btnContinuar.setEnabled(true);
                                     } else {
-                                        anterior.setColorFilter(null);
+                                        anterior.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.backgroundTransparente));
                                         resultadoPareja.setText("");
                                     }
                                     imgSelec = "";
@@ -524,7 +536,7 @@ public class FragmentErrotaTextos extends Fragment {
                     });
                     break;
             }
-            list.get(x).setImageResource(img);
+//            list.get(x).setImageResource(img);
         }
 
     }

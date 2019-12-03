@@ -11,9 +11,12 @@ import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.app.didaktikapp.Fragments.FragmentErrota;
+import com.app.didaktikapp.Fragments.FragmentErrotaTextos;
 import com.app.didaktikapp.Fragments.FragmentPuzle;
 import com.app.didaktikapp.Fragments.FragmentSanMiguel;
 import com.app.didaktikapp.Fragments.FragmentSanMiguelImagenes;
@@ -63,7 +66,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         , FragmentSanMiguel.OnFragmentInteractionListener
         , FragmentSanMiguelImagenes.OnFragmentInteractionListener
         , FragmentZumeltzegi.OnFragmentInteractionListener
-        , FragmentPuzle.OnFragmentInteractionListener{
+        , FragmentPuzle.OnFragmentInteractionListener {
 
     private MapView mapView;
     private MapboxMap mapboxMap;
@@ -98,7 +101,6 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
 
 
         super.onCreate(savedInstanceState);
-
         this.context = getApplicationContext();
         permissionsManager = new PermissionsManager(this);
 
@@ -114,7 +116,15 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
 
+        ImageView ivLogo = findViewById(R.id.ivLogo);
 
+        ivLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+
+            }
+        });
 
 
 
@@ -203,7 +213,13 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
 
                 }else if(marker.getPosition().getLatitude()==43.032917 && marker.getPosition().getLongitude()==-2.415750){
                     marker.setIcon(iconoverde);
-                    FragmentErrota fragment = new FragmentErrota();
+//                    FragmentErrota fragment = new FragmentErrota();
+//                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//                    transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
+//                    transaction.replace(R.id.fragment_frame, fragment);
+//                    transaction.commit();
+//                    transaction.addToBackStack("Fragment");
+                    FragmentErrotaTextos fragment = new FragmentErrotaTextos();
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                     transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
                     transaction.replace(R.id.fragment_frame, fragment);
