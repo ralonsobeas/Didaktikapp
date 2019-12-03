@@ -142,6 +142,7 @@ Seguimiento
 - [ ] Falta arreglar audio en fragmento Puzle, la aparición de alguna pieza en blanco y el cambio del tamaño de la imagen dependiendo del dispositivo 
 - [x] Primeras pruebas en dispositivos reales
 - [x] <b><u>Merge de Branch1 con Master #5</u></b>
+- [ ] Posible dialog para no sobreescribir partida ya guardada: https://github.com/PatilShreyas/MaterialDialog-Android
 
 
 
