@@ -236,13 +236,13 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
                 }else if(marker.getPosition().getLatitude()==42.979194 && marker.getPosition().getLongitude()==-2.398583){
 //                    Este punto es el de Arantsasu, al sur del mapa
 //
-//                    marker.setIcon(iconoverde);
-//                    FragmentTrenTexto fragment = new FragmentTrenTexto();
-//                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//                    transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
-//                    transaction.replace(R.id.fragment_frame, fragment);
-//                    transaction.commit();
-//                    transaction.addToBackStack("Fragment");
+                    marker.setIcon(iconoverde);
+                    FragmentErrotaTextos fragment = new FragmentErrotaTextos();
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
+                    transaction.replace(R.id.fragment_frame, fragment);
+                    transaction.commit();
+                    transaction.addToBackStack("Fragment");
 
                 }
 
@@ -271,7 +271,7 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
 
     private void crearIconos(){
         IconFactory iconFactory = IconFactory.getInstance(context);
-        Icon iconorojo = iconFactory.fromResource(R.drawable.pin2);
+        Icon iconorojo = iconFactory.fromResource(R.drawable.pin_sinhacer);
 //        Icon iconoamarillo = iconFactory.fromResource(R.drawable.yellow_marker);
         Icon iconoverde = iconFactory.fromResource(R.drawable.pin_hecho);
 //        Icon iconogris = iconFactory.fromResource(R.drawable.grey_marker);
