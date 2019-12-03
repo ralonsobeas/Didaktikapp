@@ -24,7 +24,6 @@ import com.app.didaktikapp.InicioActivity;
 import com.app.didaktikapp.MainActivity;
 import com.app.didaktikapp.Modelo.Lugar;
 import com.app.didaktikapp.R;
-import com.app.didaktikapp.Sopa;
 import com.app.didaktikapp.wordsearch.features.SplashScreenActivity;
 import com.app.didaktikapp.wordsearch.features.gameplay.GamePlayActivity;
 import com.mapbox.android.core.location.LocationEngine;

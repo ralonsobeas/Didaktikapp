@@ -9,7 +9,6 @@
     android:orientation="vertical"
     tools:context=".Fragments.FragmentUnibertsitatea">
 
-    <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -25,8 +24,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Unibertsitatea"
             android:textSize="80sp"
+            android:text="@string/universidad"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -73,7 +72,7 @@
                 android:id="@+id/uniPregunta1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="1. Oñatiko unibertsitatea Euskal Herriko bigarren unibertsitatea izan zen."
+                android:text="@string/universidadTest1"
                 android:textColor="#000000"
                 android:textSize="24sp" />
 
@@ -88,19 +87,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="BAI"
                     android:textColor="@color/negroFondo"
-                    android:textSize="24sp"
-                    />
+                    android:text="@string/si"
+                    android:textSize="24sp" />
 
                 <RadioButton
                     android:id="@+id/radioPregunta1No"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="EZ"
-                    android:textSize="24sp"
-                    android:textColor="@color/negroFondo"/>
+                    android:textColor="@color/negroFondo"
+                    android:text="@string/no"
+                    android:textSize="24sp" />
 
             </RadioGroup>
 
@@ -109,7 +107,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="2. Oñatiko unibertsitatea XV mendean eraiki zen."
+                android:text="@string/universidadTest2"
                 android:textSize="24sp" />
 
             <RadioGroup
@@ -123,7 +121,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="BAI"
+                    android:text="@string/si"
                     android:textSize="24sp"
                     android:textColor="@color/negroFondo"/>
 
@@ -132,7 +130,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="EZ"
+                    android:text="@string/no"
                     android:textSize="24sp"
                     android:textColor="@color/negroFondo"/>
 
@@ -147,7 +145,7 @@
                 android:background="@drawable/ripple_boton_bg"
                 android:clickable="true"
                 android:enabled="true"
-                android:text="CORREGIR" />
+                android:text="@string/corregir" />
 
         </LinearLayout>
 
@@ -168,7 +166,7 @@
                 android:id="@+id/tvPregunta3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Egin itzazu unibertsitatearen 3 argazki alde ezbedinetatik."
+                android:text="@string/universidadFotos"
                 android:textSize="24sp" />
 
             <LinearLayout
