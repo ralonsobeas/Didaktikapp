@@ -5,7 +5,7 @@
 
     <string name="app_name">Didaktikapp</string>
     <string name="html_app_name">
-        <![CDATA[ <b><font color=#222020>Didaktik</b><b><font color=#2B82C5>app </b>
+        <![CDATA[ <b><font color=#222020><u>Didaktik</u></b><b><font color=#2B82C5><u>app</u> </b>
         ]]>
     </string>
 
