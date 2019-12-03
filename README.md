@@ -129,6 +129,20 @@ Seguimiento
 - [ ] https://netpeak.net/blog/20-best-android-animation-ui-ux-libraries/
 - [ ] https://uxplanet.org/16-android-menu-open-source-ui-animation-components-libraries-java-kotlin-9f3e54f64280
 
+<h4>03/12/2019 Trabajo de desarrollo</h4>
+
+- [x] Cambio de todos los estilos a un nuevo color azul
+- [x] Cambio de main activity a un nuevo botón con animación
+- [x] Rediseño del main activity, diseño más simple. Titulo de la app a dos colores, botón menú y gif en la parte inferior
+- [ ] Rediseño de fragment San Miguel Errota Texto. Cambio de cuadrados con texto hacia líneas horizontales de texto
+- [x] Continuación de la presentación pptx
+- [x] Cambio de fondo de botones Material Design azul -> blanco
+- [x] Cambios en Sopa de letras(quitar número de palabras 0/4, hacer palabras en la parte inferior más pequeñas)
+- [ ] Falta cambiar algunos colores en la Sopa de letra
+- [ ] Falta arreglar audio en fragmento Puzle, la aparición de alguna pieza en blanco y el cambio del tamaño de la imagen dependiendo del dispositivo 
+
+
+
 
 Funcionamiento de la app
 ------------------------------------------------------------------------
