@@ -60,8 +60,6 @@
         <item name="cornerSizeTopLeft">20dp</item>
         <item name="cornerSizeBottomLeft">20dp</item>
     </style>
-    <style name="noStyle" parent="Theme.AppCompat">
-        <item name="materialThemeOverlay">@drawable/roundedbutton</item>
-    </style>
+
 
 </resources>

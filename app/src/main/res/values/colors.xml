@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#2B82C5</color>
+    <color name="colorPrimary">#FAFAFA</color>
     <color name="colorPrimaryDark">#2B82C5</color>
-    <color name="colorAccent">#2B82C5</color>
+    <color name="colorAccent">#FAFAFA</color>
 
     <color name="colorOnPrimary">#000000</color>
 
     <color name="negroFondo">#202020</color>
-    <color name="gray">#B3808080</color>
+<!--    <color name="gray">#B3808080</color>-->
+    <color name="gray">#B32B82C5</color>
 
     <color name="greenFilter">#414CAF50</color>
 
