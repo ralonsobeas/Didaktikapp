@@ -143,7 +143,7 @@ Seguimiento
 - [x] Primeras pruebas en dispositivos reales
 - [x] <b><u>Merge de Branch1 con Master #5</u></b>
 - [ ] Posible dialog para no sobreescribir partida ya guardada: https://github.com/PatilShreyas/MaterialDialog-Android
-
+- [ ] Efectos entre fragments https://github.com/JingYeoh/FragmentRigger
 
 
 Funcionamiento de la app
