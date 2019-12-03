@@ -145,6 +145,9 @@ Seguimiento
 - [ ] Posible dialog para no sobreescribir partida ya guardada: https://github.com/PatilShreyas/MaterialDialog-Android
 - [ ] Efectos entre fragments: https://github.com/JingYeoh/FragmentRigger
 - [ ] Ideas: https://www.freecodecamp.org/news/25-new-android-libraries-which-you-definitely-want-to-try-at-the-beginning-of-2017-45878d5408c0/
+- [ ] Cambiar idioma de app, cambiar el uso de strings.xml para diferentes idiomas: https://stackoverflow.com/questions/32249144/change-strings-language-in-android-activity
+
+
 
 Funcionamiento de la app
 ------------------------------------------------------------------------
