@@ -39,6 +39,8 @@ Puzle (Jigsaw Puzzle) - https://dragosholban.com/2018/03/09/how-to-build-a-jigsa
 
 Circle Menu - https://github.com/Ramotion/circle-menu-android
 
+Gif implementation - https://github.com/koral--/android-gif-drawable
+
 
 
 Seguimiento
