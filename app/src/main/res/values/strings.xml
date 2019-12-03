@@ -99,11 +99,22 @@
     <string name="ErrotaPregunta1">Zer da tobera edo kaxa?</string>
     <string name="ErrotaPregunta2">Zein urtean erosi zuten Santa Ana Komentuko mojek errota?</string>
     <string name="Terminar">Terminar</string>
+    <string name="ErrotaFrase11">1905 urtean, Santa Ana Komentuko mojek erosi egin zioten San Miguel errota</string>
+    <string name="ErrotaFrase12">Juan Gordoa y Perea jaunari.</string>
+    <string name="ErrotaFrase21">Berrikuntza lan garrantzitsuak egin ziren</string>
+    <string name="ErrotaFrase22">1923 eta 1926 artean.</string>
+    <string name="ErrotaFrase31">Oñatiko Udalak erosi zion Santa Ana komentuari San Miguel errota izandakoa</string>
+    <string name="ErrotaFrase32">1983an.</string>
+    <string name="ErrotaFrase41">Turtikinen funtzionamendua</string>
+    <string name="ErrotaFrase42">indarrez ardatzak eta harriak biraka jarriz alea ehotzeko era azaltzen duena.</string>
+    <string name="ErrotaFrase51">Toberak edo kaxak</string>
+    <string name="ErrotaFrase52">kono alderantzizkatuen itxuran, berriak egin dira Lasturko Lastur-Goikoa errotakoak eredutzat hartuta.</string>
     <string name="ErrotaPareja1">1905 urtean, Santa Ana Komentuko mojek erosi egin zioten San Miguel errota Juan Gordoa y Perea jaunari.</string>
     <string name="ErrotaPareja2">Berrikuntza lan garrantzitsuak egin ziren 1923 eta 1926 artean.</string>
     <string name="ErrotaPareja3">Oñatiko Udalak erosi zion Santa Ana komentuari San Miguel errota izandakoa 1983an.</string>
     <string name="ErrotaPareja4">Turtikinen funtzionamendua indarrez ardatzak eta harriak biraka jarriz alea ehotzeko era azaltzen duena.</string>
     <string name="ErrotaPareja5">Toberak edo kaxak kono alderantzizkatuen itxuran, berriak egin dira Lasturko Lastur-Goikoa errotakoak eredutzat hartuta.</string>
+
 
     <string name="new_game_loading_text">Generating game data…</string>
     <string name="summary_about">Word search game is a puzzle game, where the player try to find words in a grid of letters in horizontal, vertical and diagonal direction.</string>
