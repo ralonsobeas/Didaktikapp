@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        GifImageView gifImageView = findViewById(R.id.gif);
+//        GifImageView gifImageView = findViewById(R.id.gif);
 
 
 

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:id="@+id/layout"
-    android:background="@color/negroFondo">
+    android:background="@color/blancoFondo">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -49,14 +49,14 @@
 
         </com.app.didaktikapp.CircleMenu.CircleMenuView>
 
-        <pl.droidsonroids.gif.GifImageView
-            android:id="@+id/gif"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@drawable/runningsinfondo"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            />
+<!--        <pl.droidsonroids.gif.GifImageView-->
+<!--            android:id="@+id/gif"-->
+<!--            android:layout_width="150dp"-->
+<!--            android:layout_height="150dp"-->
+<!--            android:src="@drawable/runningsinfondo"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            />-->
 
         <!--        <at.markushi.ui.CircleButton-->
 <!--            android:id="@+id/btnIniciar"-->
