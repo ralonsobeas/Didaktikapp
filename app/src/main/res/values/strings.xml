@@ -5,7 +5,7 @@
 
     <string name="app_name">Didaktikapp</string>
     <string name="html_app_name">
-        <![CDATA[ <b><font color=#222020>Didaktik</b><b><font color=#2B82C5>app </b>
+        <![CDATA[ <b><font color=#222020><u>Didaktik</u></b><b><font color=#2B82C5><u>app</u> </b>
         ]]>
     </string>
 
@@ -20,11 +20,11 @@
     <string name="nombreLugar7">Araotz auzoa</string>
     <string name="nombreLugar8">Arrikrutzeko kobak</string>
 
-    <string name="new_location">Nueva localización</string>
+    <string name="new_location">Lokalizazio Berria</string>
 
     <!-- Explicaciones para usuario -->
-    <string name="user_location_permission_explanation">Permisos para la loaclización.</string>
-    <string name="user_location_permission_not_granted">No existen permisos para la localización.</string>
+    <string name="user_location_permission_explanation">Lokalizaziorako baimenak</string>
+    <string name="user_location_permission_not_granted">Ez duzu lokalizaziorako baimenik</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -34,10 +34,10 @@
     <string name="ZumeltzegiSopaDefentsa">Defentsa</string>
     <string name="ZumeltzegiSopaKondea">Kondea</string>
     <string name="ZumeltzegiSopaHotela">Hotelak</string>
-    <string name="ZumeltzegiSopaSiguiente">Siguiente</string>
+    <string name="ZumeltzegiSopaSiguiente">Hurrengoa</string>
     <string name="ZumeltzegiGame_data_desc">:gridSize Grid, :wordCount Words</string>
-    <string name="ZumeltzegiSopaMain_menu">Menu principal</string>
-    <string name="ZumeltzegiSopaCongratulations">Me quiero morir</string>
+    <string name="ZumeltzegiSopaMain_menu">Menu nagusia</string>
+    <string name="ZumeltzegiSopaCongratulations">Zorionak!!</string>
 
     <string name="ZumeltzegiSopaPref_showGridLine">showGridLine</string>
     <string name="ZumeltzegiSopaPref_snapToGrid">snapToGrid</string>
@@ -49,8 +49,8 @@
     <string name="ZumeltzegiSopaPref_reverseMatching">reverseMatching</string>
     <string name="ZumeltzegiSopaPref_grayscale">grayscale</string>
     <string name="ZumeltzegiSopaSettings">Settings</string>
-    <string name="ZumeltzegiSopaFinished">Acabado</string>
-    <string name="ZumeltzegiSopaNew_game">Nuevo juego</string>
+    <string name="ZumeltzegiSopaFinished">Amaituta</string>
+    <string name="ZumeltzegiSopaNew_game">Jolas berria</string>
     <string name="ZumeltzegiSopaFinish_text">You have just finished :gridSize grid with :uwCount words in :duration</string>
 
     <string name="ZumeltzegiTitulo">Zumeltzegi Test</string>
@@ -81,7 +81,7 @@
     <string name="SanMiguelPregunta4OpcionA">Altare azpitik</string>
     <string name="SanMiguelPregunta4OpcionB">Klaustro azpitik</string>
     <string name="SanMiguelPregunta4OpcionC">Eliza ondotik</string>
-    <string name="Contunuar">continuar</string>
+    <string name="Contunuar">Jarraitu</string>
 
     <!-- Actividad Tren -->
     <string name="TrenTextoTitulo">Trena</string>
@@ -98,12 +98,23 @@
     <string name="ErrotaTitulo">San Miguel Errota</string>
     <string name="ErrotaPregunta1">Zer da tobera edo kaxa?</string>
     <string name="ErrotaPregunta2">Zein urtean erosi zuten Santa Ana Komentuko mojek errota?</string>
-    <string name="Terminar">Terminar</string>
+    <string name="Terminar">Amaitu</string>
+    <string name="ErrotaFrase11">1905 urtean, Santa Ana Komentuko mojek erosi egin zioten San Miguel errota</string>
+    <string name="ErrotaFrase12">Juan Gordoa y Perea jaunari.</string>
+    <string name="ErrotaFrase21">Berrikuntza lan garrantzitsuak egin ziren</string>
+    <string name="ErrotaFrase22">1923 eta 1926 artean.</string>
+    <string name="ErrotaFrase31">Oñatiko Udalak erosi zion Santa Ana komentuari San Miguel errota izandakoa</string>
+    <string name="ErrotaFrase32">1983an.</string>
+    <string name="ErrotaFrase41">Turtikinen funtzionamendua</string>
+    <string name="ErrotaFrase42">indarrez ardatzak eta harriak biraka jarriz alea ehotzeko era azaltzen duena.</string>
+    <string name="ErrotaFrase51">Toberak edo kaxak</string>
+    <string name="ErrotaFrase52">kono alderantzizkatuen itxuran, berriak egin dira Lasturko Lastur-Goikoa errotakoak eredutzat hartuta.</string>
     <string name="ErrotaPareja1">1905 urtean, Santa Ana Komentuko mojek erosi egin zioten San Miguel errota Juan Gordoa y Perea jaunari.</string>
     <string name="ErrotaPareja2">Berrikuntza lan garrantzitsuak egin ziren 1923 eta 1926 artean.</string>
     <string name="ErrotaPareja3">Oñatiko Udalak erosi zion Santa Ana komentuari San Miguel errota izandakoa 1983an.</string>
     <string name="ErrotaPareja4">Turtikinen funtzionamendua indarrez ardatzak eta harriak biraka jarriz alea ehotzeko era azaltzen duena.</string>
     <string name="ErrotaPareja5">Toberak edo kaxak kono alderantzizkatuen itxuran, berriak egin dira Lasturko Lastur-Goikoa errotakoak eredutzat hartuta.</string>
+
 
     <string name="new_game_loading_text">Generating game data…</string>
     <string name="summary_about">Word search game is a puzzle game, where the player try to find words in a grid of letters in horizontal, vertical and diagonal direction.</string>
@@ -129,12 +140,12 @@
     <string name="delete_finish">Delete Finish</string>
     <string name="enable_fullscreen">Fullscreen</string>
     <string name="auto_scale_grid">Auto Scale Grid</string>
-    <string name="finish_text">You have just finished :gridSize grid with :uwCount words in :duration</string>
+    <string name="finish_text">Letra zopa osatu duzu!</string>
     <string name="version">Version</string>
     <string name="version_num">1.0</string>
     <string name="settings">Settings</string>
-    <string name="congratulations">Congratulations!</string>
-    <string name="main_menu">Main Menu</string>
+    <string name="congratulations"><![CDATA[Zorionak! ]]></string>
+    <string name="main_menu">Mapara itzuli</string>
     <string name="new_game">NEW GAME</string>
     <string name="auto_scale_grid_summary">Automatically scale grid based on the screen width</string>
     <string name="pref_reverseMatching">reverseMatching</string>
@@ -142,5 +153,12 @@
     <string name="pref_grayscale">grayscale</string>
     <string name="grayscale">Grayscale</string>
     <string name="game_data_desc">:gridSize Grid, :wordCount Words</string>
+    <string name="corregir">Zuzendu</string>
+    <string name="universidad">Unibertsitatea</string>
+    <string name="universidadTest1">1. Oñatiko unibertsitatea Euskal Herriko bigarren unibertsitatea izan zen.</string>
+    <string name="si">BAI</string>
+    <string name="no">EZ</string>
+    <string name="universidadTest2">2. Oñatiko unibertsitatea XV mendean eraiki zen.</string>
+    <string name="universidadFotos">Egin itzazu unibertsitatearen 3 argazki alde ezbedinetatik.</string>
 
 </resources>

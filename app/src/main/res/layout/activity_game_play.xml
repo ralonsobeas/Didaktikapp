@@ -34,37 +34,37 @@
             android:textSize="10pt"
             android:text="@string/finished"/>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true">
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:layout_alignParentRight="true">-->
 
-            <TextView
-                android:id="@+id/answered_text_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="8pt"
-                android:textColor="@android:color/white"
-                android:text="1"/>
+<!--            <TextView-->
+<!--                android:id="@+id/answered_text_count"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textSize="8pt"-->
+<!--                android:textColor="@android:color/white"-->
+<!--                android:text="1"/>-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="8pt"
-                android:textColor="@android:color/white"
-                android:text="/"/>
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textSize="8pt"-->
+<!--                android:textColor="@android:color/white"-->
+<!--                android:text="/"/>-->
 
-            <TextView
-                android:id="@+id/words_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="8pt"
-                android:textColor="@android:color/white"
-                android:text="1"/>
+<!--            <TextView-->
+<!--                android:id="@+id/words_count"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textSize="8pt"-->
+<!--                android:textColor="@android:color/white"-->
+<!--                android:text="1"/>-->
 
-        </LinearLayout>
+<!--        </LinearLayout>-->
 
         <LinearLayout
             android:id="@+id/text_sel_layout"
@@ -148,29 +148,6 @@
                     android:layout_height="wrap_content"
                     app:horizontalSpacing="5dp">
 
-                    <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:background="@color/colorAccent"-->
-                        <!--android:text="test... comp"/>-->
-
-                    <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:background="@color/colorAccent"-->
-                        <!--android:text="test... comp"/>-->
-
-                    <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:background="@color/colorAccent"-->
-                        <!--android:text="test... comp"/>-->
-
-                    <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:background="@color/colorAccent"-->
-                        <!--android:text="test... comp"/>-->
 
 
                 </com.app.didaktikapp.wordsearch.custom.layout.FlowLayout>

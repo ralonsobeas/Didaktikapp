@@ -49,8 +49,6 @@ public class GamePlayActivity extends FullscreenActivity {
 
     private static final StreakLineMapper STREAK_LINE_MAPPER = new StreakLineMapper();
 
-//    @Inject
-//    SoundPlayer mSoundPlayer;
 
     @Inject
     ViewModelFactory mViewModelFactory;
@@ -67,11 +65,6 @@ public class GamePlayActivity extends FullscreenActivity {
     View mTextSelLayout;
     @BindView(R.id.text_selection)
     TextView mTextSelection;
-
-    @BindView(R.id.answered_text_count)
-    TextView mAnsweredTextCount;
-    @BindView(R.id.words_count)
-    TextView mWordsCount;
 
     @BindView(R.id.finished_text)
     TextView mFinishedText;
@@ -186,12 +179,10 @@ public class GamePlayActivity extends FullscreenActivity {
                 anim.start();
             }
 
-//            mSoundPlayer.play(SoundPlayer.Sound.Correct);
         }
         else {
             mLetterBoard.popStreakLine();
 
-//            mSoundPlayer.play(SoundPlayer.Sound.Wrong);
         }
     }
 
@@ -218,8 +209,6 @@ public class GamePlayActivity extends FullscreenActivity {
         showLetterGrid(gameData.getGrid().getArray());
         showDuration(gameData.getDuration());
         showUsedWords(gameData.getUsedWords());
-        showWordsCount(gameData.getUsedWords().size());
-        showAnsweredWordsCount(gameData.getAnsweredWordsCount());
         doneLoadingContent();
     }
 
@@ -233,12 +222,6 @@ public class GamePlayActivity extends FullscreenActivity {
         if (getPreferences().autoScaleGrid() || boardWidth > screenWidth) {
             float scale = (float)screenWidth / (float)boardWidth;
             mLetterBoard.scale(scale, scale);
-//            mLetterBoard.animate()
-//                    .scaleX(scale)
-//                    .scaleY(scale)
-//                    .setDuration(400)
-//                    .setInterpolator(new DecelerateInterpolator())
-//                    .start();
         }
     }
 
@@ -280,14 +263,6 @@ public class GamePlayActivity extends FullscreenActivity {
         }
     }
 
-    private void showAnsweredWordsCount(int count) {
-        mAnsweredTextCount.setText(String.valueOf(count));
-    }
-
-    private void showWordsCount(int count) {
-        mWordsCount.setText(String.valueOf(count));
-    }
-
     private void showFinishGame(int gameId) {
         Intent intent = new Intent(this, GameOverActivity.class);
         intent.putExtra(GameOverActivity.EXTRA_GAME_ROUND_ID, gameId);
@@ -317,21 +292,8 @@ public class GamePlayActivity extends FullscreenActivity {
         }
         else {
             String str = uw.getString();
-            if (uw.isMystery()) {
-                int revealCount = uw.getRevealCount();
-                String uwString = uw.getString();
-                str = "";
-                for (int i = 0; i < uwString.length(); i++) {
-                    if (revealCount > 0) {
-                        str += uwString.charAt(i);
-                        revealCount--;
-                    }
-                    else {
-                        str += " ?";
-                    }
-                }
-            }
             tv.setText(str);
+            tv.setTextSize(20.0f);
         }
 
         tv.setTag(uw);

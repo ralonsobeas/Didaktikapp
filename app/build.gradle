@@ -69,6 +69,12 @@ dependencies {
 
     //Typewriter
     implementation 'in.codeshuffle:typewriterview:1.1.0'
+
+    //CircleMenu
+    implementation 'com.ramotion.circlemenu:circle-menu:0.3.2'
+
+    //Gif
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.17'
 }
 
 /*implementation 'com.jakewharton:butterknife:10.2.0'

@@ -9,6 +9,7 @@
         <item name="colorOnPrimary">@color/colorOnPrimary</item>
         <item name="shapeAppearanceOverlay">@style/MyShapeAppearance</item>
         <item name="android:fontFamily">@font/kaushanscript</item>
+        <item name="android:windowContentTransitions">true</item>
     </style>
 
     <style name="StyleFragment" parent="Theme.MaterialComponents.Light">
@@ -59,8 +60,6 @@
         <item name="cornerSizeTopLeft">20dp</item>
         <item name="cornerSizeBottomLeft">20dp</item>
     </style>
-    <style name="noStyle" parent="Theme.AppCompat">
-        <item name="materialThemeOverlay">@drawable/roundedbutton</item>
-    </style>
+
 
 </resources>
