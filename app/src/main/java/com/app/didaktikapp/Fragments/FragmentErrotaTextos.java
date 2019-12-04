@@ -139,17 +139,17 @@ public class FragmentErrotaTextos extends Fragment {
 
                 if(fotosLayout.getVisibility() == View.VISIBLE){
                     fotosLayout.setVisibility(View.INVISIBLE);
-                    videoLayout.setVisibility(View.VISIBLE);
-                    VideoView empezar = view.findViewById(R.id.errotaVideo);
-                    empezar.start();
+//                    videoLayout.setVisibility(View.VISIBLE);
+//                    VideoView empezar = view.findViewById(R.id.errotaVideo);
+//                    empezar.start();
 //                    videoLayout.setVisibility(View.INVISIBLE);
-//                    preguntasLayout.setVisibility(View.VISIBLE);
+                    preguntasLayout.setVisibility(View.VISIBLE);
                     btnContinuar.setEnabled(false);
                 }
 //                else if(videoLayout.getVisibility() == View.VISIBLE){
 //                    videoLayout.setVisibility(View.INVISIBLE);
 //                    preguntasLayout.setVisibility(View.VISIBLE);
-////                    btnContinuar.setText("FINALIZAR");
+//                    btnContinuar.setText("FINALIZAR");
 //                    btnContinuar.setEnabled(false);
 //                }
                 else if(preguntasLayout.getVisibility() == View.VISIBLE){
@@ -214,7 +214,6 @@ public class FragmentErrotaTextos extends Fragment {
         Collections.shuffle(list1);
         for (int x=0;x<list1.size();x++) {
             int txt = R.string.ErrotaFrase11;
-            int num = x+1;
             switch (x) {
                 case 0:
                     txt = R.string.ErrotaFrase11;
@@ -380,7 +379,6 @@ public class FragmentErrotaTextos extends Fragment {
         Collections.shuffle(list2);
         for (int x=0;x<list2.size();x++) {
             int txt = R.string.ErrotaFrase12;
-            int num = x+1;
             switch (x) {
                 case 0:
                     txt = R.string.ErrotaFrase12;
