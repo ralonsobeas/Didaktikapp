@@ -70,7 +70,6 @@
                 android:id="@+id/btnCameraPregunta1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_menu_camera"
                 app:icon="@drawable/ic_camera_alt_black_24dp"
                 app:iconGravity="textStart"/>
 
@@ -97,7 +96,6 @@
                 android:id="@+id/btnContinuar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:layout_gravity="right"
                 android:background="@drawable/ripple_boton_bg"
                 android:clickable="true"

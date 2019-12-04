@@ -39,6 +39,8 @@ import android.widget.VideoView;
 
 import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.R;
+import com.app.didaktikapp.wordsearch.features.SplashScreenActivity;
+import com.app.didaktikapp.wordsearch.features.gameplay.GamePlayActivity;
 import com.muddzdev.styleabletoast.StyleableToast;
 
 import org.w3c.dom.Text;
@@ -191,6 +193,11 @@ public class FragmentZumeltzegi extends Fragment {
                 guardarImagen(ivPregunta2);
 
                 StyleableToast.makeText(getContext(), getResources().getString(R.string.ToastImagenes), Toast.LENGTH_LONG, R.style.mytoast).show();
+
+                Intent intent = new Intent(getActivity(), SplashScreenActivity.class);
+                intent.putExtra(GamePlayActivity.EXTRA_ROW_COUNT, 10);
+                intent.putExtra(GamePlayActivity.EXTRA_COL_COUNT, 10);
+                startActivity(intent);
             }
         });
 

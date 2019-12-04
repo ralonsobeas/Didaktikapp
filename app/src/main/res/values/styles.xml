@@ -69,8 +69,8 @@
         <item name="stStrokeWidth">3dp</item>
         <item name="stIconStart">@drawable/ic_update</item>
         <item name="stLength">LONG</item>
-        <item name="stGravity">center</item>
-        <item name="stRadius">5dp</item>
+
+        <item name="stRadius">25dp</item>
     </style>
 
 

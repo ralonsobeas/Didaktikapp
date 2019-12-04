@@ -53,6 +53,7 @@ public class InicioActivity extends AppCompatActivity {
 
                     Intent i = new Intent(InicioActivity.this,MainActivity.class);
                     startActivity(i);
+                    finish();
                 } catch (InterruptedException e) {
                     Log.i("Error", "Esperando a cerrar la pantalla de inicio");
                 }
