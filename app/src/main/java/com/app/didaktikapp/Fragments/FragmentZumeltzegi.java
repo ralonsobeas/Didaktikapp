@@ -35,6 +35,7 @@ import android.widget.VideoView;
 
 import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.R;
+import com.muddzdev.styleabletoast.StyleableToast;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -178,6 +179,7 @@ public class FragmentZumeltzegi extends Fragment {
                 guardarImagen(ivPregunta1);
                 guardarImagen(ivPregunta2);
 
+                StyleableToast.makeText(getContext(), getResources().getString(R.string.ToastImagenes), Toast.LENGTH_LONG, R.style.mytoast).show();
             }
         });
 

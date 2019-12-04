@@ -58,6 +58,8 @@
 
     <string name="ZumeltzegiPregunta2Titulo">2. Ze familia bizi zen dorretxean XV. Mendean?</string>
 
+    <string name="ToastImagenes">Imágenes guardadas en galería</string>
+
 
     <!-- Actividad San Miguel -->
     <string name="SanMiguelTitulo">San Miguel</string>
@@ -121,7 +123,7 @@
     <string name="finished">Finished!</string>
 
     <!-- Actividad Universidad -->
-    <string name="TextoUniversidad" >Unibertsitatearen sortzailea Rodrigo Mercado de Zuazola izan zen eta 1548. urtean sortu zuen. Eraikin hau, oso garrantzitsua da Euskal Herriko lehen unibertsitatea izan baitzen. Hiru mendeetan zehar honako ikasketak egin izan dira berta: medikuntza, filosofia, letrak eta teologia. Gaur egun ordea, ez da klaserik ematen bertan. Gainera, arkitektura adierazgarria dauka eta bere barruan klaustro ikusgarri bat eta Oteizaren eskultura bat daude. </string>
+    <string name="TextoUniversidad">Unibertsitatearen sortzailea Rodrigo Mercado de Zuazola izan zen eta 1548. urtean sortu zuen. Eraikin hau, oso garrantzitsua da Euskal Herriko lehen unibertsitatea izan baitzen. Hiru mendeetan zehar honako ikasketak egin izan dira berta: medikuntza, filosofia, letrak eta teologia. Gaur egun ordea, ez da klaserik ematen bertan. Gainera, arkitektura adierazgarria dauka eta bere barruan klaustro ikusgarri bat eta Oteizaren eskultura bat daude. </string>
 
     <!-- prefs -->
     <string name="pref_showGridLine">showGridLine</string>

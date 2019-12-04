@@ -12,11 +12,11 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
-        android:background="@color/colorPrimary">
+        android:background="@color/colorPrimaryDark">
 
         <TextView
             android:id="@+id/text_duration"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
@@ -141,6 +141,7 @@
                 android:background="#dfdfdf"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp">
+
 
                 <com.app.didaktikapp.wordsearch.custom.layout.FlowLayout
                     android:id="@+id/flow_layout"
