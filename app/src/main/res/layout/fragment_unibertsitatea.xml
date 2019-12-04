@@ -73,7 +73,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/universidadTest1"
-                android:textColor="#000000"
                 android:textSize="24sp" />
 
             <RadioGroup
@@ -210,7 +209,7 @@
             android:background="@drawable/ripple_boton_bg"
             android:clickable="true"
             android:enabled="true"
-            android:text="@string/Contunuar"
+            android:text="@string/Continuar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

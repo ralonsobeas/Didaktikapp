@@ -16,20 +16,29 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:screenOrientation = "portrait">
-        <activity android:name=".InicioActivity" />
-        <activity android:name=".Activities.MapActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".InicioActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"
+                    />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".wordsearch.features.gameplay.GamePlayActivity">
+        <activity android:name=".Activities.MapActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
+
         </activity>
-        <activity android:name=".wordsearch.features.gameover.GameOverActivity">
+        <activity android:name=".wordsearch.features.gameplay.GamePlayActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".wordsearch.features.SplashScreenActivity">
+        <activity android:name=".wordsearch.features.gameover.GameOverActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".wordsearch.features.SplashScreenActivity"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

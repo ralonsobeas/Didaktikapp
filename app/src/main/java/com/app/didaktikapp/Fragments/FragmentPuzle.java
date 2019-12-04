@@ -17,6 +17,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -188,6 +189,9 @@ public class FragmentPuzle extends Fragment {
         Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, scaledBitmapWidth, scaledBitmapHeight, true);
         Bitmap croppedBitmap = Bitmap.createBitmap(scaledBitmap, abs(scaledBitmapLeft), abs(scaledBitmapTop), croppedImageWidth, croppedImageHeight);
 
+
+
+
         // Calculate the with and height of the pieces
         int pieceWidth = croppedImageWidth/cols;
         int pieceHeight = croppedImageHeight/rows;
@@ -329,6 +333,7 @@ public class FragmentPuzle extends Fragment {
         ret[2] = actW;
         ret[3] = actH;
 
+
         // Get image position
         // We assume that the image is centered into ImageView
         int imgViewW = imageView.getWidth();
@@ -339,6 +344,7 @@ public class FragmentPuzle extends Fragment {
 
         ret[0] = left;
         ret[1] = top;
+
 
         return ret;
     }
@@ -433,13 +439,15 @@ public class FragmentPuzle extends Fragment {
 
     @Override
     public void onDestroy() {
-        mediaPlayer.stop();
+        if(mediaPlayer!=null)
+            mediaPlayer.stop();
         super.onDestroy();
     }
 
     @Override
     public void onPause() {
-        mediaPlayer.stop();
+        if(mediaPlayer!=null)
+            mediaPlayer.stop();
         super.onPause();
     }
 }

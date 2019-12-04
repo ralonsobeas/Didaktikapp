@@ -2,6 +2,7 @@ package com.app.didaktikapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.telecom.Call;
 import android.transition.Explode;
@@ -49,14 +50,21 @@ public class InicioActivity extends AppCompatActivity {
             public void run() {
                 try {
                     Thread.sleep(4500);
+
+                    Intent i = new Intent(InicioActivity.this,MainActivity.class);
+                    startActivity(i);
+                    finish();
                 } catch (InterruptedException e) {
                     Log.i("Error", "Esperando a cerrar la pantalla de inicio");
                 }
-                finish();
+
 
             }
         };
         splashTread.start();
+
+
+
 
     }
 

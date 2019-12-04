@@ -53,10 +53,12 @@
     <string name="ZumeltzegiSopaNew_game">Jolas berria</string>
     <string name="ZumeltzegiSopaFinish_text">You have just finished :gridSize grid with :uwCount words in :duration</string>
 
-    <string name="ZumeltzegiTitulo">Zumeltzegi Test</string>
+    <string name="ZumeltzegiTitulo"><![CDATA[Zumeltzegi ]]></string>
     <string name="ZumeltzegiPregunta1Titulo">1.Zertarako eraiki zen dorretxea?</string>
 
     <string name="ZumeltzegiPregunta2Titulo">2. Ze familia bizi zen dorretxean XV. Mendean?</string>
+
+    <string name="ToastImagenes">Imágenes guardadas en galería</string>
 
 
     <!-- Actividad San Miguel -->
@@ -81,7 +83,7 @@
     <string name="SanMiguelPregunta4OpcionA">Altare azpitik</string>
     <string name="SanMiguelPregunta4OpcionB">Klaustro azpitik</string>
     <string name="SanMiguelPregunta4OpcionC">Eliza ondotik</string>
-    <string name="Contunuar">Jarraitu</string>
+    <string name="Continuar">Jarraitu</string>
 
     <!-- Actividad Tren -->
     <string name="TrenTextoTitulo">Trena</string>
@@ -114,6 +116,7 @@
     <string name="ErrotaPareja3">Oñatiko Udalak erosi zion Santa Ana komentuari San Miguel errota izandakoa 1983an.</string>
     <string name="ErrotaPareja4">Turtikinen funtzionamendua indarrez ardatzak eta harriak biraka jarriz alea ehotzeko era azaltzen duena.</string>
     <string name="ErrotaPareja5">Toberak edo kaxak kono alderantzizkatuen itxuran, berriak egin dira Lasturko Lastur-Goikoa errotakoak eredutzat hartuta.</string>
+    <string name="terminar">Terminar</string>
 
 
     <string name="new_game_loading_text">Generating game data…</string>
@@ -121,7 +124,7 @@
     <string name="finished">Finished!</string>
 
     <!-- Actividad Universidad -->
-    <string name="TextoUniversidad" >Unibertsitatearen sortzailea Rodrigo Mercado de Zuazola izan zen eta 1548. urtean sortu zuen. Eraikin hau, oso garrantzitsua da Euskal Herriko lehen unibertsitatea izan baitzen. Hiru mendeetan zehar honako ikasketak egin izan dira berta: medikuntza, filosofia, letrak eta teologia. Gaur egun ordea, ez da klaserik ematen bertan. Gainera, arkitektura adierazgarria dauka eta bere barruan klaustro ikusgarri bat eta Oteizaren eskultura bat daude. </string>
+    <string name="TextoUniversidad">Unibertsitatearen sortzailea Rodrigo Mercado de Zuazola izan zen eta 1548. urtean sortu zuen. Eraikin hau, oso garrantzitsua da Euskal Herriko lehen unibertsitatea izan baitzen. Hiru mendeetan zehar honako ikasketak egin izan dira berta: medikuntza, filosofia, letrak eta teologia. Gaur egun ordea, ez da klaserik ematen bertan. Gainera, arkitektura adierazgarria dauka eta bere barruan klaustro ikusgarri bat eta Oteizaren eskultura bat daude. </string>
 
     <!-- prefs -->
     <string name="pref_showGridLine">showGridLine</string>
@@ -160,5 +163,6 @@
     <string name="no">EZ</string>
     <string name="universidadTest2">2. Oñatiko unibertsitatea XV mendean eraiki zen.</string>
     <string name="universidadFotos">Egin itzazu unibertsitatearen 3 argazki alde ezbedinetatik.</string>
+    <string name="finalizar">AMAITU</string>
 
 </resources>

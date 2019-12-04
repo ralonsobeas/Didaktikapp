@@ -18,7 +18,8 @@
         android:background="@color/gray"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        >
 
         <TextView
             android:id="@+id/errotaTitulo"
@@ -57,7 +58,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:text="1."
                     android:textColor="@color/azulOscuro"/>
 
@@ -66,7 +67,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:text="2."
                     android:textColor="@color/azulOscuro"/>
 
@@ -75,7 +76,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:text="3."
                     android:textColor="@color/azulOscuro"/>
 
@@ -84,7 +85,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:text="4."
                     android:textColor="@color/azulOscuro"/>
 
@@ -93,7 +94,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:text="5."
                     android:textColor="@color/azulOscuro"/>
 
@@ -109,9 +110,9 @@
                 <TextView
                     android:id="@+id/errotaImagenResultado"
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
+                    android:layout_height="94dp"
                     android:gravity="center"
-                    android:textSize="18sp"
+                    android:textSize="22sp"
                     android:textColor="#FFFFFF"/>
 
             </LinearLayout>
@@ -127,7 +128,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:text="1."
                     android:textColor="@color/azulOscuro"/>
 
@@ -136,7 +137,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:text="2."
                     android:textColor="@color/azulOscuro"/>
 
@@ -145,7 +146,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:text="3."
                     android:textColor="@color/azulOscuro"/>
 
@@ -154,7 +155,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:text="4."
                     android:textColor="@color/azulOscuro"/>
 
@@ -163,7 +164,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:text="5."
                     android:textColor="@color/azulOscuro"/>
 
@@ -394,7 +395,7 @@
             android:background="@drawable/ripple_boton_bg"
             android:clickable="true"
             android:enabled="true"
-            android:text="@string/Contunuar"
+            android:text="@string/Continuar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 

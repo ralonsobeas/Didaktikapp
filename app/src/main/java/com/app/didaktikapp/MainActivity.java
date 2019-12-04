@@ -63,8 +63,7 @@ public class MainActivity extends AppCompatActivity {
         tv.setTypeface(type);
         tv.setText(Html.fromHtml(getString(R.string.html_app_name)));
 
-        Intent i = new Intent(MainActivity.this,InicioActivity.class);
-        startActivity(i);
+
 
 
 

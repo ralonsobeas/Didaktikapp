@@ -61,5 +61,17 @@
         <item name="cornerSizeBottomLeft">20dp</item>
     </style>
 
+    <style name="mytoast">
+        <item name="stTextBold">true</item>
+        <item name="stTextSize">14sp</item>
+        <item name="stColorBackground">@color/colorPrimaryDark</item>
+        <item name="stSolidBackground">true</item>
+        <item name="stStrokeWidth">3dp</item>
+        <item name="stIconStart">@drawable/ic_update</item>
+        <item name="stLength">LONG</item>
+
+        <item name="stRadius">25dp</item>
+    </style>
+
 
 </resources>

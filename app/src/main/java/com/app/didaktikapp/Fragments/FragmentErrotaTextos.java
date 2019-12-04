@@ -132,28 +132,30 @@ public class FragmentErrotaTextos extends Fragment {
 
         //CONFIGURAMOS EL BOTON CONTINUAR
         btnContinuar = view.findViewById(R.id.btnContinuar);
-        btnContinuar.setText(getResources().getString(R.string.Contunuar));
+        btnContinuar.setText(getResources().getString(R.string.Continuar));
         btnContinuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if(fotosLayout.getVisibility() == View.VISIBLE){
                     fotosLayout.setVisibility(View.INVISIBLE);
-                    videoLayout.setVisibility(View.VISIBLE);
-                    VideoView empezar = view.findViewById(R.id.errotaVideo);
-                    empezar.start();
+//                    videoLayout.setVisibility(View.VISIBLE);
+//                    VideoView empezar = view.findViewById(R.id.errotaVideo);
+//                    empezar.start();
 //                    videoLayout.setVisibility(View.INVISIBLE);
-//                    preguntasLayout.setVisibility(View.VISIBLE);
+                    preguntasLayout.setVisibility(View.VISIBLE);
                     btnContinuar.setEnabled(false);
                 }
-//                else if(preguntasLayout.getVisibility() == View.VISIBLE){
-//                    preguntasLayout.setVisibility(View.INVISIBLE);
-//                    fotosLayout.setVisibility(View.VISIBLE);
+//                else if(videoLayout.getVisibility() == View.VISIBLE){
+//                    videoLayout.setVisibility(View.INVISIBLE);
+//                    preguntasLayout.setVisibility(View.VISIBLE);
 //                    btnContinuar.setText("FINALIZAR");
+//                    btnContinuar.setEnabled(false);
 //                }
                 else if(preguntasLayout.getVisibility() == View.VISIBLE){
                     guardarImagen(ivPregunta1);
                     guardarImagen(ivPregunta2);
+                    getFragmentManager().beginTransaction().remove(FragmentErrotaTextos.this).commit();
                 }
 
             }
@@ -212,7 +214,6 @@ public class FragmentErrotaTextos extends Fragment {
         Collections.shuffle(list1);
         for (int x=0;x<list1.size();x++) {
             int txt = R.string.ErrotaFrase11;
-            int num = x+1;
             switch (x) {
                 case 0:
                     txt = R.string.ErrotaFrase11;
@@ -378,7 +379,6 @@ public class FragmentErrotaTextos extends Fragment {
         Collections.shuffle(list2);
         for (int x=0;x<list2.size();x++) {
             int txt = R.string.ErrotaFrase12;
-            int num = x+1;
             switch (x) {
                 case 0:
                     txt = R.string.ErrotaFrase12;
@@ -558,10 +558,10 @@ public class FragmentErrotaTextos extends Fragment {
         video.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
-                Log.i("video","Video terminado");
                 video.setVisibility(View.INVISIBLE);
                 videoLayout.setVisibility(View.INVISIBLE);
                 preguntasLayout.setVisibility(View.VISIBLE);
+                btnContinuar.setEnabled(false);
             }
         });
     }
@@ -613,7 +613,10 @@ public class FragmentErrotaTextos extends Fragment {
                 ivPregunta1.setImageBitmap(Bitmap.createScaledBitmap(imageBitmap,1000,1000,false));
                 ib1.setVisibility(View.INVISIBLE);
                 img1 = true;
-                if (img2) btnContinuar.setEnabled(true);
+                if (img2) {
+                    btnContinuar.setText(getResources().getString(R.string.Terminar));
+                    btnContinuar.setEnabled(true);
+                }
             }
             else {
                 ivPregunta2.setImageBitmap(Bitmap.createScaledBitmap(imageBitmap,1000,1000,false));
