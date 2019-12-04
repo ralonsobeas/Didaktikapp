@@ -94,7 +94,7 @@
                 android:background="@drawable/ripple_boton_bg"
                 android:clickable="true"
                 android:enabled="false"
-                android:text="@string/Contunuar" />
+                android:text="@string/Continuar" />
         </LinearLayout>
     </ScrollView>
 

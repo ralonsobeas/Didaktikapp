@@ -1,14 +1,11 @@
 package com.app.didaktikapp.Fragments;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.opengl.Visibility;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -167,7 +164,7 @@ public class FragmentUnibertsitatea extends Fragment {
         });
 
         btnContinuar = view.findViewById(R.id.btnContinuar);
-        btnContinuar.setText("CONTINUAR");
+        btnContinuar.setText(R.string.Continuar);
         btnContinuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -180,7 +177,7 @@ public class FragmentUnibertsitatea extends Fragment {
                 }else if(preguntasLayout.getVisibility() == View.VISIBLE){
                     preguntasLayout.setVisibility(View.INVISIBLE);
                     fotosLayout.setVisibility(View.VISIBLE);
-                    btnContinuar.setText("FINALIZAR");
+                    btnContinuar.setText(R.string.finalizar);
                 }else if(fotosLayout.getVisibility() == View.VISIBLE){
                     getFragmentManager().beginTransaction().remove(FragmentUnibertsitatea.this).commit();
                 }

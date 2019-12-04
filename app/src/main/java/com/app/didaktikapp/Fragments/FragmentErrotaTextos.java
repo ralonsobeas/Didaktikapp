@@ -132,7 +132,7 @@ public class FragmentErrotaTextos extends Fragment {
 
         //CONFIGURAMOS EL BOTON CONTINUAR
         btnContinuar = view.findViewById(R.id.btnContinuar);
-        btnContinuar.setText(getResources().getString(R.string.Contunuar));
+        btnContinuar.setText(getResources().getString(R.string.Continuar));
         btnContinuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
