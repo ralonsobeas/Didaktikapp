@@ -41,6 +41,8 @@ Circle Menu - https://github.com/Ramotion/circle-menu-android
 
 Gif implementation - https://github.com/koral--/android-gif-drawable
 
+Toast customizados (StyleableToast) - https://github.com/Muddz/StyleableToast
+
 
 
 Seguimiento
@@ -151,6 +153,19 @@ Seguimiento
 - [ ] Ideas: https://www.freecodecamp.org/news/25-new-android-libraries-which-you-definitely-want-to-try-at-the-beginning-of-2017-45878d5408c0/
 - [ ] Cambiar idioma de app, cambiar el uso de strings.xml para diferentes idiomas: https://stackoverflow.com/questions/32249144/change-strings-language-in-android-activity
 - [ ] Modo CardStackView: https://github.com/yuyakaido/CardStackView
+
+
+<h4>04/12/2019 Trabajo de desarrollo</h4>
+
+- [x] Presentación pttx terminada  y app preparada
+- [x] Toast personalizados
+- [x] Cambios de estilo en San Miguel Errota Texto
+- [ ] Cambio de layout en San Miguel Errota Texto
+- [x] Todos los strings en strings.xml usados y traducción a euskera
+- [x] Cambio de algunos colores en fragments
+- [ ] Fallos en el puzle al instalar la app en dispositivos físicos
+- [x] Solucionado audio de puzle
+- [x] Audio de fragment universidad eliminado
 
 
 
