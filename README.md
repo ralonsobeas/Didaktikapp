@@ -166,6 +166,7 @@ Seguimiento
 - [ ] Fallos en el puzle al instalar la app en dispositivos físicos
 - [x] Solucionado audio de puzle
 - [x] Audio de fragment universidad eliminado
+- [x] <b><u>Merge de Branch1 con Master #6</u></b>
 
 
 
