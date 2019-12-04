@@ -116,6 +116,7 @@
     <string name="ErrotaPareja3">Oñatiko Udalak erosi zion Santa Ana komentuari San Miguel errota izandakoa 1983an.</string>
     <string name="ErrotaPareja4">Turtikinen funtzionamendua indarrez ardatzak eta harriak biraka jarriz alea ehotzeko era azaltzen duena.</string>
     <string name="ErrotaPareja5">Toberak edo kaxak kono alderantzizkatuen itxuran, berriak egin dira Lasturko Lastur-Goikoa errotakoak eredutzat hartuta.</string>
+    <string name="terminar">Terminar</string>
 
 
     <string name="new_game_loading_text">Generating game data…</string>

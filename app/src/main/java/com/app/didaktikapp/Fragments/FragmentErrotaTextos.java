@@ -146,14 +146,16 @@ public class FragmentErrotaTextos extends Fragment {
 //                    preguntasLayout.setVisibility(View.VISIBLE);
                     btnContinuar.setEnabled(false);
                 }
-//                else if(preguntasLayout.getVisibility() == View.VISIBLE){
-//                    preguntasLayout.setVisibility(View.INVISIBLE);
-//                    fotosLayout.setVisibility(View.VISIBLE);
-//                    btnContinuar.setText("FINALIZAR");
+//                else if(videoLayout.getVisibility() == View.VISIBLE){
+//                    videoLayout.setVisibility(View.INVISIBLE);
+//                    preguntasLayout.setVisibility(View.VISIBLE);
+////                    btnContinuar.setText("FINALIZAR");
+//                    btnContinuar.setEnabled(false);
 //                }
                 else if(preguntasLayout.getVisibility() == View.VISIBLE){
                     guardarImagen(ivPregunta1);
                     guardarImagen(ivPregunta2);
+                    getFragmentManager().beginTransaction().remove(FragmentErrotaTextos.this).commit();
                 }
 
             }
@@ -558,10 +560,10 @@ public class FragmentErrotaTextos extends Fragment {
         video.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
-                Log.i("video","Video terminado");
                 video.setVisibility(View.INVISIBLE);
                 videoLayout.setVisibility(View.INVISIBLE);
                 preguntasLayout.setVisibility(View.VISIBLE);
+                btnContinuar.setEnabled(false);
             }
         });
     }
@@ -613,7 +615,10 @@ public class FragmentErrotaTextos extends Fragment {
                 ivPregunta1.setImageBitmap(Bitmap.createScaledBitmap(imageBitmap,1000,1000,false));
                 ib1.setVisibility(View.INVISIBLE);
                 img1 = true;
-                if (img2) btnContinuar.setEnabled(true);
+                if (img2) {
+                    btnContinuar.setText(getResources().getString(R.string.Terminar));
+                    btnContinuar.setEnabled(true);
+                }
             }
             else {
                 ivPregunta2.setImageBitmap(Bitmap.createScaledBitmap(imageBitmap,1000,1000,false));
