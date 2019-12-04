@@ -41,7 +41,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp">
 
             <TextView
                 android:id="@+id/tvTitulo"
@@ -49,41 +52,46 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/ZumeltzegiTitulo"
-                android:textSize="30sp" />
+                android:textSize="80sp" />
 
             <TextView
                 android:id="@+id/tvPregunta1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/ZumeltzegiPregunta1Titulo" />
+                android:text="@string/ZumeltzegiPregunta1Titulo"
+                android:textSize="30sp"/>
 
             <ImageView
                 android:id="@+id/ivPregunta1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <ImageButton
+            <Button
                 android:id="@+id/btnCameraPregunta1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_menu_camera" />
+                android:src="@android:drawable/ic_menu_camera"
+                app:icon="@drawable/ic_camera_alt_black_24dp"
+                app:iconGravity="textStart"/>
 
             <TextView
                 android:id="@+id/tvPregunta2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/ZumeltzegiPregunta2Titulo" />
+                android:text="@string/ZumeltzegiPregunta2Titulo"
+                android:textSize="30sp"/>
 
             <ImageView
                 android:id="@+id/ivPregunta2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <ImageButton
+            <Button
                 android:id="@+id/btnCameraPregunta2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_menu_camera" />
+                app:icon="@drawable/ic_camera_alt_black_24dp"
+                app:iconGravity="textStart"/>
 
             <Button
                 android:id="@+id/btnContinuar"

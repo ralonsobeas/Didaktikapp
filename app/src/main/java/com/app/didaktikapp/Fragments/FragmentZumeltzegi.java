@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -17,10 +18,12 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,12 +33,15 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.R;
 import com.muddzdev.styleabletoast.StyleableToast;
+
+import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -138,6 +144,11 @@ public class FragmentZumeltzegi extends Fragment {
                     REQUEST_IMAGE_CAPTURE1);
         }
 
+        TextView tv=(TextView)view.findViewById(R.id.tvTitulo);
+        Typeface type =  ResourcesCompat.getFont(getActivity(), R.font.youthtouch);
+        tv.setTypeface(type);
+        tv.setText(Html.fromHtml(getString(R.string.ZumeltzegiTitulo)));
+
 //        final VideoView videoView = view.findViewById(R.id.videoView);
 //        String path = "android.resource://" + getActivity().getPackageName() + "/" + R.raw.sanmiguele;
 //        videoView.setVideoURI(Uri.parse(path));
@@ -165,10 +176,10 @@ public class FragmentZumeltzegi extends Fragment {
         ivPregunta1 = view.findViewById(R.id.ivPregunta1);
         ivPregunta2 = view.findViewById(R.id.ivPregunta2);
 
-        ImageButton btnPregunta1 = view.findViewById(R.id.btnCameraPregunta1);
+        Button btnPregunta1 = view.findViewById(R.id.btnCameraPregunta1);
         btnPregunta1.setOnClickListener(new ListenerBoton());
 
-        ImageButton btnPregunta2 = view.findViewById(R.id.btnCameraPregunta2);
+        Button btnPregunta2 = view.findViewById(R.id.btnCameraPregunta2);
         btnPregunta2.setOnClickListener(new ListenerBoton());
 
         Button btnContinuar = view.findViewById(R.id.btnContinuar);

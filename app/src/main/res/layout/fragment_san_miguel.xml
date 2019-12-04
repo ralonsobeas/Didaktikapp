@@ -40,7 +40,10 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitulo">
+            app:layout_constraintTop_toBottomOf="@+id/tvTitulo"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp">
 
             <TextView
                 android:id="@+id/tvPregunta1"

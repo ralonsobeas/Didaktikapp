@@ -53,7 +53,7 @@
     <string name="ZumeltzegiSopaNew_game">Jolas berria</string>
     <string name="ZumeltzegiSopaFinish_text">You have just finished :gridSize grid with :uwCount words in :duration</string>
 
-    <string name="ZumeltzegiTitulo">Zumeltzegi Test</string>
+    <string name="ZumeltzegiTitulo"><![CDATA[Zumeltzegi ]]></string>
     <string name="ZumeltzegiPregunta1Titulo">1.Zertarako eraiki zen dorretxea?</string>
 
     <string name="ZumeltzegiPregunta2Titulo">2. Ze familia bizi zen dorretxean XV. Mendean?</string>

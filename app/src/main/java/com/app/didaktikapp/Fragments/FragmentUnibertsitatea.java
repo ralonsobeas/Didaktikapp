@@ -65,7 +65,7 @@ public class FragmentUnibertsitatea extends Fragment {
         typeWriterView.setDelay(10);
 
         //Setting music effect On/Off
-        typeWriterView.setWithMusic(true);
+        typeWriterView.setWithMusic(false);
 
         //Animating Text
         typeWriterView.animateText(getString(R.string.TextoUniversidad));
