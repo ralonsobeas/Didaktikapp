@@ -169,7 +169,7 @@ Seguimiento
 - [x] <b><u>Merge de Branch1 con Master #6</u></b>
 
 
-<h4>09/12/2019 Trabajo de desarrollo</h4>
+<h4>09/12/2019</h4>
 
 - [ ] Posible cambio de TypeWriter: https://android-arsenal.com/details/1/7711
 - [ ] Justificar textos: https://android-arsenal.com/details/1/7437
