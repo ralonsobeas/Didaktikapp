@@ -175,6 +175,7 @@ Seguimiento
 - [ ] Justificar textos: https://android-arsenal.com/details/1/7437
 - [ ] Posible Drag&Drop: https://stackoverflow.com/questions/20085711/dragging-a-textview-into-an-edittext
 - [ ] Lottie: https://github.com/airbnb/lottie-android
+- [ ] Menu: https://github.com/anshulagarwal2k/GooeyMenu
 
 Funcionamiento de la app
 ------------------------------------------------------------------------
