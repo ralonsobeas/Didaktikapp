@@ -58,6 +58,10 @@ public class MainActivity extends AppCompatActivity {
 //        }
         setContentView(R.layout.activity_main);
 
+//        ### PRUEBA DE CONEXION CON BD ###
+//        SQLiteControlador sql = new SQLiteControlador(this);
+//        sql.crearPrueba();
+
         TextView tv=(TextView)findViewById(R.id.tvTitulo);
         Typeface type =  ResourcesCompat.getFont(this, R.font.youthtouch);
         tv.setTypeface(type);
