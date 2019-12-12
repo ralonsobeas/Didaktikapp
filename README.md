@@ -177,6 +177,11 @@ Seguimiento
 - [ ] Lottie: https://github.com/airbnb/lottie-android
 - [ ] Menu: https://github.com/anshulagarwal2k/GooeyMenu
 
+
+<h4>12/12/2019 Trabajo de desarrollo</h4>
+
+- [x] Comienzo de implantación de BBDD SQLite, pruebas realizadas con éxito
+
 Funcionamiento de la app
 ------------------------------------------------------------------------
 
