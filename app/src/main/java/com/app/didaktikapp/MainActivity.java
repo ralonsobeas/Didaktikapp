@@ -5,32 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
-import android.view.Display;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.app.didaktikapp.Activities.MapActivity;
+import com.app.didaktikapp.BBDD.SQLiteControlador;
 import com.app.didaktikapp.CircleMenu.CircleMenuView;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 import at.markushi.ui.CircleButton;
-import pl.droidsonroids.gif.GifImageView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -57,10 +45,6 @@ public class MainActivity extends AppCompatActivity {
 //            e.printStackTrace();
 //        }
         setContentView(R.layout.activity_main);
-
-//        ### PRUEBA DE CONEXION CON BD ###
-//        SQLiteControlador sql = new SQLiteControlador(this);
-//        sql.crearPrueba();
 
         TextView tv=(TextView)findViewById(R.id.tvTitulo);
         Typeface type =  ResourcesCompat.getFont(this, R.font.youthtouch);
@@ -118,13 +102,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onButtonClickAnimationEnd(@NonNull CircleMenuView view, int index) {
                 Log.d("D", "onButtonClickAnimationEnd| index: " + index);
+                Intent i = new Intent(MainActivity.this, MapActivity.class);
                 switch (index){
                     case 0:
-                        Intent i = new Intent(MainActivity.this, MapActivity.class);
+                        SQLiteControlador sql = new SQLiteControlador(getApplicationContext());
+                        sql.iniciarApp();
+
                         startActivity(i);
 
                         break;
                     case 1:
+                        startActivity(i);
                         break;
                     case 2:
                         finish();

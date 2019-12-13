@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.app.didaktikapp.BBDD.SQLiteControlador;
 import com.app.didaktikapp.Fragments.FragmentErrota;
 import com.app.didaktikapp.Fragments.FragmentErrotaTextos;
 import com.app.didaktikapp.Fragments.FragmentPuzle;
@@ -88,7 +89,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private Context context;
 
 
-private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
+    private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
         .include(new LatLng(43.042073, -2.422996)) // Northeast
         .include(new LatLng(43.028919, -2.405703)) // Southwest
         .build();
@@ -164,68 +165,185 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
         });
 
 
-
-
-
         mapboxMap.setOnMarkerClickListener(new MapboxMap.OnMarkerClickListener() {
 
             @Override
             public boolean onMarkerClick(@NonNull Marker marker) {
                 IconFactory iconFactory = IconFactory.getInstance(context);
+                Icon iconorojo = iconFactory.fromResource(R.drawable.pin_sinhacer);
+                Icon iconoamarillo = iconFactory.fromResource(R.drawable.pin_empezado);
                 Icon iconoverde = iconFactory.fromResource(R.drawable.pin_hecho);
+                SQLiteControlador sql = new SQLiteControlador(getApplicationContext());
+
+                /*
+                * Por cada punto con actividades que hay en el mapa, se comprueba el estado en
+                * el que está, si hecho, empezado o deshabilitado, se procede a poner el icono
+                * y se determina si se abre la actividad o no*/
+
+                //ZUMELTZEGI DORREA (1)
                 if(marker.getPosition().getLatitude()==43.035000 && marker.getPosition().getLongitude()==-2.412889){
-                    marker.setIcon(iconoverde);
-                    FragmentZumeltzegi fragment = new FragmentZumeltzegi();
-                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
-                    transaction.replace(R.id.fragment_frame, fragment);
-                    transaction.commit();
-                    transaction.addToBackStack("Fragment");
+                    int estado = sql.disponibilidadZumeltzegiDorrea();
+                    boolean mostrar = false;
+                    switch (estado) {
+                        case -1:
+                            marker.setIcon(iconorojo);
+                            break;
+                        case 0:
+                            marker.setIcon(iconoamarillo);
+                            mostrar = true;
+                            break;
+                        case 1:
+                            marker.setIcon(iconoamarillo);
+                            mostrar = true;
+                            break;
+                        case 2:
+                            marker.setIcon(iconoverde);
+                            break;
 
-                }else if(marker.getPosition().getLatitude()==43.033944 && marker.getPosition().getLongitude()==-2.415361){
-                    marker.setIcon(iconoverde);
-                    FragmentUnibertsitatea fragment = new FragmentUnibertsitatea();
-                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.fragment_frame, fragment);
-                    transaction.commit();
-                    transaction.addToBackStack("Fragment");
+                    }
+                    if (mostrar) {
+                        FragmentZumeltzegi fragment = new FragmentZumeltzegi();
+                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                        transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
+                        transaction.replace(R.id.fragment_frame, fragment);
+                        transaction.commit();
+                        transaction.addToBackStack("Fragment");
+                    }
 
-                }else if(marker.getPosition().getLatitude()==43.033417 && marker.getPosition().getLongitude()==-2.413917){
-                    marker.setIcon(iconoverde);
-                    FragmentSanMiguel fragment = new FragmentSanMiguel();
-                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
-                    transaction.replace(R.id.fragment_frame, fragment);
-                    transaction.commit();
-                    transaction.addToBackStack("Fragment");
+                }
+                //SAN MIGUEL PARROKIA (2)
+                else if(marker.getPosition().getLatitude()==43.033417 && marker.getPosition().getLongitude()==-2.413917){
+                    int estado = sql.disponibilidadSanMiguelParrokia();
+                    boolean mostrar = false;
+                    switch (estado) {
+                        case -1:
+                            marker.setIcon(iconorojo);
+                            break;
+                        case 0:
+                            marker.setIcon(iconoamarillo);
+                            mostrar = true;
+                            break;
+                        case 1:
+                            marker.setIcon(iconoamarillo);
+                            mostrar = true;
+                            break;
+                        case 2:
+                            marker.setIcon(iconoverde);
+                            break;
 
-                }else if(marker.getPosition().getLatitude()==43.033833 && marker.getPosition().getLongitude()==-2.416111){
-                    marker.setIcon(iconoverde);
-                    FragmentPuzle fragment = new FragmentPuzle();
-                    Bundle bundle = new Bundle();
-                    bundle.putInt(FragmentPuzle.ARG_IMAGEN, R.drawable.tren);
-                    fragment.setArguments(bundle);
-                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
-                    transaction.replace(R.id.fragment_frame, fragment);
-                    transaction.commit();
-                    transaction.addToBackStack("Fragment");
+                    }
+                    if (mostrar) {
+                        FragmentSanMiguel fragment = new FragmentSanMiguel();
+                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                        transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
+                        transaction.replace(R.id.fragment_frame, fragment);
+                        transaction.commit();
+                        transaction.addToBackStack("Fragment");
+                    }
 
-                }else if(marker.getPosition().getLatitude()==43.032917 && marker.getPosition().getLongitude()==-2.415750){
-                    marker.setIcon(iconoverde);
-//                    FragmentErrota fragment = new FragmentErrota();
-//                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//                    transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
-//                    transaction.replace(R.id.fragment_frame, fragment);
-//                    transaction.commit();
-//                    transaction.addToBackStack("Fragment");
-                    FragmentErrotaTextos fragment = new FragmentErrotaTextos();
-                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
-                    transaction.replace(R.id.fragment_frame, fragment);
-                    transaction.commit();
-                    transaction.addToBackStack("Fragment");
-                }else if(marker.getPosition().getLatitude()==43.000583 && marker.getPosition().getLongitude()==-2.433250){
+                }
+                //UNIBERTSITATEA (3)
+                else if(marker.getPosition().getLatitude()==43.033944 && marker.getPosition().getLongitude()==-2.415361){
+                    int estado = sql.disponibilidadUnibertsitatea();
+                    boolean mostrar = false;
+                    switch (estado) {
+                        case -1:
+                            marker.setIcon(iconorojo);
+                            break;
+                        case 0:
+                            marker.setIcon(iconoamarillo);
+                            mostrar = true;
+                            break;
+                        case 1:
+                            marker.setIcon(iconoamarillo);
+                            mostrar = true;
+                            break;
+                        case 2:
+                            marker.setIcon(iconoverde);
+                            break;
+
+                    }
+                    if (mostrar) {
+                        FragmentUnibertsitatea fragment = new FragmentUnibertsitatea();
+                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                        transaction.replace(R.id.fragment_frame, fragment);
+                        transaction.commit();
+                        transaction.addToBackStack("Fragment");
+                    }
+
+                }
+                //TRENA (4)
+                else if(marker.getPosition().getLatitude()==43.033833 && marker.getPosition().getLongitude()==-2.416111){
+                    int estado = sql.disponibilidadTrena();
+                    boolean mostrar = false;
+                    switch (estado) {
+                        case -1:
+                            marker.setIcon(iconorojo);
+                            break;
+                        case 0:
+                            marker.setIcon(iconoamarillo);
+                            mostrar = true;
+                            break;
+                        case 1:
+                            marker.setIcon(iconoamarillo);
+                            mostrar = true;
+                            break;
+                        case 2:
+                            marker.setIcon(iconoverde);
+                            break;
+
+                    }
+                    if (mostrar) {
+                        FragmentPuzle fragment = new FragmentPuzle();
+                        Bundle bundle = new Bundle();
+                        bundle.putInt(FragmentPuzle.ARG_IMAGEN, R.drawable.tren);
+                        fragment.setArguments(bundle);
+                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                        transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
+                        transaction.replace(R.id.fragment_frame, fragment);
+                        transaction.commit();
+                        transaction.addToBackStack("Fragment");
+                    }
+
+                }
+                //SAN MIGUEL ERROTA (5)
+                else if(marker.getPosition().getLatitude()==43.032917 && marker.getPosition().getLongitude()==-2.415750){
+                    int estado = sql.disponibilidadSanMiguelErrota();
+                    boolean mostrar = false;
+                    switch (estado) {
+                        case -1:
+                            marker.setIcon(iconorojo);
+                            break;
+                        case 0:
+                            marker.setIcon(iconoamarillo);
+                            mostrar = true;
+                            break;
+                        case 1:
+                            marker.setIcon(iconoamarillo);
+                            mostrar = true;
+                            break;
+                        case 2:
+                            marker.setIcon(iconoverde);
+                            break;
+
+                    }
+                    if (mostrar) {
+                        FragmentErrotaTextos fragment = new FragmentErrotaTextos();
+                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                        transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
+                        transaction.replace(R.id.fragment_frame, fragment);
+                        transaction.commit();
+                        transaction.addToBackStack("Fragment");
+                    }
+
+                }
+                //ARAOTZ ASUA (sin uso, arriba)
+                else if(marker.getPosition().getLatitude()==43.009139 && marker.getPosition().getLongitude()==-2.431444){
+
+
+                }
+                //ARRIKRUTZEKO KOBAK (sin uso, en medio)
+                else if(marker.getPosition().getLatitude()==43.000583 && marker.getPosition().getLongitude()==-2.433250){
                     marker.setIcon(iconoverde);
                     Log.i("tag","s");
                     Intent intent = new Intent(MapActivity.this, SplashScreenActivity.class);
@@ -233,16 +351,10 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
                     intent.putExtra(GamePlayActivity.EXTRA_COL_COUNT, 10);
                     startActivity(intent);
 
-                }else if(marker.getPosition().getLatitude()==42.979194 && marker.getPosition().getLongitude()==-2.398583){
-//                    Este punto es el de Arantsasu, al sur del mapa
+                }
+                //ARANTZAZUKO SANTUTEGIA (sin uso, abajo)
+                else if(marker.getPosition().getLatitude()==42.979194 && marker.getPosition().getLongitude()==-2.398583){
 //
-//                    marker.setIcon(iconoverde);
-//                    FragmentErrotaTextos fragment = new FragmentErrotaTextos();
-//                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//                    transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
-//                    transaction.replace(R.id.fragment_frame, fragment);
-//                    transaction.commit();
-//                    transaction.addToBackStack("Fragment");
 
                 }
 
@@ -272,16 +384,60 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
     private void crearIconos(){
         IconFactory iconFactory = IconFactory.getInstance(context);
         Icon iconorojo = iconFactory.fromResource(R.drawable.pin_sinhacer);
+        Icon iconoamarillo = iconFactory.fromResource(R.drawable.pin_empezado);
 //        Icon iconoamarillo = iconFactory.fromResource(R.drawable.yellow_marker);
         Icon iconoverde = iconFactory.fromResource(R.drawable.pin_hecho);
 //        Icon iconogris = iconFactory.fromResource(R.drawable.grey_marker);
 
 
-        for(Lugar lugar : listaLugares) {
+//        for(Lugar lugar : listaLugares) {
+//            mapboxMap.addMarker(new MarkerOptions()
+//                    .position(lugar.getCoordenadas())
+//                    .title(lugar.getNombre())
+//                    .setIcon(iconorojo));
+//        }
+
+        /*
+        * Al cargar el mapa, comprobamos la disponibilidad de los puntos
+        * para asignarle el icono correspondiente por si está o no está hecho
+        *
+        * He comentado el anterior for para no perder el código*/
+        SQLiteControlador sql = new SQLiteControlador(getApplicationContext());
+        for (int x=0;x<listaLugares.size();x++) {
+            Icon icono = iconorojo;
+            int dis = -1;
+            switch (x) {
+                case 0:
+                    dis = sql.disponibilidadZumeltzegiDorrea();
+                    if (dis==1) icono = iconoamarillo;
+                    else if (dis==2) icono = iconoverde;
+                    break;
+                case 1:
+                    dis = sql.disponibilidadSanMiguelParrokia();
+                    if (dis==1) icono = iconoamarillo;
+                    else if (dis==2) icono = iconoverde;
+                    break;
+                case 2:
+                    dis = sql.disponibilidadUnibertsitatea();
+                    if (dis==1) icono = iconoamarillo;
+                    else if (dis==2) icono = iconoverde;
+                    break;
+                case 3:
+                    dis = sql.disponibilidadTrena();
+                    if (dis==1) icono = iconoamarillo;
+                    else if (dis==2) icono = iconoverde;
+                    break;
+                case 4:
+                    dis = sql.disponibilidadSanMiguelErrota();
+                    if (dis==1) icono = iconoamarillo;
+                    else if (dis==2) icono = iconoverde;
+                    break;
+            }
+            Lugar lugar = listaLugares.get(x);
             mapboxMap.addMarker(new MarkerOptions()
                     .position(lugar.getCoordenadas())
                     .title(lugar.getNombre())
-                    .setIcon(iconorojo));
+                    .setIcon(icono));
         }
     }
 
@@ -290,8 +446,8 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
         this.listaLugares = new ArrayList<Lugar>();
 
         listaLugares.add(new Lugar(getString(R.string.nombreLugar1),new LatLng(43.035000, -2.412889)));
-        listaLugares.add(new Lugar(getString(R.string.nombreLugar2),new LatLng(43.033944, -2.415361)));
         listaLugares.add(new Lugar(getString(R.string.nombreLugar3),new LatLng(43.033417, -2.413917)));
+        listaLugares.add(new Lugar(getString(R.string.nombreLugar2),new LatLng(43.033944, -2.415361)));
         listaLugares.add(new Lugar(getString(R.string.nombreLugar4),new LatLng(43.033833, -2.416111)));
         listaLugares.add(new Lugar(getString(R.string.nombreLugar5),new LatLng(43.032917,  -2.415750)));
         listaLugares.add(new Lugar(getString(R.string.nombreLugar6),new LatLng(42.979194,  -2.398583)));
