@@ -190,6 +190,7 @@ Seguimiento
 - [x] Comienzo de implantación de animación y ruta en Markers
 - [x] Problemas con API >=28 y mapbox
 - [ ] ¿Posible BBDD? : https://realm.io/docs/java/latest/
+- [ ] https://auth0.com/blog/integrating-realm-database-in-an-android-application/
 
 
 Funcionamiento de la app
