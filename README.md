@@ -189,7 +189,7 @@ Seguimiento
 - [x] Ideas top secret que no se deben copiar (GRK)
 - [x] Comienzo de implantación de animación y ruta en Markers
 - [x] Problemas con API >=28 y mapbox
-- [ ] ¿Posible BBDD? : https://realm.io/docs/java/latest/
+- [ ] ¿Posible BBDD? : https://realm.io/docs/java/latest/ ? https://javautodidacta.es/base-de-datos-room-en-android/
 - [ ] https://auth0.com/blog/integrating-realm-database-in-an-android-application/
 
 
