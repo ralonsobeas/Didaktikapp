@@ -105,8 +105,8 @@ public class MainActivity extends AppCompatActivity {
                 Intent i = new Intent(MainActivity.this, MapActivity.class);
                 switch (index){
                     case 0:
-                        SQLiteControlador sql = new SQLiteControlador(getApplicationContext());
-                        sql.iniciarApp();
+//                        SQLiteControlador sql = new SQLiteControlador(getApplicationContext());
+//                        sql.iniciarApp();
 
                         startActivity(i);
 

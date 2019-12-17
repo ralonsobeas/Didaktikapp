@@ -88,6 +88,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     private Context context;
 
+    private int idgrupo;
 
     private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
         .include(new LatLng(43.042073, -2.422996)) // Northeast
@@ -182,7 +183,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                 //ZUMELTZEGI DORREA (1)
                 if(marker.getPosition().getLatitude()==43.035000 && marker.getPosition().getLongitude()==-2.412889){
-                    int estado = sql.disponibilidadZumeltzegiDorrea();
+                    int estado = sql.disponibilidadActividad("ActividadZumeltzegi",idgrupo);
                     boolean mostrar = false;
                     switch (estado) {
                         case -1:
@@ -190,6 +191,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                             break;
                         case 0:
                             marker.setIcon(iconoamarillo);
+                            sql.empezarActividad("ActividadZumeltzegi",idgrupo);
                             mostrar = true;
                             break;
                         case 1:
@@ -213,7 +215,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 }
                 //SAN MIGUEL PARROKIA (2)
                 else if(marker.getPosition().getLatitude()==43.033417 && marker.getPosition().getLongitude()==-2.413917){
-                    int estado = sql.disponibilidadSanMiguelParrokia();
+                    int estado = sql.disponibilidadActividad("ActividadSanMiguel",idgrupo);
                     boolean mostrar = false;
                     switch (estado) {
                         case -1:
@@ -221,6 +223,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                             break;
                         case 0:
                             marker.setIcon(iconoamarillo);
+                            sql.empezarActividad("ActividadSanMiguel",idgrupo);
                             mostrar = true;
                             break;
                         case 1:
@@ -244,7 +247,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 }
                 //UNIBERTSITATEA (3)
                 else if(marker.getPosition().getLatitude()==43.033944 && marker.getPosition().getLongitude()==-2.415361){
-                    int estado = sql.disponibilidadUnibertsitatea();
+                    int estado = sql.disponibilidadActividad("ActividadUniversidad",idgrupo);
                     boolean mostrar = false;
                     switch (estado) {
                         case -1:
@@ -252,6 +255,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                             break;
                         case 0:
                             marker.setIcon(iconoamarillo);
+                            sql.empezarActividad("ActividadUniversidad",idgrupo);
                             mostrar = true;
                             break;
                         case 1:
@@ -274,7 +278,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 }
                 //TRENA (4)
                 else if(marker.getPosition().getLatitude()==43.033833 && marker.getPosition().getLongitude()==-2.416111){
-                    int estado = sql.disponibilidadTrena();
+                    int estado = sql.disponibilidadActividad("ActividadTren",idgrupo);
                     boolean mostrar = false;
                     switch (estado) {
                         case -1:
@@ -282,6 +286,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                             break;
                         case 0:
                             marker.setIcon(iconoamarillo);
+                            sql.empezarActividad("ActividadTren",idgrupo);
                             mostrar = true;
                             break;
                         case 1:
@@ -308,7 +313,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 }
                 //SAN MIGUEL ERROTA (5)
                 else if(marker.getPosition().getLatitude()==43.032917 && marker.getPosition().getLongitude()==-2.415750){
-                    int estado = sql.disponibilidadSanMiguelErrota();
+                    int estado = sql.disponibilidadActividad("ActividadErrota",idgrupo);
                     boolean mostrar = false;
                     switch (estado) {
                         case -1:
@@ -316,6 +321,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                             break;
                         case 0:
                             marker.setIcon(iconoamarillo);
+                            sql.empezarActividad("ActividadErrota",idgrupo);
                             mostrar = true;
                             break;
                         case 1:
@@ -381,6 +387,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mapboxMap.addPolygon(boundsArea);
     }
 
+//    public static void actualizarIconos() {
+//
+//    }
+
     private void crearIconos(){
         IconFactory iconFactory = IconFactory.getInstance(context);
         Icon iconorojo = iconFactory.fromResource(R.drawable.pin_sinhacer);
@@ -408,27 +418,27 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             int dis = -1;
             switch (x) {
                 case 0:
-                    dis = sql.disponibilidadZumeltzegiDorrea();
+                    dis = sql.disponibilidadActividad("ActividadZumeltzegi",idgrupo);
                     if (dis==1) icono = iconoamarillo;
                     else if (dis==2) icono = iconoverde;
                     break;
                 case 1:
-                    dis = sql.disponibilidadSanMiguelParrokia();
+                    dis = sql.disponibilidadActividad("ActividadSanMiguel",idgrupo);
                     if (dis==1) icono = iconoamarillo;
                     else if (dis==2) icono = iconoverde;
                     break;
                 case 2:
-                    dis = sql.disponibilidadUnibertsitatea();
+                    dis = sql.disponibilidadActividad("ActividadUniversidad",idgrupo);
                     if (dis==1) icono = iconoamarillo;
                     else if (dis==2) icono = iconoverde;
                     break;
                 case 3:
-                    dis = sql.disponibilidadTrena();
+                    dis = sql.disponibilidadActividad("ActividadTren",idgrupo);
                     if (dis==1) icono = iconoamarillo;
                     else if (dis==2) icono = iconoverde;
                     break;
                 case 4:
-                    dis = sql.disponibilidadSanMiguelErrota();
+                    dis = sql.disponibilidadActividad("ActividadErrota",idgrupo);
                     if (dis==1) icono = iconoamarillo;
                     else if (dis==2) icono = iconoverde;
                     break;
