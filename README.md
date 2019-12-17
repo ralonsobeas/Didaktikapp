@@ -182,6 +182,15 @@ Seguimiento
 
 - [x] Comienzo de implantación de BBDD SQLite, pruebas realizadas con éxito
 
+
+<h4>17/12/2019 Trabajo de desarrollo</h4>
+
+- [x] Estructura de la BBDD diseñada
+- [x] Ideas top secret que no se deben copiar (GRK)
+- [x] Comienzo de implantación de animación y ruta en Markers
+- [x] Problemas con API >=28 y mapbox
+
+
 Funcionamiento de la app
 ------------------------------------------------------------------------
 
