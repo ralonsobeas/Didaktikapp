@@ -192,6 +192,12 @@ Seguimiento
 - [ ] ¿Posible BBDD? : https://realm.io/docs/java/latest/ ? https://javautodidacta.es/base-de-datos-room-en-android/
 - [ ] https://auth0.com/blog/integrating-realm-database-in-an-android-application/
 
+<h4>17/12/2019 Trabajo de desarrollo</h4>
+
+- [x] Arreglo error api >= 28
+- [x] Líneas de ruta preparadas
+- [ ] Puzle en proceso de arreglo
+- [x] Parte de implementación de BBDD
 
 Funcionamiento de la app
 ------------------------------------------------------------------------
