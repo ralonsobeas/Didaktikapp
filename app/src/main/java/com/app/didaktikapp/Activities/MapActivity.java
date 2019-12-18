@@ -105,9 +105,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     private Context context;
 
-    private ValueAnimator animator;
-    private LatLng currentPosition = new LatLng(43.035000, -2.413917);
-    private GeoJsonSource geoJsonSource;
 
     private int idgrupo;
 
@@ -120,6 +117,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     private List<Point> routeCoordinates;
 
+
+
+    private Style style;
+
+    public void setStyle(Style style) {
+        this.style = style;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,38 +159,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     }
 
-    //NUEVOOO
-    private final ValueAnimator.AnimatorUpdateListener animatorUpdateListener =
-            new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    LatLng animatedPosition = (LatLng) valueAnimator.getAnimatedValue();
-                    geoJsonSource.setGeoJson(Point.fromLngLat(animatedPosition.getLongitude(), animatedPosition.getLatitude()));
-                }
-            };
-
-    private static final TypeEvaluator<LatLng> latLngEvaluator = new TypeEvaluator<LatLng>() {
-
-        private final LatLng latLng = new LatLng();
-
-        @Override
-        public LatLng evaluate(float fraction, LatLng startValue, LatLng endValue) {
-            latLng.setLatitude(startValue.getLatitude()
-                    + ((endValue.getLatitude() - startValue.getLatitude()) * fraction));
-            latLng.setLongitude(startValue.getLongitude()
-                    + ((endValue.getLongitude() - startValue.getLongitude()) * fraction));
-            return latLng;
-        }
-    };
-
     @Override
     public void onMapReady(@NonNull final MapboxMap mapboxMap) {
 
         this.mapboxMap = mapboxMap;
 
-        geoJsonSource = new GeoJsonSource("source-id",
-                Feature.fromGeometry(Point.fromLngLat(currentPosition.getLongitude(),
-                        currentPosition.getLatitude())));
 
 
         mapboxMap.setCameraPosition(new CameraPosition.Builder()
@@ -209,22 +186,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                 // Map is set up and the style has loaded. Now you can add data or make other map adjustments
                 enableLocationComponent(style);
-
-                Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.ic_update, null);
-                Bitmap mBitmap = BitmapUtils.getBitmapFromDrawable(drawable);
-
-                style.addImage(("marker_icon"), mBitmap);
-
-                style.addSource(geoJsonSource);
-
-                initRouteCoordinates();
-
+                actualizarMarkerLinea(-2.41288,43.03500,-2.413917,43.033417);
                 // Create the LineString from the list of coordinates and then make a GeoJSON
                 // FeatureCollection so we can add the line to our map as a layer.
                 style.addSource(new GeoJsonSource("line-source",
                         FeatureCollection.fromFeatures(new Feature[] {Feature.fromGeometry(
                                 LineString.fromLngLats(routeCoordinates)
                         )})));
+
 
                 // The layer properties for our line. This is where we make the line dotted, set the
                 // color, etc.
@@ -237,31 +206,20 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                 ));
 
-                //NUEVOOO
-                style.addLayer(new SymbolLayer("layer-id", "source-id")
-                        .withProperties(
-                                PropertyFactory.iconImage("marker_icon"),
-                                PropertyFactory.iconIgnorePlacement(true),
-                                PropertyFactory.iconAllowOverlap(true)
-                        ));
+
+
+                setStyle(style);
+
+
+
+
+
 
             }
 
             });
 
-        //NUEVOOOOO
-        // When the user clicks on the map, we want to animate the marker to that
-        // location.
-        if (animator != null && animator.isStarted()) {
-            currentPosition = (LatLng) animator.getAnimatedValue();
-            animator.cancel();
-        }
 
-        animator = ObjectAnimator
-                .ofObject(latLngEvaluator, currentPosition, new LatLng(43.033417, -2.413917))
-                .setDuration(10000);
-        animator.addUpdateListener(animatorUpdateListener);
-        animator.start();
 
         mapboxMap.setOnMarkerClickListener(new MapboxMap.OnMarkerClickListener() {
 
@@ -280,6 +238,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                 //ZUMELTZEGI DORREA (1)
                 if(marker.getPosition().getLatitude()==43.035000 && marker.getPosition().getLongitude()==-2.412889){
+                    actualizarMarkerLinea(-2.413917,43.033417,-2.415361,43.033944);
                     int estado = sql.disponibilidadActividad("ActividadZumeltzegi",idgrupo);
                     marker.setIcon(iconoPunto(estado));
                     if (entrarEnPunto(estado)) {
@@ -407,9 +366,40 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mapboxMap.addPolygon(boundsArea);
     }
 
-//    public static void actualizarIconos() {
-//
-//    }
+    public void actualizarMarkerLinea(Double lngOrigen, Double latOrigen, Double lngDestino, Double latDestino) {
+        routeCoordinates = new ArrayList<>();
+        routeCoordinates.add(Point.fromLngLat(lngOrigen, latOrigen));
+        routeCoordinates.add(Point.fromLngLat(lngDestino, latDestino));
+
+        drawNavigationPolylineRoute(routeCoordinates);
+
+
+    }
+
+    /**
+     * Update the GeoJson data that's part of the LineLayer.
+     *
+     *
+     */
+    private void drawNavigationPolylineRoute(List<Point> routeCoordinates) {
+
+        if (mapboxMap != null) {
+            mapboxMap.getStyle(new Style.OnStyleLoaded() {
+                @Override
+                public void onStyleLoaded(@NonNull Style style) {
+
+
+                    GeoJsonSource source = style.getSourceAs("line-source");
+                    if (source != null) {
+                        source.setGeoJson(FeatureCollection.fromFeatures(new Feature[]{Feature.fromGeometry(
+                                LineString.fromLngLats(routeCoordinates))
+                        }));
+                    }
+
+                }
+            });
+        }
+    }
 
     private void crearIconos(){
         IconFactory iconFactory = IconFactory.getInstance(context);
@@ -575,6 +565,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     }
 
+    @Override
+    public void onFragmentInteraction(boolean terminado) {
+        actualizarMarkerLinea(-2.413917,43.033417,-2.431444,43.033833);
+    }
+
     private static class LocationChangeListeningActivityLocationCallback
             implements LocationEngineCallback<LocationEngineResult> {
 
@@ -656,16 +651,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         return distancia;
     }
 
-    private void initRouteCoordinates() {
-// Create a list to store our line coordinates.
-        routeCoordinates = new ArrayList<>();
-        routeCoordinates.add(Point.fromLngLat(-2.412889, 43.035000));
-        routeCoordinates.add(Point.fromLngLat(-2.413917, 43.033417));
-
-
-
-
-    }
 
 
 
