@@ -198,6 +198,8 @@ Seguimiento
 - [x] Líneas de ruta preparadas
 - [ ] Puzle en proceso de arreglo
 - [x] Parte de implementación de BBDD
+- [ ] Dialogo para inicio mapa: https://github.com/mejdi14/Flat-Dialog-Android?utm_source=android-arsenal.com&utm_medium=referral&utm_campaign=7926
+
 
 Funcionamiento de la app
 ------------------------------------------------------------------------
