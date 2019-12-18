@@ -115,243 +115,52 @@ public class SQLiteControlador {
 
         db.close();
     }
-
-    /*
-    * Metodos para actualizar la disponibilidad de los puntos y sus actividades
-    *
-    * Se pasa el string actualizar para identificar qué acción se ha realizado
-    * y actualizar la BD acorde a ello
-    *
-    * Cuando se finaliza la ultima actividad se habilita el acceso a la siguiente
-    *
-    * METODOS INUTILES PARA VERSION 3 DE BBDD */
-    public void actualizarZumeltzegiDorrea(String actualizar) {
-        SQLiteHelper sqlh = getSQLiteHelper();
-        SQLiteDatabase db = sqlh.getWritableDatabase();
-
-        if (db != null){
-
-            switch (actualizar) {
-                case "comenzar":
-                    db.execSQL("UPDATE ZumeltzegiDorrea SET completado=1");
-                    break;
-                case "fotos":
-                    db.execSQL("UPDATE ZumeltzegiDorrea SET fotos=1");
-                    break;
-                case "sopa":
-                    db.execSQL("UPDATE ZumeltzegiDorrea SET completado=2,sopa=1");
-                    db.execSQL("UPDATE SanMiguelParrokia SET completado=0");
-                    break;
-                default:
-                    Log.e("SQLite","Método ("+actualizar+") no encontrado para actualizar Zumeltzegi Dorrea");
-                    break;
-            }
-
-            db.close();
-
-        } else {
-            Log.e("SQLite","Error actualizando Zumeltzegi Dorrea ("+actualizar+")");
-        }
-    }
-
-    public void actualizarSanMiguelParrokia(String actualizar) {
-        SQLiteHelper sqlh = getSQLiteHelper();
-        SQLiteDatabase db = sqlh.getWritableDatabase();
-
-        if (db != null){
-
-            switch (actualizar) {
-                case "comenzar":
-                    db.execSQL("UPDATE SanMiguelParrokia SET completado=1");
-                    break;
-                case "test":
-                    db.execSQL("UPDATE SanMiguelParrokia SET test=1");
-                    break;
-                case "fotos":
-                    db.execSQL("UPDATE SanMiguelParrokia SET completado=2,fotos=1");
-                    db.execSQL("UPDATE Unibertsitatea SET completado=0");
-                    break;
-                default:
-                    Log.e("SQLite","Método ("+actualizar+") no encontrado para actualizar San Miguel Parrokia");
-                    break;
-            }
-
-            db.close();
-
-        } else {
-            Log.e("SQLite","Error actualizando San Miguel Parrokia ("+actualizar+")");
-        }
-    }
-
-    public void actualizarUnibertsitatea(String actualizar) {
-        SQLiteHelper sqlh = getSQLiteHelper();
-        SQLiteDatabase db = sqlh.getWritableDatabase();
-
-        if (db != null){
-
-            switch (actualizar) {
-                case "comenzar":
-                    db.execSQL("UPDATE Unibertsitatea SET completado=1");
-                    break;
-                case "texto":
-                    db.execSQL("UPDATE Unibertsitatea SET texto=1");
-                    break;
-                case "preguntas":
-                    db.execSQL("UPDATE Unibertsitatea SET preguntas=1");
-                    break;
-                case "imagenes":
-                    db.execSQL("UPDATE Unibertsitatea SET completado=2,imagenes=1");
-                    db.execSQL("UPDATE Trena SET completado=0");
-                    break;
-                default:
-                    Log.e("SQLite","Método ("+actualizar+") no encontrado para actualizar Unibertsitatea");
-                    break;
-            }
-
-            db.close();
-
-        } else {
-            Log.e("SQLite","Error actualizando Unibertsitatea ("+actualizar+")");
-        }
-    }
-
-    public void actualizarTrena(String actualizar) {
-        SQLiteHelper sqlh = getSQLiteHelper();
-        SQLiteDatabase db = sqlh.getWritableDatabase();
-
-        if (db != null){
-
-            switch (actualizar) {
-                case "comenzar":
-                    db.execSQL("UPDATE Trena SET completado=1");
-                    break;
-                case "puzzle":
-                    db.execSQL("UPDATE Trena SET puzzle=1");
-                    break;
-                case "audio":
-                    db.execSQL("UPDATE Trena SET audio=1");
-                    break;
-                case "texto":
-                    db.execSQL("UPDATE Trena SET completado=2,texto=1");
-                    db.execSQL("UPDATE SanMiguelErrota SET completado=0");
-                    break;
-                default:
-                    Log.e("SQLite","Método ("+actualizar+") no encontrado para actualizar Trena");
-                    break;
-            }
-
-            db.close();
-
-        } else {
-            Log.e("SQLite","Error actualizando Trena ("+actualizar+")");
-        }
-    }
-
-    public void actualizarSanMiguelErrota(String actualizar) {
-        SQLiteHelper sqlh = getSQLiteHelper();
-        SQLiteDatabase db = sqlh.getWritableDatabase();
-
-        if (db != null){
-
-            switch (actualizar) {
-                case "comenzar":
-                    db.execSQL("UPDATE SanMiguelErrota SET completado=1");
-                    break;
-                case "frases":
-                    db.execSQL("UPDATE SanMiguelErrota SET frases=1");
-                    break;
-                case "video":
-                    db.execSQL("UPDATE SanMiguelErrota SET video=1");
-                    break;
-                case "fotos":
-                    db.execSQL("UPDATE Trena SET completado=2,fotos=1");
-                    db.execSQL("UPDATE GernikakoArbola SET completado=0");
-                    break;
-                default:
-                    Log.e("SQLite","Método ("+actualizar+") no encontrado para actualizar San Miguel Errota");
-                    break;
-            }
-
-            db.close();
-
-        } else {
-            Log.e("SQLite","Error actualizando San Miguel Errota ("+actualizar+")");
-        }
-    }
-
-    /* # ACTUALIZAR GERNIKAKO ARBOLA # */
-
-    public boolean zumeltzegiFotos() {
-        boolean cod = false;
-
-        SQLiteHelper sqlh = getSQLiteHelper();
-        SQLiteDatabase db = sqlh.getReadableDatabase();
-
-        if (db != null){
-
-            Cursor c = db.rawQuery("SELECT fotos FROM ZumeltzegiDorrea",null);
-            if (c.moveToFirst()) {
-                int estado = c.getInt(0);
-                if (estado==1) cod = true;
-
-            } else {
-                Log.e("SQLite","Fallo obteniendo estado de fotos de Zumeltzegi");
-            }
-
-            db.close();
-
-        } else {
-            Log.e("SQLite","Error conectando a la BD pidiendo datos de ubicaciones");
-        }
-
-        return cod;
-    }
-
-    public int disponibilidadFragment(Fragment fragment) {
-        int cod = -1;
-        String tabla="";
-
-        SQLiteHelper sqlh = getSQLiteHelper();
-        SQLiteDatabase db = sqlh.getReadableDatabase();
-
-        switch (fragment.getClass().getName()){
-
-            case "FragmentZumeltzegi":
-                tabla = "ZumeltzegiDorrea";
-                break;
-            case "FragmentSanMiguel":
-                tabla = "SanMiguelParrokia";
-                break;
-            case "FragmentUnibersitatea":
-                tabla = "Unibertsitatea";
-                break;
-            case "FragmentTrenTexto":
-                tabla = "Trena";
-                break;
-            case "FragmentErrota":
-                tabla = "SanMiguelErrota";
-                break;
-
-        }
-
-        if (db != null){
-            String[] campos = new String[] {"*"};
-            Cursor c = db.query(tabla, campos, null, null, null, null, null);
-
-            if (c.moveToFirst()) {
-                cod = c.getInt(0);
-            } else {
-                Log.e("SQLite","No se han podido obtener datos del Fragment "+tabla);
-            }
-
-            Log.i("SQLite","Datos de "+tabla+" obtenidos");
-            db.close();
-
-        } else {
-            Log.e("SQLite","Error conectando a la BD");
-        }
-
-        return cod;
-    }
+//    METODO DISPONIBILIDAD FRAGMENT, USA LAS TABLAS VIEJAS
+//    public int disponibilidadFragment(Fragment fragment) {
+//        int cod = -1;
+//        String tabla="";
+//
+//        SQLiteHelper sqlh = getSQLiteHelper();
+//        SQLiteDatabase db = sqlh.getReadableDatabase();
+//
+//        switch (fragment.getClass().getName()){
+//
+//            case "FragmentZumeltzegi":
+//                tabla = "ZumeltzegiDorrea";
+//                break;
+//            case "FragmentSanMiguel":
+//                tabla = "SanMiguelParrokia";
+//                break;
+//            case "FragmentUnibersitatea":
+//                tabla = "Unibertsitatea";
+//                break;
+//            case "FragmentTrenTexto":
+//                tabla = "Trena";
+//                break;
+//            case "FragmentErrota":
+//                tabla = "SanMiguelErrota";
+//                break;
+//
+//        }
+//
+//        if (db != null){
+//            String[] campos = new String[] {"*"};
+//            Cursor c = db.query(tabla, campos, null, null, null, null, null);
+//
+//            if (c.moveToFirst()) {
+//                cod = c.getInt(0);
+//            } else {
+//                Log.e("SQLite","No se han podido obtener datos del Fragment "+tabla);
+//            }
+//
+//            Log.i("SQLite","Datos de "+tabla+" obtenidos");
+//            db.close();
+//
+//        } else {
+//            Log.e("SQLite","Error conectando a la BD");
+//        }
+//
+//        return cod;
+//    }
 
 }
