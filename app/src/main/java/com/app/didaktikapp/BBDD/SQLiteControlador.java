@@ -24,8 +24,7 @@ public class SQLiteControlador {
     }
 
     private SQLiteHelper getSQLiteHelper() {
-        SQLiteHelper sqlh =new SQLiteHelper(context, nombrebd, null, 3);
-        return sqlh;
+        return new SQLiteHelper(context, nombrebd, null, 3);
     }
 
     // Devuelve el id del grupo que ha creado para guardarlo en MapActivity
@@ -51,6 +50,7 @@ public class SQLiteControlador {
             }
         }
 
+        c.close();
         db.close();
 
         return idgrupo;
@@ -98,6 +98,7 @@ public class SQLiteControlador {
             Log.e("SQLite","Fallo obteniendo disponibilidad ("+actividad+")");
         }
 
+        c.close();
         db.close();
 
         return cod;

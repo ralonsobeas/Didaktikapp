@@ -62,7 +62,6 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, PermissionsListener
         , FragmentSanMiguel.OnFragmentInteractionListener
         , FragmentSanMiguelImagenes.OnFragmentInteractionListener
@@ -137,13 +136,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         this.mapboxMap = mapboxMap;
 
-
-
         mapboxMap.setCameraPosition(new CameraPosition.Builder()
                 .zoom(10)
                 .build());
-
-
 
 
         // Limites de Getxo
@@ -170,10 +165,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
             @Override
             public boolean onMarkerClick(@NonNull Marker marker) {
-                IconFactory iconFactory = IconFactory.getInstance(context);
-                Icon iconorojo = iconFactory.fromResource(R.drawable.pin_sinhacer);
-                Icon iconoamarillo = iconFactory.fromResource(R.drawable.pin_empezado);
-                Icon iconoverde = iconFactory.fromResource(R.drawable.pin_hecho);
+//                IconFactory iconFactory = IconFactory.getInstance(context);
+//                Icon iconorojo = iconFactory.fromResource(R.drawable.pin_sinhacer);
+//                Icon iconoamarillo = iconFactory.fromResource(R.drawable.pin_empezado);
+//                Icon iconoverde = iconFactory.fromResource(R.drawable.pin_hecho);
                 SQLiteControlador sql = new SQLiteControlador(getApplicationContext());
 
                 /*
@@ -184,26 +179,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 //ZUMELTZEGI DORREA (1)
                 if(marker.getPosition().getLatitude()==43.035000 && marker.getPosition().getLongitude()==-2.412889){
                     int estado = sql.disponibilidadActividad("ActividadZumeltzegi",idgrupo);
-                    boolean mostrar = false;
-                    switch (estado) {
-                        case -1:
-                            marker.setIcon(iconorojo);
-                            break;
-                        case 0:
-                            marker.setIcon(iconoamarillo);
-                            sql.empezarActividad("ActividadZumeltzegi",idgrupo);
-                            mostrar = true;
-                            break;
-                        case 1:
-                            marker.setIcon(iconoamarillo);
-                            mostrar = true;
-                            break;
-                        case 2:
-                            marker.setIcon(iconoverde);
-                            break;
-
-                    }
-                    if (mostrar) {
+                    marker.setIcon(iconoPunto(estado));
+                    if (entrarEnPunto(estado)) {
                         FragmentZumeltzegi fragment = new FragmentZumeltzegi();
                         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                         transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
@@ -216,26 +193,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 //SAN MIGUEL PARROKIA (2)
                 else if(marker.getPosition().getLatitude()==43.033417 && marker.getPosition().getLongitude()==-2.413917){
                     int estado = sql.disponibilidadActividad("ActividadSanMiguel",idgrupo);
-                    boolean mostrar = false;
-                    switch (estado) {
-                        case -1:
-                            marker.setIcon(iconorojo);
-                            break;
-                        case 0:
-                            marker.setIcon(iconoamarillo);
-                            sql.empezarActividad("ActividadSanMiguel",idgrupo);
-                            mostrar = true;
-                            break;
-                        case 1:
-                            marker.setIcon(iconoamarillo);
-                            mostrar = true;
-                            break;
-                        case 2:
-                            marker.setIcon(iconoverde);
-                            break;
-
-                    }
-                    if (mostrar) {
+                    marker.setIcon(iconoPunto(estado));
+                    if (entrarEnPunto(estado)) {
                         FragmentSanMiguel fragment = new FragmentSanMiguel();
                         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                         transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
@@ -248,26 +207,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 //UNIBERTSITATEA (3)
                 else if(marker.getPosition().getLatitude()==43.033944 && marker.getPosition().getLongitude()==-2.415361){
                     int estado = sql.disponibilidadActividad("ActividadUniversidad",idgrupo);
-                    boolean mostrar = false;
-                    switch (estado) {
-                        case -1:
-                            marker.setIcon(iconorojo);
-                            break;
-                        case 0:
-                            marker.setIcon(iconoamarillo);
-                            sql.empezarActividad("ActividadUniversidad",idgrupo);
-                            mostrar = true;
-                            break;
-                        case 1:
-                            marker.setIcon(iconoamarillo);
-                            mostrar = true;
-                            break;
-                        case 2:
-                            marker.setIcon(iconoverde);
-                            break;
-
-                    }
-                    if (mostrar) {
+                    marker.setIcon(iconoPunto(estado));
+                    if (entrarEnPunto(estado)) {
                         FragmentUnibertsitatea fragment = new FragmentUnibertsitatea();
                         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                         transaction.replace(R.id.fragment_frame, fragment);
@@ -279,26 +220,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 //TRENA (4)
                 else if(marker.getPosition().getLatitude()==43.033833 && marker.getPosition().getLongitude()==-2.416111){
                     int estado = sql.disponibilidadActividad("ActividadTren",idgrupo);
-                    boolean mostrar = false;
-                    switch (estado) {
-                        case -1:
-                            marker.setIcon(iconorojo);
-                            break;
-                        case 0:
-                            marker.setIcon(iconoamarillo);
-                            sql.empezarActividad("ActividadTren",idgrupo);
-                            mostrar = true;
-                            break;
-                        case 1:
-                            marker.setIcon(iconoamarillo);
-                            mostrar = true;
-                            break;
-                        case 2:
-                            marker.setIcon(iconoverde);
-                            break;
-
-                    }
-                    if (mostrar) {
+                    marker.setIcon(iconoPunto(estado));
+                    if (entrarEnPunto(estado)) {
                         FragmentPuzle fragment = new FragmentPuzle();
                         Bundle bundle = new Bundle();
                         bundle.putInt(FragmentPuzle.ARG_IMAGEN, R.drawable.tren);
@@ -314,26 +237,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 //SAN MIGUEL ERROTA (5)
                 else if(marker.getPosition().getLatitude()==43.032917 && marker.getPosition().getLongitude()==-2.415750){
                     int estado = sql.disponibilidadActividad("ActividadErrota",idgrupo);
-                    boolean mostrar = false;
-                    switch (estado) {
-                        case -1:
-                            marker.setIcon(iconorojo);
-                            break;
-                        case 0:
-                            marker.setIcon(iconoamarillo);
-                            sql.empezarActividad("ActividadErrota",idgrupo);
-                            mostrar = true;
-                            break;
-                        case 1:
-                            marker.setIcon(iconoamarillo);
-                            mostrar = true;
-                            break;
-                        case 2:
-                            marker.setIcon(iconoverde);
-                            break;
-
-                    }
-                    if (mostrar) {
+                    marker.setIcon(iconoPunto(estado));
+                    if (entrarEnPunto(estado)) {
                         FragmentErrotaTextos fragment = new FragmentErrotaTextos();
                         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                         transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
@@ -350,7 +255,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 }
                 //ARRIKRUTZEKO KOBAK (sin uso, en medio)
                 else if(marker.getPosition().getLatitude()==43.000583 && marker.getPosition().getLongitude()==-2.433250){
-                    marker.setIcon(iconoverde);
+                    marker.setIcon(iconoPunto(2));
                     Log.i("tag","s");
                     Intent intent = new Intent(MapActivity.this, SplashScreenActivity.class);
                     intent.putExtra(GamePlayActivity.EXTRA_ROW_COUNT, 10);
@@ -372,6 +277,19 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
 
 
+    }
+
+
+    private Icon iconoPunto(int estado) {
+        IconFactory iconFactory = IconFactory.getInstance(context);
+        if (estado==-1) return iconFactory.fromResource(R.drawable.pin_sinhacer);
+        else if (estado==2) return iconFactory.fromResource(R.drawable.pin_hecho);
+        else return iconFactory.fromResource(R.drawable.pin_empezado);
+    }
+
+    private boolean entrarEnPunto(int estado) {
+        if (estado==0||estado==1) return true;
+        else return false;
     }
 
     private void showBoundsArea(MapboxMap mapboxMap) {
@@ -415,7 +333,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         SQLiteControlador sql = new SQLiteControlador(getApplicationContext());
         for (int x=0;x<listaLugares.size();x++) {
             Icon icono = iconorojo;
-            int dis = -1;
+            int dis;
             switch (x) {
                 case 0:
                     dis = sql.disponibilidadActividad("ActividadZumeltzegi",idgrupo);
