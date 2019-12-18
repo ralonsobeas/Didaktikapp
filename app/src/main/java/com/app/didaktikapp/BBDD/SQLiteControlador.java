@@ -9,6 +9,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import androidx.fragment.app.Fragment;
+
 public class SQLiteControlador {
 
     private String nombrebd;
@@ -296,6 +298,53 @@ public class SQLiteControlador {
                 Log.e("SQLite","Fallo obteniendo estado de fotos de Zumeltzegi");
             }
 
+            db.close();
+
+        } else {
+            Log.e("SQLite","Error conectando a la BD pidiendo datos de ubicaciones");
+        }
+
+        return cod;
+    }
+
+    public int disponibilidadFragment(Fragment fragment) {
+        int cod = -1;
+        String tabla="";
+
+        SQLiteHelper sqlh = getSQLiteHelper();
+        SQLiteDatabase db = sqlh.getReadableDatabase();
+
+        switch (fragment.getClass().getName()){
+
+            case "FragmentZumeltzegi":
+                tabla = "ZumeltzegiDorrea";
+                break;
+            case "FragmentSanMiguel":
+                tabla = "SanMiguelParrokia";
+                break;
+            case "FragmentUnibersitatea":
+                tabla = "Unibertsitatea";
+                break;
+            case "FragmentTrenTexto":
+                tabla = "Trena";
+                break;
+            case "FragmentErrota":
+                tabla = "SanMiguelErrota";
+                break;
+
+        }
+
+        if (db != null){
+            String[] campos = new String[] {"*"};
+            Cursor c = db.query(tabla, campos, null, null, null, null, null);
+
+            if (c.moveToFirst()) {
+                cod = c.getInt(0);
+            } else {
+                Log.e("SQLite","No se han podido obtener datos del Fragment "+tabla);
+            }
+
+            Log.i("SQLite","Datos de "+tabla+" obtenidos");
             db.close();
 
         } else {
