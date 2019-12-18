@@ -1,12 +1,14 @@
 package com.app.didaktikapp.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
-
+import android.animation.ObjectAnimator;
+import android.animation.TypeEvaluator;
+import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,17 +17,18 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.app.didaktikapp.BBDD.SQLiteControlador;
-import com.app.didaktikapp.Fragments.FragmentErrota;
 import com.app.didaktikapp.Fragments.FragmentErrotaTextos;
 import com.app.didaktikapp.Fragments.FragmentPuzle;
 import com.app.didaktikapp.Fragments.FragmentSanMiguel;
 import com.app.didaktikapp.Fragments.FragmentSanMiguelImagenes;
-import com.app.didaktikapp.Fragments.FragmentTrenTexto;
 import com.app.didaktikapp.Fragments.FragmentUnibertsitatea;
 import com.app.didaktikapp.Fragments.FragmentZumeltzegi;
-import com.app.didaktikapp.InicioActivity;
-import com.app.didaktikapp.MainActivity;
 import com.app.didaktikapp.Modelo.Lugar;
 import com.app.didaktikapp.R;
 import com.app.didaktikapp.wordsearch.features.SplashScreenActivity;
@@ -33,12 +36,14 @@ import com.app.didaktikapp.wordsearch.features.gameplay.GamePlayActivity;
 import com.mapbox.android.core.location.LocationEngine;
 import com.mapbox.android.core.location.LocationEngineCallback;
 import com.mapbox.android.core.location.LocationEngineProvider;
-
 import com.mapbox.android.core.location.LocationEngineRequest;
 import com.mapbox.android.core.location.LocationEngineResult;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
-import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.geojson.Feature;
+import com.mapbox.geojson.FeatureCollection;
+import com.mapbox.geojson.LineString;
+import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.annotations.Icon;
 import com.mapbox.mapboxsdk.annotations.IconFactory;
 import com.mapbox.mapboxsdk.annotations.Marker;
@@ -53,10 +58,17 @@ import com.mapbox.mapboxsdk.location.LocationComponentOptions;
 import com.mapbox.mapboxsdk.location.modes.CameraMode;
 import com.mapbox.mapboxsdk.location.modes.RenderMode;
 import com.mapbox.mapboxsdk.maps.MapView;
+import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
 import com.mapbox.mapboxsdk.style.layers.Layer;
+import com.mapbox.mapboxsdk.style.layers.LineLayer;
+import com.mapbox.mapboxsdk.style.layers.Property;
+import com.mapbox.mapboxsdk.style.layers.PropertyFactory;
+import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
+import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
+import com.mapbox.mapboxsdk.utils.BitmapUtils;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -88,6 +100,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     private Context context;
 
+    private ValueAnimator animator;
+    private LatLng currentPosition = new LatLng(43.035000, -2.413917);
+    private GeoJsonSource geoJsonSource;
+
 
     private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
         .include(new LatLng(43.042073, -2.422996)) // Northeast
@@ -95,6 +111,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         .build();
 
     private ArrayList<Lugar> listaLugares;
+
+    private List<Point> routeCoordinates;
 
 
     @Override
@@ -131,11 +149,38 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     }
 
+    //NUEVOOO
+    private final ValueAnimator.AnimatorUpdateListener animatorUpdateListener =
+            new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                    LatLng animatedPosition = (LatLng) valueAnimator.getAnimatedValue();
+                    geoJsonSource.setGeoJson(Point.fromLngLat(animatedPosition.getLongitude(), animatedPosition.getLatitude()));
+                }
+            };
+
+    private static final TypeEvaluator<LatLng> latLngEvaluator = new TypeEvaluator<LatLng>() {
+
+        private final LatLng latLng = new LatLng();
+
+        @Override
+        public LatLng evaluate(float fraction, LatLng startValue, LatLng endValue) {
+            latLng.setLatitude(startValue.getLatitude()
+                    + ((endValue.getLatitude() - startValue.getLatitude()) * fraction));
+            latLng.setLongitude(startValue.getLongitude()
+                    + ((endValue.getLongitude() - startValue.getLongitude()) * fraction));
+            return latLng;
+        }
+    };
+
     @Override
     public void onMapReady(@NonNull final MapboxMap mapboxMap) {
 
         this.mapboxMap = mapboxMap;
 
+        geoJsonSource = new GeoJsonSource("source-id",
+                Feature.fromGeometry(Point.fromLngLat(currentPosition.getLongitude(),
+                        currentPosition.getLatitude())));
 
 
         mapboxMap.setCameraPosition(new CameraPosition.Builder()
@@ -161,9 +206,58 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 // Map is set up and the style has loaded. Now you can add data or make other map adjustments
                 enableLocationComponent(style);
 
-            }
-        });
+                Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.ic_update, null);
+                Bitmap mBitmap = BitmapUtils.getBitmapFromDrawable(drawable);
 
+                style.addImage(("marker_icon"), mBitmap);
+
+                style.addSource(geoJsonSource);
+
+                initRouteCoordinates();
+
+                // Create the LineString from the list of coordinates and then make a GeoJSON
+                // FeatureCollection so we can add the line to our map as a layer.
+                style.addSource(new GeoJsonSource("line-source",
+                        FeatureCollection.fromFeatures(new Feature[] {Feature.fromGeometry(
+                                LineString.fromLngLats(routeCoordinates)
+                        )})));
+
+                // The layer properties for our line. This is where we make the line dotted, set the
+                // color, etc.
+                style.addLayer(new LineLayer("linelayer", "line-source").withProperties(
+                        PropertyFactory.lineDasharray(new Float[] {0.01f, 2f}),
+                        PropertyFactory.lineCap(Property.LINE_CAP_ROUND),
+                        PropertyFactory.lineJoin(Property.LINE_JOIN_ROUND),
+                        PropertyFactory.lineWidth(5f),
+                        PropertyFactory.lineColor(Color.parseColor("#e55e5e"))
+
+                ));
+
+                //NUEVOOO
+                style.addLayer(new SymbolLayer("layer-id", "source-id")
+                        .withProperties(
+                                PropertyFactory.iconImage("marker_icon"),
+                                PropertyFactory.iconIgnorePlacement(true),
+                                PropertyFactory.iconAllowOverlap(true)
+                        ));
+
+            }
+
+            });
+
+        //NUEVOOOOO
+        // When the user clicks on the map, we want to animate the marker to that
+        // location.
+        if (animator != null && animator.isStarted()) {
+            currentPosition = (LatLng) animator.getAnimatedValue();
+            animator.cancel();
+        }
+
+        animator = ObjectAnimator
+                .ofObject(latLngEvaluator, currentPosition, new LatLng(43.033417, -2.413917))
+                .setDuration(10000);
+        animator.addUpdateListener(animatorUpdateListener);
+        animator.start();
 
         mapboxMap.setOnMarkerClickListener(new MapboxMap.OnMarkerClickListener() {
 
@@ -625,6 +719,20 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         return distancia;
     }
+
+    private void initRouteCoordinates() {
+// Create a list to store our line coordinates.
+        routeCoordinates = new ArrayList<>();
+        routeCoordinates.add(Point.fromLngLat(-2.412889, 43.035000));
+        routeCoordinates.add(Point.fromLngLat(-2.413917, 43.033417));
+
+
+
+
+    }
+
+
+
 
 
     @Override
