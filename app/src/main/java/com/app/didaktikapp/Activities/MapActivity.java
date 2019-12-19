@@ -20,6 +20,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.app.didaktikapp.BBDD.SQLiteControlador;
@@ -202,7 +203,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         PropertyFactory.lineCap(Property.LINE_CAP_ROUND),
                         PropertyFactory.lineJoin(Property.LINE_JOIN_ROUND),
                         PropertyFactory.lineWidth(5f),
-                        PropertyFactory.lineColor(Color.parseColor("#e55e5e"))
+                        PropertyFactory.lineColor(getColor(R.color.colorPrimaryDark))
 
                 ));
 
@@ -240,28 +241,20 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 if(marker.getPosition().getLatitude()==43.035000 && marker.getPosition().getLongitude()==-2.412889){
                     actualizarMarkerLinea(-2.413917,43.033417,-2.415361,43.033944);
                     int estado = sql.disponibilidadActividad("ActividadZumeltzegi",idgrupo);
+                    estado = 0;
                     marker.setIcon(iconoPunto(estado));
                     if (entrarEnPunto(estado)) {
-                        FragmentZumeltzegi fragment = new FragmentZumeltzegi();
-                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                        transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
-                        transaction.replace(R.id.fragment_frame, fragment);
-                        transaction.commit();
-                        transaction.addToBackStack("Fragment");
+                        lanzarFragment(new FragmentZumeltzegi());
                     }
 
                 }
                 //SAN MIGUEL PARROKIA (2)
                 else if(marker.getPosition().getLatitude()==43.033417 && marker.getPosition().getLongitude()==-2.413917){
                     int estado = sql.disponibilidadActividad("ActividadSanMiguel",idgrupo);
+                    estado = 0;
                     marker.setIcon(iconoPunto(estado));
                     if (entrarEnPunto(estado)) {
-                        FragmentSanMiguel fragment = new FragmentSanMiguel();
-                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                        transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
-                        transaction.replace(R.id.fragment_frame, fragment);
-                        transaction.commit();
-                        transaction.addToBackStack("Fragment");
+                        lanzarFragment(new FragmentSanMiguel());
                     }
 
                 }
@@ -270,11 +263,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     int estado = sql.disponibilidadActividad("ActividadUniversidad",idgrupo);
                     marker.setIcon(iconoPunto(estado));
                     if (entrarEnPunto(estado)) {
-                        FragmentUnibertsitatea fragment = new FragmentUnibertsitatea();
-                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                        transaction.replace(R.id.fragment_frame, fragment);
-                        transaction.commit();
-                        transaction.addToBackStack("Fragment");
+                        lanzarFragment(new FragmentUnibertsitatea());
                     }
 
                 }
@@ -300,12 +289,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     int estado = sql.disponibilidadActividad("ActividadErrota",idgrupo);
                     marker.setIcon(iconoPunto(estado));
                     if (entrarEnPunto(estado)) {
-                        FragmentErrotaTextos fragment = new FragmentErrotaTextos();
-                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                        transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
-                        transaction.replace(R.id.fragment_frame, fragment);
-                        transaction.commit();
-                        transaction.addToBackStack("Fragment");
+                        lanzarFragment(new FragmentErrotaTextos());
                     }
 
                 }
@@ -338,6 +322,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
 
 
+    }
+
+    private void lanzarFragment(Fragment fragment){
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
+        transaction.replace(R.id.fragment_frame, fragment);
+        transaction.commit();
+        transaction.addToBackStack("Fragment");
     }
 
 
@@ -560,14 +552,18 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
 
+    @Override
+    public void onFragmentInteraction(Fragment fragment,boolean terminado) {
+        if(fragment instanceof FragmentSanMiguelImagenes) {
+            Toast.makeText(this,"FRAGMENT",Toast.LENGTH_LONG).show();
+            actualizarMarkerLinea(-3.413917, 43.033417, -2.431444, 43.033833);
+        }
     }
 
     @Override
-    public void onFragmentInteraction(boolean terminado) {
-        actualizarMarkerLinea(-2.413917,43.033417,-2.431444,43.033833);
+    public void onFragmentInteraction(Uri uri) {
+
     }
 
     private static class LocationChangeListeningActivityLocationCallback
@@ -651,6 +647,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         return distancia;
     }
 
+
+    @Override
+    public void onAttachFragment(Fragment fragment) {
+        if (fragment instanceof FragmentSanMiguelImagenes) {
+            ((FragmentSanMiguelImagenes) fragment).setmListener(this);
+        }
+    }
 
 
 

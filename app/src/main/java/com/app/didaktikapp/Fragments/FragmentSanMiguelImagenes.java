@@ -68,6 +68,10 @@ public class FragmentSanMiguelImagenes extends Fragment {
 
     private Button btnContinuar;
 
+    public void setmListener(OnFragmentInteractionListener mListener) {
+        this.mListener = mListener;
+    }
+
     public FragmentSanMiguelImagenes() {
         // Required empty public constructor
     }
@@ -136,7 +140,7 @@ public class FragmentSanMiguelImagenes extends Fragment {
             @Override
             public void onClick(View view) {
                 getFragmentManager().beginTransaction().remove(FragmentSanMiguelImagenes.this).commit();
-                mListener.onFragmentInteraction(true);
+                mListener.onFragmentInteraction(FragmentSanMiguelImagenes.this,true);
 
             }
         });
@@ -182,7 +186,7 @@ public class FragmentSanMiguelImagenes extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(boolean terminado);
+        void onFragmentInteraction(Fragment fragment,boolean terminado);
     }
 
     private class ListenerImagen implements View.OnClickListener {
