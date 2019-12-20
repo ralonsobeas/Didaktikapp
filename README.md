@@ -200,6 +200,14 @@ Seguimiento
 - [x] Parte de implementación de BBDD
 - [ ] Dialogo para inicio mapa: https://github.com/mejdi14/Flat-Dialog-Android?utm_source=android-arsenal.com&utm_medium=referral&utm_campaign=7926
 
+<h4>19/12/2019 Trabajo de desarrollo</h4>
+
+- [x] Decisiones grupales sobre BBDD funcionamiento de la app y tareas a realizar
+
+<h4>20/12/2019 Trabajo de desarrollo</h4>
+
+- [ ] Trabajo sobre puzle
+- [x] BBDD Room creada, funcional para clase Grupo
 
 Funcionamiento de la app
 ------------------------------------------------------------------------
