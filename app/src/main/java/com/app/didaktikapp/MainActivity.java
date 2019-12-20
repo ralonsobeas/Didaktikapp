@@ -7,16 +7,24 @@ import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.didaktikapp.Activities.MapActivity;
+import com.app.didaktikapp.BBDD.AppExecutors;
+import com.app.didaktikapp.BBDD.Modelos.Grupo;
 import com.app.didaktikapp.BBDD.SQLiteControlador;
+import com.app.didaktikapp.BBDD.Service.GrupoService;
+import com.app.didaktikapp.BBDD.database.AppDatabase;
 import com.app.didaktikapp.CircleMenu.CircleMenuView;
+
+import java.lang.ref.WeakReference;
 
 import at.markushi.ui.CircleButton;
 
@@ -25,12 +33,24 @@ public class MainActivity extends AppCompatActivity {
     private ConstraintLayout layout;
     private CircleButton  botonInicio,botonContinuar;
     private Button botonSalir;
+    private AppDatabase appDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
 
         super.onCreate(savedInstanceState);
+
+        //BBDD
+        appDatabase = AppDatabase.getInstance(MainActivity.this);
+
+        Grupo grupo = new Grupo();
+        grupo.setNombre("NOMBREPRUEBA");
+        Log.i("GRUPO",grupo.toString());
+
+        // create worker thread to insert data into database
+        new InsertTask(MainActivity.this,grupo).execute();
+
 
         // "context" must be an Activity, Service or Application object from your app.
 //        if (! Python.isStarted()) {
@@ -206,6 +226,35 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void finish() {
         super.finish();
+
+    }
+
+
+    private static class InsertTask extends AsyncTask<Void,Void,Boolean> {
+
+        private WeakReference<MainActivity> activityReference;
+        private Grupo grupo;
+
+        // only retain a weak reference to the activity
+        InsertTask(MainActivity context, Grupo grupo) {
+            activityReference = new WeakReference<>(context);
+            this.grupo = grupo;
+        }
+
+        // doInBackground methods runs on a worker thread
+        @Override
+        protected Boolean doInBackground(Void... objs) {
+            activityReference.get().appDatabase.getGrupoDao().addGrupo(grupo);
+            return true;
+        }
+
+        // onPostExecute runs on main thread
+        @Override
+        protected void onPostExecute(Boolean bool) {
+            if (bool){
+                Log.i("AÑADIDO","AÑADIDO");
+            }
+        }
 
     }
 }

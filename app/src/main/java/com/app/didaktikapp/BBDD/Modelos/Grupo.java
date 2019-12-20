@@ -11,9 +11,10 @@ import java.util.UUID;
 @Entity(tableName = "GRUPO")
 public class Grupo {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "ID")
     @NonNull
-    private String id;
+    private Integer id ;
 
     @ColumnInfo(name = "NOMBRE")
     private String nombre;
@@ -36,17 +37,14 @@ public class Grupo {
     @ColumnInfo(name = "IDGERNIKA")
     private String idGernika;
 
-    public Grupo() {
-        id = UUID.randomUUID().toString();
-    }
 
 
     @NonNull
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(@NonNull String id) {
+    public void setId(@NonNull Integer id) {
         this.id = id;
     }
 
@@ -104,5 +102,19 @@ public class Grupo {
 
     public void setIdGernika(String idGernika) {
         this.idGernika = idGernika;
+    }
+
+    @Override
+    public String toString() {
+        return "Grupo{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", fecha='" + fecha + '\'' +
+                ", idZumeltzegi='" + idZumeltzegi + '\'' +
+                ", idParroquia='" + idParroquia + '\'' +
+                ", idUniversidad='" + idUniversidad + '\'' +
+                ", idErrota='" + idErrota + '\'' +
+                ", idGernika='" + idGernika + '\'' +
+                '}';
     }
 }
