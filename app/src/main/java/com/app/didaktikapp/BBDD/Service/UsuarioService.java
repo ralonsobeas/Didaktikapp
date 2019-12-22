@@ -36,7 +36,7 @@ public class UsuarioService {
         return usuarioDao.getUsuarios();
     }
 
-    public Usuario getGrupo(String id) {
+    public Usuario getGrupo(Integer id) {
         return usuarioDao.getUsuario(id);
     }
 

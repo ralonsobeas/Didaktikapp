@@ -3,48 +3,79 @@ package com.app.didaktikapp.BBDD.Modelos;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
 
+import com.app.didaktikapp.BBDD.TimestampConverter;
+
+import java.util.Date;
 import java.util.UUID;
 
+import static androidx.room.ForeignKey.CASCADE;
 
-@Entity(tableName = "GRUPO")
+
+@Entity(tableName = "GRUPO",
+        foreignKeys ={ @ForeignKey(entity = ActividadZumeltzegi.class,
+                                parentColumns = "ID",
+                                childColumns = "IDZUMELTZEGI",
+                                onDelete = CASCADE),
+                        @ForeignKey(entity = ActividadUniversitatea.class,
+                                parentColumns = "ID",
+                                childColumns = "IDUNIVERSIDAD",
+                                onDelete = CASCADE),
+                        @ForeignKey(entity = ActividadTren.class,
+                                parentColumns = "ID",
+                                childColumns = "IDTREN",
+                                onDelete = CASCADE),
+                        @ForeignKey(entity = ActividadSanMiguel.class,
+                                parentColumns = "ID",
+                                childColumns = "IDPARROQUIA",
+                                onDelete = CASCADE),
+                        @ForeignKey(entity = ActividadErrota.class,
+                                parentColumns = "ID",
+                                childColumns = "IDERROTA",
+                                onDelete = CASCADE)})
+@TypeConverters(TimestampConverter.class)
 public class Grupo {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "ID")
     @NonNull
-    private Integer id ;
+    private Long id ;
 
     @ColumnInfo(name = "NOMBRE")
     private String nombre;
 
     @ColumnInfo(name = "FECHA")
-    private String fecha;
+    private Date fecha;
 
     @ColumnInfo(name = "IDZUMELTZEGI")
-    private String idZumeltzegi;
+    private Long idZumeltzegi;
 
     @ColumnInfo(name = "IDPARROQUIA")
-    private String idParroquia;
+    private Long idParroquia;
 
     @ColumnInfo(name = "IDUNIVERSIDAD")
-    private String idUniversidad;
+    private Long idUniversidad;
 
     @ColumnInfo(name = "IDERROTA")
-    private String idErrota;
+    private Long idErrota;
+
+    @ColumnInfo(name = "IDTREN")
+    private Long idTren;
 
     @ColumnInfo(name = "IDGERNIKA")
-    private String idGernika;
+    private Long idGernika;
 
 
 
     @NonNull
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(@NonNull Integer id) {
+    public void setId(@NonNull Long id) {
         this.id = id;
     }
 
@@ -56,52 +87,60 @@ public class Grupo {
         this.nombre = nombre;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
-    public String getIdZumeltzegi() {
+    public Long getIdZumeltzegi() {
         return idZumeltzegi;
     }
 
-    public void setIdZumeltzegi(String idZumeltzegi) {
+    public void setIdZumeltzegi(Long idZumeltzegi) {
         this.idZumeltzegi = idZumeltzegi;
     }
 
-    public String getIdParroquia() {
+    public Long getIdParroquia() {
         return idParroquia;
     }
 
-    public void setIdParroquia(String idParroquia) {
+    public void setIdParroquia(Long idParroquia) {
         this.idParroquia = idParroquia;
     }
 
-    public String getIdUniversidad() {
+    public Long getIdUniversidad() {
         return idUniversidad;
     }
 
-    public void setIdUniversidad(String idUniversidad) {
+    public void setIdUniversidad(Long idUniversidad) {
         this.idUniversidad = idUniversidad;
     }
 
-    public String getIdErrota() {
+    public Long getIdErrota() {
         return idErrota;
     }
 
-    public void setIdErrota(String idErrota) {
+    public void setIdErrota(Long idErrota) {
         this.idErrota = idErrota;
     }
 
-    public String getIdGernika() {
+    public Long getIdGernika() {
         return idGernika;
     }
 
-    public void setIdGernika(String idGernika) {
+    public void setIdGernika(Long idGernika) {
         this.idGernika = idGernika;
+    }
+
+    public Long getIdTren() {
+        return idTren;
+    }
+
+    public void setIdTren(Long idTren) {
+        this.idTren = idTren;
     }
 
     @Override

@@ -4,33 +4,37 @@ package com.app.didaktikapp.BBDD.Modelos;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 import java.util.UUID;
 
-@Entity(tableName = "USUARIO")
+import static androidx.room.ForeignKey.CASCADE;
+
+@Entity(tableName = "USUARIO",
+        foreignKeys =@ForeignKey(entity = Grupo.class,
+                parentColumns = "ID",
+                childColumns = "IDGRUPO",
+                onDelete = CASCADE))
 public class Usuario {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @NonNull
-    private String id;
+    private Long id;
 
     @ColumnInfo(name = "NOMBRE")
     private String nombre;
 
     @ColumnInfo(name = "IDGRUPO")
-    private String idGrupo;
+    private Long idGrupo;
 
-    public Usuario() {
-        id = UUID.randomUUID().toString();
-    }
 
     @NonNull
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(@NonNull String id) {
+    public void setId(@NonNull Long id) {
         this.id = id;
     }
 
@@ -42,11 +46,11 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public String getIdGrupo() {
+    public Long getIdGrupo() {
         return idGrupo;
     }
 
-    public void setIdGrupo(String idGrupo) {
+    public void setIdGrupo(Long idGrupo) {
         this.idGrupo = idGrupo;
     }
 }

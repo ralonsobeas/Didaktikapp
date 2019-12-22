@@ -14,47 +14,52 @@ import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.app.didaktikapp.BBDD.AppExecutors;
+import com.app.didaktikapp.BBDD.Dao.ErrotaDao;
 import com.app.didaktikapp.BBDD.Dao.GrupoDao;
+import com.app.didaktikapp.BBDD.Dao.SanMiguelDao;
+import com.app.didaktikapp.BBDD.Dao.TrenDao;
+import com.app.didaktikapp.BBDD.Dao.UniversitateaDao;
 import com.app.didaktikapp.BBDD.Dao.UsuarioDao;
+import com.app.didaktikapp.BBDD.Dao.ZumeltzegiDao;
+import com.app.didaktikapp.BBDD.Modelos.ActividadErrota;
+import com.app.didaktikapp.BBDD.Modelos.ActividadSanMiguel;
+import com.app.didaktikapp.BBDD.Modelos.ActividadTren;
+import com.app.didaktikapp.BBDD.Modelos.ActividadUniversitatea;
+import com.app.didaktikapp.BBDD.Modelos.ActividadZumeltzegi;
 import com.app.didaktikapp.BBDD.Modelos.Grupo;
 import com.app.didaktikapp.BBDD.Modelos.Usuario;
 
 import java.util.List;
 
 
-@Database(entities = {Grupo.class, Usuario.class}, version = 2)
+@Database(entities = {Grupo.class,
+                    Usuario.class, ActividadZumeltzegi.class,
+                    ActividadUniversitatea.class,
+                    ActividadTren.class,
+                    ActividadSanMiguel.class,
+                    ActividadErrota.class},
+        version = 2 )
 public abstract class AppDatabase extends RoomDatabase {
-
-
-    private static AppDatabase sInstance;
-
-    @VisibleForTesting
-    public static final String DATABASE_NAME = "basic-sample-db";
 
 
     public abstract GrupoDao getGrupoDao();
 
     public abstract UsuarioDao getUsuarioDao();
 
-    private static AppDatabase appDB;
+    public abstract ZumeltzegiDao getZumeltzegiDao();
 
-    public static AppDatabase getInstance(Context context) {
-        if (null == appDB) {
-            appDB = buildDatabaseInstance(context);
-        }
-        return appDB;
-    }
+    public abstract UniversitateaDao getUniversitateaDao();
 
-    private static AppDatabase buildDatabaseInstance(Context context) {
-        return Room.databaseBuilder(context,
-                AppDatabase.class,
-                DATABASE_NAME)
-                .allowMainThreadQueries().build();
-    }
+    public abstract TrenDao getTrenDao();
 
-    public void cleanUp(){
-        appDB = null;
-    }
+    public abstract SanMiguelDao getSanMiguelDao();
+
+    public abstract ErrotaDao getErrotaDao();
+
+
+
+
+
 
 
 }

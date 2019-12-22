@@ -22,6 +22,7 @@ import com.app.didaktikapp.BBDD.Modelos.Grupo;
 import com.app.didaktikapp.BBDD.SQLiteControlador;
 import com.app.didaktikapp.BBDD.Service.GrupoService;
 import com.app.didaktikapp.BBDD.database.AppDatabase;
+import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.CircleMenu.CircleMenuView;
 
 import java.lang.ref.WeakReference;
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private ConstraintLayout layout;
     private CircleButton  botonInicio,botonContinuar;
     private Button botonSalir;
-    private AppDatabase appDatabase;
+    private DatabaseRepository databaseRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,15 +43,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         //BBDD
-        appDatabase = AppDatabase.getInstance(MainActivity.this);
+        databaseRepository = new DatabaseRepository(MainActivity.this);
 
-        Grupo grupo = new Grupo();
-        grupo.setNombre("NOMBREPRUEBA");
-        Log.i("GRUPO",grupo.toString());
-
-        // create worker thread to insert data into database
-        new InsertTask(MainActivity.this,grupo).execute();
-
+        //SE CREA EL GRUPO Y TODOS LOS FRAGMENTS CON SU ESTADO Y FRAGMENT = 0
+        DatabaseRepository.insertTaskGrupo("NOMBREDEPRUEBA");
 
         // "context" must be an Activity, Service or Application object from your app.
 //        if (! Python.isStarted()) {
@@ -233,18 +229,19 @@ public class MainActivity extends AppCompatActivity {
     private static class InsertTask extends AsyncTask<Void,Void,Boolean> {
 
         private WeakReference<MainActivity> activityReference;
-        private Grupo grupo;
+        private Object object;
 
         // only retain a weak reference to the activity
-        InsertTask(MainActivity context, Grupo grupo) {
+        InsertTask(MainActivity context, Object object) {
             activityReference = new WeakReference<>(context);
-            this.grupo = grupo;
+            this.object = object;
         }
 
         // doInBackground methods runs on a worker thread
         @Override
         protected Boolean doInBackground(Void... objs) {
-            activityReference.get().appDatabase.getGrupoDao().addGrupo(grupo);
+            if(object instanceof Grupo)
+                DatabaseRepository.getAppDatabase().getGrupoDao().addGrupo((Grupo)object);
             return true;
         }
 

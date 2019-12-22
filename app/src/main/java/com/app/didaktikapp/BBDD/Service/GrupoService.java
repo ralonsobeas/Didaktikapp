@@ -10,6 +10,7 @@ import androidx.room.Room;
 import com.app.didaktikapp.BBDD.Dao.GrupoDao;
 import com.app.didaktikapp.BBDD.Modelos.Grupo;
 import com.app.didaktikapp.BBDD.database.AppDatabase;
+import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class GrupoService {
 
     private GrupoService(@NonNull Application application) {
 
-        grupoDao = AppDatabase.getInstance(application).getGrupoDao();
+        grupoDao = DatabaseRepository.getInstance(application).getGrupoDao();
 
     }
 
@@ -36,7 +37,7 @@ public class GrupoService {
         return grupoDao.getGrupos();
     }
 
-    public Grupo getGrupo(String id) {
+    public Grupo getGrupo(Integer id) {
         return grupoDao.getGrupo(id);
     }
 

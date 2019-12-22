@@ -24,6 +24,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.app.didaktikapp.BBDD.SQLiteControlador;
+import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.Fragments.FragmentErrota;
 import com.app.didaktikapp.Fragments.FragmentErrotaTextos;
 import com.app.didaktikapp.Fragments.FragmentPuzle;
@@ -400,7 +401,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 //        Icon iconoamarillo = iconFactory.fromResource(R.drawable.yellow_marker);
         Icon iconoverde = iconFactory.fromResource(R.drawable.pin_hecho);
 //        Icon iconogris = iconFactory.fromResource(R.drawable.grey_marker);
-
+        Icon[] arrayIconos = {iconorojo,iconoamarillo,iconoverde};
 
 //        for(Lugar lugar : listaLugares) {
 //            mapboxMap.addMarker(new MarkerOptions()
@@ -420,9 +421,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             int dis;
             switch (x) {
                 case 0:
-                    dis = sql.disponibilidadActividad("ActividadZumeltzegi",idgrupo);
-                    if (dis==1) icono = iconoamarillo;
-                    else if (dis==2) icono = iconoverde;
+                    //Selecciona el icono dependiendo del valor del estado que corresponderá al orden en el array de iconos
+                     icono  = arrayIconos[DatabaseRepository.searchEstadoZumeltzegi()];
                     break;
                 case 1:
                     dis = sql.disponibilidadActividad("ActividadSanMiguel",idgrupo);

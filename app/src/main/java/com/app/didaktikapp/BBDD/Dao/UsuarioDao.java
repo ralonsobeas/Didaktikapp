@@ -17,7 +17,7 @@ public interface UsuarioDao {
     List<Usuario> getUsuarios();
 
     @Query("SELECT * FROM USUARIO WHERE ID LIKE :uuid")
-    Usuario getUsuario(String uuid);
+    Usuario getUsuario(Integer uuid);
 
     @Insert
     void addUsuario(Usuario usuario);

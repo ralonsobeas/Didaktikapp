@@ -17,7 +17,7 @@ public interface GrupoDao {
     List<Grupo> getGrupos();
 
     @Query("SELECT * FROM GRUPO WHERE ID LIKE :uuid")
-    Grupo getGrupo(String uuid);
+    Grupo getGrupo(Integer uuid);
 
     @Insert
     void addGrupo(Grupo grupo);
