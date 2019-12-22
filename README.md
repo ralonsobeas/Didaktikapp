@@ -209,6 +209,11 @@ Seguimiento
 - [ ] Trabajo sobre puzle
 - [x] BBDD Room creada, funcional para clase Grupo
 
+<h4>22/12/2019 Trabajo de desarrollo</h4>
+
+- [x] BBDD Room funcional
+- [ ] Se añade Marker Zumeltzegi con la BBDD Room, falta el resto.
+
 Funcionamiento de la app
 ------------------------------------------------------------------------
 
