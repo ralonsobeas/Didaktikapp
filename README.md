@@ -213,6 +213,9 @@ Seguimiento
 
 - [x] BBDD Room funcional
 - [ ] Se añade Marker Zumeltzegi con la BBDD Room, falta el resto.
+- [ ] https://github.com/wasabeef/awesome-android-ui
+- [ ] https://github.com/TakuSemba/Spotlight
+- [ ] https://github.com/Q42/AndroidScrollingImageView
 
 Funcionamiento de la app
 ------------------------------------------------------------------------
