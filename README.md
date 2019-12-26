@@ -216,6 +216,7 @@ Seguimiento
 - [ ] https://github.com/wasabeef/awesome-android-ui
 - [ ] https://github.com/TakuSemba/Spotlight
 - [ ] https://github.com/Q42/AndroidScrollingImageView
+- [ ] https://github.com/carlosmuvi/SegmentedProgressBar
 
 Funcionamiento de la app
 ------------------------------------------------------------------------
