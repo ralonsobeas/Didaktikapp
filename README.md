@@ -218,6 +218,7 @@ Seguimiento
 - [ ] https://github.com/Q42/AndroidScrollingImageView
 - [ ] https://github.com/carlosmuvi/SegmentedProgressBar
 - [ ] https://github.com/penny4860/SVHN-deep-digit-detector
+- [ ] https://github.com/skydoves/Needs
 
 Funcionamiento de la app
 ------------------------------------------------------------------------
