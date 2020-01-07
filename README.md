@@ -217,6 +217,7 @@ Seguimiento
 - [ ] https://github.com/TakuSemba/Spotlight
 - [ ] https://github.com/Q42/AndroidScrollingImageView
 - [ ] https://github.com/carlosmuvi/SegmentedProgressBar
+- [ ] https://github.com/penny4860/SVHN-deep-digit-detector
 
 Funcionamiento de la app
 ------------------------------------------------------------------------
