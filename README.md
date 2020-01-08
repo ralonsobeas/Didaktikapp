@@ -220,6 +220,13 @@ Seguimiento
 - [ ] https://github.com/penny4860/SVHN-deep-digit-detector
 - [ ] https://github.com/skydoves/Needs
 
+<h4>08/01/2019 Trabajo de desarrollo</h4>
+
+- [x] Fragment Universidad separado
+- [ ] Tinder implantado en San Miguel, falta contar correctas y que aparezcan las imágenes sólo 6 veces.
+
+
+
 Funcionamiento de la app
 ------------------------------------------------------------------------
 
