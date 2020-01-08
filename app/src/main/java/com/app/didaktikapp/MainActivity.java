@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -25,11 +27,13 @@ import com.app.didaktikapp.BBDD.database.AppDatabase;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.CircleMenu.CircleMenuView;
 
+
+
 import java.lang.ref.WeakReference;
 
 import at.markushi.ui.CircleButton;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  {
 
     private ConstraintLayout layout;
     private CircleButton  botonInicio,botonContinuar;
@@ -41,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         super.onCreate(savedInstanceState);
+
+
+
 
         //BBDD
         databaseRepository = new DatabaseRepository(MainActivity.this);
@@ -61,6 +68,9 @@ public class MainActivity extends AppCompatActivity {
 //            e.printStackTrace();
 //        }
         setContentView(R.layout.activity_main);
+        layout = findViewById(R.id.layout);
+
+
 
         TextView tv=(TextView)findViewById(R.id.tvTitulo);
         Typeface type =  ResourcesCompat.getFont(this, R.font.youthtouch);
@@ -71,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-//        layout = findViewById(R.id.layout);
+
 //
 //        int[] fondos = {R.drawable.login1,
 //                        R.drawable.login2,

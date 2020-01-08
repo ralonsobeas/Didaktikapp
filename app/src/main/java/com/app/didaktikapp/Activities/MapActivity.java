@@ -30,6 +30,7 @@ import com.app.didaktikapp.Fragments.FragmentErrotaTextos;
 import com.app.didaktikapp.Fragments.FragmentPuzle;
 import com.app.didaktikapp.Fragments.FragmentSanMiguel;
 import com.app.didaktikapp.Fragments.FragmentSanMiguelImagenes;
+import com.app.didaktikapp.Fragments.FragmentSanMiguelTinderKotlin;
 import com.app.didaktikapp.Fragments.FragmentTrenTexto;
 import com.app.didaktikapp.Fragments.FragmentUnibertsitatea;
 import com.app.didaktikapp.Fragments.FragmentZumeltzegi;
@@ -86,7 +87,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         , FragmentSanMiguel.OnFragmentInteractionListener
         , FragmentSanMiguelImagenes.OnFragmentInteractionListener
         , FragmentZumeltzegi.OnFragmentInteractionListener
-        , FragmentPuzle.OnFragmentInteractionListener {
+        , FragmentPuzle.OnFragmentInteractionListener
+        , FragmentSanMiguelTinderKotlin.OnFragmentInteractionListener{
 
     private MapView mapView;
     private MapboxMap mapboxMap;
@@ -270,7 +272,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     if (entrarEnPunto(estado)) {
                         switch (fragment){
                             case 0:
-                                lanzarFragment(new FragmentSanMiguel());
+                                lanzarFragment(new FragmentSanMiguelTinderKotlin());
                                 break;
                             case 1:
                                 lanzarFragment(new FragmentSanMiguelImagenes());
