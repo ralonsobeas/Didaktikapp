@@ -223,7 +223,9 @@ Seguimiento
 <h4>08/01/2019 Trabajo de desarrollo</h4>
 
 - [x] Fragment Universidad separado
-- [ ] Tinder implantado en San Miguel, falta contar correctas y que aparezcan las imágenes sólo 6 veces.
+- [ ] Tinder implantado en San Miguel, falta contar correctas y que aparezcan las imágenes sólo 6 veces
+- [x] Fragment Zumeltzegi guarda sus datos en BBDD
+- [x] Mapa Activity mira en BBDD el estado y el fragment de cada actividad al cargar
 
 
 
