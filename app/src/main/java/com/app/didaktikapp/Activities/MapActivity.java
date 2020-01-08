@@ -108,7 +108,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private Context context;
 
 
-    private int idgrupo;
+    public static int idgrupo = 1;
 
     private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
         .include(new LatLng(43.042073, -2.422996)) // Northeast
@@ -241,27 +241,49 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 //ZUMELTZEGI DORREA (1)
                 if(marker.getPosition().getLatitude()==43.035000 && marker.getPosition().getLongitude()==-2.412889){
                     actualizarMarkerLinea(-2.413917,43.033417,-2.415361,43.033944);
-                    int estado = sql.disponibilidadActividad("ActividadZumeltzegi",idgrupo);
-                    estado = 0;
+                    int estado = DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(new Long(1)).getEstado();
+                    int fragment = DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(new Long(1)).getFragment();
+
                     marker.setIcon(iconoPunto(estado));
                     if (entrarEnPunto(estado)) {
-                        lanzarFragment(new FragmentZumeltzegi());
+                        switch (fragment){
+                            case 0:
+                                lanzarFragment(new FragmentZumeltzegi());
+                                break;
+                            case 1:
+                                Intent intent = new Intent(context, SplashScreenActivity.class);
+                                intent.putExtra(GamePlayActivity.EXTRA_ROW_COUNT, 10);
+                                intent.putExtra(GamePlayActivity.EXTRA_COL_COUNT, 10);
+                                intent.putExtra(GamePlayActivity.fragment, "Zumeltzegi");
+                                startActivity(intent);
+                                break;
+                        }
                     }
 
                 }
                 //SAN MIGUEL PARROKIA (2)
                 else if(marker.getPosition().getLatitude()==43.033417 && marker.getPosition().getLongitude()==-2.413917){
-                    int estado = sql.disponibilidadActividad("ActividadSanMiguel",idgrupo);
-                    estado = 0;
+                    int estado = DatabaseRepository.getAppDatabase().getSanMiguelDao().getSanMiguel(new Long(1)).getEstado();
+                    int fragment = DatabaseRepository.getAppDatabase().getSanMiguelDao().getSanMiguel(new Long(1)).getFragment();
+
                     marker.setIcon(iconoPunto(estado));
                     if (entrarEnPunto(estado)) {
-                        lanzarFragment(new FragmentSanMiguel());
+                        switch (fragment){
+                            case 0:
+                                lanzarFragment(new FragmentSanMiguel());
+                                break;
+                            case 1:
+                                lanzarFragment(new FragmentSanMiguelImagenes());
+                                break;
+                        }
                     }
 
                 }
                 //UNIBERTSITATEA (3)
                 else if(marker.getPosition().getLatitude()==43.033944 && marker.getPosition().getLongitude()==-2.415361){
-                    int estado = sql.disponibilidadActividad("ActividadUniversidad",idgrupo);
+                    int estado = DatabaseRepository.getAppDatabase().getUniversitateaDao().getUniversitatea(new Long(1)).getEstado();
+                    int fragment = DatabaseRepository.getAppDatabase().getUniversitateaDao().getUniversitatea(new Long(1)).getFragment();
+
                     marker.setIcon(iconoPunto(estado));
                     if (entrarEnPunto(estado)) {
                         lanzarFragment(new FragmentUnibertsitatea());
@@ -270,16 +292,18 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 }
                 //TRENA (4)
                 else if(marker.getPosition().getLatitude()==43.033833 && marker.getPosition().getLongitude()==-2.416111){
-                    int estado = sql.disponibilidadActividad("ActividadTren",idgrupo);
+                    int estado = DatabaseRepository.getAppDatabase().getTrenDao().getTren(new Long(1)).getEstado();
+                    int fragment = DatabaseRepository.getAppDatabase().getTrenDao().getTren(new Long(1)).getFragment();
+
                     marker.setIcon(iconoPunto(estado));
                     if (entrarEnPunto(estado)) {
-                        FragmentPuzle fragment = new FragmentPuzle();
+                        FragmentPuzle fragmentPuzle = new FragmentPuzle();
                         Bundle bundle = new Bundle();
                         bundle.putInt(FragmentPuzle.ARG_IMAGEN, R.drawable.tren);
-                        fragment.setArguments(bundle);
+                        fragmentPuzle.setArguments(bundle);
                         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                         transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
-                        transaction.replace(R.id.fragment_frame, fragment);
+                        transaction.replace(R.id.fragment_frame, fragmentPuzle);
                         transaction.commit();
                         transaction.addToBackStack("Fragment");
                     }
@@ -287,7 +311,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 }
                 //SAN MIGUEL ERROTA (5)
                 else if(marker.getPosition().getLatitude()==43.032917 && marker.getPosition().getLongitude()==-2.415750){
-                    int estado = sql.disponibilidadActividad("ActividadErrota",idgrupo);
+                    int estado = DatabaseRepository.getAppDatabase().getErrotaDao().getErrota(new Long(1)).getEstado();
+                    int fragment = DatabaseRepository.getAppDatabase().getErrotaDao().getErrota(new Long(1)).getFragment();
+
                     marker.setIcon(iconoPunto(estado));
                     if (entrarEnPunto(estado)) {
                         lanzarFragment(new FragmentErrotaTextos());
@@ -422,27 +448,19 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             switch (x) {
                 case 0:
                     //Selecciona el icono dependiendo del valor del estado que corresponderá al orden en el array de iconos
-                     icono  = arrayIconos[DatabaseRepository.searchEstadoZumeltzegi()];
+                     icono  = arrayIconos[DatabaseRepository.searchEstadoZumeltzegi(idgrupo)];
                     break;
                 case 1:
-                    dis = sql.disponibilidadActividad("ActividadSanMiguel",idgrupo);
-                    if (dis==1) icono = iconoamarillo;
-                    else if (dis==2) icono = iconoverde;
+                    icono  = arrayIconos[DatabaseRepository.searchEstadoSanMiguel(idgrupo)];
                     break;
                 case 2:
-                    dis = sql.disponibilidadActividad("ActividadUniversidad",idgrupo);
-                    if (dis==1) icono = iconoamarillo;
-                    else if (dis==2) icono = iconoverde;
+                    icono  = arrayIconos[DatabaseRepository.searchEstadoUniversidad(idgrupo)];
                     break;
                 case 3:
-                    dis = sql.disponibilidadActividad("ActividadTren",idgrupo);
-                    if (dis==1) icono = iconoamarillo;
-                    else if (dis==2) icono = iconoverde;
+                    icono  = arrayIconos[DatabaseRepository.searchEstadoTren(idgrupo)];
                     break;
                 case 4:
-                    dis = sql.disponibilidadActividad("ActividadErrota",idgrupo);
-                    if (dis==1) icono = iconoamarillo;
-                    else if (dis==2) icono = iconoverde;
+                    icono  = arrayIconos[DatabaseRepository.searchEstadoErrota(idgrupo)];
                     break;
             }
             Lugar lugar = listaLugares.get(x);

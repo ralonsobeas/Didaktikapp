@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.R;
 
 /**
@@ -57,6 +59,8 @@ public class FragmentSanMiguel extends Fragment {
 
     private int contpregunta;
 
+    private int correctas = 0;
+
     public FragmentSanMiguel() {
         // Required empty public constructor
     }
@@ -90,6 +94,22 @@ public class FragmentSanMiguel extends Fragment {
 
     }
 
+    private void guardarBBDD(){
+        DatabaseRepository.getAppDatabase().getSanMiguelDao().getSanMiguel(new Long(1)).setFragment(1);
+
+
+        DatabaseRepository.getAppDatabase().getSanMiguelDao().getSanMiguel(new Long(1)).setTest(correctas+"/4");
+
+    }
+
+    private void vibrar(){
+        // Get instance of Vibrator from current Context
+        Vibrator v = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
+
+        // Vibrate for 400 milliseconds
+        v.vibrate(400);
+    }
+
     private void primeraPregunta(){
 
 
@@ -105,16 +125,17 @@ public class FragmentSanMiguel extends Fragment {
 
                 if(checkedId == R.id.rbtnPregunta1_A){
                     radioPregunta1A.setTextColor(Color.RED);
-
+                    vibrar();
                 }
 
                 if(checkedId == R.id.rbtnPregunta1_B){
                     radioPregunta1B.setTextColor(Color.RED);
+                    vibrar();
                 }
 
                 if(checkedId == R.id.rbtnPregunta1_C){
                     radioPregunta1C.setTextColor(Color.GREEN);
-
+                    correctas++;
                     btnContinuar.setEnabled(true);
                 }
 
@@ -142,18 +163,19 @@ public class FragmentSanMiguel extends Fragment {
 
                 if(checkedId == R.id.rbtnPregunta2_A){
                     radioPregunta2A.setTextColor(Color.RED);
-
+                    vibrar();
                 }
 
                 if(checkedId == R.id.rbtnPregunta2_B){
 
                     radioPregunta2B.setTextColor(Color.GREEN);
-
+                    correctas++;
                     btnContinuar.setEnabled(true);
                 }
 
                 if(checkedId == R.id.rbtnPregunta2_C){
                     radioPregunta2C.setTextColor(Color.RED);
+                    vibrar();
                 }
 
 
@@ -180,18 +202,19 @@ public class FragmentSanMiguel extends Fragment {
 
                 if(checkedId == R.id.rbtnPregunta3_A){
                     radioPregunta3A.setTextColor(Color.RED);
-
+                    vibrar();
                 }
 
                 if(checkedId == R.id.rbtnPregunta3_B){
 
                     radioPregunta3B.setTextColor(Color.RED);
+                    vibrar();
                 }
 
                 if(checkedId == R.id.rbtnPregunta3_C){
 
                     radioPregunta3C.setTextColor(Color.GREEN);
-
+                    correctas++;
 
                     btnContinuar.setEnabled(true);
                 }
@@ -220,6 +243,7 @@ public class FragmentSanMiguel extends Fragment {
 
                 if(checkedId == R.id.rbtnPregunta4_A){
                     radioPregunta4A.setTextColor(Color.RED);
+                    vibrar();
 
                 }
 
@@ -244,6 +268,7 @@ public class FragmentSanMiguel extends Fragment {
 
                 if(checkedId == R.id.rbtnPregunta4_C){
                     radioPregunta4C.setTextColor(Color.RED);
+                    vibrar();
                 }
 
 

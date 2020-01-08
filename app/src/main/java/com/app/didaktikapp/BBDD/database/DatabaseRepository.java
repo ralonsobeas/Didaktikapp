@@ -68,10 +68,31 @@ public class DatabaseRepository {
 
     }
 
-    public static Integer searchEstadoZumeltzegi(){
-        Long id = appDatabase.getGrupoDao().getGrupo(1).getIdZumeltzegi();
+    public static Integer searchEstadoZumeltzegi(int idgrupo){
+        Long id = appDatabase.getGrupoDao().getGrupo(idgrupo).getIdZumeltzegi();
         return appDatabase.getZumeltzegiDao().getZumeltzegi(id).getEstado();
     }
+
+    public static Integer searchEstadoSanMiguel(int idgrupo){
+        Long id = appDatabase.getGrupoDao().getGrupo(idgrupo).getIdParroquia();
+        return appDatabase.getSanMiguelDao().getSanMiguel(id).getEstado();
+    }
+
+    public static Integer searchEstadoUniversidad(int idgrupo){
+        Long id = appDatabase.getGrupoDao().getGrupo(idgrupo).getIdUniversidad();
+        return appDatabase.getUniversitateaDao().getUniversitatea(id).getEstado();
+    }
+
+    public static Integer searchEstadoTren(int idgrupo){
+        Long id = appDatabase.getGrupoDao().getGrupo(idgrupo).getIdTren();
+        return appDatabase.getTrenDao().getTren(id).getEstado();
+    }
+
+    public static Integer searchEstadoErrota(int idgrupo){
+        Long id = appDatabase.getGrupoDao().getGrupo(idgrupo).getIdErrota();
+        return appDatabase.getErrotaDao().getErrota(id).getEstado();
+    }
+
 
     public static AppDatabase getAppDatabase() {
         return appDatabase;

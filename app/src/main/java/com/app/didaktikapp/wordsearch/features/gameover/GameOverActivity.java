@@ -26,6 +26,8 @@ public class GameOverActivity extends FullscreenActivity {
     public static final String EXTRA_GAME_ROUND_ID =
             "com.paperplanes.wordsearch.presentation.ui.activity.GameOverActivity";
 
+
+
     @Inject
     ViewModelFactory mViewModelFactory;
 
@@ -70,6 +72,7 @@ public class GameOverActivity extends FullscreenActivity {
         NavUtils.navigateUpTo(this, new Intent());
 //        SQLiteControlador sql = new SQLiteControlador(getApplicationContext());
 //        sql.actualizarZumeltzegiDorrea("sopa");
+
         finish();
     }
 

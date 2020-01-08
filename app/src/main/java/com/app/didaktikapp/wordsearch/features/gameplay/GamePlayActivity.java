@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import androidx.lifecycle.ViewModelProviders;
 
+import com.app.didaktikapp.Activities.MapActivity;
+import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.R;
 import com.app.didaktikapp.wordsearch.WordSearchApp;
 import com.app.didaktikapp.wordsearch.commons.DurationFormatter;
@@ -48,6 +50,8 @@ public class GamePlayActivity extends FullscreenActivity {
             "com.app.didaktikapp.wordsearch.features.gameplay.GamePlayActivity.COL";
 
     private static final StreakLineMapper STREAK_LINE_MAPPER = new StreakLineMapper();
+
+    public static final String fragment = "";
 
 
     @Inject
@@ -266,6 +270,15 @@ public class GamePlayActivity extends FullscreenActivity {
     private void showFinishGame(int gameId) {
         Intent intent = new Intent(this, GameOverActivity.class);
         intent.putExtra(GameOverActivity.EXTRA_GAME_ROUND_ID, gameId);
+
+        if(fragment.equals("Zumeltzegi")){
+//            DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(DatabaseRepository.getAppDatabase().getGrupoDao().getGrupo(MapActivity.idgrupo)).setSopa(mTextDuration);
+            DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(new Long(1)).setSopa(mTextDuration.getText().toString());
+            DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(new Long(1)).setFragment(2);
+            DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(new Long(1)).setEstado(2);
+
+
+        }
         startActivity(intent);
         finish();
     }
