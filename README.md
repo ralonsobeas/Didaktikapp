@@ -227,7 +227,10 @@ Seguimiento
 - [x] Fragment Zumeltzegi guarda sus datos en BBDD
 - [x] Mapa Activity mira en BBDD el estado y el fragment de cada actividad al cargar
 
+<h4>09/01/2019 Trabajo de desarrollo</h4>
 
+- [x] Tinder terminado
+- [ ] Fallo en sopa de letras posible error en el cambio en el gradel de kers?
 
 Funcionamiento de la app
 ------------------------------------------------------------------------
