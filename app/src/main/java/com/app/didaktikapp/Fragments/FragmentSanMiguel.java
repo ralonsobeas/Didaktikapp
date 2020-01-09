@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.R;
@@ -97,6 +98,7 @@ public class FragmentSanMiguel extends Fragment {
     private void guardarBBDD(){
         DatabaseRepository.getAppDatabase().getSanMiguelDao().getSanMiguel(new Long(1)).setFragment(1);
 
+        Toast.makeText(getContext(),DatabaseRepository.getAppDatabase().getSanMiguelDao().getSanMiguel(new Long(1)).getFragment()+"",Toast.LENGTH_LONG);
 
         DatabaseRepository.getAppDatabase().getSanMiguelDao().getSanMiguel(new Long(1)).setTest(correctas+"/4");
 
@@ -256,7 +258,11 @@ public class FragmentSanMiguel extends Fragment {
                     btnContinuar.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            FragmentSanMiguelImagenes fragment = new FragmentSanMiguelImagenes();
+                            //Guardar en BBDD
+                            guardarBBDD();
+
+                            //Lanzar siguiente fragment
+                            FragmentSanMiguelTinderKotlin fragment = new FragmentSanMiguelTinderKotlin();
                             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                             transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
                             transaction.replace(R.id.fragment_frame, fragment);

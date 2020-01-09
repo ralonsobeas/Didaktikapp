@@ -11,17 +11,15 @@ import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.LinearInterpolator
 import android.widget.TextView
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DiffUtil
+import com.app.didaktikapp.BBDD.database.DatabaseRepository
 import com.app.didaktikapp.CardStack.CardStackAdapter
 import com.app.didaktikapp.CardStack.Spot
 import com.app.didaktikapp.CardStack.SpotDiffCallback
 import com.app.didaktikapp.R
-import com.google.android.material.navigation.NavigationView
 import com.yuyakaido.android.cardstackview.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -48,6 +46,9 @@ class FragmentSanMiguelTinderKotlin : Fragment(), CardStackListener {
     private val cardStackView by lazy { views!!.findViewById<CardStackView>(R.id.card_stack_view) }
     private val manager by lazy { CardStackLayoutManager(context, this) }
     private val adapter by lazy { CardStackAdapter(createSpots()) }
+    private var count = 1L
+    private var correcta = 0
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -130,9 +131,38 @@ class FragmentSanMiguelTinderKotlin : Fragment(), CardStackListener {
 
     override fun onCardSwiped(direction: Direction) {
         Log.d("CardStackView", "onCardSwiped: p = ${manager.topPosition}, d = $direction")
-        if (manager.topPosition == adapter.itemCount - 5) {
+        if (manager.topPosition == adapter.itemCount - 6) {
             paginate()
+
         }
+
+        when (manager.topPosition) {
+            1, 3, 5 -> {
+                if (direction.toString() == "Right"){
+                    correcta++
+                }
+            }
+            else -> {
+                if (direction.toString() == ("Left")){
+                    correcta++
+                }
+            }
+        }
+
+        //Cerrar fragment al swipear ultima imagen
+        if(manager.topPosition == adapter.itemCount ){
+
+            //Cargar resultado en BBDD
+            guardarBBDD()
+
+            fragmentManager!!.beginTransaction().remove(this@FragmentSanMiguelTinderKotlin).commit()
+
+        }
+    }
+
+    private fun guardarBBDD() {
+        DatabaseRepository.getAppDatabase().sanMiguelDao.getSanMiguel(1).fragment = 2
+        DatabaseRepository.getAppDatabase().sanMiguelDao.getSanMiguel(1).fotos = "${correcta}/6"
     }
 
     override fun onCardRewound() {
@@ -220,7 +250,8 @@ class FragmentSanMiguelTinderKotlin : Fragment(), CardStackListener {
     }
 
     private fun initialize() {
-        manager.setStackFrom(StackFrom.None)
+
+        manager.setStackFrom(StackFrom.Top)
         manager.setVisibleCount(3)
         manager.setTranslationInterval(8.0f)
         manager.setScaleInterval(0.95f)
@@ -348,6 +379,7 @@ class FragmentSanMiguelTinderKotlin : Fragment(), CardStackListener {
 
     private fun createSpot(): Spot {
         return Spot(
+                id = count++,
                 name = "",
                 city = "",
                 url = R.drawable.sanmiguelcorrecta1
@@ -356,12 +388,12 @@ class FragmentSanMiguelTinderKotlin : Fragment(), CardStackListener {
 
     private fun createSpots(): List<Spot> {
         val spots = ArrayList<Spot>()
-        spots.add(Spot(name = "", city = "", url =  R.drawable.sanmiguelcorrecta1))
-        spots.add(Spot(name = "", city = "", url =  R.drawable.sanmiguelincorrecta1))
-        spots.add(Spot(name = "", city = "", url =  R.drawable.sanmiguelcorrecta2))
-        spots.add(Spot(name = "", city = "", url =  R.drawable.sanmiguelincorrecta2))
-        spots.add(Spot(name = "", city = "", url =  R.drawable.sanmiguelcorrecta3))
-        spots.add(Spot(name = "", city = "", url =  R.drawable.sanmiguelincorrecta3))
+        spots.add(Spot(id = count++,name = "", city = "", url =  R.drawable.sanmiguelcorrecta1))
+        spots.add(Spot(id = count++,name = "", city = "", url =  R.drawable.sanmiguelincorrecta1))
+        spots.add(Spot(id = count++,name = "", city = "", url =  R.drawable.sanmiguelcorrecta2))
+        spots.add(Spot(id = count++,name = "", city = "", url =  R.drawable.sanmiguelincorrecta2))
+        spots.add(Spot(id = count++,name = "", city = "", url =  R.drawable.sanmiguelcorrecta3))
+        spots.add(Spot(id = count++,name = "", city = "", url =  R.drawable.sanmiguelincorrecta3))
 
         return spots
     }

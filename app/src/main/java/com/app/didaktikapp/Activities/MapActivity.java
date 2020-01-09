@@ -268,14 +268,16 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     int estado = DatabaseRepository.getAppDatabase().getSanMiguelDao().getSanMiguel(new Long(1)).getEstado();
                     int fragment = DatabaseRepository.getAppDatabase().getSanMiguelDao().getSanMiguel(new Long(1)).getFragment();
 
+
+
                     marker.setIcon(iconoPunto(estado));
                     if (entrarEnPunto(estado)) {
                         switch (fragment){
                             case 0:
-                                lanzarFragment(new FragmentSanMiguelTinderKotlin());
+                                lanzarFragment(new FragmentSanMiguel());
                                 break;
                             case 1:
-                                lanzarFragment(new FragmentSanMiguelImagenes());
+                                lanzarFragment(new FragmentSanMiguelTinderKotlin());
                                 break;
                         }
                     }
