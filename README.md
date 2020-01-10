@@ -231,6 +231,7 @@ Seguimiento
 
 - [x] Tinder terminado
 - [ ] Fallo en sopa de letras posible error en el cambio en el gradel de kers?
+- [ ] https://github.com/29jitender/Spotlight
 
 Funcionamiento de la app
 ------------------------------------------------------------------------
