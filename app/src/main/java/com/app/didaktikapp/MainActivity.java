@@ -8,9 +8,11 @@ import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +20,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amitshekhar.DebugDB;
 import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.BBDD.AppExecutors;
 import com.app.didaktikapp.BBDD.Modelos.Grupo;
@@ -27,6 +30,14 @@ import com.app.didaktikapp.BBDD.database.AppDatabase;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.CircleMenu.CircleMenuView;
 
+import com.facebook.stetho.Stetho;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.wooplr.spotlight.SpotlightConfig;
+import com.wooplr.spotlight.SpotlightView;
+import com.wooplr.spotlight.prefs.PreferencesManager;
+import com.wooplr.spotlight.shape.Circle;
+import com.wooplr.spotlight.utils.SpotlightSequence;
+import com.wooplr.spotlight.utils.Utils;
 
 
 import java.lang.ref.WeakReference;
@@ -46,7 +57,7 @@ public class MainActivity extends AppCompatActivity  {
 
         super.onCreate(savedInstanceState);
 
-
+        Stetho.initializeWithDefaults(this);
 
 
         //BBDD
@@ -54,6 +65,7 @@ public class MainActivity extends AppCompatActivity  {
 
         //SE CREA EL GRUPO Y TODOS LOS FRAGMENTS CON SU ESTADO Y FRAGMENT = 0
         DatabaseRepository.insertTaskGrupo("NOMBREDEPRUEBA");
+
 
         // "context" must be an Activity, Service or Application object from your app.
 //        if (! Python.isStarted()) {
@@ -138,10 +150,16 @@ public class MainActivity extends AppCompatActivity  {
 
                         break;
                     case 1:
-                        startActivity(i);
+                        //startActivity(i);
+
+
                         break;
                     case 2:
                         finish();
+                        break;
+
+                    case 3:
+                        inicioAyuda();
                         break;
                 }
 
@@ -234,6 +252,60 @@ public class MainActivity extends AppCompatActivity  {
         super.finish();
 
     }
+
+    private void inicioAyuda(){
+        PreferencesManager mPreferencesManager = new PreferencesManager(MainActivity.this);
+        mPreferencesManager.resetAll();
+        TextView tvTitulo = (TextView)findViewById(R.id.tvTitulo);
+        CircleMenuView circleMenuView = (CircleMenuView) findViewById(R.id.circle_menu);
+        FloatingActionButton boton1 = findViewById(0);
+        FloatingActionButton boton2 = findViewById(1);
+        FloatingActionButton boton3 = findViewById(2);
+        FloatingActionButton boton4 = findViewById(3);
+
+        circleMenuView.open(true);
+
+
+
+
+        SpotlightConfig config = new SpotlightConfig();
+        config.setMaskColor( Color.parseColor("#E63A3A3A"));
+        config.setIntroAnimationDuration(400);
+        config.setFadingTextDuration(400);
+        config.setPadding(20);
+        config.setDismissOnTouch(true);
+        config.setDismissOnBackpress(true);
+        config.setPerformClick(true);
+        config.setHeadingTvSize(24);
+        config.setHeadingTvColor(Color.parseColor("#2B82C5"));
+        config.setSubHeadingTvSize(24);
+        config.setSubHeadingTvColor(Color.parseColor("#FAFAFA"));
+        config.setLineAnimationDuration(300);
+        config.setLineStroke(Utils.dpToPx(4));
+        config.setLineAndArcColor( Color.parseColor("#2B82C5"));
+        config.setShowTargetArc(true);
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                SpotlightSequence.getInstance(MainActivity.this,config)
+                        .addSpotlight(boton1, "Comienzo ", "Inicia la partida", "circleMenuView1")
+                        .addSpotlight(boton2, "Continuar ", "Continúa una partida", "circleMenuView2")
+                        .addSpotlight(boton3, "Salir ", "Salir del juego", "circleMenuView3")
+                        .addSpotlight(boton4, "Ayuda ", "Una pequeña ayuda", "circleMenuView4")
+
+                        .startSequence();
+            }
+        }, 400);
+
+
+
+
+
+    }
+
+
 
 
     private static class InsertTask extends AsyncTask<Void,Void,Boolean> {

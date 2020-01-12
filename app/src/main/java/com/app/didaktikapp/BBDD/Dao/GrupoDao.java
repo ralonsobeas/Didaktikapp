@@ -17,10 +17,10 @@ public interface GrupoDao {
     List<Grupo> getGrupos();
 
     @Query("SELECT * FROM GRUPO WHERE ID LIKE :uuid")
-    Grupo getGrupo(Integer uuid);
+    Grupo getGrupo(Long uuid);
 
     @Insert
-    void addGrupo(Grupo grupo);
+    Long addGrupo(Grupo grupo);
 
     @Delete
     void deleteGrupo(Grupo grupo);

@@ -2,11 +2,15 @@ package com.app.didaktikapp.BBDD.database;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.provider.ContactsContract;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.VisibleForTesting;
 import androidx.room.Room;
 
+import com.amitshekhar.DebugDB;
+import com.amitshekhar.sqlite.DBFactory;
 import com.app.didaktikapp.BBDD.Dao.ZumeltzegiDao;
 import com.app.didaktikapp.BBDD.Modelos.ActividadErrota;
 import com.app.didaktikapp.BBDD.Modelos.ActividadSanMiguel;
@@ -53,14 +57,20 @@ public class DatabaseRepository {
             @Override
             protected Void doInBackground(Void... voids) {
                 Grupo grupo = new Grupo();
+                grupo.setNombre(nombreGrupo);
                 grupo.setFecha( Calendar.getInstance().getTime());
-                grupo.setIdZumeltzegi(appDatabase.getZumeltzegiDao().addZumeltzegi(new ActividadZumeltzegi()));
+                ActividadZumeltzegi actividadZumeltzegi = new ActividadZumeltzegi();
+                actividadZumeltzegi.setEstado(1);
+                grupo.setIdZumeltzegi(appDatabase.getZumeltzegiDao().addZumeltzegi(actividadZumeltzegi));
                 grupo.setIdUniversidad(appDatabase.getUniversitateaDao().addUniversitatea(new ActividadUniversitatea()));
                 grupo.setIdTren(appDatabase.getTrenDao().addTren(new ActividadTren()));
                 grupo.setIdParroquia(appDatabase.getSanMiguelDao().addSanMiguel(new ActividadSanMiguel()));
                 grupo.setIdErrota(appDatabase.getErrotaDao().addErrota(new ActividadErrota()));
                 Log.i("GRUPO",grupo.toString());
+                Log.i("GRUPO", DebugDB.getAddressLog());
                 appDatabase.getGrupoDao().addGrupo(grupo);
+
+
 
                 return null;
             }
@@ -68,27 +78,27 @@ public class DatabaseRepository {
 
     }
 
-    public static Integer searchEstadoZumeltzegi(int idgrupo){
+    public static Integer searchEstadoZumeltzegi(Long idgrupo){
         Long id = appDatabase.getGrupoDao().getGrupo(idgrupo).getIdZumeltzegi();
         return appDatabase.getZumeltzegiDao().getZumeltzegi(id).getEstado();
     }
 
-    public static Integer searchEstadoSanMiguel(int idgrupo){
+    public static Integer searchEstadoSanMiguel(Long idgrupo){
         Long id = appDatabase.getGrupoDao().getGrupo(idgrupo).getIdParroquia();
         return appDatabase.getSanMiguelDao().getSanMiguel(id).getEstado();
     }
 
-    public static Integer searchEstadoUniversidad(int idgrupo){
+    public static Integer searchEstadoUniversidad(Long idgrupo){
         Long id = appDatabase.getGrupoDao().getGrupo(idgrupo).getIdUniversidad();
         return appDatabase.getUniversitateaDao().getUniversitatea(id).getEstado();
     }
 
-    public static Integer searchEstadoTren(int idgrupo){
+    public static Integer searchEstadoTren(Long idgrupo){
         Long id = appDatabase.getGrupoDao().getGrupo(idgrupo).getIdTren();
         return appDatabase.getTrenDao().getTren(id).getEstado();
     }
 
-    public static Integer searchEstadoErrota(int idgrupo){
+    public static Integer searchEstadoErrota(Long idgrupo){
         Long id = appDatabase.getGrupoDao().getGrupo(idgrupo).getIdErrota();
         return appDatabase.getErrotaDao().getErrota(id).getEstado();
     }
