@@ -27,4 +27,11 @@ public interface ZumeltzegiDao {
 
     @Update
     void updateZumeltzegi(ActividadZumeltzegi zumeltzegi);
+
+    /**
+     * Updating only price
+     * By order id
+     */
+    @Query("UPDATE zumeltzegi SET estado=:new_estado WHERE id = :id")
+    void updateEstado(int new_estado, Long id);
 }

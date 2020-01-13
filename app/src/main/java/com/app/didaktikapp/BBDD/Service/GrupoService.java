@@ -37,7 +37,7 @@ public class GrupoService {
         return grupoDao.getGrupos();
     }
 
-    public Grupo getGrupo(Integer id) {
+    public Grupo getGrupo(Long id) {
         return grupoDao.getGrupo(id);
     }
 

@@ -262,6 +262,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         }
                     }
 
+                    DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(new Long(1)).setEstado(1);
+                    Toast.makeText(getApplicationContext(),DatabaseRepository.searchEstadoZumeltzegi(new Long(1))+": asd",Toast.LENGTH_LONG).show();
+
                 }
                 //SAN MIGUEL PARROKIA (2)
                 else if(marker.getPosition().getLatitude()==43.033417 && marker.getPosition().getLongitude()==-2.413917){
@@ -452,19 +455,19 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             switch (x) {
                 case 0:
                     //Selecciona el icono dependiendo del valor del estado que corresponderá al orden en el array de iconos
-                     icono  = arrayIconos[DatabaseRepository.searchEstadoZumeltzegi(idgrupo)];
+                     icono  = arrayIconos[DatabaseRepository.searchEstadoZumeltzegi(new Long(1))];
                     break;
                 case 1:
-                    icono  = arrayIconos[DatabaseRepository.searchEstadoSanMiguel(idgrupo)];
+                    icono  = arrayIconos[DatabaseRepository.searchEstadoSanMiguel(new Long(1))];
                     break;
                 case 2:
-                    icono  = arrayIconos[DatabaseRepository.searchEstadoUniversidad(idgrupo)];
+                    icono  = arrayIconos[DatabaseRepository.searchEstadoUniversidad(new Long(1))];
                     break;
                 case 3:
-                    icono  = arrayIconos[DatabaseRepository.searchEstadoTren(idgrupo)];
+                    icono  = arrayIconos[DatabaseRepository.searchEstadoTren(new Long(1))];
                     break;
                 case 4:
-                    icono  = arrayIconos[DatabaseRepository.searchEstadoErrota(idgrupo)];
+                    icono  = arrayIconos[DatabaseRepository.searchEstadoErrota(new Long(1))];
                     break;
             }
             Lugar lugar = listaLugares.get(x);
