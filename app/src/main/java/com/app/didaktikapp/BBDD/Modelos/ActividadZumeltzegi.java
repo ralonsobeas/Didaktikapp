@@ -14,7 +14,7 @@ public class ActividadZumeltzegi {
     private Long id ;
 
     @ColumnInfo(name = "ESTADO")
-    private Integer estado  ;
+    private Integer estado = 0  ;
 
     @ColumnInfo(name = "FRAGMENT")
     private Integer fragment  = 0 ;

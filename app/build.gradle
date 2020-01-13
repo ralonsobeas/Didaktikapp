@@ -144,6 +144,10 @@ dependencies {
     compile 'com.facebook.stetho:stetho:1.5.1'
     //If you want to add a network helper
     compile 'com.facebook.stetho:stetho-okhttp:1.5.1'
+
+
+    //FlexboxLayout
+    implementation 'com.google.android:flexbox:2.0.0'
 }
 
 /*implementation 'com.jakewharton:butterknife:10.2.0'
