@@ -17,6 +17,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.app.didaktikapp.BBDD.Modelos.ActividadSanMiguel;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.R;
 
@@ -96,11 +97,16 @@ public class FragmentSanMiguel extends Fragment {
     }
 
     private void guardarBBDD(){
-        DatabaseRepository.getAppDatabase().getSanMiguelDao().getSanMiguel(new Long(1)).setFragment(1);
 
-        Toast.makeText(getContext(),DatabaseRepository.getAppDatabase().getSanMiguelDao().getSanMiguel(new Long(1)).getFragment()+"",Toast.LENGTH_LONG);
+        ActividadSanMiguel actividadSanMiguel = DatabaseRepository.getAppDatabase().getSanMiguelDao().getSanMiguel(new Long(1));
 
-        DatabaseRepository.getAppDatabase().getSanMiguelDao().getSanMiguel(new Long(1)).setTest(correctas+"/4");
+        actividadSanMiguel.setEstado(1);
+
+        actividadSanMiguel.setFragment(1);
+
+        actividadSanMiguel.setTest(correctas+"/4");
+
+        DatabaseRepository.getAppDatabase().getSanMiguelDao().updateSanMiguel(actividadSanMiguel);
 
     }
 
@@ -254,6 +260,8 @@ public class FragmentSanMiguel extends Fragment {
                     radioPregunta4B.setTextColor(Color.GREEN);
 
                     btnContinuar.setEnabled(true);
+
+                    correctas++;
 
                     btnContinuar.setOnClickListener(new View.OnClickListener() {
                         @Override

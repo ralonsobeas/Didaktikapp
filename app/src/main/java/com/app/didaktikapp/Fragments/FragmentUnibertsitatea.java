@@ -14,6 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.app.didaktikapp.BBDD.Modelos.ActividadUniversitatea;
+import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.R;
 
 import in.codeshuffle.typewriterview.TypeWriterView;
@@ -31,6 +33,8 @@ public class FragmentUnibertsitatea extends Fragment {
     private RadioGroup grupo1, grupo2;
 
     private RadioButton radio1S, radio1N, radio2S, radio2N;
+
+    private int correctas = 0;
 
 
     public FragmentUnibertsitatea() {
@@ -179,6 +183,9 @@ public class FragmentUnibertsitatea extends Fragment {
                     fotosLayout.setVisibility(View.VISIBLE);
                     btnContinuar.setText(R.string.finalizar);
                 }else if(fotosLayout.getVisibility() == View.VISIBLE){
+
+                    guardarBBDD();
+
                     getFragmentManager().beginTransaction().remove(FragmentUnibertsitatea.this).commit();
                 }
 
@@ -187,6 +194,19 @@ public class FragmentUnibertsitatea extends Fragment {
         return view;
     }
 
+    private void guardarBBDD(){
+
+        ActividadUniversitatea actividadUniversitatea = DatabaseRepository.getAppDatabase().getUniversitateaDao().getUniversitatea(new Long(1));
+
+        actividadUniversitatea.setEstado(1);
+
+        actividadUniversitatea.setFragment(1);
+
+        actividadUniversitatea.setTest(correctas+"");
+
+        DatabaseRepository.getAppDatabase().getUniversitateaDao().updateUniversitatea(actividadUniversitatea);
+
+    }
 
     @Override
     public void onAttach(Context context) {

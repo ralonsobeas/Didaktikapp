@@ -60,14 +60,11 @@ public class DatabaseRepository {
                 grupo.setNombre(nombreGrupo);
                 grupo.setFecha( Calendar.getInstance().getTime());
                 ActividadZumeltzegi actividadZumeltzegi = new ActividadZumeltzegi();
-                actividadZumeltzegi.setEstado(1);
                 grupo.setIdZumeltzegi(appDatabase.getZumeltzegiDao().addZumeltzegi(actividadZumeltzegi));
                 grupo.setIdUniversidad(appDatabase.getUniversitateaDao().addUniversitatea(new ActividadUniversitatea()));
                 grupo.setIdTren(appDatabase.getTrenDao().addTren(new ActividadTren()));
                 grupo.setIdParroquia(appDatabase.getSanMiguelDao().addSanMiguel(new ActividadSanMiguel()));
                 grupo.setIdErrota(appDatabase.getErrotaDao().addErrota(new ActividadErrota()));
-                Log.i("GRUPO",grupo.toString());
-                Log.i("GRUPO", DebugDB.getAddressLog());
                 appDatabase.getGrupoDao().addGrupo(grupo);
 
 

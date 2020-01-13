@@ -8,6 +8,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,8 +21,11 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.app.didaktikapp.BBDD.Modelos.ActividadUniversitatea;
+import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.R;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -116,9 +120,11 @@ public class FragmentUnibertsitateaFotos extends Fragment {
                 guardarImagen(img3);
 
                 //EDIT BBDD Y CERRAR FRAGMENT
+
+                guardarBBDD(img1,img2,img3);
+
                 getFragmentManager().beginTransaction().remove(FragmentUnibertsitateaFotos.this).commit();
 
-                //GUARDARIMAGENES
 
 
             }
@@ -207,6 +213,35 @@ public class FragmentUnibertsitateaFotos extends Fragment {
         }
 
         MediaStore.Images.Media.insertImage(getActivity().getContentResolver(), bitmap, "Titulo" , "descripcion");
+    }
+
+    private void guardarBBDD(ImageView iv1,ImageView iv2,ImageView  iv3){
+
+        ActividadUniversitatea actividadUniversitatea = DatabaseRepository.getAppDatabase().getUniversitateaDao().getUniversitatea(new Long(1));
+
+        actividadUniversitatea.setEstado(2);
+
+        actividadUniversitatea.setFragment(2);
+
+        actividadUniversitatea.setFoto1(imageToBase64(iv1));
+
+        actividadUniversitatea.setFoto2(imageToBase64(iv2));
+
+        actividadUniversitatea.setFoto3(imageToBase64(iv3));
+
+        DatabaseRepository.getAppDatabase().getUniversitateaDao().updateUniversitatea(actividadUniversitatea);
+
+    }
+
+    private String imageToBase64(ImageView iv){
+        iv.buildDrawingCache();
+        Bitmap bitmap = iv.getDrawingCache();
+
+        ByteArrayOutputStream stream=new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream);
+        byte[] image=stream.toByteArray();
+
+        return  Base64.encodeToString(image, 0);
     }
 
 

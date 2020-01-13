@@ -11,15 +11,18 @@ import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.LinearInterpolator
 import android.widget.TextView
+import android.widget.Toast
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DiffUtil
+import com.app.didaktikapp.BBDD.Modelos.ActividadSanMiguel
 import com.app.didaktikapp.BBDD.database.DatabaseRepository
 import com.app.didaktikapp.CardStack.CardStackAdapter
 import com.app.didaktikapp.CardStack.Spot
 import com.app.didaktikapp.CardStack.SpotDiffCallback
 import com.app.didaktikapp.R
+import com.muddzdev.styleabletoast.StyleableToast
 import com.yuyakaido.android.cardstackview.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -140,11 +143,21 @@ class FragmentSanMiguelTinderKotlin : Fragment(), CardStackListener {
             1, 3, 5 -> {
                 if (direction.toString() == "Right"){
                     correcta++
+                    StyleableToast.makeText(context!!, resources.getString(R.string.Correcta), Toast.LENGTH_SHORT, R.style.mytoastCorrecta  ).show()
+
+                }else{
+                    StyleableToast.makeText(context!!, resources.getString(R.string.Incorrecta), Toast.LENGTH_SHORT, R.style.mytoastIncorrecta  ).show()
+
                 }
             }
             else -> {
-                if (direction.toString() == ("Left")){
+                if (direction.toString() == "Left"){
                     correcta++
+                    StyleableToast.makeText(context!!, resources.getString(R.string.Correcta), Toast.LENGTH_SHORT, R.style.mytoastCorrecta  ).show()
+
+                }else{
+                    StyleableToast.makeText(context!!, resources.getString(R.string.Incorrecta), Toast.LENGTH_SHORT, R.style.mytoastIncorrecta  ).show()
+
                 }
             }
         }
@@ -161,8 +174,16 @@ class FragmentSanMiguelTinderKotlin : Fragment(), CardStackListener {
     }
 
     private fun guardarBBDD() {
-        DatabaseRepository.getAppDatabase().sanMiguelDao.getSanMiguel(1).fragment = 2
-        DatabaseRepository.getAppDatabase().sanMiguelDao.getSanMiguel(1).fotos = "${correcta}/6"
+        val actividadSanMiguel: ActividadSanMiguel? = DatabaseRepository.getAppDatabase().sanMiguelDao.getSanMiguel(1)
+
+        actividadSanMiguel!!.estado = 2
+
+
+        actividadSanMiguel.fragment = 2
+        actividadSanMiguel.fotos = "${correcta}/6"
+
+        DatabaseRepository.getAppDatabase().sanMiguelDao.updateSanMiguel(actividadSanMiguel)
+
     }
 
     override fun onCardRewound() {

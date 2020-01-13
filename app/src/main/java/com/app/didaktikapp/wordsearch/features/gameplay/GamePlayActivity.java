@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.app.didaktikapp.Activities.MapActivity;
+import com.app.didaktikapp.BBDD.Modelos.ActividadZumeltzegi;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.R;
 import com.app.didaktikapp.wordsearch.WordSearchApp;
@@ -51,7 +53,7 @@ public class GamePlayActivity extends FullscreenActivity {
 
     private static final StreakLineMapper STREAK_LINE_MAPPER = new StreakLineMapper();
 
-    public static final String fragment = "";
+    public static String fragment = "";
 
 
     @Inject
@@ -270,12 +272,17 @@ public class GamePlayActivity extends FullscreenActivity {
     private void showFinishGame(int gameId) {
         Intent intent = new Intent(this, GameOverActivity.class);
         intent.putExtra(GameOverActivity.EXTRA_GAME_ROUND_ID, gameId);
+        fragment = "Zumeltzegi";
+        Log.i("FRAGMENT",fragment);
 
         if(fragment.equals("Zumeltzegi")){
 //            DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(DatabaseRepository.getAppDatabase().getGrupoDao().getGrupo(MapActivity.idgrupo)).setSopa(mTextDuration);
-            DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(new Long(1)).setSopa(mTextDuration.getText().toString());
-            DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(new Long(1)).setFragment(2);
-            DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(new Long(1)).setEstado(2);
+            ActividadZumeltzegi actividadZumeltzegi = DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(new Long(1));
+            actividadZumeltzegi.setSopa(mTextDuration.getText().toString());
+            actividadZumeltzegi.setFragment(2);
+            actividadZumeltzegi.setEstado(2);
+
+            DatabaseRepository.getAppDatabase().getZumeltzegiDao().updateZumeltzegi(actividadZumeltzegi);
 
 
         }

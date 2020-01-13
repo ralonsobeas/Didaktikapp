@@ -39,6 +39,8 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.app.didaktikapp.Activities.MapActivity;
+import com.app.didaktikapp.BBDD.Modelos.ActividadZumeltzegi;
+import com.app.didaktikapp.BBDD.Service.ZumeltzegiService;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.R;
 import com.app.didaktikapp.wordsearch.features.SplashScreenActivity;
@@ -206,11 +208,13 @@ public class FragmentZumeltzegi extends Fragment {
 
 
                 //Añadir imagenes a base de datos
-                DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(new Long(1)).setFragment(1);
+                ActividadZumeltzegi actividadZumeltzegi = DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(new Long(1));
 
-                DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(new Long(1)).setFoto1(imageToBase64(ivPregunta1));
-                DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(new Long(1)).setFoto1(imageToBase64(ivPregunta2));
+                actividadZumeltzegi.setFragment(1);
+                actividadZumeltzegi.setFoto1(imageToBase64(ivPregunta1));
+                actividadZumeltzegi.setFoto2(imageToBase64(ivPregunta2));
 
+                DatabaseRepository.getAppDatabase().getZumeltzegiDao().updateZumeltzegi(actividadZumeltzegi);
 
                 getFragmentManager().beginTransaction().remove(FragmentZumeltzegi.this).commit();
             }

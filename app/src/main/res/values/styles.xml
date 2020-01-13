@@ -73,5 +73,29 @@
         <item name="stRadius">25dp</item>
     </style>
 
+    <style name="mytoastCorrecta">
+        <item name="stTextBold">true</item>
+        <item name="stTextSize">14sp</item>
+        <item name="stColorBackground">@android:color/holo_green_dark</item>
+        <item name="stSolidBackground">true</item>
+        <item name="stStrokeWidth">3dp</item>
+        <item name="stIconStart">@drawable/mapbox_ic_check</item>
+        <item name="stLength">SHORT</item>
+
+        <item name="stRadius">25dp</item>
+    </style>
+
+    <style name="mytoastIncorrecta">
+        <item name="stTextBold">true</item>
+        <item name="stTextSize">14sp</item>
+        <item name="stColorBackground">@android:color/holo_red_dark</item>
+        <item name="stSolidBackground">true</item>
+        <item name="stStrokeWidth">3dp</item>
+        <item name="stIconStart">@drawable/ic_delete</item>
+        <item name="stLength">SHORT</item>
+
+        <item name="stRadius">25dp</item>
+    </style>
+
 
 </resources>

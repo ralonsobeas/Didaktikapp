@@ -23,6 +23,11 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.app.didaktikapp.BBDD.Modelos.ActividadErrota;
+import com.app.didaktikapp.BBDD.Modelos.ActividadSanMiguel;
+import com.app.didaktikapp.BBDD.Modelos.ActividadTren;
+import com.app.didaktikapp.BBDD.Modelos.ActividadUniversitatea;
+import com.app.didaktikapp.BBDD.Modelos.ActividadZumeltzegi;
 import com.app.didaktikapp.BBDD.SQLiteControlador;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.Fragments.FragmentErrota;
@@ -243,8 +248,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 //ZUMELTZEGI DORREA (1)
                 if(marker.getPosition().getLatitude()==43.035000 && marker.getPosition().getLongitude()==-2.412889){
                     actualizarMarkerLinea(-2.413917,43.033417,-2.415361,43.033944);
-                    int estado = DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(new Long(1)).getEstado();
-                    int fragment = DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(new Long(1)).getFragment();
+                    ActividadZumeltzegi actividadZumeltzegi =  DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(new Long(1));
+                    int estado = actividadZumeltzegi.getEstado();
+                    int fragment = actividadZumeltzegi.getFragment();
 
                     marker.setIcon(iconoPunto(estado));
                     if (entrarEnPunto(estado)) {
@@ -262,14 +268,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         }
                     }
 
-                    DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(new Long(1)).setEstado(1);
-                    Toast.makeText(getApplicationContext(),DatabaseRepository.searchEstadoZumeltzegi(new Long(1))+": asd",Toast.LENGTH_LONG).show();
 
                 }
                 //SAN MIGUEL PARROKIA (2)
                 else if(marker.getPosition().getLatitude()==43.033417 && marker.getPosition().getLongitude()==-2.413917){
-                    int estado = DatabaseRepository.getAppDatabase().getSanMiguelDao().getSanMiguel(new Long(1)).getEstado();
-                    int fragment = DatabaseRepository.getAppDatabase().getSanMiguelDao().getSanMiguel(new Long(1)).getFragment();
+                    ActividadSanMiguel actividadSanMiguel = DatabaseRepository.getAppDatabase().getSanMiguelDao().getSanMiguel(new Long(1));
+                    int estado = actividadSanMiguel.getEstado();
+                    int fragment = actividadSanMiguel.getFragment();
 
 
 
@@ -285,11 +290,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         }
                     }
 
+
                 }
                 //UNIBERTSITATEA (3)
                 else if(marker.getPosition().getLatitude()==43.033944 && marker.getPosition().getLongitude()==-2.415361){
-                    int estado = DatabaseRepository.getAppDatabase().getUniversitateaDao().getUniversitatea(new Long(1)).getEstado();
-                    int fragment = DatabaseRepository.getAppDatabase().getUniversitateaDao().getUniversitatea(new Long(1)).getFragment();
+                    ActividadUniversitatea actividadUniversitatea = DatabaseRepository.getAppDatabase().getUniversitateaDao().getUniversitatea(new Long(1));
+                    int estado = actividadUniversitatea.getEstado();
+                    int fragment = actividadUniversitatea.getFragment();
 
                     marker.setIcon(iconoPunto(estado));
                     if (entrarEnPunto(estado)) {
@@ -299,8 +306,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 }
                 //TRENA (4)
                 else if(marker.getPosition().getLatitude()==43.033833 && marker.getPosition().getLongitude()==-2.416111){
-                    int estado = DatabaseRepository.getAppDatabase().getTrenDao().getTren(new Long(1)).getEstado();
-                    int fragment = DatabaseRepository.getAppDatabase().getTrenDao().getTren(new Long(1)).getFragment();
+
+                    ActividadTren actividadTren = DatabaseRepository.getAppDatabase().getTrenDao().getTren(new Long(1));
+
+                    int estado = actividadTren.getEstado();
+                    int fragment = actividadTren.getFragment();
+
+                    //FALTA POR HACER BBDD GUARDAR SOPA
 
                     marker.setIcon(iconoPunto(estado));
                     if (entrarEnPunto(estado)) {
@@ -316,10 +328,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     }
 
                 }
-                //SAN MIGUEL ERROTA (5)
+                //SAN MIGUEL ERROTA (5) FALTA BBDD
                 else if(marker.getPosition().getLatitude()==43.032917 && marker.getPosition().getLongitude()==-2.415750){
-                    int estado = DatabaseRepository.getAppDatabase().getErrotaDao().getErrota(new Long(1)).getEstado();
-                    int fragment = DatabaseRepository.getAppDatabase().getErrotaDao().getErrota(new Long(1)).getFragment();
+
+                    ActividadErrota actividadErrota =  DatabaseRepository.getAppDatabase().getErrotaDao().getErrota(new Long(1));
+
+                    int estado = actividadErrota.getEstado();
+                    int fragment = actividadErrota.getFragment();
 
                     marker.setIcon(iconoPunto(estado));
                     if (entrarEnPunto(estado)) {
