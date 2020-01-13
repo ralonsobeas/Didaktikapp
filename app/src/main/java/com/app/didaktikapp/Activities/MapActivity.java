@@ -498,13 +498,16 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         this.listaLugares = new ArrayList<Lugar>();
 
         listaLugares.add(new Lugar(getString(R.string.nombreLugar1),new LatLng(43.035000, -2.412889)));
-        listaLugares.add(new Lugar(getString(R.string.nombreLugar3),new LatLng(43.033417, -2.413917)));
         listaLugares.add(new Lugar(getString(R.string.nombreLugar2),new LatLng(43.033944, -2.415361)));
+        listaLugares.add(new Lugar(getString(R.string.nombreLugar3),new LatLng(43.033417, -2.413917)));
         listaLugares.add(new Lugar(getString(R.string.nombreLugar4),new LatLng(43.033833, -2.416111)));
         listaLugares.add(new Lugar(getString(R.string.nombreLugar5),new LatLng(43.032917,  -2.415750)));
         listaLugares.add(new Lugar(getString(R.string.nombreLugar6),new LatLng(42.979194,  -2.398583)));
         listaLugares.add(new Lugar(getString(R.string.nombreLugar7),new LatLng(43.009139,  -2.431444)));
         listaLugares.add(new Lugar(getString(R.string.nombreLugar8),new LatLng(43.000583, -2.433250)));
+        listaLugares.add(new Lugar(getString(R.string.nombreLugar9), new LatLng(43.028668, -2.410399)));
+        listaLugares.add(new Lugar(getString(R.string.nombreLugar10), new LatLng(43.032444, -2.413722)));
+
 
     }
 
