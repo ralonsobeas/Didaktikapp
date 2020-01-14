@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#FAFAFA</color>
+    <color name="colorPrimaryDark">#2B82C5</color>
+    <color name="colorAccent">#FAFAFA</color>
+
+    <color name="colorOnPrimary">#000000</color>
+
+    <color name="negroFondo">#202020</color>
+<!--    <color name="gray">#E63A3A3A</color>-->
+    <color name="gray">#B32B82C5</color>
+
+    <color name="greenFilter">#414CAF50</color>
+
+    <color name="backgroundTransparente">#00999999</color>
+    <color name="blancoFondo">#FAFAFA</color>
+
+    <color name="naranja">#FF4500</color>
+    <color name="verde">#00FF00</color>
+    <color name="negro">#000000</color>
+    <color name="verdeOscuro">#007000</color>
+    <color name="azulOscuro">#375770</color>
+<!--    <color name="rojo">#FF4500</color>-->
+
+    <color name="selTextBgColor">#2B82C5</color>
+
 </resources>

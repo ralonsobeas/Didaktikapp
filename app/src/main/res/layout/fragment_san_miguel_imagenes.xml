@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:orientation="vertical"
+    tools:context=".Fragments.FragmentSanMiguelImagenes">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="60dp"
+        android:background="@color/gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/youthtouch"
+            android:gravity="center"
+            android:text="@string/SanMiguelTitulo"
+            android:textSize="80sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="100dp"
+            android:stretchColumns="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitulo">
+
+            <TableRow
+                android:id="@+id/primeraFila"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="130dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/sanmiguelcorrecta1" />
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="130dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/sanmiguelincorrecta1" />
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="130dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/sanmiguelcorrecta2" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/segundaFila"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="130dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/sanmiguelincorrecta2" />
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="130dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/sanmiguelincorrecta3" />
+
+                <ImageView
+                    android:id="@+id/imageView8"
+                    android:layout_width="130dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/sanmiguelcorrecta3" />
+            </TableRow>
+
+
+        </TableLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/btnContinuar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/ripple_boton_bg"
+        android:clickable="true"
+        android:enabled="false"
+        android:text="@string/Continuar"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

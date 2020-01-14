@@ -1,11 +1,101 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <item name="shapeAppearanceOverlay">@style/MyShapeAppearance</item>
+        <item name="android:fontFamily">@font/kaushanscript</item>
+        <item name="android:windowContentTransitions">true</item>
     </style>
+
+    <style name="StyleFragment" parent="Theme.MaterialComponents.Light">
+        <!-- Customize your theme here. -->
+        <item name="android:textColor">@color/negroFondo</item>
+        <item name="android:background">@color/gray</item>
+
+    </style>
+
+    <style name="transitionStyle" parent="AppTheme">
+
+        <!-- enable window content transitions -->
+        <item name="android:windowActivityTransitions">true</item>
+
+        <!-- specify enter and exit transitions -->
+        <item name="android:windowEnterTransition">@transition/explode</item>
+        <item name="android:windowExitTransition">@transition/explode</item>
+
+    </style>
+
+    <style name="BaseAppTheme" parent="android:Theme.Material">
+        <!-- enable window content transitions -->
+        <item name="android:windowActivityTransitions">true</item>
+
+        <!-- specify enter and exit transitions -->
+        <item name="android:windowEnterTransition">@transition/explode</item>
+        <item name="android:windowExitTransition">@transition/explode</item>
+
+        <!-- specify shared element transitions -->
+        <item name="android:windowSharedElementEnterTransition">
+            @transition/change_image_transform</item>
+        <item name="android:windowSharedElementExitTransition">
+            @transition/change_image_transform</item>
+    </style>
+    <style name="Sopa">
+        <item name="android:textColor">@color/negroFondo</item>
+        <item name="android:colorBackground">@color/blancoFondo</item>
+    </style>
+
+    <style name="SplashScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/bg_splash</item>
+    </style>
+
+    <style name="MyShapeAppearance">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">20dp</item>
+        <item name="cornerSizeBottomRight">20dp</item>
+        <item name="cornerSizeTopLeft">20dp</item>
+        <item name="cornerSizeBottomLeft">20dp</item>
+    </style>
+
+    <style name="mytoast">
+        <item name="stTextBold">true</item>
+        <item name="stTextSize">14sp</item>
+        <item name="stColorBackground">@color/colorPrimaryDark</item>
+        <item name="stSolidBackground">true</item>
+        <item name="stStrokeWidth">3dp</item>
+        <item name="stIconStart">@drawable/ic_update</item>
+        <item name="stLength">LONG</item>
+
+        <item name="stRadius">25dp</item>
+    </style>
+
+    <style name="mytoastCorrecta">
+        <item name="stTextBold">true</item>
+        <item name="stTextSize">14sp</item>
+        <item name="stColorBackground">@android:color/holo_green_dark</item>
+        <item name="stSolidBackground">true</item>
+        <item name="stStrokeWidth">3dp</item>
+        <item name="stIconStart">@drawable/mapbox_ic_check</item>
+        <item name="stLength">SHORT</item>
+
+        <item name="stRadius">25dp</item>
+    </style>
+
+    <style name="mytoastIncorrecta">
+        <item name="stTextBold">true</item>
+        <item name="stTextSize">14sp</item>
+        <item name="stColorBackground">@android:color/holo_red_dark</item>
+        <item name="stSolidBackground">true</item>
+        <item name="stStrokeWidth">3dp</item>
+        <item name="stIconStart">@drawable/ic_delete</item>
+        <item name="stLength">SHORT</item>
+
+        <item name="stRadius">25dp</item>
+    </style>
+
 
 </resources>

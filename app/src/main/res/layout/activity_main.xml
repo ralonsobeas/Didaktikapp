@@ -1,18 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:id="@+id/layout"
+    android:background="@color/blancoFondo">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="60dp"
+        android:background="#33FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <TextView
+            android:id="@+id/tvTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textSize="100sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.app.didaktikapp.CircleMenu.CircleMenuView
+            android:id="@+id/circle_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:button_colors="@array/colors"
+            app:button_icons="@array/icons"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:icon_color="@color/colorPrimaryDark" >
+
+        </com.app.didaktikapp.CircleMenu.CircleMenuView>
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/gifPueblo"
+            android:layout_width="wrap_content"
+            android:layout_height="139dp"
+            android:src="@drawable/siluetaloop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/gif"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/running"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <!--        <at.markushi.ui.CircleButton-->
+<!--            android:id="@+id/btnIniciar"-->
+<!--            android:layout_width="150dp"-->
+<!--            android:layout_height="150dp"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:layout_marginEnd="16dp"-->
+<!--            android:clickable="true"-->
+<!--            android:src="@drawable/ic_play_arrow_black_24dp"-->
+<!--            android:text="INICIAR"-->
+<!--            app:cb_color="@color/colorPrimary"-->
+<!--            app:cb_pressedRingWidth="8dip"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+
+
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/tvTitulo" />-->
+
+<!--        &lt;!&ndash; android:background="@drawable/ripple_boton_bg" &ndash;&gt;-->
+
+<!--        <at.markushi.ui.CircleButton-->
+<!--            android:id="@+id/btnContinuar"-->
+<!--            android:layout_width="150dp"-->
+<!--            android:layout_height="150dp"-->
+<!--            android:layout_marginTop="30dp"-->
+<!--            android:enabled="false"-->
+<!--            android:text="CONTINUAR"-->
+<!--            android:src="@drawable/ic_fast_forward_black_24dp"-->
+<!--            app:cb_color="@color/colorPrimary"-->
+<!--            app:cb_pressedRingWidth="8dip"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/btnIniciar" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btnSalir"-->
+<!--            android:layout_width="120dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginEnd="24dp"-->
+<!--            android:layout_marginBottom="24dp"-->
+<!--            android:text="SALIR"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/textView3"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="32dp"-->
+<!--            android:text="Esta es la ________, esta la ________ y esta la ________"-->
+<!--            android:textColor="#000000"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/btnContinuar" />-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/etPruebas"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="8dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:ems="10"-->
+<!--            android:inputType="textPersonName"-->
+<!--            android:textColor="#000000"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/textView3" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/button"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:layout_marginEnd="8dp"-->
+<!--            android:onClick="aaa"-->
+<!--            android:text="Button"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/textView3" />-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

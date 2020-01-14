@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="icons">
+        <item>@drawable/ic_play_arrow_black_24dp</item>
+        <item>@drawable/ic_save_black_24dp</item>
+        <item>@drawable/ic_exit_to_app_black_24dp</item>
+        <item>@drawable/ic_help_outline_black_24dp</item>
+    </array>
+    <array name="colors">
+        <item>@android:color/holo_purple</item>
+        <item>@android:color/holo_green_light</item>
+        <item>@android:color/holo_red_light</item>
+        <item>@android:color/holo_orange_light</item>
+    </array>
+</resources>
