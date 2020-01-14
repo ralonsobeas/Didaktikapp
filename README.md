@@ -241,7 +241,8 @@ Seguimiento
 - [ ] Comienzo de trabajo sobre errota de drag&drop
 - [x] BBDD Completamente funcional sin errores aparentemente
 - [ ] Falta implantar la manera para eliminar grupos
-
+- [x] <b><u>Merge de Branch1 con BranchPuebas #1</u></b>
+- [x] <b><u>Merge de Branch1 con Master #7</u></b>
 
 Funcionamiento de la app
 ------------------------------------------------------------------------
