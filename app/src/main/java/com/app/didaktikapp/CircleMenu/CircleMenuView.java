@@ -373,6 +373,7 @@ public class CircleMenuView extends FrameLayout {
             button.setScaleY(0);
             button.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 
+            button.setId(i);
             addView(button);
             mButtons.add(button);
         }

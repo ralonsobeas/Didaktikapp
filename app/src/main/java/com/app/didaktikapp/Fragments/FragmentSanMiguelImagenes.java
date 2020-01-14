@@ -68,6 +68,10 @@ public class FragmentSanMiguelImagenes extends Fragment {
 
     private Button btnContinuar;
 
+    public void setmListener(OnFragmentInteractionListener mListener) {
+        this.mListener = mListener;
+    }
+
     public FragmentSanMiguelImagenes() {
         // Required empty public constructor
     }
@@ -136,6 +140,8 @@ public class FragmentSanMiguelImagenes extends Fragment {
             @Override
             public void onClick(View view) {
                 getFragmentManager().beginTransaction().remove(FragmentSanMiguelImagenes.this).commit();
+                mListener.onFragmentInteraction(FragmentSanMiguelImagenes.this,true);
+
             }
         });
 
@@ -144,12 +150,12 @@ public class FragmentSanMiguelImagenes extends Fragment {
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
+//    // TODO: Rename method, update argument and hook method into UI event
+//    public void onButtonPressed(Uri uri) {
+//        if (mListener != null) {
+//            mListener.onFragmentInteraction(uri);
+//        }
+//    }
 
     @Override
     public void onAttach(Context context) {
@@ -180,7 +186,7 @@ public class FragmentSanMiguelImagenes extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onFragmentInteraction(Fragment fragment,boolean terminado);
     }
 
     private class ListenerImagen implements View.OnClickListener {

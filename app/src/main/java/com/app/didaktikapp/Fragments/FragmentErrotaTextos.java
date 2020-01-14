@@ -1,11 +1,14 @@
 package com.app.didaktikapp.Fragments;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -14,10 +17,14 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.DragEvent;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -38,7 +45,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FragmentErrotaTextos extends Fragment {
 
@@ -63,6 +72,12 @@ public class FragmentErrotaTextos extends Fragment {
     private String mParam2;
 
     private boolean sela1,sela2,selb1,selb2,selc1,selc2,seld1,seld2,sele1,sele2,img1,img2 = false;
+
+
+    private TextView option1, option2, option3, option4, option5, option6, option7;
+    private EditText choice1, choice2, choice3, choice4, choice5, choice6, choice7;
+    private Map<String, String> maprpta;
+    public CharSequence dragData;
 
 
     public FragmentErrotaTextos() {
@@ -121,55 +136,168 @@ public class FragmentErrotaTextos extends Fragment {
         }
 
         //OBTENEMOS LOS LAYOUTS
-        fotosLayout = view.findViewById(R.id.errotaUnirImagenes);
-        fotosLayout.setVisibility(View.VISIBLE);
-
-        videoLayout = view.findViewById(R.id.errotaVideoLayout);
-        videoLayout.setVisibility(View.INVISIBLE);
-
-        preguntasLayout = view.findViewById(R.id.errotaSacarFotos);
-        preguntasLayout.setVisibility(View.INVISIBLE);
-
-        //CONFIGURAMOS EL BOTON CONTINUAR
-        btnContinuar = view.findViewById(R.id.btnContinuar);
-        btnContinuar.setText(getResources().getString(R.string.Continuar));
-        btnContinuar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(fotosLayout.getVisibility() == View.VISIBLE){
-                    fotosLayout.setVisibility(View.INVISIBLE);
-//                    videoLayout.setVisibility(View.VISIBLE);
-//                    VideoView empezar = view.findViewById(R.id.errotaVideo);
-//                    empezar.start();
-//                    videoLayout.setVisibility(View.INVISIBLE);
-                    preguntasLayout.setVisibility(View.VISIBLE);
-                    btnContinuar.setEnabled(false);
-                }
-//                else if(videoLayout.getVisibility() == View.VISIBLE){
-//                    videoLayout.setVisibility(View.INVISIBLE);
+//        fotosLayout = view.findViewById(R.id.errotaUnirImagenes);
+//        fotosLayout.setVisibility(View.VISIBLE);
+//
+//        videoLayout = view.findViewById(R.id.errotaVideoLayout);
+//        videoLayout.setVisibility(View.INVISIBLE);
+//
+//        preguntasLayout = view.findViewById(R.id.errotaSacarFotos);
+//        preguntasLayout.setVisibility(View.INVISIBLE);
+//
+//        //CONFIGURAMOS EL BOTON CONTINUAR
+//        btnContinuar = view.findViewById(R.id.btnContinuar);
+//        btnContinuar.setText(getResources().getString(R.string.Continuar));
+//        btnContinuar.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                if(fotosLayout.getVisibility() == View.VISIBLE){
+//                    fotosLayout.setVisibility(View.INVISIBLE);
+////                    videoLayout.setVisibility(View.VISIBLE);
+////                    VideoView empezar = view.findViewById(R.id.errotaVideo);
+////                    empezar.start();
+////                    videoLayout.setVisibility(View.INVISIBLE);
 //                    preguntasLayout.setVisibility(View.VISIBLE);
-//                    btnContinuar.setText("FINALIZAR");
 //                    btnContinuar.setEnabled(false);
 //                }
-                else if(preguntasLayout.getVisibility() == View.VISIBLE){
-                    guardarImagen(ivPregunta1);
-                    guardarImagen(ivPregunta2);
-                    getFragmentManager().beginTransaction().remove(FragmentErrotaTextos.this).commit();
-                }
-
-            }
-        });
-        btnContinuar.setEnabled(false);
+////                else if(videoLayout.getVisibility() == View.VISIBLE){
+////                    videoLayout.setVisibility(View.INVISIBLE);
+////                    preguntasLayout.setVisibility(View.VISIBLE);
+////                    btnContinuar.setText("FINALIZAR");
+////                    btnContinuar.setEnabled(false);
+////                }
+//                else if(preguntasLayout.getVisibility() == View.VISIBLE){
+//                    guardarImagen(ivPregunta1);
+//                    guardarImagen(ivPregunta2);
+//                    getFragmentManager().beginTransaction().remove(FragmentErrotaTextos.this).commit();
+//                }
+//
+//            }
+//        });
+//        btnContinuar.setEnabled(false);
 
         //RELLENAMOS LAS DISTINTAS ACTIVIDADES CON LO NECESARIO
-        crearImagenes(view);
+//        crearImagenes(view);
 
-        crearVideo(view);
+//        crearVideo(view);
+//
+//        crearPreguntas(view);
 
-        crearPreguntas(view);
+        //Cargar el mapa
+        maprpta = new HashMap<>();
+        maprpta.put("choice_1", "errekara");
+        maprpta.put("choice_2", "sorginzulo");
+        maprpta.put("choice_3", "ibilbide");
+        maprpta.put("choice_4", "sorginik");
+        maprpta.put("choice_5", "zubi");
+        maprpta.put("choice_6", "madarikazioak");
+        maprpta.put("choice_7", "Lezeagako");
+
+        //views to drop onto
+        choice1 = view.findViewById(R.id.choice_1);
+        choice2 = view.findViewById(R.id.choice_2);
+        choice3 = view.findViewById(R.id.choice_3);
+        choice4 = view.findViewById(R.id.choice_4);
+        choice5 = view.findViewById(R.id.choice_5);
+        choice6 = view.findViewById(R.id.choice_6);
+        choice7 = view.findViewById(R.id.choice_7);
+
+        //views to drag
+        option1 = view.findViewById(R.id.option_1);
+        option2 = view.findViewById(R.id.option_2);
+        option3 = view.findViewById(R.id.option_3);
+        option4 = view.findViewById(R.id.option_4);
+        option5 = view.findViewById(R.id.option_5);
+        option6 = view.findViewById(R.id.option_6);
+        option7 = view.findViewById(R.id.option_7);
+
+        //set touch listeners
+        option1.setOnTouchListener(new ChoiceTouchListener());
+        option2.setOnTouchListener(new ChoiceTouchListener());
+        option3.setOnTouchListener(new ChoiceTouchListener());
+        option4.setOnTouchListener(new ChoiceTouchListener());
+        option5.setOnTouchListener(new ChoiceTouchListener());
+        option6.setOnTouchListener(new ChoiceTouchListener());
+        option7.setOnTouchListener(new ChoiceTouchListener());
+
+        //set drag listeners
+        choice1.setOnDragListener(new ChoiceDragListener());
+        choice2.setOnDragListener(new ChoiceDragListener());
+        choice3.setOnDragListener(new ChoiceDragListener());
+        choice4.setOnDragListener(new ChoiceDragListener());
+        choice5.setOnDragListener(new ChoiceDragListener());
+        choice6.setOnDragListener(new ChoiceDragListener());
+        choice7.setOnDragListener(new ChoiceDragListener());
 
         return view;
+    }
+
+    private final class ChoiceTouchListener implements View.OnTouchListener {
+        @Override
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                ClipData data = ClipData.newPlainText("", "");
+                View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
+                view.startDrag(data, shadowBuilder, view, 0);
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    @SuppressLint("NewApi")
+    private class ChoiceDragListener implements View.OnDragListener {
+
+        @Override
+        public boolean onDrag(View v, DragEvent event) {
+            switch (event.getAction()) {
+                case DragEvent.ACTION_DRAG_STARTED:
+                    break;
+                case DragEvent.ACTION_DRAG_ENTERED:
+                    break;
+                case DragEvent.ACTION_DRAG_EXITED:
+                    break;
+                case DragEvent.ACTION_DROP:
+                    View view = (View) event.getLocalState();
+
+                    EditText spacetofill = (EditText) v;
+                    TextView cadenarpta = (TextView) view;
+
+                    String strfill = getResources().getResourceEntryName(spacetofill.getId());
+                    //El texto del elemento arrastrado es igual al valor obtenido del mapa, pasandole como parametro el idname del elemento a ser rellenado.
+
+                    if( cadenarpta.getText().toString().equals(maprpta.get(strfill)) )
+                    {
+                        view.setVisibility(View.INVISIBLE);
+
+                        spacetofill.setText(cadenarpta.getText().toString());
+                        spacetofill.setGravity(Gravity.CENTER_HORIZONTAL);
+                        spacetofill.setTypeface(Typeface.DEFAULT_BOLD);
+
+                        Object tag = spacetofill.getTag();
+                        if(tag!=null)
+                        {
+                            int existingID = (Integer)tag;
+                            view.findViewById(existingID).setVisibility(View.VISIBLE);
+                        }
+
+                        spacetofill.setTag(cadenarpta.getId());
+                        spacetofill.setOnDragListener(null);
+                        spacetofill.setCompoundDrawables(null, null, null, null);
+                    }else{
+                        spacetofill.setCompoundDrawables(null, null, getResources().getDrawable(R.drawable.ic_update), null);
+                    }
+
+                    break;
+                case DragEvent.ACTION_DRAG_ENDED:
+                    break;
+                default:
+                    break;
+            }
+            return true;
+        }
     }
 
 
@@ -185,362 +313,362 @@ public class FragmentErrotaTextos extends Fragment {
 
     }
 
-    public void crearImagenes(View view) {
-        tv11 = view.findViewById(R.id.errotaTexto1_1);
-        tv12 = view.findViewById(R.id.errotaTexto1_2);
-        tv13 = view.findViewById(R.id.errotaTexto1_3);
-        tv14 = view.findViewById(R.id.errotaTexto1_4);
-        tv15 = view.findViewById(R.id.errotaTexto1_5);
-        tv21 = view.findViewById(R.id.errotaTexto2_1);
-        tv22 = view.findViewById(R.id.errotaTexto2_2);
-        tv23 = view.findViewById(R.id.errotaTexto2_3);
-        tv24 = view.findViewById(R.id.errotaTexto2_4);
-        tv25 = view.findViewById(R.id.errotaTexto2_5);
-        sela1 = false;
-        sela2 = false;
-        selb1 = false;
-        selb2 = false;
-        selc1 = false;
-        selc2 = false;
-        seld1 = false;
-        seld2 = false;
-        sele1 = false;
-        sele2 = false;
-        txtSelec = "";
-        resultadoPareja = view.findViewById(R.id.errotaImagenResultado);
-
-        TextView[] tva1 = new TextView[] {tv11,tv12,tv13,tv14,tv15};
-        List<TextView> list1 = Arrays.asList(tva1);
-        Collections.shuffle(list1);
-        for (int x=0;x<list1.size();x++) {
-            int txt = R.string.ErrotaFrase11;
-            switch (x) {
-                case 0:
-                    txt = R.string.ErrotaFrase11;
-                    int finalX = x;
-                    list1.get(x).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if (!sela1) {
-                                if (txtSelec.equals("")) {
-                                    txtSelec = "a1";
-                                    anterior = list1.get(finalX);
-                                    list1.get(finalX).setTextColor(getResources().getColor(R.color.negroFondo));
-                                }
-                                else {
-                                    if (txtSelec.equals("a2")) {
-                                        sela1 = true;
-                                        sela2 = true;
-                                        resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja1));
-                                        list1.get(finalX).setTextColor(getResources().getColor(R.color.verdeOscuro));
-                                        anterior.setTextColor(getResources().getColor(R.color.verdeOscuro));
-                                        if (sela1&&selb1&&selc1&&seld1&&sele1)
-                                            btnContinuar.setEnabled(true);
-                                    } else {
-                                        anterior.setTextColor(getResources().getColor(R.color.azulOscuro));
-                                    }
-                                    txtSelec = "";
-                                }
-                            }
-                        }
-                    });
-                    break;
-                case 1:
-                    txt = R.string.ErrotaFrase21;
-                    finalX = x;
-                    list1.get(x).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if (!selb1) {
-                                if (txtSelec.equals("")) {
-                                    txtSelec = "b1";
-                                    anterior = list1.get(finalX);
-                                    list1.get(finalX).setTextColor(getResources().getColor(R.color.negroFondo));
-                                }
-                                else {
-                                    if (txtSelec.equals("b2")) {
-                                        selb1 = true;
-                                        selb2 = true;
-                                        resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja2));
-                                        list1.get(finalX).setTextColor(getResources().getColor(R.color.verdeOscuro));
-                                        anterior.setTextColor(getResources().getColor(R.color.verdeOscuro));
-                                        if (sela1&&selb1&&selc1&&seld1&&sele1)
-                                            btnContinuar.setEnabled(true);
-                                    } else {
-                                        anterior.setTextColor(getResources().getColor(R.color.azulOscuro));
-                                        //resultadoPareja.setText("");
-                                    }
-                                    txtSelec = "";
-                                }
-                            }
-                        }
-                    });
-                    break;
-                case 2:
-                    txt = R.string.ErrotaFrase31;
-                    finalX = x;
-                    list1.get(x).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if (!selc1) {
-                                if (txtSelec.equals("")) {
-                                    txtSelec = "c1";
-                                    anterior = list1.get(finalX);
-                                    list1.get(finalX).setTextColor(getResources().getColor(R.color.negroFondo));
-                                }
-                                else {
-                                    if (txtSelec.equals("c2")) {
-                                        selc1 = true;
-                                        selc2 = true;
-                                        resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja3));
-                                        list1.get(finalX).setTextColor(getResources().getColor(R.color.verdeOscuro));
-                                        anterior.setTextColor(getResources().getColor(R.color.verdeOscuro));
-                                        if (sela1&&selb1&&selc1&&seld1&&sele1)
-                                            btnContinuar.setEnabled(true);
-                                    } else {
-                                        anterior.setTextColor(getResources().getColor(R.color.azulOscuro));
-                                        //resultadoPareja.setText("");
-                                    }
-                                    txtSelec = "";
-                                }
-                            }
-                        }
-                    });
-                    break;
-                case 3:
-                    txt = R.string.ErrotaFrase41;
-                    finalX = x;
-                    list1.get(x).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if (!seld1) {
-                                if (txtSelec.equals("")) {
-                                    txtSelec = "d1";
-                                    anterior = list1.get(finalX);
-                                    list1.get(finalX).setTextColor(getResources().getColor(R.color.negroFondo));
-                                }
-                                else {
-                                    if (txtSelec.equals("d2")) {
-                                        seld1 = true;
-                                        seld2 = true;
-                                        resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja4));
-                                        list1.get(finalX).setTextColor(getResources().getColor(R.color.verdeOscuro));
-                                        anterior.setTextColor(getResources().getColor(R.color.verdeOscuro));
-                                        if (sela1&&selb1&&selc1&&seld1&&sele1)
-                                            btnContinuar.setEnabled(true);
-                                    } else {
-                                        anterior.setTextColor(getResources().getColor(R.color.azulOscuro));
-                                        //resultadoPareja.setText("");
-                                    }
-                                    txtSelec = "";
-                                }
-                            }
-                        }
-                    });
-                    break;
-                case 4:
-                    txt = R.string.ErrotaFrase51;
-                    finalX = x;
-                    list1.get(x).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if (!sele1) {
-                                if (txtSelec.equals("")) {
-                                    txtSelec = "e1";
-                                    anterior = list1.get(finalX);
-                                    list1.get(finalX).setTextColor(getResources().getColor(R.color.negroFondo));
-                                }
-                                else {
-                                    if (txtSelec.equals("e2")) {
-                                        sele1 = true;
-                                        sele2 = true;
-                                        resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja5));
-                                        list1.get(finalX).setTextColor(getResources().getColor(R.color.verdeOscuro));
-                                        anterior.setTextColor(getResources().getColor(R.color.verdeOscuro));
-                                        if (sela1&&selb1&&selc1&&seld1&&sele1)
-                                            btnContinuar.setEnabled(true);
-                                    } else {
-                                        anterior.setTextColor(getResources().getColor(R.color.azulOscuro));
-                                        //resultadoPareja.setText("");
-                                    }
-                                    txtSelec = "";
-                                }
-                            }
-                        }
-                    });
-                    break;
-            }
-            String text = list1.get(x).getText().toString();
-            list1.get(x).setText(text+" "+getResources().getString(txt));
-        }
-
-        TextView[] tva2 = new TextView[] {tv21,tv22,tv23,tv24,tv25};
-        List<TextView> list2 = Arrays.asList(tva2);
-        Collections.shuffle(list2);
-        for (int x=0;x<list2.size();x++) {
-            int txt = R.string.ErrotaFrase12;
-            switch (x) {
-                case 0:
-                    txt = R.string.ErrotaFrase12;
-                    int finalX = x;
-                    list2.get(x).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if (!sela2) {
-                                if (txtSelec.equals("")) {
-                                    txtSelec = "a2";
-                                    anterior = list2.get(finalX);
-                                    list2.get(finalX).setTextColor(getResources().getColor(R.color.negroFondo));
-                                }
-                                else {
-                                    if (txtSelec.equals("a1")) {
-                                        sela1 = true;
-                                        sela2 = true;
-                                        resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja1));
-                                        list2.get(finalX).setTextColor(getResources().getColor(R.color.verdeOscuro));
-                                        anterior.setTextColor(getResources().getColor(R.color.verdeOscuro));
-                                        if (sela1&&selb1&&selc1&&seld1&&sele1)
-                                            btnContinuar.setEnabled(true);
-                                    } else {
-                                        anterior.setTextColor(getResources().getColor(R.color.azulOscuro));
-                                        //resultadoPareja.setText("");
-                                    }
-                                    txtSelec = "";
-                                }
-                            }
-                        }
-                    });
-                    break;
-                case 1:
-                    txt = R.string.ErrotaFrase22;
-                    finalX = x;
-                    list2.get(x).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if (!selb2) {
-                                if (txtSelec.equals("")) {
-                                    txtSelec = "b2";
-                                    anterior = list2.get(finalX);
-                                    list2.get(finalX).setTextColor(getResources().getColor(R.color.negroFondo));
-                                }
-                                else {
-                                    if (txtSelec.equals("b1")) {
-                                        selb1 = true;
-                                        selb2 = true;
-                                        resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja2));
-                                        list2.get(finalX).setTextColor(getResources().getColor(R.color.verdeOscuro));
-                                        anterior.setTextColor(getResources().getColor(R.color.verdeOscuro));
-                                        if (sela1&&selb1&&selc1&&seld1&&sele1)
-                                            btnContinuar.setEnabled(true);
-                                    } else {
-                                        anterior.setTextColor(getResources().getColor(R.color.azulOscuro));
-                                        //resultadoPareja.setText("");
-                                    }
-                                    txtSelec = "";
-                                }
-                            }
-                        }
-                    });
-                    break;
-                case 2:
-                    txt = R.string.ErrotaFrase32;
-                    finalX = x;
-                    list2.get(x).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if (!selc2) {
-                                if (txtSelec.equals("")) {
-                                    txtSelec = "c2";
-                                    anterior = list2.get(finalX);
-                                    list2.get(finalX).setTextColor(getResources().getColor(R.color.negroFondo));
-                                }
-                                else {
-                                    if (txtSelec.equals("c1")) {
-                                        selc1 = true;
-                                        selc2 = true;
-                                        resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja3));
-                                        list2.get(finalX).setTextColor(getResources().getColor(R.color.verdeOscuro));
-                                        anterior.setTextColor(getResources().getColor(R.color.verdeOscuro));
-                                        if (sela1&&selb1&&selc1&&seld1&&sele1)
-                                            btnContinuar.setEnabled(true);
-                                    } else {
-                                        anterior.setTextColor(getResources().getColor(R.color.azulOscuro));
-                                        //resultadoPareja.setText("");
-                                    }
-                                    txtSelec = "";
-                                }
-                            }
-                        }
-                    });
-                    break;
-                case 3:
-                    txt = R.string.ErrotaFrase42;
-                    finalX = x;
-                    list2.get(x).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if (!seld2) {
-                                if (txtSelec.equals("")) {
-                                    txtSelec = "d2";
-                                    anterior = list2.get(finalX);
-                                    list2.get(finalX).setTextColor(getResources().getColor(R.color.negroFondo));
-                                }
-                                else {
-                                    if (txtSelec.equals("d1")) {
-                                        seld1 = true;
-                                        seld2 = true;
-                                        resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja4));
-                                        list2.get(finalX).setTextColor(getResources().getColor(R.color.verdeOscuro));
-                                        anterior.setTextColor(getResources().getColor(R.color.verdeOscuro));
-                                        if (sela1&&selb1&&selc1&&seld1&&sele1)
-                                            btnContinuar.setEnabled(true);
-                                    } else {
-                                        anterior.setTextColor(getResources().getColor(R.color.azulOscuro));
-                                        //resultadoPareja.setText("");
-                                    }
-                                    txtSelec = "";
-                                }
-                            }
-                        }
-                    });
-                    break;
-                case 4:
-                    txt = R.string.ErrotaFrase52;
-                    finalX = x;
-                    list2.get(x).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if (!sele2) {
-                                if (txtSelec.equals("")) {
-                                    txtSelec = "e2";
-                                    anterior = list2.get(finalX);
-                                    list2.get(finalX).setTextColor(getResources().getColor(R.color.negroFondo));
-                                }
-                                else {
-                                    if (txtSelec.equals("e1")) {
-                                        sele1 = true;
-                                        sele2 = true;
-                                        resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja5));
-                                        list2.get(finalX).setTextColor(getResources().getColor(R.color.verdeOscuro));
-                                        anterior.setTextColor(getResources().getColor(R.color.verdeOscuro));
-                                        if (sela1&&selb1&&selc1&&seld1&&sele1)
-                                            btnContinuar.setEnabled(true);
-                                    } else {
-                                        anterior.setTextColor(getResources().getColor(R.color.azulOscuro));
-                                        //resultadoPareja.setText("");
-                                    }
-                                    txtSelec = "";
-                                }
-                            }
-                        }
-                    });
-                    break;
-            }
-            String text = list2.get(x).getText().toString();
-            list2.get(x).setText(text+" "+getResources().getString(txt));
-        }
-
-    }
+//    public void crearImagenes(View view) {
+//        tv11 = view.findViewById(R.id.errotaTexto1_1);
+//        tv12 = view.findViewById(R.id.errotaTexto1_2);
+//        tv13 = view.findViewById(R.id.errotaTexto1_3);
+//        tv14 = view.findViewById(R.id.errotaTexto1_4);
+//        tv15 = view.findViewById(R.id.errotaTexto1_5);
+//        tv21 = view.findViewById(R.id.errotaTexto2_1);
+//        tv22 = view.findViewById(R.id.errotaTexto2_2);
+//        tv23 = view.findViewById(R.id.errotaTexto2_3);
+//        tv24 = view.findViewById(R.id.errotaTexto2_4);
+//        tv25 = view.findViewById(R.id.errotaTexto2_5);
+//        sela1 = false;
+//        sela2 = false;
+//        selb1 = false;
+//        selb2 = false;
+//        selc1 = false;
+//        selc2 = false;
+//        seld1 = false;
+//        seld2 = false;
+//        sele1 = false;
+//        sele2 = false;
+//        txtSelec = "";
+//        resultadoPareja = view.findViewById(R.id.errotaImagenResultado);
+//
+//        TextView[] tva1 = new TextView[] {tv11,tv12,tv13,tv14,tv15};
+//        List<TextView> list1 = Arrays.asList(tva1);
+//        Collections.shuffle(list1);
+//        for (int x=0;x<list1.size();x++) {
+//            int txt = R.string.ErrotaFrase11;
+//            switch (x) {
+//                case 0:
+//                    txt = R.string.ErrotaFrase11;
+//                    int finalX = x;
+//                    list1.get(x).setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            if (!sela1) {
+//                                if (txtSelec.equals("")) {
+//                                    txtSelec = "a1";
+//                                    anterior = list1.get(finalX);
+//                                    list1.get(finalX).setTextColor(getResources().getColor(R.color.negroFondo));
+//                                }
+//                                else {
+//                                    if (txtSelec.equals("a2")) {
+//                                        sela1 = true;
+//                                        sela2 = true;
+//                                        resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja1));
+//                                        list1.get(finalX).setTextColor(getResources().getColor(R.color.verdeOscuro));
+//                                        anterior.setTextColor(getResources().getColor(R.color.verdeOscuro));
+//                                        if (sela1&&selb1&&selc1&&seld1&&sele1)
+//                                            btnContinuar.setEnabled(true);
+//                                    } else {
+//                                        anterior.setTextColor(getResources().getColor(R.color.azulOscuro));
+//                                    }
+//                                    txtSelec = "";
+//                                }
+//                            }
+//                        }
+//                    });
+//                    break;
+//                case 1:
+//                    txt = R.string.ErrotaFrase21;
+//                    finalX = x;
+//                    list1.get(x).setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            if (!selb1) {
+//                                if (txtSelec.equals("")) {
+//                                    txtSelec = "b1";
+//                                    anterior = list1.get(finalX);
+//                                    list1.get(finalX).setTextColor(getResources().getColor(R.color.negroFondo));
+//                                }
+//                                else {
+//                                    if (txtSelec.equals("b2")) {
+//                                        selb1 = true;
+//                                        selb2 = true;
+//                                        resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja2));
+//                                        list1.get(finalX).setTextColor(getResources().getColor(R.color.verdeOscuro));
+//                                        anterior.setTextColor(getResources().getColor(R.color.verdeOscuro));
+//                                        if (sela1&&selb1&&selc1&&seld1&&sele1)
+//                                            btnContinuar.setEnabled(true);
+//                                    } else {
+//                                        anterior.setTextColor(getResources().getColor(R.color.azulOscuro));
+//                                        //resultadoPareja.setText("");
+//                                    }
+//                                    txtSelec = "";
+//                                }
+//                            }
+//                        }
+//                    });
+//                    break;
+//                case 2:
+//                    txt = R.string.ErrotaFrase31;
+//                    finalX = x;
+//                    list1.get(x).setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            if (!selc1) {
+//                                if (txtSelec.equals("")) {
+//                                    txtSelec = "c1";
+//                                    anterior = list1.get(finalX);
+//                                    list1.get(finalX).setTextColor(getResources().getColor(R.color.negroFondo));
+//                                }
+//                                else {
+//                                    if (txtSelec.equals("c2")) {
+//                                        selc1 = true;
+//                                        selc2 = true;
+//                                        resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja3));
+//                                        list1.get(finalX).setTextColor(getResources().getColor(R.color.verdeOscuro));
+//                                        anterior.setTextColor(getResources().getColor(R.color.verdeOscuro));
+//                                        if (sela1&&selb1&&selc1&&seld1&&sele1)
+//                                            btnContinuar.setEnabled(true);
+//                                    } else {
+//                                        anterior.setTextColor(getResources().getColor(R.color.azulOscuro));
+//                                        //resultadoPareja.setText("");
+//                                    }
+//                                    txtSelec = "";
+//                                }
+//                            }
+//                        }
+//                    });
+//                    break;
+//                case 3:
+//                    txt = R.string.ErrotaFrase41;
+//                    finalX = x;
+//                    list1.get(x).setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            if (!seld1) {
+//                                if (txtSelec.equals("")) {
+//                                    txtSelec = "d1";
+//                                    anterior = list1.get(finalX);
+//                                    list1.get(finalX).setTextColor(getResources().getColor(R.color.negroFondo));
+//                                }
+//                                else {
+//                                    if (txtSelec.equals("d2")) {
+//                                        seld1 = true;
+//                                        seld2 = true;
+//                                        resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja4));
+//                                        list1.get(finalX).setTextColor(getResources().getColor(R.color.verdeOscuro));
+//                                        anterior.setTextColor(getResources().getColor(R.color.verdeOscuro));
+//                                        if (sela1&&selb1&&selc1&&seld1&&sele1)
+//                                            btnContinuar.setEnabled(true);
+//                                    } else {
+//                                        anterior.setTextColor(getResources().getColor(R.color.azulOscuro));
+//                                        //resultadoPareja.setText("");
+//                                    }
+//                                    txtSelec = "";
+//                                }
+//                            }
+//                        }
+//                    });
+//                    break;
+//                case 4:
+//                    txt = R.string.ErrotaFrase51;
+//                    finalX = x;
+//                    list1.get(x).setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            if (!sele1) {
+//                                if (txtSelec.equals("")) {
+//                                    txtSelec = "e1";
+//                                    anterior = list1.get(finalX);
+//                                    list1.get(finalX).setTextColor(getResources().getColor(R.color.negroFondo));
+//                                }
+//                                else {
+//                                    if (txtSelec.equals("e2")) {
+//                                        sele1 = true;
+//                                        sele2 = true;
+//                                        resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja5));
+//                                        list1.get(finalX).setTextColor(getResources().getColor(R.color.verdeOscuro));
+//                                        anterior.setTextColor(getResources().getColor(R.color.verdeOscuro));
+//                                        if (sela1&&selb1&&selc1&&seld1&&sele1)
+//                                            btnContinuar.setEnabled(true);
+//                                    } else {
+//                                        anterior.setTextColor(getResources().getColor(R.color.azulOscuro));
+//                                        //resultadoPareja.setText("");
+//                                    }
+//                                    txtSelec = "";
+//                                }
+//                            }
+//                        }
+//                    });
+//                    break;
+//            }
+//            String text = list1.get(x).getText().toString();
+//            list1.get(x).setText(text+" "+getResources().getString(txt));
+//        }
+//
+//        TextView[] tva2 = new TextView[] {tv21,tv22,tv23,tv24,tv25};
+//        List<TextView> list2 = Arrays.asList(tva2);
+//        Collections.shuffle(list2);
+//        for (int x=0;x<list2.size();x++) {
+//            int txt = R.string.ErrotaFrase12;
+//            switch (x) {
+//                case 0:
+//                    txt = R.string.ErrotaFrase12;
+//                    int finalX = x;
+//                    list2.get(x).setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            if (!sela2) {
+//                                if (txtSelec.equals("")) {
+//                                    txtSelec = "a2";
+//                                    anterior = list2.get(finalX);
+//                                    list2.get(finalX).setTextColor(getResources().getColor(R.color.negroFondo));
+//                                }
+//                                else {
+//                                    if (txtSelec.equals("a1")) {
+//                                        sela1 = true;
+//                                        sela2 = true;
+//                                        resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja1));
+//                                        list2.get(finalX).setTextColor(getResources().getColor(R.color.verdeOscuro));
+//                                        anterior.setTextColor(getResources().getColor(R.color.verdeOscuro));
+//                                        if (sela1&&selb1&&selc1&&seld1&&sele1)
+//                                            btnContinuar.setEnabled(true);
+//                                    } else {
+//                                        anterior.setTextColor(getResources().getColor(R.color.azulOscuro));
+//                                        //resultadoPareja.setText("");
+//                                    }
+//                                    txtSelec = "";
+//                                }
+//                            }
+//                        }
+//                    });
+//                    break;
+//                case 1:
+//                    txt = R.string.ErrotaFrase22;
+//                    finalX = x;
+//                    list2.get(x).setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            if (!selb2) {
+//                                if (txtSelec.equals("")) {
+//                                    txtSelec = "b2";
+//                                    anterior = list2.get(finalX);
+//                                    list2.get(finalX).setTextColor(getResources().getColor(R.color.negroFondo));
+//                                }
+//                                else {
+//                                    if (txtSelec.equals("b1")) {
+//                                        selb1 = true;
+//                                        selb2 = true;
+//                                        resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja2));
+//                                        list2.get(finalX).setTextColor(getResources().getColor(R.color.verdeOscuro));
+//                                        anterior.setTextColor(getResources().getColor(R.color.verdeOscuro));
+//                                        if (sela1&&selb1&&selc1&&seld1&&sele1)
+//                                            btnContinuar.setEnabled(true);
+//                                    } else {
+//                                        anterior.setTextColor(getResources().getColor(R.color.azulOscuro));
+//                                        //resultadoPareja.setText("");
+//                                    }
+//                                    txtSelec = "";
+//                                }
+//                            }
+//                        }
+//                    });
+//                    break;
+//                case 2:
+//                    txt = R.string.ErrotaFrase32;
+//                    finalX = x;
+//                    list2.get(x).setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            if (!selc2) {
+//                                if (txtSelec.equals("")) {
+//                                    txtSelec = "c2";
+//                                    anterior = list2.get(finalX);
+//                                    list2.get(finalX).setTextColor(getResources().getColor(R.color.negroFondo));
+//                                }
+//                                else {
+//                                    if (txtSelec.equals("c1")) {
+//                                        selc1 = true;
+//                                        selc2 = true;
+//                                        resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja3));
+//                                        list2.get(finalX).setTextColor(getResources().getColor(R.color.verdeOscuro));
+//                                        anterior.setTextColor(getResources().getColor(R.color.verdeOscuro));
+//                                        if (sela1&&selb1&&selc1&&seld1&&sele1)
+//                                            btnContinuar.setEnabled(true);
+//                                    } else {
+//                                        anterior.setTextColor(getResources().getColor(R.color.azulOscuro));
+//                                        //resultadoPareja.setText("");
+//                                    }
+//                                    txtSelec = "";
+//                                }
+//                            }
+//                        }
+//                    });
+//                    break;
+//                case 3:
+//                    txt = R.string.ErrotaFrase42;
+//                    finalX = x;
+//                    list2.get(x).setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            if (!seld2) {
+//                                if (txtSelec.equals("")) {
+//                                    txtSelec = "d2";
+//                                    anterior = list2.get(finalX);
+//                                    list2.get(finalX).setTextColor(getResources().getColor(R.color.negroFondo));
+//                                }
+//                                else {
+//                                    if (txtSelec.equals("d1")) {
+//                                        seld1 = true;
+//                                        seld2 = true;
+//                                        resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja4));
+//                                        list2.get(finalX).setTextColor(getResources().getColor(R.color.verdeOscuro));
+//                                        anterior.setTextColor(getResources().getColor(R.color.verdeOscuro));
+//                                        if (sela1&&selb1&&selc1&&seld1&&sele1)
+//                                            btnContinuar.setEnabled(true);
+//                                    } else {
+//                                        anterior.setTextColor(getResources().getColor(R.color.azulOscuro));
+//                                        //resultadoPareja.setText("");
+//                                    }
+//                                    txtSelec = "";
+//                                }
+//                            }
+//                        }
+//                    });
+//                    break;
+//                case 4:
+//                    txt = R.string.ErrotaFrase52;
+//                    finalX = x;
+//                    list2.get(x).setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            if (!sele2) {
+//                                if (txtSelec.equals("")) {
+//                                    txtSelec = "e2";
+//                                    anterior = list2.get(finalX);
+//                                    list2.get(finalX).setTextColor(getResources().getColor(R.color.negroFondo));
+//                                }
+//                                else {
+//                                    if (txtSelec.equals("e1")) {
+//                                        sele1 = true;
+//                                        sele2 = true;
+//                                        resultadoPareja.setText(getResources().getString(R.string.ErrotaPareja5));
+//                                        list2.get(finalX).setTextColor(getResources().getColor(R.color.verdeOscuro));
+//                                        anterior.setTextColor(getResources().getColor(R.color.verdeOscuro));
+//                                        if (sela1&&selb1&&selc1&&seld1&&sele1)
+//                                            btnContinuar.setEnabled(true);
+//                                    } else {
+//                                        anterior.setTextColor(getResources().getColor(R.color.azulOscuro));
+//                                        //resultadoPareja.setText("");
+//                                    }
+//                                    txtSelec = "";
+//                                }
+//                            }
+//                        }
+//                    });
+//                    break;
+//            }
+//            String text = list2.get(x).getText().toString();
+//            list2.get(x).setText(text+" "+getResources().getString(txt));
+//        }
+//
+//    }
 
     public void crearVideo(View view) {
         Uri path = Uri.parse("android.resource://"+getActivity().getPackageName()+"/"+R.raw.videoprueba);

@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.core.app.NavUtils;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.app.didaktikapp.BBDD.SQLiteControlador;
 import com.app.didaktikapp.R;
 import com.app.didaktikapp.wordsearch.WordSearchApp;
 import com.app.didaktikapp.wordsearch.commons.DurationFormatter;
@@ -24,6 +25,8 @@ import butterknife.OnClick;
 public class GameOverActivity extends FullscreenActivity {
     public static final String EXTRA_GAME_ROUND_ID =
             "com.paperplanes.wordsearch.presentation.ui.activity.GameOverActivity";
+
+
 
     @Inject
     ViewModelFactory mViewModelFactory;
@@ -67,6 +70,9 @@ public class GameOverActivity extends FullscreenActivity {
             mViewModel.deleteGameRound(mGameId);
         }
         NavUtils.navigateUpTo(this, new Intent());
+//        SQLiteControlador sql = new SQLiteControlador(getApplicationContext());
+//        sql.actualizarZumeltzegiDorrea("sopa");
+
         finish();
     }
 

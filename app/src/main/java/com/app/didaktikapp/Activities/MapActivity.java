@@ -1,12 +1,14 @@
 package com.app.didaktikapp.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
-
+import android.animation.ObjectAnimator;
+import android.animation.TypeEvaluator;
+import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,11 +17,25 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.app.didaktikapp.BBDD.Modelos.ActividadErrota;
+import com.app.didaktikapp.BBDD.Modelos.ActividadSanMiguel;
+import com.app.didaktikapp.BBDD.Modelos.ActividadTren;
+import com.app.didaktikapp.BBDD.Modelos.ActividadUniversitatea;
+import com.app.didaktikapp.BBDD.Modelos.ActividadZumeltzegi;
+import com.app.didaktikapp.BBDD.SQLiteControlador;
+import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.Fragments.FragmentErrota;
 import com.app.didaktikapp.Fragments.FragmentErrotaTextos;
 import com.app.didaktikapp.Fragments.FragmentPuzle;
 import com.app.didaktikapp.Fragments.FragmentSanMiguel;
 import com.app.didaktikapp.Fragments.FragmentSanMiguelImagenes;
+import com.app.didaktikapp.Fragments.FragmentSanMiguelTinderKotlin;
 import com.app.didaktikapp.Fragments.FragmentTrenTexto;
 import com.app.didaktikapp.Fragments.FragmentUnibertsitatea;
 import com.app.didaktikapp.Fragments.FragmentZumeltzegi;
@@ -37,7 +53,10 @@ import com.mapbox.android.core.location.LocationEngineRequest;
 import com.mapbox.android.core.location.LocationEngineResult;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
-import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.geojson.Feature;
+import com.mapbox.geojson.FeatureCollection;
+import com.mapbox.geojson.LineString;
+import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.annotations.Icon;
 import com.mapbox.mapboxsdk.annotations.IconFactory;
 import com.mapbox.mapboxsdk.annotations.Marker;
@@ -52,10 +71,17 @@ import com.mapbox.mapboxsdk.location.LocationComponentOptions;
 import com.mapbox.mapboxsdk.location.modes.CameraMode;
 import com.mapbox.mapboxsdk.location.modes.RenderMode;
 import com.mapbox.mapboxsdk.maps.MapView;
+import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
 import com.mapbox.mapboxsdk.style.layers.Layer;
+import com.mapbox.mapboxsdk.style.layers.LineLayer;
+import com.mapbox.mapboxsdk.style.layers.Property;
+import com.mapbox.mapboxsdk.style.layers.PropertyFactory;
+import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
+import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
+import com.mapbox.mapboxsdk.utils.BitmapUtils;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -66,7 +92,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         , FragmentSanMiguel.OnFragmentInteractionListener
         , FragmentSanMiguelImagenes.OnFragmentInteractionListener
         , FragmentZumeltzegi.OnFragmentInteractionListener
-        , FragmentPuzle.OnFragmentInteractionListener {
+        , FragmentPuzle.OnFragmentInteractionListener
+        , FragmentSanMiguelTinderKotlin.OnFragmentInteractionListener{
 
     private MapView mapView;
     private MapboxMap mapboxMap;
@@ -88,13 +115,24 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private Context context;
 
 
-private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
+    private Long idgrupo ;
+
+    private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
         .include(new LatLng(43.042073, -2.422996)) // Northeast
         .include(new LatLng(43.028919, -2.405703)) // Southwest
         .build();
 
     private ArrayList<Lugar> listaLugares;
 
+    private List<Point> routeCoordinates;
+
+
+
+    private Style style;
+
+    public void setStyle(Style style) {
+        this.style = style;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,8 +180,6 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
                 .build());
 
 
-
-
         // Limites de Getxo
         mapboxMap.setLatLngBoundsForCameraTarget(ONIATE_BOUNDS);
 
@@ -159,11 +195,38 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
 
                 // Map is set up and the style has loaded. Now you can add data or make other map adjustments
                 enableLocationComponent(style);
+                actualizarMarkerLinea(-2.41288,43.03500,-2.413917,43.033417);
+                // Create the LineString from the list of coordinates and then make a GeoJSON
+                // FeatureCollection so we can add the line to our map as a layer.
+                style.addSource(new GeoJsonSource("line-source",
+                        FeatureCollection.fromFeatures(new Feature[] {Feature.fromGeometry(
+                                LineString.fromLngLats(routeCoordinates)
+                        )})));
+
+
+                // The layer properties for our line. This is where we make the line dotted, set the
+                // color, etc.
+                style.addLayer(new LineLayer("linelayer", "line-source").withProperties(
+                        PropertyFactory.lineDasharray(new Float[] {0.01f, 2f}),
+                        PropertyFactory.lineCap(Property.LINE_CAP_ROUND),
+                        PropertyFactory.lineJoin(Property.LINE_JOIN_ROUND),
+                        PropertyFactory.lineWidth(5f),
+                        PropertyFactory.lineColor(getColor(R.color.colorPrimaryDark))
+
+                ));
+
+
+
+                setStyle(style);
+
+
+
+
+
 
             }
-        });
 
-
+            });
 
 
 
@@ -171,78 +234,132 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
 
             @Override
             public boolean onMarkerClick(@NonNull Marker marker) {
-                IconFactory iconFactory = IconFactory.getInstance(context);
-                Icon iconoverde = iconFactory.fromResource(R.drawable.pin_hecho);
+//                IconFactory iconFactory = IconFactory.getInstance(context);
+//                Icon iconorojo = iconFactory.fromResource(R.drawable.pin_sinhacer);
+//                Icon iconoamarillo = iconFactory.fromResource(R.drawable.pin_empezado);
+//                Icon iconoverde = iconFactory.fromResource(R.drawable.pin_hecho);
+                SQLiteControlador sql = new SQLiteControlador(getApplicationContext());
+
+                /*
+                * Por cada punto con actividades que hay en el mapa, se comprueba el estado en
+                * el que está, si hecho, empezado o deshabilitado, se procede a poner el icono
+                * y se determina si se abre la actividad o no*/
+
+                //ZUMELTZEGI DORREA (1)
                 if(marker.getPosition().getLatitude()==43.035000 && marker.getPosition().getLongitude()==-2.412889){
-                    marker.setIcon(iconoverde);
-                    FragmentZumeltzegi fragment = new FragmentZumeltzegi();
-                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
-                    transaction.replace(R.id.fragment_frame, fragment);
-                    transaction.commit();
-                    transaction.addToBackStack("Fragment");
+                    actualizarMarkerLinea(-2.413917,43.033417,-2.415361,43.033944);
+                    ActividadZumeltzegi actividadZumeltzegi =  DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(new Long(1));
+                    int estado = actividadZumeltzegi.getEstado();
+                    int fragment = actividadZumeltzegi.getFragment();
 
-                }else if(marker.getPosition().getLatitude()==43.033944 && marker.getPosition().getLongitude()==-2.415361){
-                    marker.setIcon(iconoverde);
-                    FragmentUnibertsitatea fragment = new FragmentUnibertsitatea();
-                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.fragment_frame, fragment);
-                    transaction.commit();
-                    transaction.addToBackStack("Fragment");
+                    marker.setIcon(iconoPunto(estado));
+                    if (entrarEnPunto(estado)) {
+                        switch (fragment){
+                            case 0:
+                                lanzarFragment(new FragmentZumeltzegi());
+                                break;
+                            case 1:
+                                Intent intent = new Intent(context, SplashScreenActivity.class);
+                                intent.putExtra(GamePlayActivity.EXTRA_ROW_COUNT, 10);
+                                intent.putExtra(GamePlayActivity.EXTRA_COL_COUNT, 10);
+                                intent.putExtra(GamePlayActivity.fragment, "Zumeltzegi");
+                                startActivity(intent);
+                                break;
+                        }
+                    }
 
-                }else if(marker.getPosition().getLatitude()==43.033417 && marker.getPosition().getLongitude()==-2.413917){
-                    marker.setIcon(iconoverde);
-                    FragmentSanMiguel fragment = new FragmentSanMiguel();
-                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
-                    transaction.replace(R.id.fragment_frame, fragment);
-                    transaction.commit();
-                    transaction.addToBackStack("Fragment");
 
-                }else if(marker.getPosition().getLatitude()==43.033833 && marker.getPosition().getLongitude()==-2.416111){
-                    marker.setIcon(iconoverde);
-                    FragmentPuzle fragment = new FragmentPuzle();
-                    Bundle bundle = new Bundle();
-                    bundle.putInt(FragmentPuzle.ARG_IMAGEN, R.drawable.tren);
-                    fragment.setArguments(bundle);
-                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
-                    transaction.replace(R.id.fragment_frame, fragment);
-                    transaction.commit();
-                    transaction.addToBackStack("Fragment");
+                }
+                //SAN MIGUEL PARROKIA (2)
+                else if(marker.getPosition().getLatitude()==43.033417 && marker.getPosition().getLongitude()==-2.413917){
+                    ActividadSanMiguel actividadSanMiguel = DatabaseRepository.getAppDatabase().getSanMiguelDao().getSanMiguel(new Long(1));
+                    int estado = actividadSanMiguel.getEstado();
+                    int fragment = actividadSanMiguel.getFragment();
 
-                }else if(marker.getPosition().getLatitude()==43.032917 && marker.getPosition().getLongitude()==-2.415750){
-                    marker.setIcon(iconoverde);
-//                    FragmentErrota fragment = new FragmentErrota();
-//                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//                    transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
-//                    transaction.replace(R.id.fragment_frame, fragment);
-//                    transaction.commit();
-//                    transaction.addToBackStack("Fragment");
-                    FragmentErrotaTextos fragment = new FragmentErrotaTextos();
-                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
-                    transaction.replace(R.id.fragment_frame, fragment);
-                    transaction.commit();
-                    transaction.addToBackStack("Fragment");
-                }else if(marker.getPosition().getLatitude()==43.000583 && marker.getPosition().getLongitude()==-2.433250){
-                    marker.setIcon(iconoverde);
+
+
+                    marker.setIcon(iconoPunto(estado));
+                    if (entrarEnPunto(estado)) {
+                        switch (fragment){
+                            case 0:
+                                lanzarFragment(new FragmentSanMiguel());
+                                break;
+                            case 1:
+                                lanzarFragment(new FragmentSanMiguelTinderKotlin());
+                                break;
+                        }
+                    }
+
+
+                }
+                //UNIBERTSITATEA (3)
+                else if(marker.getPosition().getLatitude()==43.033944 && marker.getPosition().getLongitude()==-2.415361){
+                    ActividadUniversitatea actividadUniversitatea = DatabaseRepository.getAppDatabase().getUniversitateaDao().getUniversitatea(new Long(1));
+                    int estado = actividadUniversitatea.getEstado();
+                    int fragment = actividadUniversitatea.getFragment();
+
+                    marker.setIcon(iconoPunto(estado));
+                    if (entrarEnPunto(estado)) {
+                        lanzarFragment(new FragmentUnibertsitatea());
+                    }
+
+                }
+                //TRENA (4)
+                else if(marker.getPosition().getLatitude()==43.033833 && marker.getPosition().getLongitude()==-2.416111){
+
+                    ActividadTren actividadTren = DatabaseRepository.getAppDatabase().getTrenDao().getTren(new Long(1));
+
+                    int estado = actividadTren.getEstado();
+                    int fragment = actividadTren.getFragment();
+
+                    //FALTA POR HACER BBDD GUARDAR SOPA
+
+                    marker.setIcon(iconoPunto(estado));
+                    if (entrarEnPunto(estado)) {
+                        FragmentPuzle fragmentPuzle = new FragmentPuzle();
+                        Bundle bundle = new Bundle();
+                        bundle.putInt(FragmentPuzle.ARG_IMAGEN, R.drawable.tren);
+                        fragmentPuzle.setArguments(bundle);
+                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                        transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
+                        transaction.replace(R.id.fragment_frame, fragmentPuzle);
+                        transaction.commit();
+                        transaction.addToBackStack("Fragment");
+                    }
+
+                }
+                //SAN MIGUEL ERROTA (5) FALTA BBDD
+                else if(marker.getPosition().getLatitude()==43.032917 && marker.getPosition().getLongitude()==-2.415750){
+
+                    ActividadErrota actividadErrota =  DatabaseRepository.getAppDatabase().getErrotaDao().getErrota(new Long(1));
+
+                    int estado = actividadErrota.getEstado();
+                    int fragment = actividadErrota.getFragment();
+
+                    marker.setIcon(iconoPunto(estado));
+                    if (entrarEnPunto(estado)) {
+                        lanzarFragment(new FragmentErrotaTextos());
+                    }
+
+                }
+                //ARAOTZ ASUA (sin uso, arriba)
+                else if(marker.getPosition().getLatitude()==43.009139 && marker.getPosition().getLongitude()==-2.431444){
+
+
+                }
+                //ARRIKRUTZEKO KOBAK (sin uso, en medio)
+                else if(marker.getPosition().getLatitude()==43.000583 && marker.getPosition().getLongitude()==-2.433250){
+                    marker.setIcon(iconoPunto(2));
                     Log.i("tag","s");
                     Intent intent = new Intent(MapActivity.this, SplashScreenActivity.class);
                     intent.putExtra(GamePlayActivity.EXTRA_ROW_COUNT, 10);
                     intent.putExtra(GamePlayActivity.EXTRA_COL_COUNT, 10);
                     startActivity(intent);
 
-                }else if(marker.getPosition().getLatitude()==42.979194 && marker.getPosition().getLongitude()==-2.398583){
-//                    Este punto es el de Arantsasu, al sur del mapa
+                }
+                //ARANTZAZUKO SANTUTEGIA (sin uso, abajo)
+                else if(marker.getPosition().getLatitude()==42.979194 && marker.getPosition().getLongitude()==-2.398583){
 //
-//                    marker.setIcon(iconoverde);
-//                    FragmentErrotaTextos fragment = new FragmentErrotaTextos();
-//                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//                    transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
-//                    transaction.replace(R.id.fragment_frame, fragment);
-//                    transaction.commit();
-//                    transaction.addToBackStack("Fragment");
 
                 }
 
@@ -254,6 +371,27 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
 
 
 
+    }
+
+    private void lanzarFragment(Fragment fragment){
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
+        transaction.replace(R.id.fragment_frame, fragment);
+        transaction.commit();
+        transaction.addToBackStack("Fragment");
+    }
+
+
+    private Icon iconoPunto(int estado) {
+        IconFactory iconFactory = IconFactory.getInstance(context);
+        if (estado==-1) return iconFactory.fromResource(R.drawable.pin_sinhacer);
+        else if (estado==2) return iconFactory.fromResource(R.drawable.pin_hecho);
+        else return iconFactory.fromResource(R.drawable.pin_empezado);
+    }
+
+    private boolean entrarEnPunto(int estado) {
+        if (estado==0||estado==1) return true;
+        else return false;
     }
 
     private void showBoundsArea(MapboxMap mapboxMap) {
@@ -269,19 +407,89 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
         mapboxMap.addPolygon(boundsArea);
     }
 
+    public void actualizarMarkerLinea(Double lngOrigen, Double latOrigen, Double lngDestino, Double latDestino) {
+        routeCoordinates = new ArrayList<>();
+        routeCoordinates.add(Point.fromLngLat(lngOrigen, latOrigen));
+        routeCoordinates.add(Point.fromLngLat(lngDestino, latDestino));
+
+        drawNavigationPolylineRoute(routeCoordinates);
+
+
+    }
+
+    /**
+     * Update the GeoJson data that's part of the LineLayer.
+     *
+     *
+     */
+    private void drawNavigationPolylineRoute(List<Point> routeCoordinates) {
+
+        if (mapboxMap != null) {
+            mapboxMap.getStyle(new Style.OnStyleLoaded() {
+                @Override
+                public void onStyleLoaded(@NonNull Style style) {
+
+
+                    GeoJsonSource source = style.getSourceAs("line-source");
+                    if (source != null) {
+                        source.setGeoJson(FeatureCollection.fromFeatures(new Feature[]{Feature.fromGeometry(
+                                LineString.fromLngLats(routeCoordinates))
+                        }));
+                    }
+
+                }
+            });
+        }
+    }
+
     private void crearIconos(){
         IconFactory iconFactory = IconFactory.getInstance(context);
         Icon iconorojo = iconFactory.fromResource(R.drawable.pin_sinhacer);
+        Icon iconoamarillo = iconFactory.fromResource(R.drawable.pin_empezado);
 //        Icon iconoamarillo = iconFactory.fromResource(R.drawable.yellow_marker);
         Icon iconoverde = iconFactory.fromResource(R.drawable.pin_hecho);
 //        Icon iconogris = iconFactory.fromResource(R.drawable.grey_marker);
+        Icon[] arrayIconos = {iconorojo,iconoamarillo,iconoverde};
 
+//        for(Lugar lugar : listaLugares) {
+//            mapboxMap.addMarker(new MarkerOptions()
+//                    .position(lugar.getCoordenadas())
+//                    .title(lugar.getNombre())
+//                    .setIcon(iconorojo));
+//        }
 
-        for(Lugar lugar : listaLugares) {
+        /*
+        * Al cargar el mapa, comprobamos la disponibilidad de los puntos
+        * para asignarle el icono correspondiente por si está o no está hecho
+        *
+        * He comentado el anterior for para no perder el código*/
+        SQLiteControlador sql = new SQLiteControlador(getApplicationContext());
+        for (int x=0;x<listaLugares.size();x++) {
+            Icon icono = iconorojo;
+            int dis;
+            switch (x) {
+                case 0:
+                    //Selecciona el icono dependiendo del valor del estado que corresponderá al orden en el array de iconos
+                     icono  = arrayIconos[DatabaseRepository.searchEstadoZumeltzegi(new Long(1))];
+                    break;
+                case 1:
+                    icono  = arrayIconos[DatabaseRepository.searchEstadoSanMiguel(new Long(1))];
+                    break;
+                case 2:
+                    icono  = arrayIconos[DatabaseRepository.searchEstadoUniversidad(new Long(1))];
+                    break;
+                case 3:
+                    icono  = arrayIconos[DatabaseRepository.searchEstadoTren(new Long(1))];
+                    break;
+                case 4:
+                    icono  = arrayIconos[DatabaseRepository.searchEstadoErrota(new Long(1))];
+                    break;
+            }
+            Lugar lugar = listaLugares.get(x);
             mapboxMap.addMarker(new MarkerOptions()
                     .position(lugar.getCoordenadas())
                     .title(lugar.getNombre())
-                    .setIcon(iconorojo));
+                    .setIcon(icono));
         }
     }
 
@@ -297,6 +505,9 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
         listaLugares.add(new Lugar(getString(R.string.nombreLugar6),new LatLng(42.979194,  -2.398583)));
         listaLugares.add(new Lugar(getString(R.string.nombreLugar7),new LatLng(43.009139,  -2.431444)));
         listaLugares.add(new Lugar(getString(R.string.nombreLugar8),new LatLng(43.000583, -2.433250)));
+        listaLugares.add(new Lugar(getString(R.string.nombreLugar9), new LatLng(43.028668, -2.410399)));
+        listaLugares.add(new Lugar(getString(R.string.nombreLugar10), new LatLng(43.032444, -2.413722)));
+
 
     }
 
@@ -381,6 +592,15 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
         } else {
             Toast.makeText(this, R.string.user_location_permission_not_granted, Toast.LENGTH_LONG).show();
             finish();
+        }
+    }
+
+
+    @Override
+    public void onFragmentInteraction(Fragment fragment,boolean terminado) {
+        if(fragment instanceof FragmentSanMiguelImagenes) {
+            Toast.makeText(this,"FRAGMENT",Toast.LENGTH_LONG).show();
+            actualizarMarkerLinea(-3.413917, 43.033417, -2.431444, 43.033833);
         }
     }
 
@@ -469,6 +689,17 @@ private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
 
         return distancia;
     }
+
+
+    @Override
+    public void onAttachFragment(Fragment fragment) {
+        if (fragment instanceof FragmentSanMiguelImagenes) {
+            ((FragmentSanMiguelImagenes) fragment).setmListener(this);
+        }
+    }
+
+
+
 
 
     @Override

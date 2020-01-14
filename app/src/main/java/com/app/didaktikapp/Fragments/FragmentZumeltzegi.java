@@ -24,6 +24,7 @@ import androidx.fragment.app.Fragment;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.Html;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,13 +39,18 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.app.didaktikapp.Activities.MapActivity;
+import com.app.didaktikapp.BBDD.Modelos.ActividadZumeltzegi;
+import com.app.didaktikapp.BBDD.Service.ZumeltzegiService;
+import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.R;
 import com.app.didaktikapp.wordsearch.features.SplashScreenActivity;
+import com.app.didaktikapp.wordsearch.features.gameover.GameOverActivity;
 import com.app.didaktikapp.wordsearch.features.gameplay.GamePlayActivity;
 import com.muddzdev.styleabletoast.StyleableToast;
 
 import org.w3c.dom.Text;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -197,11 +203,35 @@ public class FragmentZumeltzegi extends Fragment {
                 Intent intent = new Intent(getActivity(), SplashScreenActivity.class);
                 intent.putExtra(GamePlayActivity.EXTRA_ROW_COUNT, 10);
                 intent.putExtra(GamePlayActivity.EXTRA_COL_COUNT, 10);
+                intent.putExtra(GamePlayActivity.fragment, "Zumeltzegi");
                 startActivity(intent);
+
+
+                //Añadir imagenes a base de datos
+                ActividadZumeltzegi actividadZumeltzegi = DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(new Long(1));
+
+                actividadZumeltzegi.setFragment(1);
+                actividadZumeltzegi.setFoto1(imageToBase64(ivPregunta1));
+                actividadZumeltzegi.setFoto2(imageToBase64(ivPregunta2));
+
+                DatabaseRepository.getAppDatabase().getZumeltzegiDao().updateZumeltzegi(actividadZumeltzegi);
+
+                getFragmentManager().beginTransaction().remove(FragmentZumeltzegi.this).commit();
             }
         });
 
         return view;
+    }
+
+    private String imageToBase64(ImageView iv){
+        iv.buildDrawingCache();
+        Bitmap bitmap = iv.getDrawingCache();
+
+        ByteArrayOutputStream stream=new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream);
+        byte[] image=stream.toByteArray();
+
+        return  Base64.encodeToString(image, 0);
     }
 
     private class ListenerBoton implements View.OnClickListener {

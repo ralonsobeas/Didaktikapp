@@ -85,6 +85,10 @@
     <string name="SanMiguelPregunta4OpcionC">Eliza ondotik</string>
     <string name="Continuar">Jarraitu</string>
 
+    <string name="Correcta">Correcta</string>
+    <string name="Incorrecta">Incorrecta</string>
+
+
     <!-- Actividad Tren -->
     <string name="TrenTextoTitulo">Trena</string>
     <string name="TrenTextoCambiar">Oñatin garai batean trena aurkitzen zen, gaur egun, (1) ________ den eraikina da lehengo tren estazioa. 1887 urtean sortu zen eta azken bidaia, 1967 urtean izan zen. (2) ________ deitzen zen eta Bergaratik Lizarraraino heltzen zen, (3) ________ pasata. </string>
@@ -164,5 +168,7 @@
     <string name="universidadTest2">2. Oñatiko unibertsitatea XV mendean eraiki zen.</string>
     <string name="universidadFotos">Egin itzazu unibertsitatearen 3 argazki alde ezbedinetatik.</string>
     <string name="finalizar">AMAITU</string>
+    <string name="nombreLugar9">Escuela</string>
+    <string name="nombreLugar10">Gernika</string>
 
 </resources>
