@@ -237,6 +237,11 @@ Seguimiento
 
 <h4>14/01/2019 Trabajo de desarrollo</h4>
 
+- [x] Spotlight en el menú principal terminado, guía de ayuda para el usuario. Nuevo botón ayuda incluido
+- [ ] Trabajo en la BBDD arreglo de errores, id's autogenerados, relaciones entre tablas y errores con los id's DEBEN SER LONG
+
+<h4>14/01/2019 Trabajo de desarrollo</h4>
+
 - [x] Ventanas para creación y selección de grupo terminadas
 - [ ] Comienzo de trabajo sobre errota de drag&drop
 - [x] BBDD Completamente funcional sin errores aparentemente
