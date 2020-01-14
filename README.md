@@ -45,6 +45,7 @@ Toast customizados (StyleableToast) - https://github.com/Muddz/StyleableToast
 
 Diálogos personalizados (FlatDialog) - https://github.com/mejdi14/Flat-Dialog-Android?utm_source=android-arsenal.com&utm_medium=referral&utm_campaign=7926
 
+Spotlight (Guía de ayuda) - https://github.com/29jitender/Spotlight
 
 
 Seguimiento
