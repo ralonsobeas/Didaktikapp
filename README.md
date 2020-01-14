@@ -233,6 +233,14 @@ Seguimiento
 - [ ] Fallo en sopa de letras posible error en el cambio en el gradel de kers?
 - [ ] https://github.com/29jitender/Spotlight
 
+<h4>14/01/2019 Trabajo de desarrollo</h4>
+
+- [x] Ventanas para creación y selección de grupo terminadas
+- [ ] Comienzo de trabajo sobre errota de drag&drop
+- [x] BBDD Completamente funcional sin errores aparentemente
+- [ ] Falta implantar la manera para eliminar grupos
+
+
 Funcionamiento de la app
 ------------------------------------------------------------------------
 
