@@ -20,6 +20,7 @@ import com.app.didaktikapp.BBDD.Modelos.ActividadZumeltzegi;
 import com.app.didaktikapp.BBDD.Modelos.Grupo;
 
 import java.util.Calendar;
+import java.util.concurrent.ExecutionException;
 
 public class DatabaseRepository {
 
@@ -51,27 +52,36 @@ public class DatabaseRepository {
         appDatabase = null;
     }
 
-    public static void insertTaskGrupo(String nombreGrupo){
-
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... voids) {
-                Grupo grupo = new Grupo();
-                grupo.setNombre(nombreGrupo);
-                grupo.setFecha( Calendar.getInstance().getTime());
-                ActividadZumeltzegi actividadZumeltzegi = new ActividadZumeltzegi();
-                grupo.setIdZumeltzegi(appDatabase.getZumeltzegiDao().addZumeltzegi(actividadZumeltzegi));
-                grupo.setIdUniversidad(appDatabase.getUniversitateaDao().addUniversitatea(new ActividadUniversitatea()));
-                grupo.setIdTren(appDatabase.getTrenDao().addTren(new ActividadTren()));
-                grupo.setIdParroquia(appDatabase.getSanMiguelDao().addSanMiguel(new ActividadSanMiguel()));
-                grupo.setIdErrota(appDatabase.getErrotaDao().addErrota(new ActividadErrota()));
-                appDatabase.getGrupoDao().addGrupo(grupo);
+    public static Long insertTaskGrupo(String nombreGrupo){
 
 
+        try {
+            return new AsyncTask<Void, Void, Long>() {
+                @Override
+                protected Long doInBackground(Void... voids) {
+                    Grupo grupo = new Grupo();
+                    grupo.setNombre(nombreGrupo);
+                    grupo.setFecha( Calendar.getInstance().getTime());
+                    ActividadZumeltzegi actividadZumeltzegi = new ActividadZumeltzegi();
+                    grupo.setIdZumeltzegi(appDatabase.getZumeltzegiDao().addZumeltzegi(actividadZumeltzegi));
+                    grupo.setIdUniversidad(appDatabase.getUniversitateaDao().addUniversitatea(new ActividadUniversitatea()));
+                    grupo.setIdTren(appDatabase.getTrenDao().addTren(new ActividadTren()));
+                    grupo.setIdParroquia(appDatabase.getSanMiguelDao().addSanMiguel(new ActividadSanMiguel()));
+                    grupo.setIdErrota(appDatabase.getErrotaDao().addErrota(new ActividadErrota()));
+                    return appDatabase.getGrupoDao().addGrupo(grupo);
 
-                return null;
-            }
-        }.execute();
+                }
+
+
+            }.execute().get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+            return null;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            return null;
+        }
+
 
     }
 

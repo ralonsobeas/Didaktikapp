@@ -115,7 +115,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private Context context;
 
 
-    public static int idgrupo = 1;
+    private Long idgrupo ;
 
     private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
         .include(new LatLng(43.042073, -2.422996)) // Northeast

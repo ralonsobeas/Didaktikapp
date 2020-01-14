@@ -145,15 +145,6 @@ public class Grupo {
 
     @Override
     public String toString() {
-        return "Grupo{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", fecha='" + fecha + '\'' +
-                ", idZumeltzegi='" + idZumeltzegi + '\'' +
-                ", idParroquia='" + idParroquia + '\'' +
-                ", idUniversidad='" + idUniversidad + '\'' +
-                ", idErrota='" + idErrota + '\'' +
-                ", idGernika='" + idGernika + '\'' +
-                '}';
+        return nombre;
     }
 }

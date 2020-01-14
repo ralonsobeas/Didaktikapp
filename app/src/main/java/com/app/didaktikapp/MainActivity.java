@@ -16,6 +16,8 @@ import android.os.Handler;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,8 +32,10 @@ import com.app.didaktikapp.BBDD.database.AppDatabase;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.CircleMenu.CircleMenuView;
 
+import com.example.flatdialoglibrary.dialog.FlatDialog;
 import com.facebook.stetho.Stetho;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.muddzdev.styleabletoast.StyleableToast;
 import com.wooplr.spotlight.SpotlightConfig;
 import com.wooplr.spotlight.SpotlightView;
 import com.wooplr.spotlight.prefs.PreferencesManager;
@@ -41,6 +45,7 @@ import com.wooplr.spotlight.utils.Utils;
 
 
 import java.lang.ref.WeakReference;
+import java.util.List;
 
 import at.markushi.ui.CircleButton;
 
@@ -60,11 +65,11 @@ public class MainActivity extends AppCompatActivity  {
         Stetho.initializeWithDefaults(this);
 
 
-        //BBDD
-        databaseRepository = new DatabaseRepository(MainActivity.this);
-
-        //SE CREA EL GRUPO Y TODOS LOS FRAGMENTS CON SU ESTADO Y FRAGMENT = 0
-        DatabaseRepository.insertTaskGrupo("NOMBREDEPRUEBA");
+//        //BBDD
+//        databaseRepository = new DatabaseRepository(MainActivity.this);
+//
+//        //SE CREA EL GRUPO Y TODOS LOS FRAGMENTS CON SU ESTADO Y FRAGMENT = 0
+//        DatabaseRepository.insertTaskGrupo("NOMBREDEPRUEBA");
 
 
         // "context" must be an Activity, Service or Application object from your app.
@@ -140,18 +145,20 @@ public class MainActivity extends AppCompatActivity  {
             @Override
             public void onButtonClickAnimationEnd(@NonNull CircleMenuView view, int index) {
                 Log.d("D", "onButtonClickAnimationEnd| index: " + index);
-                Intent i = new Intent(MainActivity.this, MapActivity.class);
+
                 switch (index){
                     case 0:
 //                        SQLiteControlador sql = new SQLiteControlador(getApplicationContext());
 //                        sql.iniciarApp();
 
-                        startActivity(i);
+                        dialogoCrearGrupo();
+
+
 
                         break;
                     case 1:
                         //startActivity(i);
-
+                        dialogoElegirGrupo();
 
                         break;
                     case 2:
@@ -186,6 +193,114 @@ public class MainActivity extends AppCompatActivity  {
 
 
 
+    }
+
+    private void dialogoElegirGrupo(){
+        //BBDD
+        databaseRepository = new DatabaseRepository(MainActivity.this);
+
+        List<Grupo> listaGrupos = DatabaseRepository.getAppDatabase().getGrupoDao().getGrupos();
+
+        Grupo[] arrayGrupos =  new Grupo[listaGrupos.size()];
+        listaGrupos.toArray(arrayGrupos);
+
+        ArrayAdapter<Grupo> adapter = new ArrayAdapter<Grupo>(this,
+                android.R.layout.simple_dropdown_item_1line, arrayGrupos );
+
+        final Grupo[] grupoSeleccionado = new Grupo[1];
+
+
+        final com.app.didaktikapp.FlatDialog.FlatDialog flatDialog = new com.app.didaktikapp.FlatDialog.FlatDialog(MainActivity.this);
+        flatDialog.setTitle("Elegir grupo")
+                .setBackgroundColor(Color.parseColor("#2B82C5"))
+                .setSubtitle("introduce el nombre del grupo")
+                .setFirstTextFieldHint("Nombre del grupo")
+                .withTextViewAdapter(adapter)
+                .setFirstButtonText("Comenzar")
+                .setFirstButtonColor(Color.parseColor("#FAFAFA"))
+                .setFirstButtonTextColor(Color.parseColor("#2B82C5"))
+                .setSecondButtonText("Cancelar")
+                .setSecondButtonColor(Color.parseColor("#FAFAFA"))
+                .setSecondButtonTextColor(Color.parseColor("#2B82C5"))
+                .withTextViewAdapterListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Object item = parent.getItemAtPosition(position);
+                        if (item instanceof Grupo){
+                            Grupo grupo=(Grupo) item;
+                            grupoSeleccionado[0] = grupo;
+                        }
+                    }
+                })
+                .withFirstButtonListner(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(MainActivity.this, MapActivity.class);
+
+
+                        //BBDD
+
+                        //SE CREA EL GRUPO Y TODOS LOS FRAGMENTS CON SU ESTADO Y FRAGMENT = 0
+
+                        if(grupoSeleccionado[0]!=null && grupoSeleccionado[0].getNombre().equals(flatDialog.getFirstTextField())) {
+                            i.putExtra("IDGRUPO", grupoSeleccionado[0].getId());
+
+                            startActivity(i);
+                        }else{
+                            StyleableToast.makeText(getApplicationContext(), "Seleccione grupo", Toast.LENGTH_SHORT, R.style.mytoastIncorrecta  ).show();
+
+                        }
+
+
+                    }
+                })
+                .withSecondButtonListner(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        flatDialog.dismiss();
+                    }
+                })
+                .show();
+    }
+
+
+
+    private void dialogoCrearGrupo(){
+        final FlatDialog flatDialog = new FlatDialog(MainActivity.this);
+        flatDialog.setTitle("Crear grupo")
+                .setBackgroundColor(Color.parseColor("#2B82C5"))
+                .setSubtitle("introduce el nombre del grupo")
+                .setFirstTextFieldHint("Nombre del grupo")
+                .setFirstButtonText("Comenzar")
+                .setFirstButtonColor(Color.parseColor("#FAFAFA"))
+                .setFirstButtonTextColor(Color.parseColor("#2B82C5"))
+                .setSecondButtonText("Cancelar")
+                .setSecondButtonColor(Color.parseColor("#FAFAFA"))
+                .setSecondButtonTextColor(Color.parseColor("#2B82C5"))
+                .withFirstButtonListner(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(MainActivity.this, MapActivity.class);
+
+
+                        //BBDD
+                        databaseRepository = new DatabaseRepository(MainActivity.this);
+
+                        //SE CREA EL GRUPO Y TODOS LOS FRAGMENTS CON SU ESTADO Y FRAGMENT = 0
+
+
+                        i.putExtra("IDGRUPO",DatabaseRepository.insertTaskGrupo(flatDialog.getFirstTextField()));
+
+                        startActivity(i);
+                    }
+                })
+                .withSecondButtonListner(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        flatDialog.dismiss();
+                    }
+                })
+                .show();
     }
 
 
