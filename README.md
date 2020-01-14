@@ -43,6 +43,8 @@ Gif implementation - https://github.com/koral--/android-gif-drawable
 
 Toast customizados (StyleableToast) - https://github.com/Muddz/StyleableToast
 
+Diálogos personalizados (FlatDialog) - https://github.com/mejdi14/Flat-Dialog-Android?utm_source=android-arsenal.com&utm_medium=referral&utm_campaign=7926
+
 
 
 Seguimiento
