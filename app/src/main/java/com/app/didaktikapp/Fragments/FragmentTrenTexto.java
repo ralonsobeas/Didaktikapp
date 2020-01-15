@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -58,6 +59,8 @@ public class FragmentTrenTexto extends Fragment {
     private TextView textoCambiar,textoPregunta,textoError;
 
     boolean primerError;
+
+    private Button btnContinuar;
 
     public FragmentTrenTexto() {
         // Required empty public constructor
@@ -102,6 +105,18 @@ public class FragmentTrenTexto extends Fragment {
         textoCambiar = view.findViewById(R.id.trenTextoCambiar);
         textoPregunta = view.findViewById(R.id.trenTextoPregunta);
         textoError = view.findViewById(R.id.trenTextoError);
+
+        btnContinuar = view.findViewById(R.id.btnContinuar);
+        btnContinuar.setEnabled(false);
+
+        btnContinuar.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+
+                //CERRAR FRAGMENT
+            }
+        });
 
         //Al iniciar la actividad detecta que ha habido un click en el spinner,
         //asi que este booleano evita que salga el mensaje de error la primera vez
@@ -151,6 +166,7 @@ public class FragmentTrenTexto extends Fragment {
                         String pp = texto.substring(0,location);
                         String sp = texto.substring(location+8);
                         textoCambiar.setText(pp+"gasteizetik"+sp);
+                        btnContinuar.setEnabled(true);
                     } else {
                         textoError.setText(getResources().getString(R.string.TrenTextoError)+" "+seleccionado);
                     }
