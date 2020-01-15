@@ -50,6 +50,8 @@ public class FragmentErrota extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private Long idActividad;
+
     private LinearLayout fotosLayout, videoLayout, preguntasLayout;
 
     private Button btnContinuar;
@@ -70,10 +72,10 @@ public class FragmentErrota extends Fragment {
     }
 
 
-    public static FragmentErrota newInstance() {
+    public static FragmentErrota newInstance(Long param1) {
         FragmentErrota fragment = new FragmentErrota();
         Bundle args = new Bundle();
-
+        args.putLong(ARG_PARAM1, param1);
         fragment.setArguments(args);
         return fragment;
     }
@@ -82,7 +84,7 @@ public class FragmentErrota extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            idActividad = getArguments().getLong(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }

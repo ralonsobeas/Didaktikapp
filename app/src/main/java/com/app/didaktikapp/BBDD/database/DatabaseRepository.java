@@ -110,6 +110,24 @@ public class DatabaseRepository {
         return appDatabase.getErrotaDao().getErrota(id).getEstado();
     }
 
+    public static void deleteGrupo(Grupo grupo){
+
+        appDatabase.getZumeltzegiDao().deleteZumeltzegi(appDatabase.getZumeltzegiDao().getZumeltzegi(grupo.getIdZumeltzegi()));
+
+        appDatabase.getErrotaDao().deleteErrota(appDatabase.getErrotaDao().getErrota(grupo.getIdErrota()));
+
+        appDatabase.getUniversitateaDao().deleteUniversitatea(appDatabase.getUniversitateaDao().getUniversitatea(grupo.getIdUniversidad()));
+
+        appDatabase.getSanMiguelDao().deleteSanMiguel(appDatabase.getSanMiguelDao().getSanMiguel(grupo.getIdParroquia()));
+
+        appDatabase.getTrenDao().deleteTren(appDatabase.getTrenDao().getTren(grupo.getIdTren()));
+
+        appDatabase.getGrupoDao().deleteGrupo(grupo);
+
+
+
+    }
+
 
     public static AppDatabase getAppDatabase() {
         return appDatabase;

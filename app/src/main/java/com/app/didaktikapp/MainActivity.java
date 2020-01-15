@@ -115,6 +115,9 @@ public class MainActivity extends AppCompatActivity  {
 //        eventos();
 
         final CircleMenuView menu = findViewById(R.id.circle_menu);
+
+        boolean[] pulsadoAdministrador = {false,false,false};
+
         menu.setEventListener(new CircleMenuView.EventListener() {
             @Override
             public void onMenuOpenAnimationStart(@NonNull CircleMenuView view) {
@@ -186,12 +189,47 @@ public class MainActivity extends AppCompatActivity  {
             @Override
             public void onButtonLongClickAnimationEnd(@NonNull CircleMenuView view, int index) {
                 Log.d("D", "onButtonLongClickAnimationEnd| index: " + index);
+                switch (index){
+                    case 0:
+                        pulsadoAdministrador[0] = true;
+                        break;
+                    case 1:
+                        if(pulsadoAdministrador[0]){
+                            pulsadoAdministrador[1]=true;
+                        }else{
+                            pulsadoAdministrador[0] = false;
+                        }
+                        break;
+                    case 2:
+                        if(pulsadoAdministrador[1]){
+                            pulsadoAdministrador[2]=true;
+                        }else{
+                            pulsadoAdministrador[0] = false;
+                            pulsadoAdministrador[1] = false;
+                        }
+                        break;
+
+                    case 3:
+                        if(pulsadoAdministrador[2]) {
+                            activarModoAdministrador();
+                        }
+                        pulsadoAdministrador[0] = false;
+                        pulsadoAdministrador[1] = false;
+                        pulsadoAdministrador[2] = false;
+
+                        break;
+                }
             }
         });
 
 //        GifImageView gifImageView = findViewById(R.id.gif);
 
 
+
+    }
+
+    private void activarModoAdministrador(){
+        StyleableToast.makeText(getApplicationContext(), "Modo administrador activado", Toast.LENGTH_LONG, R.style.mytoast).show();
 
     }
 
@@ -219,9 +257,12 @@ public class MainActivity extends AppCompatActivity  {
                 .setFirstButtonText("Comenzar")
                 .setFirstButtonColor(Color.parseColor("#FAFAFA"))
                 .setFirstButtonTextColor(Color.parseColor("#2B82C5"))
-                .setSecondButtonText("Cancelar")
+                .setSecondButtonText("Eliminar")
                 .setSecondButtonColor(Color.parseColor("#FAFAFA"))
                 .setSecondButtonTextColor(Color.parseColor("#2B82C5"))
+                .setThirdButtonText("Cancelar")
+                .setThirdButtonColor(Color.parseColor("#FAFAFA"))
+                .setThirdButtonTextColor(Color.parseColor("#2B82C5"))
                 .withTextViewAdapterListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -242,10 +283,11 @@ public class MainActivity extends AppCompatActivity  {
 
                         //SE CREA EL GRUPO Y TODOS LOS FRAGMENTS CON SU ESTADO Y FRAGMENT = 0
 
-                        if(grupoSeleccionado[0]!=null && grupoSeleccionado[0].getNombre().equals(flatDialog.getFirstTextField())) {
+                        if(grupoSeleccionado[0]!=null && grupoSeleccionado[0].toString().equals(flatDialog.getFirstTextField())) {
                             i.putExtra("IDGRUPO", grupoSeleccionado[0].getId());
 
                             startActivity(i);
+                            flatDialog.dismiss();
                         }else{
                             StyleableToast.makeText(getApplicationContext(), "Seleccione grupo", Toast.LENGTH_SHORT, R.style.mytoastIncorrecta  ).show();
 
@@ -255,6 +297,30 @@ public class MainActivity extends AppCompatActivity  {
                     }
                 })
                 .withSecondButtonListner(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Intent i = new Intent(MainActivity.this, MapActivity.class);
+
+
+                        //BBDD
+
+                        //SE CREA EL GRUPO Y TODOS LOS FRAGMENTS CON SU ESTADO Y FRAGMENT = 0
+
+                        if(grupoSeleccionado[0]!=null && grupoSeleccionado[0].toString().equals(flatDialog.getFirstTextField())) {
+                            DatabaseRepository.deleteGrupo(grupoSeleccionado[0]);
+                            flatDialog.getFirst_edit_text().setText("");
+                            StyleableToast.makeText(getApplicationContext(), "Grupo eliminado", Toast.LENGTH_SHORT, R.style.mytoastCorrecta  ).show();
+
+                        }else{
+                            StyleableToast.makeText(getApplicationContext(), "Seleccione grupo", Toast.LENGTH_SHORT, R.style.mytoastIncorrecta  ).show();
+
+                        }
+
+
+                    }
+                })
+                .withThirdButtonListner(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         flatDialog.dismiss();
@@ -292,6 +358,7 @@ public class MainActivity extends AppCompatActivity  {
                         i.putExtra("IDGRUPO",DatabaseRepository.insertTaskGrupo(flatDialog.getFirstTextField()));
 
                         startActivity(i);
+                        flatDialog.dismiss();
                     }
                 })
                 .withSecondButtonListner(new View.OnClickListener() {

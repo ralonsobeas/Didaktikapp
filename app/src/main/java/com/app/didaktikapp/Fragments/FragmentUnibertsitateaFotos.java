@@ -44,6 +44,8 @@ public class FragmentUnibertsitateaFotos extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private static final String ARG_PARAM3 = "param3";
 
+    private Long idActividad;
+
 
     final int REQUEST_IMAGE_CAPTURE1 = 2001;
     final int REQUEST_IMAGE_CAPTURE2 = 2002;
@@ -63,12 +65,10 @@ public class FragmentUnibertsitateaFotos extends Fragment {
     }
 
 
-    public static FragmentUnibertsitateaFotos newInstance(String param1, String param2, String param3) {
+    public static FragmentUnibertsitateaFotos newInstance(Long idActividad) {
         FragmentUnibertsitateaFotos fragment = new FragmentUnibertsitateaFotos();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        args.putString(ARG_PARAM3, param3);
+        args.putLong(ARG_PARAM1, idActividad);
         fragment.setArguments(args);
         return fragment;
     }
@@ -78,7 +78,7 @@ public class FragmentUnibertsitateaFotos extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            idActividad = getArguments().getLong(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
             mParam3 = getArguments().getString(ARG_PARAM3);
         }
@@ -217,11 +217,11 @@ public class FragmentUnibertsitateaFotos extends Fragment {
 
     private void guardarBBDD(ImageView iv1,ImageView iv2,ImageView  iv3){
 
-        ActividadUniversitatea actividadUniversitatea = DatabaseRepository.getAppDatabase().getUniversitateaDao().getUniversitatea(new Long(1));
+        ActividadUniversitatea actividadUniversitatea = DatabaseRepository.getAppDatabase().getUniversitateaDao().getUniversitatea(idActividad);
 
         actividadUniversitatea.setEstado(2);
 
-        actividadUniversitatea.setFragment(2);
+        actividadUniversitatea.setFragment(3);
 
         actividadUniversitatea.setFoto1(imageToBase64(iv1));
 

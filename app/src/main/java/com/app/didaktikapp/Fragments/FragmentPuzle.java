@@ -27,6 +27,8 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.app.didaktikapp.Activities.MapActivity;
+import com.app.didaktikapp.BBDD.Modelos.ActividadTren;
+import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.Puzzle.PuzzlePiece;
 import com.app.didaktikapp.R;
 
@@ -54,6 +56,7 @@ public class FragmentPuzle extends Fragment {
 
     // TODO: Rename and change types of parameters
     private int imagen;
+    private Long idActividad;
 
     private View view;
     private ArrayList<PuzzlePiece> pieces;
@@ -72,14 +75,15 @@ public class FragmentPuzle extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param imagen Parameter 1.
+     * @param idActividad Parameter 1.
      * @return A new instance of fragment FragmentPuzle.
      */
     // TODO: Rename and change types and number of parameters
-    public static FragmentPuzle newInstance(String imagen, String param2) {
+    public static FragmentPuzle newInstance(Long idActividad, int imagen) {
         FragmentPuzle fragment = new FragmentPuzle();
         Bundle args = new Bundle();
-//        args.putInt(ARG_IMAGEN, imagen);
+        args.putInt(ARG_IMAGEN, imagen);
+        args.putLong(ARG_PARAM2, idActividad);
         fragment.setArguments(args);
         return fragment;
     }
@@ -89,6 +93,7 @@ public class FragmentPuzle extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             imagen = getArguments().getInt(ARG_IMAGEN);
+            idActividad = getArguments().getLong(ARG_PARAM2);
 
         }
     }
@@ -412,7 +417,10 @@ public class FragmentPuzle extends Fragment {
 
                         @Override
                         public void onCompletion(MediaPlayer mp) {
-                            FragmentTrenTexto fragment = new FragmentTrenTexto();
+
+                            guardarBBDD();
+
+                            FragmentTrenTexto fragment = FragmentTrenTexto.newInstance(idActividad);
                             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                             transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
                             transaction.replace(R.id.fragment_frame, fragment);
@@ -423,6 +431,17 @@ public class FragmentPuzle extends Fragment {
                     });
                 }
             }
+        }
+
+        private void guardarBBDD(){
+            ActividadTren actividadTren = DatabaseRepository.getAppDatabase().getTrenDao().getTren(idActividad);
+
+            actividadTren.setEstado(1);
+            actividadTren.setFragment(1);
+
+            actividadTren.setPuzle("TERMINADO");
+
+            DatabaseRepository.getAppDatabase().getTrenDao().updateTren(actividadTren);
         }
 
         private boolean isGameOver() {

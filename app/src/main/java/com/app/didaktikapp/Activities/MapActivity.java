@@ -28,6 +28,7 @@ import com.app.didaktikapp.BBDD.Modelos.ActividadSanMiguel;
 import com.app.didaktikapp.BBDD.Modelos.ActividadTren;
 import com.app.didaktikapp.BBDD.Modelos.ActividadUniversitatea;
 import com.app.didaktikapp.BBDD.Modelos.ActividadZumeltzegi;
+import com.app.didaktikapp.BBDD.Modelos.Grupo;
 import com.app.didaktikapp.BBDD.SQLiteControlador;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.Fragments.FragmentErrota;
@@ -38,6 +39,9 @@ import com.app.didaktikapp.Fragments.FragmentSanMiguelImagenes;
 import com.app.didaktikapp.Fragments.FragmentSanMiguelTinderKotlin;
 import com.app.didaktikapp.Fragments.FragmentTrenTexto;
 import com.app.didaktikapp.Fragments.FragmentUnibertsitatea;
+import com.app.didaktikapp.Fragments.FragmentUnibertsitateaFotos;
+import com.app.didaktikapp.Fragments.FragmentUnibertsitateaPreguntas;
+import com.app.didaktikapp.Fragments.FragmentUnibertsitateaTexto;
 import com.app.didaktikapp.Fragments.FragmentZumeltzegi;
 import com.app.didaktikapp.InicioActivity;
 import com.app.didaktikapp.MainActivity;
@@ -116,6 +120,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
 
     private Long idgrupo ;
+    private Grupo grupo;
 
     private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
         .include(new LatLng(43.042073, -2.422996)) // Northeast
@@ -141,7 +146,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         this.context = getApplicationContext();
         permissionsManager = new PermissionsManager(this);
-
+        //CARGAR OBJETO GRUPO DE LA BBDD
+        idgrupo = getIntent().getExtras().getLong("IDGRUPO");
+        grupo = DatabaseRepository.getAppDatabase().getGrupoDao().getGrupo(idgrupo);
 
         cargarListaLugares();
 
@@ -248,7 +255,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 //ZUMELTZEGI DORREA (1)
                 if(marker.getPosition().getLatitude()==43.035000 && marker.getPosition().getLongitude()==-2.412889){
                     actualizarMarkerLinea(-2.413917,43.033417,-2.415361,43.033944);
-                    ActividadZumeltzegi actividadZumeltzegi =  DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(new Long(1));
+
+                    ActividadZumeltzegi actividadZumeltzegi =  DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(grupo.getIdZumeltzegi());
                     int estado = actividadZumeltzegi.getEstado();
                     int fragment = actividadZumeltzegi.getFragment();
 
@@ -256,7 +264,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     if (entrarEnPunto(estado)) {
                         switch (fragment){
                             case 0:
-                                lanzarFragment(new FragmentZumeltzegi());
+                                lanzarFragment(FragmentZumeltzegi.newInstance(grupo.getIdZumeltzegi()));
                                 break;
                             case 1:
                                 Intent intent = new Intent(context, SplashScreenActivity.class);
@@ -272,7 +280,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 }
                 //SAN MIGUEL PARROKIA (2)
                 else if(marker.getPosition().getLatitude()==43.033417 && marker.getPosition().getLongitude()==-2.413917){
-                    ActividadSanMiguel actividadSanMiguel = DatabaseRepository.getAppDatabase().getSanMiguelDao().getSanMiguel(new Long(1));
+                    ActividadSanMiguel actividadSanMiguel = DatabaseRepository.getAppDatabase().getSanMiguelDao().getSanMiguel(grupo.getIdParroquia());
                     int estado = actividadSanMiguel.getEstado();
                     int fragment = actividadSanMiguel.getFragment();
 
@@ -282,10 +290,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     if (entrarEnPunto(estado)) {
                         switch (fragment){
                             case 0:
-                                lanzarFragment(new FragmentSanMiguel());
+                                lanzarFragment(FragmentSanMiguel.newInstance(grupo.getIdParroquia()));
                                 break;
                             case 1:
-                                lanzarFragment(new FragmentSanMiguelTinderKotlin());
+                                lanzarFragment(FragmentSanMiguelTinderKotlin.newInstance(grupo.getIdParroquia()));
                                 break;
                         }
                     }
@@ -294,51 +302,54 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 }
                 //UNIBERTSITATEA (3)
                 else if(marker.getPosition().getLatitude()==43.033944 && marker.getPosition().getLongitude()==-2.415361){
-                    ActividadUniversitatea actividadUniversitatea = DatabaseRepository.getAppDatabase().getUniversitateaDao().getUniversitatea(new Long(1));
+                    ActividadUniversitatea actividadUniversitatea = DatabaseRepository.getAppDatabase().getUniversitateaDao().getUniversitatea(grupo.getIdUniversidad());
                     int estado = actividadUniversitatea.getEstado();
                     int fragment = actividadUniversitatea.getFragment();
 
                     marker.setIcon(iconoPunto(estado));
                     if (entrarEnPunto(estado)) {
-                        lanzarFragment(new FragmentUnibertsitatea());
+                        switch (fragment){
+                            case 0:
+                                lanzarFragment(FragmentUnibertsitateaTexto.newInstance(grupo.getIdUniversidad()));
+                                break;
+                            case 1:
+                                lanzarFragment(FragmentUnibertsitateaPreguntas.newInstance(grupo.getIdUniversidad()));
+                                break;
+                            case 2:
+                                lanzarFragment(FragmentUnibertsitateaFotos.newInstance(grupo.getIdUniversidad()));
+                                break;
+
+                        }
                     }
 
                 }
                 //TRENA (4)
                 else if(marker.getPosition().getLatitude()==43.033833 && marker.getPosition().getLongitude()==-2.416111){
 
-                    ActividadTren actividadTren = DatabaseRepository.getAppDatabase().getTrenDao().getTren(new Long(1));
+                    ActividadTren actividadTren = DatabaseRepository.getAppDatabase().getTrenDao().getTren(grupo.getIdTren());
 
                     int estado = actividadTren.getEstado();
                     int fragment = actividadTren.getFragment();
 
-                    //FALTA POR HACER BBDD GUARDAR SOPA
+                    //FALTA POR HACER BBDD GUARDAR SOPA Y FALTA POR PASAR IDACTIVIDAD
 
                     marker.setIcon(iconoPunto(estado));
                     if (entrarEnPunto(estado)) {
-                        FragmentPuzle fragmentPuzle = new FragmentPuzle();
-                        Bundle bundle = new Bundle();
-                        bundle.putInt(FragmentPuzle.ARG_IMAGEN, R.drawable.tren);
-                        fragmentPuzle.setArguments(bundle);
-                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                        transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
-                        transaction.replace(R.id.fragment_frame, fragmentPuzle);
-                        transaction.commit();
-                        transaction.addToBackStack("Fragment");
+                        lanzarFragment(FragmentPuzle.newInstance(grupo.getIdTren(),R.drawable.tren));
                     }
 
                 }
                 //SAN MIGUEL ERROTA (5) FALTA BBDD
                 else if(marker.getPosition().getLatitude()==43.032917 && marker.getPosition().getLongitude()==-2.415750){
 
-                    ActividadErrota actividadErrota =  DatabaseRepository.getAppDatabase().getErrotaDao().getErrota(new Long(1));
+                    ActividadErrota actividadErrota =  DatabaseRepository.getAppDatabase().getErrotaDao().getErrota(grupo.getIdErrota());
 
                     int estado = actividadErrota.getEstado();
                     int fragment = actividadErrota.getFragment();
 
                     marker.setIcon(iconoPunto(estado));
                     if (entrarEnPunto(estado)) {
-                        lanzarFragment(new FragmentErrotaTextos());
+                        lanzarFragment(FragmentErrotaTextos.newInstance(grupo.getIdErrota()));
                     }
 
                 }
@@ -470,19 +481,19 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             switch (x) {
                 case 0:
                     //Selecciona el icono dependiendo del valor del estado que corresponderá al orden en el array de iconos
-                     icono  = arrayIconos[DatabaseRepository.searchEstadoZumeltzegi(new Long(1))];
+                     icono  = arrayIconos[DatabaseRepository.searchEstadoZumeltzegi(idgrupo)];
                     break;
                 case 1:
-                    icono  = arrayIconos[DatabaseRepository.searchEstadoSanMiguel(new Long(1))];
+                    icono  = arrayIconos[DatabaseRepository.searchEstadoSanMiguel(idgrupo)];
                     break;
                 case 2:
-                    icono  = arrayIconos[DatabaseRepository.searchEstadoUniversidad(new Long(1))];
+                    icono  = arrayIconos[DatabaseRepository.searchEstadoUniversidad(idgrupo)];
                     break;
                 case 3:
-                    icono  = arrayIconos[DatabaseRepository.searchEstadoTren(new Long(1))];
+                    icono  = arrayIconos[DatabaseRepository.searchEstadoTren(idgrupo)];
                     break;
                 case 4:
-                    icono  = arrayIconos[DatabaseRepository.searchEstadoErrota(new Long(1))];
+                    icono  = arrayIconos[DatabaseRepository.searchEstadoErrota(idgrupo)];
                     break;
             }
             Lugar lugar = listaLugares.get(x);

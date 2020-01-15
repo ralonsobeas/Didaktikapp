@@ -37,7 +37,7 @@ public class FragmentSanMiguel extends Fragment {
     public static final String TAG = "FragmentSanMiguel";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
+    private Long idActividad;
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
@@ -74,10 +74,10 @@ public class FragmentSanMiguel extends Fragment {
      * @return A new instance of fragment FragmentSanMiguel.
      */
     // TODO: Rename and change types and number of parameters
-    public static FragmentSanMiguel newInstance() {
+    public static FragmentSanMiguel newInstance(Long idActividad) {
         FragmentSanMiguel fragment = new FragmentSanMiguel();
         Bundle args = new Bundle();
-
+        args.putLong(ARG_PARAM1, idActividad);
         fragment.setArguments(args);
         return fragment;
     }
@@ -86,7 +86,7 @@ public class FragmentSanMiguel extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            idActividad = getArguments().getLong(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
@@ -98,7 +98,7 @@ public class FragmentSanMiguel extends Fragment {
 
     private void guardarBBDD(){
 
-        ActividadSanMiguel actividadSanMiguel = DatabaseRepository.getAppDatabase().getSanMiguelDao().getSanMiguel(new Long(1));
+        ActividadSanMiguel actividadSanMiguel = DatabaseRepository.getAppDatabase().getSanMiguelDao().getSanMiguel(idActividad);
 
         actividadSanMiguel.setEstado(1);
 
@@ -270,7 +270,7 @@ public class FragmentSanMiguel extends Fragment {
                             guardarBBDD();
 
                             //Lanzar siguiente fragment
-                            FragmentSanMiguelTinderKotlin fragment = new FragmentSanMiguelTinderKotlin();
+                            FragmentSanMiguelTinderKotlin fragment = FragmentSanMiguelTinderKotlin.newInstance(idActividad);
                             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                             transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
                             transaction.replace(R.id.fragment_frame, fragment);

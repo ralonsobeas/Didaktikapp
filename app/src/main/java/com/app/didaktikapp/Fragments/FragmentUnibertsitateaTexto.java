@@ -2,6 +2,7 @@ package com.app.didaktikapp.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,12 +10,20 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import androidx.fragment.app.Fragment;
 
+import com.app.didaktikapp.BBDD.Modelos.ActividadUniversitatea;
+import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.R;
 
 import in.codeshuffle.typewriterview.TypeWriterView;
 
 
 public class FragmentUnibertsitateaTexto extends Fragment {
+
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+    private Long idActividad;
+    private String mParam2;
 
 
     private View view;
@@ -29,10 +38,10 @@ public class FragmentUnibertsitateaTexto extends Fragment {
     }
 
 
-    public static FragmentUnibertsitateaTexto newInstance() {
+    public static FragmentUnibertsitateaTexto newInstance(Long param1) {
         FragmentUnibertsitateaTexto fragment = new FragmentUnibertsitateaTexto();
         Bundle args = new Bundle();
-
+        args.putLong(ARG_PARAM1, param1);
         fragment.setArguments(args);
         return fragment;
     }
@@ -40,6 +49,10 @@ public class FragmentUnibertsitateaTexto extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            idActividad = getArguments().getLong(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
     }
 
     @Override
@@ -68,6 +81,7 @@ public class FragmentUnibertsitateaTexto extends Fragment {
             public void onClick(View v) {
 
                 //ACTUALIZAR BBDD
+                guardarBBDD();
                 //CAMBIAR DE FRAGMENT
                 getFragmentManager().beginTransaction().remove(FragmentUnibertsitateaTexto.this).commit();
 
@@ -75,6 +89,16 @@ public class FragmentUnibertsitateaTexto extends Fragment {
             }
         });
         return view;
+    }
+
+    private void guardarBBDD(){
+        ActividadUniversitatea actividadUniversitatea = DatabaseRepository.getAppDatabase().getUniversitateaDao().getUniversitatea(idActividad);
+
+        actividadUniversitatea.setEstado(1);
+        actividadUniversitatea.setFragment(1);
+
+        DatabaseRepository.getAppDatabase().getUniversitateaDao().updateUniversitatea(actividadUniversitatea);
+
     }
 
 

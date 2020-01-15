@@ -23,6 +23,9 @@ import in.codeshuffle.typewriterview.TypeWriterView;
 
 public class FragmentUnibertsitatea extends Fragment {
 
+    private static final String ARG_PARAM1 = "param1";
+
+    private Long idActividad;
 
     private View view;
 
@@ -42,10 +45,10 @@ public class FragmentUnibertsitatea extends Fragment {
     }
 
 
-    public static FragmentUnibertsitatea newInstance() {
+    public static FragmentUnibertsitatea newInstance(Long idActividad) {
         FragmentUnibertsitatea fragment = new FragmentUnibertsitatea();
         Bundle args = new Bundle();
-
+        args.putLong(ARG_PARAM1, idActividad);
         fragment.setArguments(args);
         return fragment;
     }
@@ -53,6 +56,9 @@ public class FragmentUnibertsitatea extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            idActividad = getArguments().getLong(ARG_PARAM1);
+        }
     }
 
     @Override
@@ -196,7 +202,7 @@ public class FragmentUnibertsitatea extends Fragment {
 
     private void guardarBBDD(){
 
-        ActividadUniversitatea actividadUniversitatea = DatabaseRepository.getAppDatabase().getUniversitateaDao().getUniversitatea(new Long(1));
+        ActividadUniversitatea actividadUniversitatea = DatabaseRepository.getAppDatabase().getUniversitateaDao().getUniversitatea(idActividad);
 
         actividadUniversitatea.setEstado(1);
 

@@ -77,7 +77,7 @@ public class FragmentZumeltzegi extends Fragment {
     private ImageView ivPregunta1, ivPregunta2;
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
+    private Long idActividad;
     private String mParam2;
 
     private View view;
@@ -94,15 +94,13 @@ public class FragmentZumeltzegi extends Fragment {
      * this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment FragmentZumeltzegi.
      */
     // TODO: Rename and change types and number of parameters
-    public static FragmentZumeltzegi newInstance(String param1, String param2) {
+    public static FragmentZumeltzegi newInstance(Long param1) {
         FragmentZumeltzegi fragment = new FragmentZumeltzegi();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putLong(ARG_PARAM1, param1);
         fragment.setArguments(args);
         return fragment;
     }
@@ -111,7 +109,7 @@ public class FragmentZumeltzegi extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            idActividad = getArguments().getLong(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
@@ -208,8 +206,8 @@ public class FragmentZumeltzegi extends Fragment {
 
 
                 //Añadir imagenes a base de datos
-                ActividadZumeltzegi actividadZumeltzegi = DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(new Long(1));
-
+                ActividadZumeltzegi actividadZumeltzegi = DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(idActividad);
+                actividadZumeltzegi.setEstado(1);
                 actividadZumeltzegi.setFragment(1);
                 actividadZumeltzegi.setFoto1(imageToBase64(ivPregunta1));
                 actividadZumeltzegi.setFoto2(imageToBase64(ivPregunta2));

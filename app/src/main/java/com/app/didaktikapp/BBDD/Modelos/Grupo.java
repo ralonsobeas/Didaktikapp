@@ -9,6 +9,7 @@ import androidx.room.TypeConverters;
 
 import com.app.didaktikapp.BBDD.TimestampConverter;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
@@ -145,6 +146,7 @@ public class Grupo {
 
     @Override
     public String toString() {
-        return nombre;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        return nombre + " - " + simpleDateFormat.format(fecha);
     }
 }
