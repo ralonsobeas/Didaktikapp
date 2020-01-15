@@ -251,6 +251,15 @@ Seguimiento
 - [x] <b><u>Merge de Branch1 con BranchPuebas #1</u></b>
 - [x] <b><u>Merge de Branch1 con Master #7</u></b>
 
+
+<h4>15/01/2019 Trabajo de desarrollo</h4>
+
+- [x] Añadido eliminar grupo
+- [x] Cambio en lanzamiento de fragments desde MapActivity, ahora se pasa un parámetro con su idActividad para realizar las consultas/updates correctamente. Faltan algunos por cambiar ya que no están terminados
+- [ ] Comienzo de trabajo para dejar bien implementado el lanzamiento de los fragments mediante ubicación
+
+
+
 Funcionamiento de la app
 ------------------------------------------------------------------------
 
