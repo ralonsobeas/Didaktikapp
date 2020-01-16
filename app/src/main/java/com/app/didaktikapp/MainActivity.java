@@ -56,6 +56,8 @@ public class MainActivity extends AppCompatActivity  {
     private Button botonSalir;
     private DatabaseRepository databaseRepository;
 
+    private boolean administrador = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -230,7 +232,7 @@ public class MainActivity extends AppCompatActivity  {
 
     private void activarModoAdministrador(){
         StyleableToast.makeText(getApplicationContext(), "Modo administrador activado", Toast.LENGTH_LONG, R.style.mytoast).show();
-
+        administrador = true;
     }
 
     private void dialogoElegirGrupo(){
@@ -356,7 +358,7 @@ public class MainActivity extends AppCompatActivity  {
 
 
                         i.putExtra("IDGRUPO",DatabaseRepository.insertTaskGrupo(flatDialog.getFirstTextField()));
-
+                        i.putExtra("ADMINISTRADOR",administrador);
                         startActivity(i);
                         flatDialog.dismiss();
                     }

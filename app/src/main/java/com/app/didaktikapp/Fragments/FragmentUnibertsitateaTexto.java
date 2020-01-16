@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import androidx.fragment.app.Fragment;
 
+import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.BBDD.Modelos.ActividadUniversitatea;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.R;

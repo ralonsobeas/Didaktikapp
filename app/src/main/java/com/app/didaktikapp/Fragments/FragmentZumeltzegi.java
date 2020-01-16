@@ -55,6 +55,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Map;
+
+import static android.app.PendingIntent.FLAG_NO_CREATE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -215,6 +218,8 @@ public class FragmentZumeltzegi extends Fragment {
                 DatabaseRepository.getAppDatabase().getZumeltzegiDao().updateZumeltzegi(actividadZumeltzegi);
 
                 getFragmentManager().beginTransaction().remove(FragmentZumeltzegi.this).commit();
+
+
             }
         });
 

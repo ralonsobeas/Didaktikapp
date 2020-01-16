@@ -103,12 +103,28 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private MapboxMap mapboxMap;
     private PermissionsManager permissionsManager;
 
-    private static final long DEFAULT_INTERVAL_IN_MILLISECONDS = 1000L;
+    private static final long DEFAULT_INTERVAL_IN_MILLISECONDS = 100L;
     private static final long DEFAULT_MAX_WAIT_TIME = DEFAULT_INTERVAL_IN_MILLISECONDS * 5;
+
+    public LocationEngine getLocationEngine() {
+        return locationEngine;
+    }
+
+    public LocationChangeListeningActivityLocationCallback getCallback() {
+        return callback;
+    }
+
     private LocationEngine locationEngine;
     private LocationChangeListeningActivityLocationCallback callback =
             new LocationChangeListeningActivityLocationCallback(this);
+
+    public LocationEngineRequest getLocationEngineRequest() {
+        return locationEngineRequest;
+    }
+
     private LocationEngineRequest locationEngineRequest;
+
+    private final LocationEngineResult[] locationEngineResult = new LocationEngineResult[1];
 
 
     private String UNIQUE_LAYER_ID = "landuse";
@@ -127,10 +143,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         .include(new LatLng(43.028919, -2.405703)) // Southwest
         .build();
 
-    private ArrayList<Lugar> listaLugares;
+    private static ArrayList<Lugar> listaLugares;
 
     private List<Point> routeCoordinates;
 
+    private boolean administrador ;
 
 
     private Style style;
@@ -148,6 +165,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         permissionsManager = new PermissionsManager(this);
         //CARGAR OBJETO GRUPO DE LA BBDD
         idgrupo = getIntent().getExtras().getLong("IDGRUPO");
+        administrador = getIntent().getExtras().getBoolean("ADMINISTRADOR");
         grupo = DatabaseRepository.getAppDatabase().getGrupoDao().getGrupo(idgrupo);
 
         cargarListaLugares();
@@ -245,18 +263,36 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 //                Icon iconorojo = iconFactory.fromResource(R.drawable.pin_sinhacer);
 //                Icon iconoamarillo = iconFactory.fromResource(R.drawable.pin_empezado);
 //                Icon iconoverde = iconFactory.fromResource(R.drawable.pin_hecho);
-                SQLiteControlador sql = new SQLiteControlador(getApplicationContext());
+//                SQLiteControlador sql = new SQLiteControlador(getApplicationContext());
 
                 /*
                 * Por cada punto con actividades que hay en el mapa, se comprueba el estado en
                 * el que está, si hecho, empezado o deshabilitado, se procede a poner el icono
                 * y se determina si se abre la actividad o no*/
+                double latitud = 0;
+                double longitud = 0;
+                if(!administrador) {
+                    Location location = locationEngineResult[0].getLastLocation();
+
+
+                    latitud = location.getLatitude();
+                    longitud = location.getLongitude();
+                }
+
+
+                double markerLatitud = marker.getPosition().getLatitude();
+                double markerLongitud = marker.getPosition().getLongitude();
+
+                Log.i("DISTANCIAZUM", distanciaCoord(latitud,longitud,43.035000,-2.412889)+"");
+                Log.i("DISTANCIAZUM", markerLatitud+"");
+                Log.i("DISTANCIAZUM", markerLongitud+"");
+
 
                 //ZUMELTZEGI DORREA (1)
-                if(marker.getPosition().getLatitude()==43.035000 && marker.getPosition().getLongitude()==-2.412889){
+                if( (administrador && markerLatitud == 43.035000 && markerLongitud == -2.412889) || distanciaCoord(latitud,longitud,43.035000,-2.412889)<=15){
                     actualizarMarkerLinea(-2.413917,43.033417,-2.415361,43.033944);
 
-                    ActividadZumeltzegi actividadZumeltzegi =  DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(grupo.getIdZumeltzegi());
+                    ActividadZumeltzegi actividadZumeltzegi =   DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(grupo.getIdZumeltzegi());
                     int estado = actividadZumeltzegi.getEstado();
                     int fragment = actividadZumeltzegi.getFragment();
 
@@ -279,7 +315,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                 }
                 //SAN MIGUEL PARROKIA (2)
-                else if(marker.getPosition().getLatitude()==43.033417 && marker.getPosition().getLongitude()==-2.413917){
+                else if((administrador && markerLatitud == 43.033417 && markerLongitud == -2.413917) ||  distanciaCoord(latitud,longitud,43.033417,-2.413917)<=15){
                     ActividadSanMiguel actividadSanMiguel = DatabaseRepository.getAppDatabase().getSanMiguelDao().getSanMiguel(grupo.getIdParroquia());
                     int estado = actividadSanMiguel.getEstado();
                     int fragment = actividadSanMiguel.getFragment();
@@ -301,7 +337,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                 }
                 //UNIBERTSITATEA (3)
-                else if(marker.getPosition().getLatitude()==43.033944 && marker.getPosition().getLongitude()==-2.415361){
+                else if( (administrador && markerLatitud == 43.033944 && markerLongitud == -2.415361) ||  distanciaCoord(latitud,longitud,43.033944,-2.415361)<=15){
                     ActividadUniversitatea actividadUniversitatea = DatabaseRepository.getAppDatabase().getUniversitateaDao().getUniversitatea(grupo.getIdUniversidad());
                     int estado = actividadUniversitatea.getEstado();
                     int fragment = actividadUniversitatea.getFragment();
@@ -324,7 +360,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                 }
                 //TRENA (4)
-                else if(marker.getPosition().getLatitude()==43.033833 && marker.getPosition().getLongitude()==-2.416111){
+                else if( (administrador && markerLatitud == 43.033833 && markerLongitud == -2.416111) ||  distanciaCoord(latitud,longitud,43.033833,-2.416111)<=15){
 
                     ActividadTren actividadTren = DatabaseRepository.getAppDatabase().getTrenDao().getTren(grupo.getIdTren());
 
@@ -340,9 +376,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                 }
                 //SAN MIGUEL ERROTA (5) FALTA BBDD
-                else if(marker.getPosition().getLatitude()==43.032917 && marker.getPosition().getLongitude()==-2.415750){
+                else if( (administrador && markerLatitud == 43.032917 && markerLongitud == -2.415750) ||  distanciaCoord(latitud,longitud,43.032917,-2.415750)<=15){
 
-                    ActividadErrota actividadErrota =  DatabaseRepository.getAppDatabase().getErrotaDao().getErrota(grupo.getIdErrota());
+                    ActividadErrota actividadErrota =   DatabaseRepository.getAppDatabase().getErrotaDao().getErrota(grupo.getIdErrota());
 
                     int estado = actividadErrota.getEstado();
                     int fragment = actividadErrota.getFragment();
@@ -353,13 +389,26 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     }
 
                 }
+                //GERNIKA
+                else if( (administrador && markerLatitud == 43.032444 && markerLongitud == -2.413722) ||  distanciaCoord(latitud,longitud,43.032444,-2.413722)<=15){
+//TODO bbdd
+//                                       ActividadErrota actividadErrota =   DatabaseRepository.getAppDatabase().getErrotaDao().getErrota(new Long(1));
+//                                       int estado = actividadErrota.getEstado();
+//                                       int fragment = actividadErrota.getFragment();
+//                                       marker.setIcon(iconoPunto(estado));
+//                                       if (entrarEnPunto(estado)) {
+//                    lanzarFragment(new FragmentGernikaTexto());
+//                                       }
+
+
+                }
                 //ARAOTZ ASUA (sin uso, arriba)
-                else if(marker.getPosition().getLatitude()==43.009139 && marker.getPosition().getLongitude()==-2.431444){
+                else if( (administrador && markerLatitud == 43.009139 && markerLongitud == -2.431444) ||  distanciaCoord(latitud,longitud,43.009139,-2.431444)<=15){
 
 
                 }
                 //ARRIKRUTZEKO KOBAK (sin uso, en medio)
-                else if(marker.getPosition().getLatitude()==43.000583 && marker.getPosition().getLongitude()==-2.433250){
+                else if( (administrador && markerLatitud == 43.000583 && markerLongitud == -2.433250) ||  distanciaCoord(latitud,longitud,43.000583,-2.433250)<=15){
                     marker.setIcon(iconoPunto(2));
                     Log.i("tag","s");
                     Intent intent = new Intent(MapActivity.this, SplashScreenActivity.class);
@@ -369,10 +418,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                 }
                 //ARANTZAZUKO SANTUTEGIA (sin uso, abajo)
-                else if(marker.getPosition().getLatitude()==42.979194 && marker.getPosition().getLongitude()==-2.398583){
+                else if( (administrador && markerLatitud == 42.979194 && markerLongitud == -2.398583) ||  distanciaCoord(latitud,longitud,42.979194,-2.398583)<=15){
 //
 
                 }
+
+
 
 
                 return false;
@@ -501,6 +552,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     .position(lugar.getCoordenadas())
                     .title(lugar.getNombre())
                     .setIcon(icono));
+
+
         }
     }
 
@@ -574,7 +627,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
      * Set up the LocationEngine and the parameters for querying the device's location
      */
     @SuppressLint("MissingPermission")
-    private void initLocationEngine() {
+    public void initLocationEngine() {
         locationEngine = LocationEngineProvider.getBestLocationEngine(this);
 
         LocationEngineRequest request = new LocationEngineRequest.Builder(DEFAULT_INTERVAL_IN_MILLISECONDS)
@@ -620,7 +673,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     }
 
-    private static class LocationChangeListeningActivityLocationCallback
+    private class LocationChangeListeningActivityLocationCallback
             implements LocationEngineCallback<LocationEngineResult> {
 
         private final WeakReference<MapActivity> activityWeakReference;
@@ -629,6 +682,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             this.activityWeakReference = new WeakReference<>(activity);
         }
 
+
+
         /**
          * The LocationEngineCallback interface's method which fires when the device's location has changed.
          *
@@ -636,6 +691,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
          */
         @Override
         public void onSuccess(LocationEngineResult result) {
+
+            locationEngineResult[0] = result;
+
             MapActivity activity = activityWeakReference.get();
 
             if (activity != null) {
@@ -662,13 +720,17 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
 
                 //Lanzar fragments cuando la distancia sea corta a los puntos.
-//                Toast.makeText(activity,latitud+", "+longitud,Toast.LENGTH_SHORT).show();
-//                Log.i("LATITUD",Double.toString(latitud));
-//                Log.i("LONGITUD",Double.toString(longitud));
+                Toast.makeText(activity,latitud+", "+longitud,Toast.LENGTH_SHORT).show();
+                Log.i("LATITUD",Double.toString(latitud));
+                Log.i("LONGITUD",Double.toString(longitud));
+
+                lanzarFragmentPorDistancia(latitud,longitud);
 
 
             }
         }
+
+
 
         /**
          * The LocationEngineCallback interface's method which fires when the device's location can't be captured
@@ -686,6 +748,165 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
     }
 
+    private void lanzarFragmentPorDistancia(double latitud,double longitud){
+        for(Marker marker:mapboxMap.getMarkers()){
+
+            LatLng coordenadas = marker.getPosition();
+
+
+
+            Log.i("DISTANCIA",""+distanciaCoord(latitud,longitud,coordenadas.getLatitude(),coordenadas.getLongitude()));
+
+            if(distanciaCoord(latitud,longitud,coordenadas.getLatitude(),coordenadas.getLongitude())<=15){
+
+
+
+
+            }
+
+        }
+    }
+
+    private void lanzarFragmentPorCoordenadas(double latitud,double longitud){
+
+        //ZUMELTZEGI DORREA (1)
+        if(latitud==43.035000 && longitud==-2.412889){
+            actualizarMarkerLinea(-2.413917,43.033417,-2.415361,43.033944);
+
+            ActividadZumeltzegi actividadZumeltzegi =   DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(grupo.getIdZumeltzegi());
+            int estado = actividadZumeltzegi.getEstado();
+            int fragment = actividadZumeltzegi.getFragment();
+
+
+            if (entrarEnPunto(estado)) {
+                switch (fragment){
+                    case 0:
+                        lanzarFragment(FragmentZumeltzegi.newInstance(grupo.getIdZumeltzegi()));
+                        break;
+                    case 1:
+                        Intent intent = new Intent(context, SplashScreenActivity.class);
+                        intent.putExtra(GamePlayActivity.EXTRA_ROW_COUNT, 10);
+                        intent.putExtra(GamePlayActivity.EXTRA_COL_COUNT, 10);
+                        intent.putExtra(GamePlayActivity.fragment, "Zumeltzegi");
+                        startActivity(intent);
+                        break;
+                }
+            }
+
+
+        }
+        //SAN MIGUEL PARROKIA (2)
+        else if(latitud==43.033417 && longitud==-2.413917){
+            ActividadSanMiguel actividadSanMiguel = DatabaseRepository.getAppDatabase().getSanMiguelDao().getSanMiguel(grupo.getIdParroquia());
+            int estado = actividadSanMiguel.getEstado();
+            int fragment = actividadSanMiguel.getFragment();
+
+
+
+
+            if (entrarEnPunto(estado)) {
+                switch (fragment){
+                    case 0:
+                        lanzarFragment(FragmentSanMiguel.newInstance(grupo.getIdParroquia()));
+                        break;
+                    case 1:
+                        lanzarFragment(FragmentSanMiguelTinderKotlin.newInstance(grupo.getIdParroquia()));
+                        break;
+                }
+            }
+
+
+        }
+        //UNIBERTSITATEA (3)
+        else if(latitud==43.033944 && longitud==-2.415361){
+            ActividadUniversitatea actividadUniversitatea = DatabaseRepository.getAppDatabase().getUniversitateaDao().getUniversitatea(grupo.getIdUniversidad());
+            int estado = actividadUniversitatea.getEstado();
+            int fragment = actividadUniversitatea.getFragment();
+
+
+            if (entrarEnPunto(estado)) {
+                switch (fragment){
+                    case 0:
+                        lanzarFragment(FragmentUnibertsitateaTexto.newInstance(grupo.getIdUniversidad()));
+                        break;
+                    case 1:
+                        lanzarFragment(FragmentUnibertsitateaPreguntas.newInstance(grupo.getIdUniversidad()));
+                        break;
+                    case 2:
+                        lanzarFragment(FragmentUnibertsitateaFotos.newInstance(grupo.getIdUniversidad()));
+                        break;
+
+                }
+            }
+
+        }
+        //TRENA (4)
+        else if(latitud==43.033833 && longitud==-2.416111){
+
+            ActividadTren actividadTren = DatabaseRepository.getAppDatabase().getTrenDao().getTren(grupo.getIdTren());
+
+            int estado = actividadTren.getEstado();
+            int fragment = actividadTren.getFragment();
+
+            //FALTA POR HACER BBDD GUARDAR SOPA Y FALTA POR PASAR IDACTIVIDAD
+
+
+            if (entrarEnPunto(estado)) {
+                lanzarFragment(FragmentPuzle.newInstance(grupo.getIdTren(),R.drawable.tren));
+            }
+
+        }
+        //SAN MIGUEL ERROTA (5) FALTA BBDD
+        else if(latitud==43.032917 && longitud==-2.415750){
+
+            ActividadErrota actividadErrota =   DatabaseRepository.getAppDatabase().getErrotaDao().getErrota(grupo.getIdErrota());
+
+            int estado = actividadErrota.getEstado();
+            int fragment = actividadErrota.getFragment();
+
+
+            if (entrarEnPunto(estado)) {
+                lanzarFragment(FragmentErrotaTextos.newInstance(grupo.getIdErrota()));
+            }
+
+        }
+        //GERNIKA
+        else if(latitud==43.032444 && longitud==-2.413722){
+//TODO bbdd
+//                                       ActividadErrota actividadErrota =   DatabaseRepository.getAppDatabase().getErrotaDao().getErrota(new Long(1));
+//                                       int estado = actividadErrota.getEstado();
+//                                       int fragment = actividadErrota.getFragment();
+//                                       marker.setIcon(iconoPunto(estado));
+//                                       if (entrarEnPunto(estado)) {
+//                    lanzarFragment(new FragmentGernikaTexto());
+//                                       }
+
+
+        }
+        //ARAOTZ ASUA (sin uso, arriba)
+        else if(latitud==43.009139 && longitud==-2.431444){
+
+
+        }
+        //ARRIKRUTZEKO KOBAK (sin uso, en medio)
+        else if(latitud==43.000583 && longitud==-2.433250){
+
+            Log.i("tag","s");
+            Intent intent = new Intent(MapActivity.this, SplashScreenActivity.class);
+            intent.putExtra(GamePlayActivity.EXTRA_ROW_COUNT, 10);
+            intent.putExtra(GamePlayActivity.EXTRA_COL_COUNT, 10);
+            startActivity(intent);
+
+        }
+        //ARANTZAZUKO SANTUTEGIA (sin uso, abajo)
+        else if(latitud==42.979194 && longitud==-2.398583){
+//
+
+        }
+
+
+    }
+
     public static double distanciaCoord(double lat1, double lng1, double lat2, double lng2) {
         //double radioTierra = 3958.75;//en millas
         double radioTierra = 6371;//en kilómetros
@@ -698,7 +919,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         double va2 = 2 * Math.atan2(Math.sqrt(va1), Math.sqrt(1 - va1));
         double distancia = radioTierra * va2;
 
-        return distancia;
+        return distancia*1000;
     }
 
 
