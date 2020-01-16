@@ -258,6 +258,14 @@ Seguimiento
 - [x] Cambio en lanzamiento de fragments desde MapActivity, ahora se pasa un parámetro con su idActividad para realizar las consultas/updates correctamente. Faltan algunos por cambiar ya que no están terminados
 - [ ] Comienzo de trabajo para dejar bien implementado el lanzamiento de los fragments mediante ubicación
 
+<h4>16/01/2019 Trabajo de desarrollo</h4>
+
+- [x] Modo administrador implementado, se pueden lanzar los fragments mediante ubicación o modo administrador ( clickando cuando se quiera)
+- [x] Fragments se lanzan con la ubicacion falta cambiar el icono de los marcadores para que se entienda que es clickable
+- [ ] https://github.com/marcoscgdev/DialogSheet idea para dialogo eliminar grupo
+
+
+
 
 
 Funcionamiento de la app
