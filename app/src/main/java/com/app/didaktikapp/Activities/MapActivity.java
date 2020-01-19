@@ -7,14 +7,18 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Movie;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -69,6 +73,7 @@ import com.mapbox.mapboxsdk.annotations.PolygonOptions;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.geometry.LatLngBounds;
+import com.mapbox.mapboxsdk.geometry.LatLngQuad;
 import com.mapbox.mapboxsdk.location.LocationComponent;
 import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions;
 import com.mapbox.mapboxsdk.location.LocationComponentOptions;
@@ -79,17 +84,29 @@ import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
+import com.mapbox.mapboxsdk.offline.OfflineManager;
+import com.mapbox.mapboxsdk.offline.OfflineRegion;
+import com.mapbox.mapboxsdk.offline.OfflineRegionError;
+import com.mapbox.mapboxsdk.offline.OfflineRegionStatus;
+import com.mapbox.mapboxsdk.offline.OfflineTilePyramidRegionDefinition;
 import com.mapbox.mapboxsdk.style.layers.Layer;
 import com.mapbox.mapboxsdk.style.layers.LineLayer;
 import com.mapbox.mapboxsdk.style.layers.Property;
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory;
+import com.mapbox.mapboxsdk.style.layers.RasterLayer;
 import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
+import com.mapbox.mapboxsdk.style.sources.ImageSource;
 import com.mapbox.mapboxsdk.utils.BitmapUtils;
 
+import org.json.JSONObject;
+
+import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+
+import timber.log.Timber;
 
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, PermissionsListener
@@ -98,6 +115,15 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         , FragmentZumeltzegi.OnFragmentInteractionListener
         , FragmentPuzle.OnFragmentInteractionListener
         , FragmentSanMiguelTinderKotlin.OnFragmentInteractionListener{
+
+    private boolean isEndNotified;
+    private ProgressBar progressBar;
+    private OfflineManager offlineManager;
+
+    // JSON encoding/decoding
+    public static final String JSON_CHARSET = "UTF-8";
+    public static final String JSON_FIELD_REGION_NAME = "FIELD_REGION_NAME";
+
 
     private MapView mapView;
     private MapboxMap mapboxMap;
@@ -218,6 +244,89 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             @Override
             public void onStyleLoaded(@NonNull Style style) {
 
+                //OFFLINE
+                // Set up the OfflineManager
+                offlineManager = OfflineManager.getInstance(MapActivity.this);
+
+
+                // Define the offline region
+                OfflineTilePyramidRegionDefinition definition = new OfflineTilePyramidRegionDefinition(
+                        style.getUri(),
+                        ONIATE_BOUNDS,
+                        10,
+                        20,
+                        MapActivity.this.getResources().getDisplayMetrics().density);
+
+                // Set the metadata
+                byte[] metadata;
+                try {
+                    JSONObject jsonObject = new JSONObject();
+                    jsonObject.put(JSON_FIELD_REGION_NAME, "Yosemite National Park");
+                    String json = jsonObject.toString();
+                    metadata = json.getBytes(JSON_CHARSET);
+                } catch (Exception exception) {
+                    Timber.e("Failed to encode metadata: %s", exception.getMessage());
+                    metadata = null;
+                }
+
+                // Create the region asynchronously
+                if (metadata != null) {
+                    offlineManager.createOfflineRegion(
+                            definition,
+                            metadata,
+                            new OfflineManager.CreateOfflineRegionCallback() {
+                                @Override
+                                public void onCreate(OfflineRegion offlineRegion) {
+                                    offlineRegion.setDownloadState(OfflineRegion.STATE_ACTIVE);
+
+                                    // Display the download progress bar
+                                    progressBar = findViewById(R.id.progress_bar);
+                                    startProgress();
+
+                                    // Monitor the download progress using setObserver
+                                    offlineRegion.setObserver(new OfflineRegion.OfflineRegionObserver() {
+                                        @Override
+                                        public void onStatusChanged(OfflineRegionStatus status) {
+
+                                            // Calculate the download percentage and update the progress bar
+                                            double percentage = status.getRequiredResourceCount() >= 0
+                                                    ? (100.0 * status.getCompletedResourceCount() / status.getRequiredResourceCount()) :
+                                                    0.0;
+
+                                            if (status.isComplete()) {
+                                                // Download complete
+                                                endProgress("DESCARGADO");
+                                            } else if (status.isRequiredResourceCountPrecise()) {
+                                                // Switch to determinate state
+                                                setPercentage((int) Math.round(percentage));
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onError(OfflineRegionError error) {
+                                            // If an error occurs, print to logcat
+                                            Timber.e("onError reason: %s", error.getReason());
+                                            Timber.e("onError message: %s", error.getMessage());
+                                        }
+
+                                        @Override
+                                        public void mapboxTileCountLimitExceeded(long limit) {
+                                            // Notify if offline region exceeds maximum tile count
+                                            Timber.e("Mapbox tile count limit exceeded: %s", limit);
+                                        }
+                                    });
+                                }
+
+                                @Override
+                                public void onError(String error) {
+                                    Timber.e("Error: %s", error);
+                                }
+                            });
+                }
+
+
+
+
                 // Map is set up and the style has loaded. Now you can add data or make other map adjustments
                 enableLocationComponent(style);
                 actualizarMarkerLinea(-2.41288,43.03500,-2.413917,43.033417);
@@ -239,6 +348,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         PropertyFactory.lineColor(getColor(R.color.colorPrimaryDark))
 
                 ));
+
+                Runnable runnable;
+                Handler handler;
+                InputStream gifInputStream = getResources().openRawResource(R.raw.waving_bear);
+                runnable = new RefreshImageRunnable(style, Movie.decodeStream(gifInputStream), handler = new Handler());
+                handler.postDelayed(runnable, 100);
 
 
 
@@ -719,12 +834,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 }
 
 
-                //Lanzar fragments cuando la distancia sea corta a los puntos.
-                Toast.makeText(activity,latitud+", "+longitud,Toast.LENGTH_SHORT).show();
-                Log.i("LATITUD",Double.toString(latitud));
-                Log.i("LONGITUD",Double.toString(longitud));
-
-                lanzarFragmentPorDistancia(latitud,longitud);
+//                //Lanzar fragments cuando la distancia sea corta a los puntos.
+//                Toast.makeText(activity,latitud+", "+longitud,Toast.LENGTH_SHORT).show();
+//                Log.i("LATITUD",Double.toString(latitud));
+//                Log.i("LONGITUD",Double.toString(longitud));
+//
+//                lanzarFragmentPorDistancia(latitud,longitud);
 
 
             }
@@ -748,164 +863,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
     }
 
-    private void lanzarFragmentPorDistancia(double latitud,double longitud){
-        for(Marker marker:mapboxMap.getMarkers()){
 
-            LatLng coordenadas = marker.getPosition();
-
-
-
-            Log.i("DISTANCIA",""+distanciaCoord(latitud,longitud,coordenadas.getLatitude(),coordenadas.getLongitude()));
-
-            if(distanciaCoord(latitud,longitud,coordenadas.getLatitude(),coordenadas.getLongitude())<=15){
-
-
-
-
-            }
-
-        }
-    }
-
-    private void lanzarFragmentPorCoordenadas(double latitud,double longitud){
-
-        //ZUMELTZEGI DORREA (1)
-        if(latitud==43.035000 && longitud==-2.412889){
-            actualizarMarkerLinea(-2.413917,43.033417,-2.415361,43.033944);
-
-            ActividadZumeltzegi actividadZumeltzegi =   DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(grupo.getIdZumeltzegi());
-            int estado = actividadZumeltzegi.getEstado();
-            int fragment = actividadZumeltzegi.getFragment();
-
-
-            if (entrarEnPunto(estado)) {
-                switch (fragment){
-                    case 0:
-                        lanzarFragment(FragmentZumeltzegi.newInstance(grupo.getIdZumeltzegi()));
-                        break;
-                    case 1:
-                        Intent intent = new Intent(context, SplashScreenActivity.class);
-                        intent.putExtra(GamePlayActivity.EXTRA_ROW_COUNT, 10);
-                        intent.putExtra(GamePlayActivity.EXTRA_COL_COUNT, 10);
-                        intent.putExtra(GamePlayActivity.fragment, "Zumeltzegi");
-                        startActivity(intent);
-                        break;
-                }
-            }
-
-
-        }
-        //SAN MIGUEL PARROKIA (2)
-        else if(latitud==43.033417 && longitud==-2.413917){
-            ActividadSanMiguel actividadSanMiguel = DatabaseRepository.getAppDatabase().getSanMiguelDao().getSanMiguel(grupo.getIdParroquia());
-            int estado = actividadSanMiguel.getEstado();
-            int fragment = actividadSanMiguel.getFragment();
-
-
-
-
-            if (entrarEnPunto(estado)) {
-                switch (fragment){
-                    case 0:
-                        lanzarFragment(FragmentSanMiguel.newInstance(grupo.getIdParroquia()));
-                        break;
-                    case 1:
-                        lanzarFragment(FragmentSanMiguelTinderKotlin.newInstance(grupo.getIdParroquia()));
-                        break;
-                }
-            }
-
-
-        }
-        //UNIBERTSITATEA (3)
-        else if(latitud==43.033944 && longitud==-2.415361){
-            ActividadUniversitatea actividadUniversitatea = DatabaseRepository.getAppDatabase().getUniversitateaDao().getUniversitatea(grupo.getIdUniversidad());
-            int estado = actividadUniversitatea.getEstado();
-            int fragment = actividadUniversitatea.getFragment();
-
-
-            if (entrarEnPunto(estado)) {
-                switch (fragment){
-                    case 0:
-                        lanzarFragment(FragmentUnibertsitateaTexto.newInstance(grupo.getIdUniversidad()));
-                        break;
-                    case 1:
-                        lanzarFragment(FragmentUnibertsitateaPreguntas.newInstance(grupo.getIdUniversidad()));
-                        break;
-                    case 2:
-                        lanzarFragment(FragmentUnibertsitateaFotos.newInstance(grupo.getIdUniversidad()));
-                        break;
-
-                }
-            }
-
-        }
-        //TRENA (4)
-        else if(latitud==43.033833 && longitud==-2.416111){
-
-            ActividadTren actividadTren = DatabaseRepository.getAppDatabase().getTrenDao().getTren(grupo.getIdTren());
-
-            int estado = actividadTren.getEstado();
-            int fragment = actividadTren.getFragment();
-
-            //FALTA POR HACER BBDD GUARDAR SOPA Y FALTA POR PASAR IDACTIVIDAD
-
-
-            if (entrarEnPunto(estado)) {
-                lanzarFragment(FragmentPuzle.newInstance(grupo.getIdTren(),R.drawable.tren));
-            }
-
-        }
-        //SAN MIGUEL ERROTA (5) FALTA BBDD
-        else if(latitud==43.032917 && longitud==-2.415750){
-
-            ActividadErrota actividadErrota =   DatabaseRepository.getAppDatabase().getErrotaDao().getErrota(grupo.getIdErrota());
-
-            int estado = actividadErrota.getEstado();
-            int fragment = actividadErrota.getFragment();
-
-
-            if (entrarEnPunto(estado)) {
-                lanzarFragment(FragmentErrotaTextos.newInstance(grupo.getIdErrota()));
-            }
-
-        }
-        //GERNIKA
-        else if(latitud==43.032444 && longitud==-2.413722){
-//TODO bbdd
-//                                       ActividadErrota actividadErrota =   DatabaseRepository.getAppDatabase().getErrotaDao().getErrota(new Long(1));
-//                                       int estado = actividadErrota.getEstado();
-//                                       int fragment = actividadErrota.getFragment();
-//                                       marker.setIcon(iconoPunto(estado));
-//                                       if (entrarEnPunto(estado)) {
-//                    lanzarFragment(new FragmentGernikaTexto());
-//                                       }
-
-
-        }
-        //ARAOTZ ASUA (sin uso, arriba)
-        else if(latitud==43.009139 && longitud==-2.431444){
-
-
-        }
-        //ARRIKRUTZEKO KOBAK (sin uso, en medio)
-        else if(latitud==43.000583 && longitud==-2.433250){
-
-            Log.i("tag","s");
-            Intent intent = new Intent(MapActivity.this, SplashScreenActivity.class);
-            intent.putExtra(GamePlayActivity.EXTRA_ROW_COUNT, 10);
-            intent.putExtra(GamePlayActivity.EXTRA_COL_COUNT, 10);
-            startActivity(intent);
-
-        }
-        //ARANTZAZUKO SANTUTEGIA (sin uso, abajo)
-        else if(latitud==42.979194 && longitud==-2.398583){
-//
-
-        }
-
-
-    }
 
     public static double distanciaCoord(double lat1, double lng1, double lat2, double lng2) {
         //double radioTierra = 3958.75;//en millas
@@ -920,6 +878,94 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         double distancia = radioTierra * va2;
 
         return distancia*1000;
+    }
+
+    private static class RefreshImageRunnable implements Runnable {
+
+        private static final String ID_IMAGE_SOURCE = "animated_image_source";
+        private static final String ID_IMAGE_LAYER = "animated_image_layer";
+
+        private ImageSource imageSource;
+        private Style style;
+        private Movie movie;
+        private Handler handler;
+        private long movieStart;
+        private Bitmap bitmap;
+        private Canvas canvas;
+
+        RefreshImageRunnable(Style style, Movie movie, Handler handler) {
+            this.style = style;
+            this.movie = movie;
+            this.handler = handler;
+            bitmap = Bitmap.createBitmap(movie.width(), movie.height(), Bitmap.Config.ARGB_8888);
+            canvas = new Canvas(bitmap);
+        }
+
+        @Override
+        public void run() {
+            long now = android.os.SystemClock.uptimeMillis();
+            if (movieStart == 0) {
+                movieStart = now;
+            }
+
+            int dur = movie.duration();
+            if (dur == 0) {
+                dur = 1000;
+            }
+
+            movie.setTime((int) ((now - movieStart) % dur));
+            movie.draw(canvas, 0, 0);
+
+            if (imageSource == null) {
+                // Set the bounds/size of the gif. Then create an image source object with a unique id,
+                // the bounds, and drawable image
+                imageSource = new ImageSource(ID_IMAGE_SOURCE,
+                        new LatLngQuad(
+                                new LatLng(46.437, -80.425),
+                                new LatLng(46.437, -71.516),
+                                new LatLng(37.936, -71.516),
+                                new LatLng(37.936, -80.425)), bitmap);
+
+                // Add the source to the map
+                style.addSource(imageSource);
+
+                // Create an raster layer with a unique id and the image source created above. Then add the layer to the map.
+                style.addLayer(new RasterLayer(ID_IMAGE_LAYER, ID_IMAGE_SOURCE));
+            }
+
+            imageSource.setImage(bitmap);
+            handler.postDelayed(this, 50);
+        }
+    }
+
+    private void setPercentage(final int percentage) {
+        progressBar.setIndeterminate(false);
+        progressBar.setProgress(percentage);
+    }
+
+
+    // Progress bar methods
+    private void startProgress() {
+
+        // Start and show the progress bar
+        isEndNotified = false;
+        progressBar.setIndeterminate(true);
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    private void endProgress(final String message) {
+        // Don't notify more than once
+        if (isEndNotified) {
+            return;
+        }
+
+        // Stop and hide the progress bar
+        isEndNotified = true;
+        progressBar.setIndeterminate(false);
+        progressBar.setVisibility(View.GONE);
+
+        // Show a toast
+        Toast.makeText(MapActivity.this, message, Toast.LENGTH_LONG).show();
     }
 
 

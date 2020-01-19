@@ -6,7 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".Activities.MapActivity">
 
-
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.mapbox.mapboxsdk.maps.MapView
         android:id="@+id/mapView"
