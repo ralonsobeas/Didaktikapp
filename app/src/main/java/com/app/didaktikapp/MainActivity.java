@@ -8,12 +8,15 @@ import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -46,6 +49,7 @@ import com.wooplr.spotlight.utils.Utils;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
+import java.util.Locale;
 
 import at.markushi.ui.CircleButton;
 
@@ -173,6 +177,9 @@ public class MainActivity extends AppCompatActivity  {
                     case 3:
                         inicioAyuda();
                         break;
+                    case 4:
+                        dialogoCambiarIdioma();
+                        break;
                 }
 
             }
@@ -220,6 +227,7 @@ public class MainActivity extends AppCompatActivity  {
                         pulsadoAdministrador[2] = false;
 
                         break;
+
                 }
             }
         });
@@ -233,6 +241,46 @@ public class MainActivity extends AppCompatActivity  {
     private void activarModoAdministrador(){
         StyleableToast.makeText(getApplicationContext(), "Modo administrador activado", Toast.LENGTH_LONG, R.style.mytoast).show();
         administrador = true;
+    }
+
+    private void dialogoCambiarIdioma(){
+
+        final FlatDialog flatDialog = new FlatDialog(MainActivity.this);
+        flatDialog.setTitle("Cambiar idioma")
+                .setBackgroundColor(Color.parseColor("#2B82C5"))
+                .setSubtitle("cambia el idioma")
+                .setFirstButtonText("Castellano")
+                .setFirstButtonColor(Color.parseColor("#FAFAFA"))
+                .setFirstButtonTextColor(Color.parseColor("#2B82C5"))
+                .setSecondButtonText("Euskera")
+                .setSecondButtonColor(Color.parseColor("#FAFAFA"))
+                .setSecondButtonTextColor(Color.parseColor("#2B82C5"))
+                .withFirstButtonListner(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        setLocale("es");
+                    }
+                })
+                .withSecondButtonListner(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        setLocale("eu");
+                    }
+                })
+                .show();
+
+    }
+
+    private void setLocale(String lang) {
+        Locale myLocale = new Locale(lang);
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.locale = myLocale;
+        res.updateConfiguration(conf, dm);
+        Intent refresh = new Intent(this, MainActivity.class);
+        startActivity(refresh);
+        finish();
     }
 
     private void dialogoElegirGrupo(){
@@ -446,6 +494,7 @@ public class MainActivity extends AppCompatActivity  {
         FloatingActionButton boton2 = findViewById(1);
         FloatingActionButton boton3 = findViewById(2);
         FloatingActionButton boton4 = findViewById(3);
+        FloatingActionButton boton5 = findViewById(4);
 
         circleMenuView.open(true);
 
@@ -478,7 +527,7 @@ public class MainActivity extends AppCompatActivity  {
                         .addSpotlight(boton2, "Continuar ", "Continúa una partida", "circleMenuView2")
                         .addSpotlight(boton3, "Salir ", "Salir del juego", "circleMenuView3")
                         .addSpotlight(boton4, "Ayuda ", "Una pequeña ayuda", "circleMenuView4")
-
+                        .addSpotlight(boton5, "Idioma ", "Cambia el idioma", "circleMenuView5")
                         .startSequence();
             }
         }, 400);

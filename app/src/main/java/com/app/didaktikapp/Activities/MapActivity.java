@@ -6,6 +6,7 @@ import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -13,15 +14,18 @@ import android.graphics.Movie;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
@@ -53,6 +57,7 @@ import com.app.didaktikapp.Modelo.Lugar;
 import com.app.didaktikapp.R;
 import com.app.didaktikapp.wordsearch.features.SplashScreenActivity;
 import com.app.didaktikapp.wordsearch.features.gameplay.GamePlayActivity;
+import com.google.gson.JsonObject;
 import com.mapbox.android.core.location.LocationEngine;
 import com.mapbox.android.core.location.LocationEngineCallback;
 import com.mapbox.android.core.location.LocationEngineProvider;
@@ -61,6 +66,9 @@ import com.mapbox.android.core.location.LocationEngineRequest;
 import com.mapbox.android.core.location.LocationEngineResult;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
+import com.mapbox.api.directions.v5.models.DirectionsResponse;
+import com.mapbox.api.directions.v5.models.DirectionsRoute;
+import com.mapbox.geojson.BoundingBox;
 import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.FeatureCollection;
 import com.mapbox.geojson.LineString;
@@ -98,6 +106,19 @@ import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
 import com.mapbox.mapboxsdk.style.sources.ImageSource;
 import com.mapbox.mapboxsdk.utils.BitmapUtils;
+import com.mapbox.services.android.navigation.ui.v5.NavigationLauncher;
+import com.mapbox.services.android.navigation.ui.v5.NavigationLauncherOptions;
+import com.mapbox.services.android.navigation.v5.navigation.MapboxNavigation;
+import com.mapbox.services.android.navigation.v5.navigation.MapboxOfflineRouter;
+import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
+import com.mapbox.services.android.navigation.v5.navigation.OfflineError;
+import com.mapbox.services.android.navigation.v5.navigation.OfflineRoute;
+import com.mapbox.services.android.navigation.v5.navigation.OfflineTiles;
+import com.mapbox.services.android.navigation.v5.navigation.OnOfflineRouteFoundCallback;
+import com.mapbox.services.android.navigation.v5.navigation.RouteTileDownloadListener;
+import com.mapbox.services.android.navigation.v5.offroute.OffRouteListener;
+import com.mapbox.services.android.navigation.ui.v5.route.NavigationMapRoute;
+
 
 import org.json.JSONObject;
 
@@ -105,8 +126,18 @@ import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import timber.log.Timber;
+
+import static com.mapbox.core.constants.Constants.PRECISION_6;
+import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineCap;
+import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineColor;
+import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineJoin;
+import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineWidth;
 
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, PermissionsListener
@@ -119,6 +150,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private boolean isEndNotified;
     private ProgressBar progressBar;
     private OfflineManager offlineManager;
+    private static Resources resources;
 
     // JSON encoding/decoding
     public static final String JSON_CHARSET = "UTF-8";
@@ -182,6 +214,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         this.style = style;
     }
 
+    // variables for calculating and drawing a route
+    private DirectionsRoute currentRoute;
+
+    private NavigationMapRoute navigationMapRoute;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -189,6 +226,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         this.context = getApplicationContext();
         permissionsManager = new PermissionsManager(this);
+        resources = getResources();
         //CARGAR OBJETO GRUPO DE LA BBDD
         idgrupo = getIntent().getExtras().getLong("IDGRUPO");
         administrador = getIntent().getExtras().getBoolean("ADMINISTRADOR");
@@ -201,9 +239,21 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         setContentView(R.layout.activity_map);
 
+
+
         mapView = (MapView) findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
+        TextView textView = findViewById(R.id.tvAdmin);
+        if(administrador){
+
+            textView.setVisibility(View.VISIBLE);
+
+        }else{
+
+            textView.setVisibility(View.INVISIBLE);
+
+        }
 
         ImageView ivLogo = findViewById(R.id.ivLogo);
 
@@ -325,15 +375,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 }
 
 
-
-
                 // Map is set up and the style has loaded. Now you can add data or make other map adjustments
                 enableLocationComponent(style);
-                actualizarMarkerLinea(-2.41288,43.03500,-2.413917,43.033417);
+                actualizarMarkerLinea(-2.41288, 43.03500, -2.413917, 43.033417);
                 // Create the LineString from the list of coordinates and then make a GeoJSON
                 // FeatureCollection so we can add the line to our map as a layer.
                 style.addSource(new GeoJsonSource("line-source",
-                        FeatureCollection.fromFeatures(new Feature[] {Feature.fromGeometry(
+                        FeatureCollection.fromFeatures(new Feature[]{Feature.fromGeometry(
                                 LineString.fromLngLats(routeCoordinates)
                         )})));
 
@@ -341,20 +389,21 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 // The layer properties for our line. This is where we make the line dotted, set the
                 // color, etc.
                 style.addLayer(new LineLayer("linelayer", "line-source").withProperties(
-                        PropertyFactory.lineDasharray(new Float[] {0.01f, 2f}),
-                        PropertyFactory.lineCap(Property.LINE_CAP_ROUND),
-                        PropertyFactory.lineJoin(Property.LINE_JOIN_ROUND),
-                        PropertyFactory.lineWidth(5f),
-                        PropertyFactory.lineColor(getColor(R.color.colorPrimaryDark))
+                        PropertyFactory.lineDasharray(new Float[]{0.01f, 2f}),
+                        lineCap(Property.LINE_CAP_ROUND),
+                        lineJoin(Property.LINE_JOIN_ROUND),
+                        lineWidth(5f),
+                        lineColor(getColor(R.color.colorPrimaryDark))
 
                 ));
-
-                Runnable runnable;
-                Handler handler;
-                InputStream gifInputStream = getResources().openRawResource(R.raw.waving_bear);
-                runnable = new RefreshImageRunnable(style, Movie.decodeStream(gifInputStream), handler = new Handler());
-                handler.postDelayed(runnable, 100);
-
+                LineLayer routeLayer = new LineLayer("aa", "AA");
+                routeLayer.setProperties(
+                        lineCap(Property.LINE_CAP_ROUND),
+                        lineJoin(Property.LINE_JOIN_ROUND),
+                        lineWidth(5f),
+                        lineColor(Color.parseColor("#009688"))
+                );
+                style.addLayer(routeLayer);
 
 
                 setStyle(style);
@@ -364,9 +413,17 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
 
 
+
             }
 
-            });
+
+        });
+
+        //RUTA
+        boolean simulateRoute = true;
+            getRoute(Point.fromLngLat(43.035000, -2.412889),Point.fromLngLat(43.033417, -2.413917));
+
+// Call this method with Context from within an Activity
 
 
 
@@ -374,6 +431,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
             @Override
             public boolean onMarkerClick(@NonNull Marker marker) {
+
+
 //                IconFactory iconFactory = IconFactory.getInstance(context);
 //                Icon iconorojo = iconFactory.fromResource(R.drawable.pin_sinhacer);
 //                Icon iconoamarillo = iconFactory.fromResource(R.drawable.pin_empezado);
@@ -549,6 +608,84 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
 
     }
+
+    private void getRoute(Point origin, Point destination) {
+        // Retrieve and update the source designated for showing the directions route
+        new LoadGeoJson(MapActivity.this).execute();
+
+        // Create a LineString with the directions route's geometry and
+        // reset the GeoJSON source for the route LineLayer source
+
+
+    }
+
+    private static class LoadGeoJson extends AsyncTask<Void, Void, FeatureCollection> {
+
+        private WeakReference<MapActivity> weakReference;
+
+        LoadGeoJson(MapActivity activity) {
+            this.weakReference = new WeakReference<MapActivity>(activity);
+        }
+
+        @Override
+        protected FeatureCollection doInBackground(Void... voids) {
+            try {
+                MapActivity activity = weakReference.get();
+               Log.i("IREAFNIOF","OADDAUSB");
+                if (activity != null) {
+                    Log.i("IREAFNIOF","AAAAAAAAAAA");
+                    InputStream inputStream = activity.getAssets().open("jsonprueba.json");
+
+                    return FeatureCollection.fromJson(convertStreamToString(inputStream));
+                }
+            } catch (Exception exception) {
+
+                Timber.e("Exception Loading GeoJSON: %s" , exception.toString());
+            }
+            return null;
+        }
+
+        static String convertStreamToString(InputStream is) {
+            Scanner scanner = new Scanner(is).useDelimiter("\\A");
+            return scanner.hasNext() ? scanner.next() : "";
+        }
+
+        @Override
+        protected void onPostExecute(@Nullable FeatureCollection featureCollection) {
+            super.onPostExecute(featureCollection);
+            MapActivity activity = weakReference.get();
+
+
+            if (activity != null && featureCollection != null) {
+                Toast.makeText(activity, "MECAGUENTODO", Toast.LENGTH_SHORT).show();
+                activity.drawLines(featureCollection);
+            }
+        }
+    }
+
+    //http://geojson.io/#map=18/43.03427/-2.41376
+
+    private void drawLines(@NonNull FeatureCollection featureCollection) {
+        if (mapboxMap != null) {
+            mapboxMap.getStyle(style -> {
+                if (featureCollection.features() != null) {
+                    if (featureCollection.features().size() > 0) {
+                        style.addSource(new GeoJsonSource("line-source1", featureCollection));
+
+                    // The layer properties for our line. This is where we make the line dotted, set the
+                    // color, etc.
+                        style.addLayer(new LineLayer("linelayer1", "line-source1")
+                                .withProperties(PropertyFactory.lineCap(Property.LINE_CAP_SQUARE),
+                                        PropertyFactory.lineJoin(Property.LINE_JOIN_MITER),
+                                        PropertyFactory.lineOpacity(.7f),
+                                        PropertyFactory.lineWidth(7f),
+                                        PropertyFactory.lineColor(Color.parseColor("#3bb2d0"))));
+                    }
+                }
+            });
+        }
+    }
+
 
     private void lanzarFragment(Fragment fragment){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -880,63 +1017,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         return distancia*1000;
     }
 
-    private static class RefreshImageRunnable implements Runnable {
 
-        private static final String ID_IMAGE_SOURCE = "animated_image_source";
-        private static final String ID_IMAGE_LAYER = "animated_image_layer";
-
-        private ImageSource imageSource;
-        private Style style;
-        private Movie movie;
-        private Handler handler;
-        private long movieStart;
-        private Bitmap bitmap;
-        private Canvas canvas;
-
-        RefreshImageRunnable(Style style, Movie movie, Handler handler) {
-            this.style = style;
-            this.movie = movie;
-            this.handler = handler;
-            bitmap = Bitmap.createBitmap(movie.width(), movie.height(), Bitmap.Config.ARGB_8888);
-            canvas = new Canvas(bitmap);
-        }
-
-        @Override
-        public void run() {
-            long now = android.os.SystemClock.uptimeMillis();
-            if (movieStart == 0) {
-                movieStart = now;
-            }
-
-            int dur = movie.duration();
-            if (dur == 0) {
-                dur = 1000;
-            }
-
-            movie.setTime((int) ((now - movieStart) % dur));
-            movie.draw(canvas, 0, 0);
-
-            if (imageSource == null) {
-                // Set the bounds/size of the gif. Then create an image source object with a unique id,
-                // the bounds, and drawable image
-                imageSource = new ImageSource(ID_IMAGE_SOURCE,
-                        new LatLngQuad(
-                                new LatLng(46.437, -80.425),
-                                new LatLng(46.437, -71.516),
-                                new LatLng(37.936, -71.516),
-                                new LatLng(37.936, -80.425)), bitmap);
-
-                // Add the source to the map
-                style.addSource(imageSource);
-
-                // Create an raster layer with a unique id and the image source created above. Then add the layer to the map.
-                style.addLayer(new RasterLayer(ID_IMAGE_LAYER, ID_IMAGE_SOURCE));
-            }
-
-            imageSource.setImage(bitmap);
-            handler.postDelayed(this, 50);
-        }
-    }
 
     private void setPercentage(final int percentage) {
         progressBar.setIndeterminate(false);
