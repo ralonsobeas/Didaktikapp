@@ -134,7 +134,7 @@ public class FragmentErrotaFotos extends Fragment {
                 guardarBBDD();
                 //cerrar fragment
                 //actualizar marker
-
+                getFragmentManager().beginTransaction().remove(FragmentErrotaFotos.this).commit();
             }
         });
         btnContinuar.setEnabled(false);
