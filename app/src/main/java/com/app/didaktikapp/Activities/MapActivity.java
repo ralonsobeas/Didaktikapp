@@ -420,8 +420,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         });
 
         //RUTA
-        boolean simulateRoute = true;
-            getRoute(Point.fromLngLat(43.035000, -2.412889),Point.fromLngLat(43.033417, -2.413917));
+        dibujarRuta(1);
 
 // Call this method with Context from within an Activity
 
@@ -464,7 +463,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                 //ZUMELTZEGI DORREA (1)
                 if( (administrador && markerLatitud == 43.035000 && markerLongitud == -2.412889) || distanciaCoord(latitud,longitud,43.035000,-2.412889)<=15){
-                    actualizarMarkerLinea(-2.413917,43.033417,-2.415361,43.033944);
+                    dibujarRuta(2);
 
                     ActividadZumeltzegi actividadZumeltzegi =   DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(grupo.getIdZumeltzegi());
                     int estado = actividadZumeltzegi.getEstado();
@@ -490,6 +489,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 }
                 //SAN MIGUEL PARROKIA (2)
                 else if((administrador && markerLatitud == 43.033417 && markerLongitud == -2.413917) ||  distanciaCoord(latitud,longitud,43.033417,-2.413917)<=15){
+                    dibujarRuta(3);
                     ActividadSanMiguel actividadSanMiguel = DatabaseRepository.getAppDatabase().getSanMiguelDao().getSanMiguel(grupo.getIdParroquia());
                     int estado = actividadSanMiguel.getEstado();
                     int fragment = actividadSanMiguel.getFragment();
@@ -512,6 +512,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 }
                 //UNIBERTSITATEA (3)
                 else if( (administrador && markerLatitud == 43.033944 && markerLongitud == -2.415361) ||  distanciaCoord(latitud,longitud,43.033944,-2.415361)<=15){
+                    dibujarRuta(4);
                     ActividadUniversitatea actividadUniversitatea = DatabaseRepository.getAppDatabase().getUniversitateaDao().getUniversitatea(grupo.getIdUniversidad());
                     int estado = actividadUniversitatea.getEstado();
                     int fragment = actividadUniversitatea.getFragment();
@@ -535,7 +536,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 }
                 //TRENA (4)
                 else if( (administrador && markerLatitud == 43.033833 && markerLongitud == -2.416111) ||  distanciaCoord(latitud,longitud,43.033833,-2.416111)<=15){
-
+                    dibujarRuta(5);
                     ActividadTren actividadTren = DatabaseRepository.getAppDatabase().getTrenDao().getTren(grupo.getIdTren());
 
                     int estado = actividadTren.getEstado();
@@ -551,7 +552,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 }
                 //SAN MIGUEL ERROTA (5) FALTA BBDD
                 else if( (administrador && markerLatitud == 43.032917 && markerLongitud == -2.415750) ||  distanciaCoord(latitud,longitud,43.032917,-2.415750)<=15){
-
+                    dibujarRuta(6);
                     ActividadErrota actividadErrota =   DatabaseRepository.getAppDatabase().getErrotaDao().getErrota(grupo.getIdErrota());
 
                     int estado = actividadErrota.getEstado();
@@ -609,12 +610,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     }
 
-    private void getRoute(Point origin, Point destination) {
-        // Retrieve and update the source designated for showing the directions route
-        new LoadGeoJson(MapActivity.this).execute();
+    private void dibujarRuta(int numruta) {
 
-        // Create a LineString with the directions route's geometry and
-        // reset the GeoJSON source for the route LineLayer source
+        new LoadGeoJson(MapActivity.this,numruta).execute();
 
 
     }
@@ -622,19 +620,41 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private static class LoadGeoJson extends AsyncTask<Void, Void, FeatureCollection> {
 
         private WeakReference<MapActivity> weakReference;
+        private String json;
+        private int numruta;
 
-        LoadGeoJson(MapActivity activity) {
+        LoadGeoJson(MapActivity activity, int numruta) {
             this.weakReference = new WeakReference<MapActivity>(activity);
+            this.numruta = numruta;
+            switch(numruta){
+                case 1:
+                    this.json = "esc-zum.geojson";
+                    break;
+                case 2:
+                    this.json = "zum-sanmig.geojson";
+                    break;
+                case 3:
+                    this.json = "sanmig-univ.geojson";
+                    break;
+                case 4:
+                    this.json = "univ-tren.geojson";
+                    break;
+                case 5:
+                    this.json = "tren-errota.geojson";
+                    break;
+                case 6:
+                    this.json = "errota-gernika.geojson";
+                    break;
+
+            }
         }
 
         @Override
         protected FeatureCollection doInBackground(Void... voids) {
             try {
                 MapActivity activity = weakReference.get();
-               Log.i("IREAFNIOF","OADDAUSB");
                 if (activity != null) {
-                    Log.i("IREAFNIOF","AAAAAAAAAAA");
-                    InputStream inputStream = activity.getAssets().open("jsonprueba.json");
+                    InputStream inputStream = activity.getAssets().open(this.json);
 
                     return FeatureCollection.fromJson(convertStreamToString(inputStream));
                 }
@@ -657,29 +677,34 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
 
             if (activity != null && featureCollection != null) {
-                Toast.makeText(activity, "MECAGUENTODO", Toast.LENGTH_SHORT).show();
-                activity.drawLines(featureCollection);
+                activity.drawLines(featureCollection,this.numruta);
             }
         }
     }
 
     //http://geojson.io/#map=18/43.03427/-2.41376
 
-    private void drawLines(@NonNull FeatureCollection featureCollection) {
+    private void drawLines(@NonNull FeatureCollection featureCollection,int num) {
         if (mapboxMap != null) {
             mapboxMap.getStyle(style -> {
                 if (featureCollection.features() != null) {
                     if (featureCollection.features().size() > 0) {
-                        style.addSource(new GeoJsonSource("line-source1", featureCollection));
+                        if(style.getSource("line-source"+num)!=null)
+                            style.removeSource("line-source"+num);
+                        style.addSource(new GeoJsonSource("line-source"+num, featureCollection));
 
                     // The layer properties for our line. This is where we make the line dotted, set the
                     // color, etc.
-                        style.addLayer(new LineLayer("linelayer1", "line-source1")
-                                .withProperties(PropertyFactory.lineCap(Property.LINE_CAP_SQUARE),
-                                        PropertyFactory.lineJoin(Property.LINE_JOIN_MITER),
-                                        PropertyFactory.lineOpacity(.7f),
-                                        PropertyFactory.lineWidth(7f),
-                                        PropertyFactory.lineColor(Color.parseColor("#3bb2d0"))));
+                        if(style.getLayer("linelayer")!=null)
+                            style.removeLayer("linelayer");
+                        style.addLayer(new LineLayer("linelayer", "line-source"+num)
+                                .withProperties(
+                                        PropertyFactory.lineDasharray(new Float[]{0.01f, 2f}),
+                                        lineCap(Property.LINE_CAP_ROUND),
+                                        lineJoin(Property.LINE_JOIN_ROUND),
+                                        lineWidth(5f),
+                                        lineColor(getColor(R.color.colorPrimaryDark)),
+                                        PropertyFactory.lineOpacity(.7f)));
                     }
                 }
             });
