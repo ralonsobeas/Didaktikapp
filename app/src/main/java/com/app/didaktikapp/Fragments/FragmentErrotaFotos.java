@@ -14,6 +14,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.Gravity;
@@ -32,8 +33,11 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.app.didaktikapp.BBDD.Modelos.ActividadErrota;
+import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.R;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -127,6 +131,7 @@ public class FragmentErrotaFotos extends Fragment {
                 guardarImagen(ivPregunta2);
 
                 //actualizar BD
+                guardarBBDD();
                 //cerrar fragment
                 //actualizar marker
 
@@ -252,6 +257,33 @@ public class FragmentErrotaFotos extends Fragment {
         }
 
         MediaStore.Images.Media.insertImage(getActivity().getContentResolver(), bitmap, "Titulo" , "descripcion");
+    }
+
+    private void guardarBBDD(){
+
+        ActividadErrota actividadErrota = DatabaseRepository.getAppDatabase().getErrotaDao().getErrota(idActividad);
+
+        actividadErrota.setEstado(2);
+
+        actividadErrota.setFragment(3);
+
+        actividadErrota.setFoto1(imageToBase64(ivPregunta1));
+
+        actividadErrota.setFoto2(imageToBase64(ivPregunta2));
+
+        DatabaseRepository.getAppDatabase().getErrotaDao().updateErrota(actividadErrota);
+
+    }
+
+    private String imageToBase64(ImageView iv){
+        iv.buildDrawingCache();
+        Bitmap bitmap = iv.getDrawingCache();
+
+        ByteArrayOutputStream stream=new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream);
+        byte[] image=stream.toByteArray();
+
+        return  Base64.encodeToString(image, 0);
     }
 
 }

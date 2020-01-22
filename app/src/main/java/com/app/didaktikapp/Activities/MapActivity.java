@@ -40,7 +40,9 @@ import com.app.didaktikapp.BBDD.Modelos.Grupo;
 import com.app.didaktikapp.BBDD.SQLiteControlador;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.Fragments.FragmentErrota;
+import com.app.didaktikapp.Fragments.FragmentErrotaFotos;
 import com.app.didaktikapp.Fragments.FragmentErrotaTextos;
+import com.app.didaktikapp.Fragments.FragmentErrotaVideo;
 import com.app.didaktikapp.Fragments.FragmentPuzle;
 import com.app.didaktikapp.Fragments.FragmentSanMiguel;
 import com.app.didaktikapp.Fragments.FragmentSanMiguelImagenes;
@@ -456,13 +458,17 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 double markerLatitud = marker.getPosition().getLatitude();
                 double markerLongitud = marker.getPosition().getLongitude();
 
-                Log.i("DISTANCIAZUM", distanciaCoord(latitud,longitud,43.035000,-2.412889)+"");
+                Log.i("DISTANCIAZUM", distanciaCoord(latitud,longitud,markerLatitud,markerLongitud)+"");
                 Log.i("DISTANCIAZUM", markerLatitud+"");
                 Log.i("DISTANCIAZUM", markerLongitud+"");
+                Log.i("DISTANCIAZUM", administrador+"");
+                Log.i("DISTANCIAZUM", latitud+"");
+                Log.i("DISTANCIAZUM", longitud+"");
+
 
 
                 //ZUMELTZEGI DORREA (1)
-                if( (administrador && markerLatitud == 43.035000 && markerLongitud == -2.412889) || distanciaCoord(latitud,longitud,43.035000,-2.412889)<=15){
+                if( (administrador && markerLatitud == 43.035000 && markerLongitud == -2.412889) || (distanciaCoord(latitud,longitud,43.035000,-2.412889)<=15)&& markerLatitud == 43.035000 && markerLongitud == -2.412889){
                     dibujarRuta(2);
 
                     ActividadZumeltzegi actividadZumeltzegi =   DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(grupo.getIdZumeltzegi());
@@ -488,7 +494,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                 }
                 //SAN MIGUEL PARROKIA (2)
-                else if((administrador && markerLatitud == 43.033417 && markerLongitud == -2.413917) ||  distanciaCoord(latitud,longitud,43.033417,-2.413917)<=15){
+                else if((administrador && markerLatitud == 43.033417 && markerLongitud == -2.413917) ||  (distanciaCoord(latitud,longitud,43.033417,-2.413917)<=15)&& markerLatitud == 43.033417 && markerLongitud == -2.413917){
                     dibujarRuta(3);
                     ActividadSanMiguel actividadSanMiguel = DatabaseRepository.getAppDatabase().getSanMiguelDao().getSanMiguel(grupo.getIdParroquia());
                     int estado = actividadSanMiguel.getEstado();
@@ -511,7 +517,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                 }
                 //UNIBERTSITATEA (3)
-                else if( (administrador && markerLatitud == 43.033944 && markerLongitud == -2.415361) ||  distanciaCoord(latitud,longitud,43.033944,-2.415361)<=15){
+                else if( (administrador && markerLatitud == 43.033944 && markerLongitud == -2.415361) ||  (distanciaCoord(latitud,longitud,43.033944,-2.415361)<=15)&& markerLatitud == 43.033944 && markerLongitud == -2.415361){
                     dibujarRuta(4);
                     ActividadUniversitatea actividadUniversitatea = DatabaseRepository.getAppDatabase().getUniversitateaDao().getUniversitatea(grupo.getIdUniversidad());
                     int estado = actividadUniversitatea.getEstado();
@@ -535,7 +541,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                 }
                 //TRENA (4)
-                else if( (administrador && markerLatitud == 43.033833 && markerLongitud == -2.416111) ||  distanciaCoord(latitud,longitud,43.033833,-2.416111)<=15){
+                else if( (administrador && markerLatitud == 43.033833 && markerLongitud == -2.416111) ||  (distanciaCoord(latitud,longitud,43.033833,-2.416111)<=15)&& markerLatitud == 43.033833 && markerLongitud == -2.416111){
                     dibujarRuta(5);
                     ActividadTren actividadTren = DatabaseRepository.getAppDatabase().getTrenDao().getTren(grupo.getIdTren());
 
@@ -551,7 +557,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                 }
                 //SAN MIGUEL ERROTA (5) FALTA BBDD
-                else if( (administrador && markerLatitud == 43.032917 && markerLongitud == -2.415750) ||  distanciaCoord(latitud,longitud,43.032917,-2.415750)<=15){
+                else if( (administrador && markerLatitud == 43.032917 && markerLongitud == -2.415750) ||  (distanciaCoord(latitud,longitud,43.032917,-2.415750)<=15)&& markerLatitud == 43.032917 && markerLongitud == -2.415750){
                     dibujarRuta(6);
                     ActividadErrota actividadErrota =   DatabaseRepository.getAppDatabase().getErrotaDao().getErrota(grupo.getIdErrota());
 
@@ -563,9 +569,24 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         lanzarFragment(FragmentErrotaTextos.newInstance(grupo.getIdErrota()));
                     }
 
+                    if (entrarEnPunto(estado)) {
+                        switch (fragment){
+                            case 0:
+                                lanzarFragment(FragmentErrotaTextos.newInstance(grupo.getIdErrota()));
+                                break;
+                            case 1:
+                                lanzarFragment(FragmentErrotaVideo.newInstance(grupo.getIdErrota()));
+                                break;
+                            case 2:
+                                lanzarFragment(FragmentErrotaFotos.newInstance(grupo.getIdErrota()));
+                                break;
+
+                        }
+                    }
+
                 }
                 //GERNIKA
-                else if( (administrador && markerLatitud == 43.032444 && markerLongitud == -2.413722) ||  distanciaCoord(latitud,longitud,43.032444,-2.413722)<=15){
+                else if( (administrador && markerLatitud == 43.032444 && markerLongitud == -2.413722) ||  (distanciaCoord(latitud,longitud,43.032444,-2.413722)<=15)&& markerLatitud == 43.032444 && markerLongitud == -2.413722){
 //TODO bbdd
 //                                       ActividadErrota actividadErrota =   DatabaseRepository.getAppDatabase().getErrotaDao().getErrota(new Long(1));
 //                                       int estado = actividadErrota.getEstado();
@@ -578,12 +599,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                 }
                 //ARAOTZ ASUA (sin uso, arriba)
-                else if( (administrador && markerLatitud == 43.009139 && markerLongitud == -2.431444) ||  distanciaCoord(latitud,longitud,43.009139,-2.431444)<=15){
+                else if( (administrador && markerLatitud == 43.009139 && markerLongitud == -2.431444) ||  (distanciaCoord(latitud,longitud,43.009139,-2.431444)<=15)&& markerLatitud == 43.009139 && markerLongitud == -2.431444){
 
 
                 }
                 //ARRIKRUTZEKO KOBAK (sin uso, en medio)
-                else if( (administrador && markerLatitud == 43.000583 && markerLongitud == -2.433250) ||  distanciaCoord(latitud,longitud,43.000583,-2.433250)<=15){
+                else if( (administrador && markerLatitud == 43.000583 && markerLongitud == -2.433250) ||  (distanciaCoord(latitud,longitud,43.000583,-2.433250)<=15)&& markerLatitud == 43.000583 && markerLongitud == -2.433250){
                     marker.setIcon(iconoPunto(2));
                     Log.i("tag","s");
                     Intent intent = new Intent(MapActivity.this, SplashScreenActivity.class);
@@ -593,7 +614,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                 }
                 //ARANTZAZUKO SANTUTEGIA (sin uso, abajo)
-                else if( (administrador && markerLatitud == 42.979194 && markerLongitud == -2.398583) ||  distanciaCoord(latitud,longitud,42.979194,-2.398583)<=15){
+                else if( (administrador && markerLatitud == 42.979194 && markerLongitud == -2.398583) ||  (distanciaCoord(latitud,longitud,42.979194,-2.398583)<=15)&& markerLatitud == 42.979194 && markerLongitud == -2.398583){
 //
 
                 }

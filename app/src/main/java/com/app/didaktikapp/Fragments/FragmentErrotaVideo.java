@@ -29,7 +29,10 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
+import com.app.didaktikapp.BBDD.Modelos.ActividadErrota;
+import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.R;
 
 import java.io.File;
@@ -88,8 +91,15 @@ public class FragmentErrotaVideo extends Fragment {
             public void onClick(View v) {
 
                 //actualizar bbdd
+                guardarBBDD();
                 //cerrar fragment
                 //abrir siguiente fragment (fotos)
+                FragmentErrotaFotos fragment = FragmentErrotaFotos.newInstance(idActividad);
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
+                transaction.replace(R.id.fragment_frame, fragment);
+                transaction.commit();
+                transaction.addToBackStack("Fragment");
 
             }
         });
@@ -136,6 +146,16 @@ public class FragmentErrotaVideo extends Fragment {
                 btnContinuar.setEnabled(true);
             }
         });
+    }
+
+    private void guardarBBDD(){
+
+        ActividadErrota actividadErrota = DatabaseRepository.getAppDatabase().getErrotaDao().getErrota(idActividad);
+
+        actividadErrota.setFragment(2);
+
+        DatabaseRepository.getAppDatabase().getErrotaDao().updateErrota(actividadErrota);
+
     }
 
 }
