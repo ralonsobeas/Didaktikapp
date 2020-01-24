@@ -66,6 +66,7 @@ import com.app.didaktikapp.Modelo.Lugar;
 import com.app.didaktikapp.R;
 import com.app.didaktikapp.wordsearch.features.SplashScreenActivity;
 import com.app.didaktikapp.wordsearch.features.gameplay.GamePlayActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.JsonObject;
 import com.mapbox.android.core.location.LocationEngine;
 import com.mapbox.android.core.location.LocationEngineCallback;
@@ -135,6 +136,7 @@ import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import retrofit2.Call;
@@ -233,6 +235,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     private View ventanaMarker;
 
+    private FloatingActionButton btnRepaso1;
+    private FloatingActionButton btnRepaso2;
+
 
 
     @Override
@@ -254,6 +259,32 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         Mapbox.getInstance(getApplicationContext(), getString(R.string.mapbox_access_token));
 
         setContentView(R.layout.activity_map);
+
+        btnRepaso1 = findViewById(R.id.btnRepaso1);
+        btnRepaso2 = findViewById(R.id.btnRepaso2);
+
+        btnRepaso1.setVisibility(View.INVISIBLE);
+        btnRepaso2.setVisibility(View.INVISIBLE);
+
+        btnRepaso1.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+
+
+            }
+        });
+
+        btnRepaso2.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+
+
+            }
+        });
+
+
 
         ventanaMarker = findViewById(R.id.ventana_marker);
 
@@ -1158,14 +1189,24 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
+
         super.onResume();
+
         mapView.onResume();
     }
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
+
+        ventanaMarker.clearAnimation();
+        TranslateAnimation animate = new TranslateAnimation(0,0,0,ventanaMarker.getHeight());
+        animate.setDuration(1000);
+        animate.setFillAfter(true);
+        ventanaMarker.startAnimation(animate);
+        ventanaMarker.setVisibility(View.INVISIBLE);
+
         mapView.onPause();
     }
 

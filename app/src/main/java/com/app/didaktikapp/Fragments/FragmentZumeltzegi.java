@@ -58,6 +58,7 @@ import java.io.IOException;
 import java.util.Map;
 
 import static android.app.PendingIntent.FLAG_NO_CREATE;
+import static android.app.PendingIntent.getActivities;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -105,6 +106,7 @@ public class FragmentZumeltzegi extends Fragment {
         Bundle args = new Bundle();
         args.putLong(ARG_PARAM1, param1);
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -112,6 +114,7 @@ public class FragmentZumeltzegi extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+            ((MapActivity)getActivity()).onPause();
             idActividad = getArguments().getLong(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
@@ -360,4 +363,13 @@ public class FragmentZumeltzegi extends Fragment {
 
         MediaStore.Images.Media.insertImage(getActivity().getContentResolver(), bitmap, "Titulo" , "descripcion");
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+    }
+
+
+
 }
