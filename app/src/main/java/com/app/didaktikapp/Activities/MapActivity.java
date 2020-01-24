@@ -39,6 +39,7 @@ import com.app.didaktikapp.BBDD.Modelos.ActividadZumeltzegi;
 import com.app.didaktikapp.BBDD.Modelos.Grupo;
 import com.app.didaktikapp.BBDD.SQLiteControlador;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
+import com.app.didaktikapp.Fragments.FragmentErrepasoBatKotlin;
 import com.app.didaktikapp.Fragments.FragmentErrota;
 import com.app.didaktikapp.Fragments.FragmentErrotaFotos;
 import com.app.didaktikapp.Fragments.FragmentErrotaTextos;
@@ -147,7 +148,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         , FragmentSanMiguelImagenes.OnFragmentInteractionListener
         , FragmentZumeltzegi.OnFragmentInteractionListener
         , FragmentPuzle.OnFragmentInteractionListener
-        , FragmentSanMiguelTinderKotlin.OnFragmentInteractionListener{
+        , FragmentSanMiguelTinderKotlin.OnFragmentInteractionListener
+        , FragmentErrepasoBatKotlin.OnFragmentInteractionListener{
 
     private boolean isEndNotified;
     private ProgressBar progressBar;
@@ -514,7 +516,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         }
                     }
 
-
                 }
                 //UNIBERTSITATEA (3)
                 else if( (administrador && markerLatitud == 43.033944 && markerLongitud == -2.415361) ||  (distanciaCoord(latitud,longitud,43.033944,-2.415361)<=15)&& markerLatitud == 43.033944 && markerLongitud == -2.415361){
@@ -615,12 +616,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 }
                 //ARANTZAZUKO SANTUTEGIA (sin uso, abajo)
                 else if( (administrador && markerLatitud == 42.979194 && markerLongitud == -2.398583) ||  (distanciaCoord(latitud,longitud,42.979194,-2.398583)<=15)&& markerLatitud == 42.979194 && markerLongitud == -2.398583){
-//
+                    marker.setIcon(iconoPunto(2));
+                    lanzarFragment(FragmentErrepasoBatKotlin.newInstance(grupo.getIdParroquia()));
 
                 }
-
-
-
 
                 return false;
             }
