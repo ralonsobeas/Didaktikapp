@@ -18,7 +18,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -30,6 +32,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.transition.Fade;
+import androidx.transition.Slide;
+import androidx.transition.Transition;
+import androidx.transition.TransitionManager;
 
 import com.app.didaktikapp.BBDD.Modelos.ActividadErrota;
 import com.app.didaktikapp.BBDD.Modelos.ActividadSanMiguel;
@@ -200,6 +206,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private Long idgrupo ;
     private Grupo grupo;
 
+    private static final double DISTANCIA_MARKER = 15;
+
     private static final LatLngBounds ONIATE_BOUNDS = new LatLngBounds.Builder()
         .include(new LatLng(43.042073, -2.422996)) // Northeast
         .include(new LatLng(43.028919, -2.405703)) // Southwest
@@ -223,6 +231,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     private NavigationMapRoute navigationMapRoute;
 
+    private View ventanaMarker;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -243,7 +255,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         setContentView(R.layout.activity_map);
 
-
+        ventanaMarker = findViewById(R.id.ventana_marker);
 
         mapView = (MapView) findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
@@ -470,7 +482,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
 
                 //ZUMELTZEGI DORREA (1)
-                if( (administrador && markerLatitud == 43.035000 && markerLongitud == -2.412889) || (distanciaCoord(latitud,longitud,43.035000,-2.412889)<=15)&& markerLatitud == 43.035000 && markerLongitud == -2.412889){
+                if( (administrador && markerLatitud == 43.035000 && markerLongitud == -2.412889) || (distanciaCoord(latitud,longitud,43.035000,-2.412889))&& markerLatitud == 43.035000 && markerLongitud == -2.412889){
                     dibujarRuta(2);
 
                     ActividadZumeltzegi actividadZumeltzegi =   DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(grupo.getIdZumeltzegi());
@@ -496,7 +508,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                 }
                 //SAN MIGUEL PARROKIA (2)
-                else if((administrador && markerLatitud == 43.033417 && markerLongitud == -2.413917) ||  (distanciaCoord(latitud,longitud,43.033417,-2.413917)<=15)&& markerLatitud == 43.033417 && markerLongitud == -2.413917){
+                else if((administrador && markerLatitud == 43.033417 && markerLongitud == -2.413917) ||  (distanciaCoord(latitud,longitud,43.033417,-2.413917))&& markerLatitud == 43.033417 && markerLongitud == -2.413917){
                     dibujarRuta(3);
                     ActividadSanMiguel actividadSanMiguel = DatabaseRepository.getAppDatabase().getSanMiguelDao().getSanMiguel(grupo.getIdParroquia());
                     int estado = actividadSanMiguel.getEstado();
@@ -518,7 +530,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                 }
                 //UNIBERTSITATEA (3)
-                else if( (administrador && markerLatitud == 43.033944 && markerLongitud == -2.415361) ||  (distanciaCoord(latitud,longitud,43.033944,-2.415361)<=15)&& markerLatitud == 43.033944 && markerLongitud == -2.415361){
+                else if( (administrador && markerLatitud == 43.033944 && markerLongitud == -2.415361) ||  (distanciaCoord(latitud,longitud,43.033944,-2.415361))&& markerLatitud == 43.033944 && markerLongitud == -2.415361){
                     dibujarRuta(4);
                     ActividadUniversitatea actividadUniversitatea = DatabaseRepository.getAppDatabase().getUniversitateaDao().getUniversitatea(grupo.getIdUniversidad());
                     int estado = actividadUniversitatea.getEstado();
@@ -542,7 +554,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                 }
                 //TRENA (4)
-                else if( (administrador && markerLatitud == 43.033833 && markerLongitud == -2.416111) ||  (distanciaCoord(latitud,longitud,43.033833,-2.416111)<=15)&& markerLatitud == 43.033833 && markerLongitud == -2.416111){
+                else if( (administrador && markerLatitud == 43.033833 && markerLongitud == -2.416111) ||  (distanciaCoord(latitud,longitud,43.033833,-2.416111))&& markerLatitud == 43.033833 && markerLongitud == -2.416111){
                     dibujarRuta(5);
                     ActividadTren actividadTren = DatabaseRepository.getAppDatabase().getTrenDao().getTren(grupo.getIdTren());
 
@@ -558,7 +570,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                 }
                 //SAN MIGUEL ERROTA (5) FALTA BBDD
-                else if( (administrador && markerLatitud == 43.032917 && markerLongitud == -2.415750) ||  (distanciaCoord(latitud,longitud,43.032917,-2.415750)<=15)&& markerLatitud == 43.032917 && markerLongitud == -2.415750){
+                else if( (administrador && markerLatitud == 43.032917 && markerLongitud == -2.415750) ||  (distanciaCoord(latitud,longitud,43.032917,-2.415750))&& markerLatitud == 43.032917 && markerLongitud == -2.415750){
                     dibujarRuta(6);
                     ActividadErrota actividadErrota =   DatabaseRepository.getAppDatabase().getErrotaDao().getErrota(grupo.getIdErrota());
 
@@ -587,7 +599,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                 }
                 //GERNIKA
-                else if( (administrador && markerLatitud == 43.032444 && markerLongitud == -2.413722) ||  (distanciaCoord(latitud,longitud,43.032444,-2.413722)<=15)&& markerLatitud == 43.032444 && markerLongitud == -2.413722){
+                else if( (administrador && markerLatitud == 43.032444 && markerLongitud == -2.413722) ||  (distanciaCoord(latitud,longitud,43.032444,-2.413722))&& markerLatitud == 43.032444 && markerLongitud == -2.413722){
 //TODO bbdd
 //                                       ActividadErrota actividadErrota =   DatabaseRepository.getAppDatabase().getErrotaDao().getErrota(new Long(1));
 //                                       int estado = actividadErrota.getEstado();
@@ -600,12 +612,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                 }
                 //ARAOTZ ASUA (sin uso, arriba)
-                else if( (administrador && markerLatitud == 43.009139 && markerLongitud == -2.431444) ||  (distanciaCoord(latitud,longitud,43.009139,-2.431444)<=15)&& markerLatitud == 43.009139 && markerLongitud == -2.431444){
+                else if( (administrador && markerLatitud == 43.009139 && markerLongitud == -2.431444) ||  (distanciaCoord(latitud,longitud,43.009139,-2.431444))&& markerLatitud == 43.009139 && markerLongitud == -2.431444){
 
 
                 }
                 //ARRIKRUTZEKO KOBAK (sin uso, en medio)
-                else if( (administrador && markerLatitud == 43.000583 && markerLongitud == -2.433250) ||  (distanciaCoord(latitud,longitud,43.000583,-2.433250)<=15)&& markerLatitud == 43.000583 && markerLongitud == -2.433250){
+                else if( (administrador && markerLatitud == 43.000583 && markerLongitud == -2.433250) ||  (distanciaCoord(latitud,longitud,43.000583,-2.433250))&& markerLatitud == 43.000583 && markerLongitud == -2.433250){
                     marker.setIcon(iconoPunto(2));
                     Log.i("tag","s");
                     Intent intent = new Intent(MapActivity.this, SplashScreenActivity.class);
@@ -615,7 +627,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                 }
                 //ARANTZAZUKO SANTUTEGIA (sin uso, abajo)
-                else if( (administrador && markerLatitud == 42.979194 && markerLongitud == -2.398583) ||  (distanciaCoord(latitud,longitud,42.979194,-2.398583)<=15)&& markerLatitud == 42.979194 && markerLongitud == -2.398583){
+                else if( (administrador && markerLatitud == 42.979194 && markerLongitud == -2.398583) ||  (distanciaCoord(latitud,longitud,42.979194,-2.398583))&& markerLatitud == 42.979194 && markerLongitud == -2.398583){
                     marker.setIcon(iconoPunto(2));
                     lanzarFragment(FragmentErrepasoBatKotlin.newInstance(grupo.getIdParroquia()));
 
@@ -989,7 +1001,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         @Override
         public void onSuccess(LocationEngineResult result) {
 
-            locationEngineResult[0] = result;
+            if( locationEngineResult[0] == null)
+                locationEngineResult[0] = result;
 
             MapActivity activity = activityWeakReference.get();
 
@@ -1001,10 +1014,41 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 }
 
                 // Create a Toast which displays the new location's coordinates
-//                Toast.makeText(activity, ""+R.string.new_location +", "+
-//                        String.valueOf(result.getLastLocation().getLatitude()) + ", "+
-//                        String.valueOf(result.getLastLocation().getLongitude()),
-//                        Toast.LENGTH_SHORT).show();
+                for(Lugar lugar : listaLugares){
+                    Location locAnterior = locationEngineResult[0].getLastLocation();
+                    LatLng coordenadas = lugar.getCoordenadas();
+                    if(locationEngineResult[0] == result
+                            && distanciaCoord(location.getLatitude(),location.getLongitude(),coordenadas.getLatitude(),coordenadas.getLongitude())){
+                        TranslateAnimation animate = new TranslateAnimation(0,0,ventanaMarker.getHeight(),0);
+                        animate.setDuration(1000);
+                        animate.setFillAfter(true);
+                        ventanaMarker.startAnimation(animate);
+                        ventanaMarker.setVisibility(View.VISIBLE);
+
+                    }
+                    if(!distanciaCoord(locAnterior.getLatitude(),locAnterior.getLongitude(),coordenadas.getLatitude(),coordenadas.getLongitude())
+                        && distanciaCoord(location.getLatitude(),location.getLongitude(),coordenadas.getLatitude(),coordenadas.getLongitude())){
+                        ventanaMarker.clearAnimation();
+                        TranslateAnimation animate = new TranslateAnimation(0,0,ventanaMarker.getHeight(),0);
+                        animate.setDuration(1000);
+                        animate.setFillAfter(true);
+                        ventanaMarker.startAnimation(animate);
+                        ventanaMarker.setVisibility(View.VISIBLE);
+
+                    }
+
+                    if(distanciaCoord(locAnterior.getLatitude(),locAnterior.getLongitude(),coordenadas.getLatitude(),coordenadas.getLongitude())
+                            && !distanciaCoord(location.getLatitude(),location.getLongitude(),coordenadas.getLatitude(),coordenadas.getLongitude())){
+                        ventanaMarker.clearAnimation();
+                        TranslateAnimation animate = new TranslateAnimation(0,0,0,ventanaMarker.getHeight());
+                        animate.setDuration(1000);
+                        animate.setFillAfter(true);
+                        ventanaMarker.startAnimation(animate);
+                        ventanaMarker.setVisibility(View.INVISIBLE);
+
+                    }
+                }
+
 
                 double latitud = result.getLastLocation().getLatitude();
 
@@ -1023,7 +1067,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 //
 //                lanzarFragmentPorDistancia(latitud,longitud);
 
-
+                locationEngineResult[0] = result;
             }
         }
 
@@ -1047,7 +1091,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
 
 
-    public static double distanciaCoord(double lat1, double lng1, double lat2, double lng2) {
+    public static boolean distanciaCoord(double lat1, double lng1, double lat2, double lng2) {
         //double radioTierra = 3958.75;//en millas
         double radioTierra = 6371;//en kilómetros
         double dLat = Math.toRadians(lat2 - lat1);
@@ -1059,7 +1103,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         double va2 = 2 * Math.atan2(Math.sqrt(va1), Math.sqrt(1 - va1));
         double distancia = radioTierra * va2;
 
-        return distancia*1000;
+        return distancia*1000 <= DISTANCIA_MARKER;
     }
 
 
