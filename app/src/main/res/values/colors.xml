@@ -23,5 +23,6 @@
 <!--    <color name="rojo">#FF4500</color>-->
 
     <color name="selTextBgColor">#2B82C5</color>
+    <color name="pink">#ff007f</color>
 
 </resources>

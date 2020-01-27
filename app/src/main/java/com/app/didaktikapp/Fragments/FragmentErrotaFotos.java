@@ -33,6 +33,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.BBDD.Modelos.ActividadErrota;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.R;
@@ -284,6 +285,13 @@ public class FragmentErrotaFotos extends Fragment {
         byte[] image=stream.toByteArray();
 
         return  Base64.encodeToString(image, 0);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        ((MapActivity)getActivity()).cambiarLocalizacion();
     }
 
 }

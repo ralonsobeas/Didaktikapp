@@ -42,7 +42,6 @@
         android:layout_marginLeft="28dp"
         android:layout_marginRight="28dp"
         android:background="@drawable/edit_text_background"
-        android:hint="text"
         android:visibility="gone"
         android:inputType="text"
         android:paddingBottom="14dp"
@@ -52,7 +51,8 @@
         android:textColorHint="#ffffff"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="10dp"
-        android:textSize="16.5dp" />
+        android:textSize="16.5dp"
+        android:completionThreshold="1"/>
 
     <EditText
         android:id="@+id/second_edit_text"

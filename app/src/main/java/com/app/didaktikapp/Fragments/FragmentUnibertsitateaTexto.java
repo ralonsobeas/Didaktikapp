@@ -115,6 +115,13 @@ public class FragmentUnibertsitateaTexto extends Fragment {
 
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        ((MapActivity)getActivity()).cambiarLocalizacion();
+    }
+
 
 
 }

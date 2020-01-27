@@ -31,6 +31,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.BBDD.Modelos.ActividadErrota;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.R;
@@ -156,6 +157,13 @@ public class FragmentErrotaVideo extends Fragment {
 
         DatabaseRepository.getAppDatabase().getErrotaDao().updateErrota(actividadErrota);
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        ((MapActivity)getActivity()).cambiarLocalizacion();
     }
 
 }

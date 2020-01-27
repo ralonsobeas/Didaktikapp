@@ -30,6 +30,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.R;
 
 import java.io.File;
@@ -653,6 +654,13 @@ public class FragmentErrota extends Fragment {
         }
 
         MediaStore.Images.Media.insertImage(getActivity().getContentResolver(), bitmap, "Titulo" , "descripcion");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        ((MapActivity)getActivity()).cambiarLocalizacion();
     }
 
 }

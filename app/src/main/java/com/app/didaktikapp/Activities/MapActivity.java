@@ -752,9 +752,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             mapboxMap.getStyle(style -> {
                 if (featureCollection.features() != null) {
                     if (featureCollection.features().size() > 0) {
-                        if(style.getSource("line-source"+num)!=null)
-                            style.removeSource("line-source"+num);
-                        style.addSource(new GeoJsonSource("line-source"+num, featureCollection));
+                        if(style.getSource("line-source"+num)==null)
+//                            style.removeSource("line-source"+num);
+                            style.addSource(new GeoJsonSource("line-source"+num, featureCollection));
 
                     // The layer properties for our line. This is where we make the line dotted, set the
                     // color, etc.
@@ -781,6 +781,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         transaction.replace(R.id.fragment_frame, fragment);
         transaction.commit();
         transaction.addToBackStack("Fragment");
+
+
     }
 
 
@@ -872,7 +874,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             switch (x) {
                 case 0:
                     //Selecciona el icono dependiendo del valor del estado que corresponderá al orden en el array de iconos
-                     icono  = arrayIconos[DatabaseRepository.searchEstadoZumeltzegi(idgrupo)];
+                    icono  = arrayIconos[DatabaseRepository.searchEstadoZumeltzegi(idgrupo)];
                     break;
                 case 1:
                     icono  = arrayIconos[DatabaseRepository.searchEstadoSanMiguel(idgrupo)];
@@ -885,6 +887,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     break;
                 case 4:
                     icono  = arrayIconos[DatabaseRepository.searchEstadoErrota(idgrupo)];
+
+                    if(icono == iconoverde){
+
+                        btnRepasoVisibles();
+
+                    }
                     break;
             }
             Lugar lugar = listaLugares.get(x);
@@ -895,6 +903,17 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
 
         }
+    }
+
+    private void btnRepasoVisibles(){
+        TranslateAnimation animate = new TranslateAnimation(0,0,btnRepaso1.getHeight(),0);
+        animate.setDuration(1000);
+        animate.setFillAfter(true);
+        btnRepaso1.startAnimation(animate);
+        btnRepaso1.setVisibility(View.VISIBLE);
+
+        btnRepaso2.startAnimation(animate);
+        btnRepaso2.setVisibility(View.VISIBLE);
     }
 
     private void cargarListaLugares(){
@@ -1188,10 +1207,24 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mapView.onStart();
     }
 
+    public void cambiarLocalizacion(){
+        Location targetLocation = new Location("");//provider name is unnecessary
+        targetLocation.setLatitude(0.0d);//your coords of course
+        targetLocation.setLongitude(0.0d);
+
+        LocationEngineResult locationEngineResults = LocationEngineResult.create(targetLocation);
+
+        locationEngineResult[0] = locationEngineResults;
+
+        crearIconos();
+    }
+
     @Override
     public void onResume() {
 
         super.onResume();
+
+
 
         mapView.onResume();
     }
@@ -1207,8 +1240,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         ventanaMarker.startAnimation(animate);
         ventanaMarker.setVisibility(View.INVISIBLE);
 
+
+
         mapView.onPause();
     }
+
+
 
     @Override
     protected void onStop() {

@@ -17,6 +17,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.BBDD.Modelos.ActividadSanMiguel;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.R;
@@ -389,5 +390,12 @@ public class FragmentSanMiguel extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        ((MapActivity)getActivity()).cambiarLocalizacion();
     }
 }

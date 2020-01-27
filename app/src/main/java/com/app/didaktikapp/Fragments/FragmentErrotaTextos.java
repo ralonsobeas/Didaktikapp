@@ -38,6 +38,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.BBDD.Modelos.ActividadErrota;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.R;
@@ -270,6 +271,13 @@ public class FragmentErrotaTextos extends Fragment {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        ((MapActivity)getActivity()).cambiarLocalizacion();
     }
 
 }

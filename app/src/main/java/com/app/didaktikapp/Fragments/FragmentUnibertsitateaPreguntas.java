@@ -13,6 +13,7 @@ import android.widget.RadioGroup;
 
 import androidx.fragment.app.Fragment;
 
+import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.BBDD.Modelos.ActividadUniversitatea;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.R;
@@ -172,6 +173,13 @@ public class FragmentUnibertsitateaPreguntas extends Fragment {
     public void onDetach() {
         super.onDetach();
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        ((MapActivity)getActivity()).cambiarLocalizacion();
     }
 
 

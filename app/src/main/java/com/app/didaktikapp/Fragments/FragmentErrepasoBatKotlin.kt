@@ -16,8 +16,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DiffUtil
-import com.app.didaktikapp.BBDD.Modelos.ActividadSanMiguel
-import com.app.didaktikapp.BBDD.database.DatabaseRepository
+import com.app.didaktikapp.Activities.MapActivity
 import com.app.didaktikapp.CardStack.CardStackAdapter
 import com.app.didaktikapp.CardStack.Spot
 import com.app.didaktikapp.CardStack.SpotDiffCallback
@@ -421,6 +420,11 @@ class FragmentErrepasoBatKotlin : Fragment(), CardStackListener {
         spots.add(Spot(id = count++,name = "San Miguel Parrokia", city = "", url =  R.drawable.errepaso1errota))
 
         return spots
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        (activity as MapActivity?)!!.cambiarLocalizacion()
     }
 
 }

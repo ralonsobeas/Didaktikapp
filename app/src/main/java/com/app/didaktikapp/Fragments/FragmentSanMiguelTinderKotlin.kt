@@ -16,6 +16,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DiffUtil
+import com.app.didaktikapp.Activities.MapActivity
 import com.app.didaktikapp.BBDD.Modelos.ActividadSanMiguel
 import com.app.didaktikapp.BBDD.database.DatabaseRepository
 import com.app.didaktikapp.CardStack.CardStackAdapter
@@ -415,6 +416,11 @@ class FragmentSanMiguelTinderKotlin : Fragment(), CardStackListener {
         spots.add(Spot(id = count++,name = "", city = "", url =  R.drawable.sanmiguelincorrecta3))
 
         return spots
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        (activity as MapActivity?)!!.cambiarLocalizacion()
     }
 
 }

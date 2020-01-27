@@ -370,6 +370,15 @@ public class FragmentZumeltzegi extends Fragment {
 
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        ((MapActivity)getActivity()).cambiarLocalizacion();
+    }
+
+
+
 
 
 }

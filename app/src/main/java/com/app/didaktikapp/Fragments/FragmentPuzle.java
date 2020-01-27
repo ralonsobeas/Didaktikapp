@@ -456,10 +456,14 @@ public class FragmentPuzle extends Fragment {
 
     }
 
+
+
     @Override
     public void onDestroy() {
         if(mediaPlayer!=null)
             mediaPlayer.stop();
+        ((MapActivity)getActivity()).cambiarLocalizacion();
+
         super.onDestroy();
     }
 

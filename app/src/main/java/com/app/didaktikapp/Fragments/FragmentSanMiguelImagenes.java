@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.R;
 
 import com.zomato.photofilters.geometry.Point;
@@ -272,6 +273,13 @@ public class FragmentSanMiguelImagenes extends Fragment {
             imageView.setImageBitmap(outputImage);
 
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        ((MapActivity)getActivity()).cambiarLocalizacion();
     }
 
 

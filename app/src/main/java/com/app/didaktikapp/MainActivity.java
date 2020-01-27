@@ -255,6 +255,9 @@ public class MainActivity extends AppCompatActivity  {
                 .setSecondButtonText("Euskera")
                 .setSecondButtonColor(Color.parseColor("#FAFAFA"))
                 .setSecondButtonTextColor(Color.parseColor("#2B82C5"))
+                .setThirdButtonText("Cancelar")
+                .setThirdButtonColor(Color.parseColor("#ab000d"))
+                .setThirdButtonTextColor(Color.parseColor("#FAFAFA"))
                 .withFirstButtonListner(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -265,6 +268,12 @@ public class MainActivity extends AppCompatActivity  {
                     @Override
                     public void onClick(View view) {
                         setLocale("eu");
+                    }
+                })
+                .withThirdButtonListner(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        flatDialog.dismiss();
                     }
                 })
                 .show();
@@ -311,8 +320,8 @@ public class MainActivity extends AppCompatActivity  {
                 .setSecondButtonColor(Color.parseColor("#FAFAFA"))
                 .setSecondButtonTextColor(Color.parseColor("#2B82C5"))
                 .setThirdButtonText("Cancelar")
-                .setThirdButtonColor(Color.parseColor("#FAFAFA"))
-                .setThirdButtonTextColor(Color.parseColor("#2B82C5"))
+                .setThirdButtonColor(Color.parseColor("#ab000d"))
+                .setThirdButtonTextColor(Color.parseColor("#FAFAFA"))
                 .withTextViewAdapterListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -391,8 +400,8 @@ public class MainActivity extends AppCompatActivity  {
                 .setFirstButtonColor(Color.parseColor("#FAFAFA"))
                 .setFirstButtonTextColor(Color.parseColor("#2B82C5"))
                 .setSecondButtonText("Cancelar")
-                .setSecondButtonColor(Color.parseColor("#FAFAFA"))
-                .setSecondButtonTextColor(Color.parseColor("#2B82C5"))
+                .setSecondButtonColor(Color.parseColor("#ab000d"))
+                .setSecondButtonTextColor(Color.parseColor("#FAFAFA"))
                 .withFirstButtonListner(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

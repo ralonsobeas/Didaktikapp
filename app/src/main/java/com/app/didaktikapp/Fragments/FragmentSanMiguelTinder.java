@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.CardStack.CardStackAdapter;
 import com.app.didaktikapp.R;
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
@@ -117,5 +118,12 @@ public class FragmentSanMiguelTinder extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        ((MapActivity)getActivity()).cambiarLocalizacion();
     }
 }
