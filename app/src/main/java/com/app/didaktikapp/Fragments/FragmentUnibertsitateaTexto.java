@@ -72,7 +72,7 @@ public class FragmentUnibertsitateaTexto extends Fragment {
         typeWriterView.setWithMusic(false);
 
         //Animating Text
-        typeWriterView.animateText(getString(R.string.UniversidadTexto));
+        typeWriterView.animateText(getString(R.string.TextoUniversidad));
 
         btnContinuar = view.findViewById(R.id.btnContinuar);
         btnContinuar.setText(R.string.Continuar);
