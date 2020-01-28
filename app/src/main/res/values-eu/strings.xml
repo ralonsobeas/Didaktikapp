@@ -39,19 +39,9 @@
     <string name="ZumeltzegiSopaMain_menu">Menu nagusia</string>
     <string name="ZumeltzegiSopaCongratulations">Zorionak!!</string>
 
-    <string name="ZumeltzegiSopaPref_showGridLine">showGridLine</string>
-    <string name="ZumeltzegiSopaPref_snapToGrid">snapToGrid</string>
-    <string name="ZumeltzegiSopaPref_enableSound">enableSound</string>
-    <string name="ZumeltzegiSopaPref_deleteAfterFinish">deleteAfterFinish</string>
-    <string name="ZumeltzegiSopaPref_enableFullscreen">enableFullscreen</string>
-    <string name="ZumeltzegiSopaPref_autoScaleGrid">autoScaleGrid</string>
-    <string name="ZumeltzegiSopaSnap_to_grid_def_val">ALWAYS_SNAP</string>
-    <string name="ZumeltzegiSopaPref_reverseMatching">reverseMatching</string>
-    <string name="ZumeltzegiSopaPref_grayscale">grayscale</string>
     <string name="ZumeltzegiSopaSettings">Settings</string>
     <string name="ZumeltzegiSopaFinished">Amaituta</string>
     <string name="ZumeltzegiSopaNew_game">Jolas berria</string>
-    <string name="ZumeltzegiSopaFinish_text">You have just finished :gridSize grid with :uwCount words in :duration</string>
 
     <string name="ZumeltzegiTitulo"><![CDATA[Zumeltzegi ]]></string>
     <string name="ZumeltzegiPregunta1Titulo">1.Zertarako eraiki zen dorretxea?</string>
@@ -105,22 +95,6 @@
     <string name="ErrotaPregunta1">Zer da tobera edo kaxa?</string>
     <string name="ErrotaPregunta2">Zein urtean erosi zuten Santa Ana Komentuko mojek errota?</string>
     <string name="Terminar">Amaitu</string>
-    <string name="ErrotaFrase11">1905 urtean, Santa Ana Komentuko mojek erosi egin zioten San Miguel errota</string>
-    <string name="ErrotaFrase12">Juan Gordoa y Perea jaunari.</string>
-    <string name="ErrotaFrase21">Berrikuntza lan garrantzitsuak egin ziren</string>
-    <string name="ErrotaFrase22">1923 eta 1926 artean.</string>
-    <string name="ErrotaFrase31">Oñatiko Udalak erosi zion Santa Ana komentuari San Miguel errota izandakoa</string>
-    <string name="ErrotaFrase32">1983an.</string>
-    <string name="ErrotaFrase41">Turtikinen funtzionamendua</string>
-    <string name="ErrotaFrase42">indarrez ardatzak eta harriak biraka jarriz alea ehotzeko era azaltzen duena.</string>
-    <string name="ErrotaFrase51">Toberak edo kaxak</string>
-    <string name="ErrotaFrase52">kono alderantzizkatuen itxuran, berriak egin dira Lasturko Lastur-Goikoa errotakoak eredutzat hartuta.</string>
-    <string name="ErrotaPareja1">1905 urtean, Santa Ana Komentuko mojek erosi egin zioten San Miguel errota Juan Gordoa y Perea jaunari.</string>
-    <string name="ErrotaPareja2">Berrikuntza lan garrantzitsuak egin ziren 1923 eta 1926 artean.</string>
-    <string name="ErrotaPareja3">Oñatiko Udalak erosi zion Santa Ana komentuari San Miguel errota izandakoa 1983an.</string>
-    <string name="ErrotaPareja4">Turtikinen funtzionamendua indarrez ardatzak eta harriak biraka jarriz alea ehotzeko era azaltzen duena.</string>
-    <string name="ErrotaPareja5">Toberak edo kaxak kono alderantzizkatuen itxuran, berriak egin dira Lasturko Lastur-Goikoa errotakoak eredutzat hartuta.</string>
-    <string name="terminar">Terminar</string>
 
 
     <string name="new_game_loading_text">Generating game data…</string>
@@ -184,12 +158,10 @@
     <string name="reverse_matching">Reverse matching</string>
     <string name="pref_grayscale">grayscale</string>
     <string name="grayscale">Grayscale</string>
-    <string name="game_data_desc">:gridSize Grid, :wordCount Words</string>
     <string name="corregir">Zuzendu</string>
     <string name="si">BAI</string>
     <string name="no">EZ</string>
-    <string name="finalizar">AMAITU</string>
-    <string name="nombreLugar9">Escuela</string>
+    <string name="nombreLugar9">Ikastetxea</string>
     <string name="nombreLugar10">Gernika</string>
 
 </resources>
