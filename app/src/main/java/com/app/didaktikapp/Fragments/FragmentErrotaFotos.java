@@ -61,7 +61,7 @@ public class FragmentErrotaFotos extends Fragment {
     private Button btnContinuar;
 
     private ImageView ivPregunta1,ivPregunta2;
-    private ImageButton ib1,ib2;
+    private Button ib1,ib2;
 
     private String mParam1;
     private String mParam2;
@@ -202,21 +202,17 @@ public class FragmentErrotaFotos extends Fragment {
 
             if (requestCode == REQUEST_IMAGE_CAPTURE1) {
                 ivPregunta1.setImageBitmap(Bitmap.createScaledBitmap(imageBitmap,1000,1000,false));
-                ib1.setVisibility(View.INVISIBLE);
+//                ib1.setVisibility(View.INVISIBLE);
                 img1 = true;
-                if (img2) {
-                    btnContinuar.setText(getResources().getString(R.string.Terminar));
-                    btnContinuar.setEnabled(true);
-                }
-            }
-            else {
+            } else {
                 ivPregunta2.setImageBitmap(Bitmap.createScaledBitmap(imageBitmap,1000,1000,false));
-                ib2.setVisibility(View.INVISIBLE);
+//                ib2.setVisibility(View.INVISIBLE);
                 img2 = true;
-                if (img1) {
-                    btnContinuar.setText(getResources().getString(R.string.Terminar));
-                    btnContinuar.setEnabled(true);
-                }
+            }
+
+            if (img1 && img2) {
+                btnContinuar.setText(getResources().getString(R.string.Terminar));
+                btnContinuar.setEnabled(true);
             }
 
         }
