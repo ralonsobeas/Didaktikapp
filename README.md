@@ -277,7 +277,7 @@ Seguimiento
 - [x] Rutas añadidas
 - [x] Mapa offline
 - [ ] Audios y videos 
-- [ ] Traducción de los strings
+- [x] Traducción de los strings
 
 
 
