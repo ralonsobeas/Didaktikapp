@@ -1,24 +1,15 @@
 package com.app.didaktikapp.Activities;
 
-import android.animation.ObjectAnimator;
-import android.animation.TypeEvaluator;
-import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Movie;
-import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
@@ -29,13 +20,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.transition.Fade;
-import androidx.transition.Slide;
-import androidx.transition.Transition;
-import androidx.transition.TransitionManager;
 
 import com.app.didaktikapp.BBDD.Modelos.ActividadErrota;
 import com.app.didaktikapp.BBDD.Modelos.ActividadSanMiguel;
@@ -46,7 +32,6 @@ import com.app.didaktikapp.BBDD.Modelos.Grupo;
 import com.app.didaktikapp.BBDD.SQLiteControlador;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.Fragments.FragmentErrepasoBatKotlin;
-import com.app.didaktikapp.Fragments.FragmentErrota;
 import com.app.didaktikapp.Fragments.FragmentErrotaFotos;
 import com.app.didaktikapp.Fragments.FragmentErrotaTextos;
 import com.app.didaktikapp.Fragments.FragmentErrotaVideo;
@@ -55,19 +40,15 @@ import com.app.didaktikapp.Fragments.FragmentPuzle;
 import com.app.didaktikapp.Fragments.FragmentSanMiguel;
 import com.app.didaktikapp.Fragments.FragmentSanMiguelImagenes;
 import com.app.didaktikapp.Fragments.FragmentSanMiguelTinderKotlin;
-import com.app.didaktikapp.Fragments.FragmentTrenTexto;
 import com.app.didaktikapp.Fragments.FragmentUnibertsitateaFotos;
 import com.app.didaktikapp.Fragments.FragmentUnibertsitateaPreguntas;
 import com.app.didaktikapp.Fragments.FragmentUnibertsitateaTexto;
 import com.app.didaktikapp.Fragments.FragmentZumeltzegi;
-import com.app.didaktikapp.InicioActivity;
-import com.app.didaktikapp.MainActivity;
 import com.app.didaktikapp.Modelo.Lugar;
 import com.app.didaktikapp.R;
 import com.app.didaktikapp.wordsearch.features.SplashScreenActivity;
 import com.app.didaktikapp.wordsearch.features.gameplay.GamePlayActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.gson.JsonObject;
 import com.mapbox.android.core.location.LocationEngine;
 import com.mapbox.android.core.location.LocationEngineCallback;
 import com.mapbox.android.core.location.LocationEngineProvider;
@@ -76,9 +57,7 @@ import com.mapbox.android.core.location.LocationEngineRequest;
 import com.mapbox.android.core.location.LocationEngineResult;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
-import com.mapbox.api.directions.v5.models.DirectionsResponse;
 import com.mapbox.api.directions.v5.models.DirectionsRoute;
-import com.mapbox.geojson.BoundingBox;
 import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.FeatureCollection;
 import com.mapbox.geojson.LineString;
@@ -91,7 +70,6 @@ import com.mapbox.mapboxsdk.annotations.PolygonOptions;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.geometry.LatLngBounds;
-import com.mapbox.mapboxsdk.geometry.LatLngQuad;
 import com.mapbox.mapboxsdk.location.LocationComponent;
 import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions;
 import com.mapbox.mapboxsdk.location.LocationComponentOptions;
@@ -111,22 +89,7 @@ import com.mapbox.mapboxsdk.style.layers.Layer;
 import com.mapbox.mapboxsdk.style.layers.LineLayer;
 import com.mapbox.mapboxsdk.style.layers.Property;
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory;
-import com.mapbox.mapboxsdk.style.layers.RasterLayer;
-import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
-import com.mapbox.mapboxsdk.style.sources.ImageSource;
-import com.mapbox.mapboxsdk.utils.BitmapUtils;
-import com.mapbox.services.android.navigation.ui.v5.NavigationLauncher;
-import com.mapbox.services.android.navigation.ui.v5.NavigationLauncherOptions;
-import com.mapbox.services.android.navigation.v5.navigation.MapboxNavigation;
-import com.mapbox.services.android.navigation.v5.navigation.MapboxOfflineRouter;
-import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
-import com.mapbox.services.android.navigation.v5.navigation.OfflineError;
-import com.mapbox.services.android.navigation.v5.navigation.OfflineRoute;
-import com.mapbox.services.android.navigation.v5.navigation.OfflineTiles;
-import com.mapbox.services.android.navigation.v5.navigation.OnOfflineRouteFoundCallback;
-import com.mapbox.services.android.navigation.v5.navigation.RouteTileDownloadListener;
-import com.mapbox.services.android.navigation.v5.offroute.OffRouteListener;
 import com.mapbox.services.android.navigation.ui.v5.route.NavigationMapRoute;
 
 
@@ -136,15 +99,10 @@ import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import timber.log.Timber;
 
-import static com.mapbox.core.constants.Constants.PRECISION_6;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineCap;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineColor;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineJoin;
@@ -155,9 +113,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         , FragmentSanMiguel.OnFragmentInteractionListener
         , FragmentSanMiguelImagenes.OnFragmentInteractionListener
         , FragmentZumeltzegi.OnFragmentInteractionListener
-        , FragmentPuzle.OnFragmentInteractionListener
         , FragmentSanMiguelTinderKotlin.OnFragmentInteractionListener
-        , FragmentErrepasoBatKotlin.OnFragmentInteractionListener{
+        , FragmentErrepasoBatKotlin.OnFragmentInteractionListener
+        , FragmentPuzle.OnFragmentInteractionListener{
 
     private boolean isEndNotified;
     private ProgressBar progressBar;
@@ -263,8 +221,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         btnRepaso1 = findViewById(R.id.btnRepaso1);
         btnRepaso2 = findViewById(R.id.btnRepaso2);
 
-        btnRepaso1.setVisibility(View.INVISIBLE);
-        btnRepaso2.setVisibility(View.INVISIBLE);
+        if(administrador){
+            btnRepaso1.setVisibility(View.VISIBLE);
+            btnRepaso2.setVisibility(View.VISIBLE);
+
+        }else{
+            btnRepaso1.setVisibility(View.INVISIBLE);
+            btnRepaso2.setVisibility(View.INVISIBLE);
+        }
 
         btnRepaso1.setOnClickListener(new View.OnClickListener(){
 
@@ -597,6 +561,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     marker.setIcon(iconoPunto(estado));
                     if (entrarEnPunto(estado)) {
                         lanzarFragment(FragmentPuzle.newInstance(grupo.getIdTren(),R.drawable.tren));
+//                        Intent intent = new Intent(MapActivity.this, PuzzleActivity.class);
+//                        startActivity(intent);
                     }
 
                 }
@@ -782,6 +748,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         transaction.commit();
         transaction.addToBackStack("Fragment");
 
+        btnRepaso1.setVisibility(View.INVISIBLE);
+        btnRepaso2.setVisibility(View.INVISIBLE);
+
+        ventanaMarker.setVisibility(View.INVISIBLE);
+
 
     }
 
@@ -888,7 +859,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 case 4:
                     icono  = arrayIconos[DatabaseRepository.searchEstadoErrota(idgrupo)];
 
-                    if(icono == iconoverde){
+                    if(icono == iconoverde || administrador){
 
                         btnRepasoVisibles();
 

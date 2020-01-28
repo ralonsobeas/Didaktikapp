@@ -89,6 +89,9 @@
     </string-array>
     <string name="TrenTextoError">Ez da </string>
 
+    <!-- Actividad Tren puzle -->
+    <string name="TrenPuzleTerminado">TERMINADO</string>
+>
 
     <!-- Actividad San Miguel Errota -->
     <string name="ErrotaTitulo">San Miguel Errota</string>

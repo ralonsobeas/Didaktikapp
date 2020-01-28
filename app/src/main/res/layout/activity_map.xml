@@ -52,15 +52,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logooniate" />
 
-    <FrameLayout
-        android:id="@+id/fragment_frame"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <include
         android:id="@+id/ventana_marker"
         layout="@layout/ventana_marker"
@@ -70,6 +61,17 @@
         app:layout_constraintBottom_toBottomOf="@+id/progress_bar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/fragment_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:translationZ="50dp"
+        />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnRepaso1"
@@ -81,7 +83,9 @@
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_first" />
+        app:srcCompat="@drawable/ic_first"
+        android:startOffset="5000"
+        />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnRepaso2"
@@ -93,7 +97,8 @@
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnRepaso1"
-        app:srcCompat="@drawable/ic_second" />
+        app:srcCompat="@drawable/ic_second"
+        android:startOffset="10000"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
