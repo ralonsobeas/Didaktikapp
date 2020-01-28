@@ -112,10 +112,6 @@
     <string name="si">BAI</string>
     <string name="no">EZ</string>
     <string name="nombreLugar9">Ikastetxea</string>
-    <string name="GernikaTexto">"1917ko Otsailaren 2an landatu zen Gernikako Arbolaren kimu bat Oñatiko lurretan, herriko plazaren eta frontoiaren artean hain zuzen ere eta gaur egun, 102 urte dituen haritza da. Zuhaitz honek eta Gernikako Arbola berak, euskal herritarren askatasun tradizionala eta Euskal Herriko foruak adierazten ditu. Iparragirrek kantu bat ere idatzi zion: "</string>
-    <string name="UniversidadFotos">Egin itzazu unibertsitatearen 3 argazki alde ezbedinetatik.</string>
-    <string name="UniversidadTest1">La Universidad de Oñati fue la segunda universidad del País Vasco.</string>
-    <string name="UniversidadTest2">2. Oñatiko unibertsitatea XV mendean eraiki zen.</string>
     <string name="TextoUniversidad">Unibertsitatearen sortzailea Rodrigo Mercado de Zuazola izan zen eta 1548. urtean sortu zuen. Eraikin hau, oso garrantzitsua da Euskal Herriko lehen unibertsitatea izan baitzen. Hiru mendeetan zehar honako ikasketak egin izan dira berta: medikuntza, filosofia, letrak eta teologia. Gaur egun ordea, ez da klaserik ematen bertan. Gainera, arkitektura adierazgarria dauka eta bere barruan klaustro ikusgarri bat eta Oteizaren eskultura bat daude.</string>
 
 </resources>
