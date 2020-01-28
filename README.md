@@ -223,14 +223,14 @@ Seguimiento
 - [ ] https://github.com/penny4860/SVHN-deep-digit-detector
 - [ ] https://github.com/skydoves/Needs
 
-<h4>08/01/2019 Trabajo de desarrollo</h4>
+<h4>08/01/2020 Trabajo de desarrollo</h4>
 
 - [x] Fragment Universidad separado
 - [ ] Tinder implantado en San Miguel, falta contar correctas y que aparezcan las imágenes sólo 6 veces
 - [x] Fragment Zumeltzegi guarda sus datos en BBDD
 - [x] Mapa Activity mira en BBDD el estado y el fragment de cada actividad al cargar
 
-<h4>09/01/2019 Trabajo de desarrollo</h4>
+<h4>09/01/2020 Trabajo de desarrollo</h4>
 
 - [x] Tinder terminado
 - [ ] Fallo en sopa de letras posible error en el cambio en el gradel de kers?
@@ -241,7 +241,7 @@ Seguimiento
 - [x] Spotlight en el menú principal terminado, guía de ayuda para el usuario. Nuevo botón ayuda incluido
 - [ ] Trabajo en la BBDD arreglo de errores, id's autogenerados, relaciones entre tablas y errores con los id's DEBEN SER LONG
 
-<h4>14/01/2019 Trabajo de desarrollo</h4>
+<h4>14/01/2020 Trabajo de desarrollo</h4>
 
 - [x] Ventanas para creación y selección de grupo terminadas
 - [ ] Comienzo de trabajo sobre errota de drag&drop
@@ -258,13 +258,26 @@ Seguimiento
 - [x] Cambio en lanzamiento de fragments desde MapActivity, ahora se pasa un parámetro con su idActividad para realizar las consultas/updates correctamente. Faltan algunos por cambiar ya que no están terminados
 - [ ] Comienzo de trabajo para dejar bien implementado el lanzamiento de los fragments mediante ubicación
 
-<h4>16/01/2019 Trabajo de desarrollo</h4>
+<h4>16/01/2020 Trabajo de desarrollo</h4>
 
 - [x] Modo administrador implementado, se pueden lanzar los fragments mediante ubicación o modo administrador ( clickando cuando se quiera)
 - [x] Fragments se lanzan con la ubicacion falta cambiar el icono de los marcadores para que se entienda que es clickable
 - [ ] https://github.com/marcoscgdev/DialogSheet idea para dialogo eliminar grupo
 
+<h4>28/01/2020 Trabajo de desarrollo</h4>
 
+- [x] Fragment Gernika terminado
+- [x] Repaso 1 terminado
+- [ ] Repaso 2 en proceso
+- [x] Botones de repaso implementados
+- [x] Nuevo puzle
+- [x] Sopas de letras implementadas
+- [ ] Añadir repasos, fragment gernika a BBDD
+- [x] Añadido avisador para clickar en marker
+- [x] Rutas añadidas
+- [x] Mapa offline
+- [ ] Audios y videos 
+- [ ] Traducción de los strings
 
 
 
