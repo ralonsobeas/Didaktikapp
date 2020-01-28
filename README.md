@@ -35,7 +35,7 @@ Estilos para la app, botones, colores etc... (Material Design) - https://materia
 
 Sopa de letras (Word Search) - https://github.com/abdularis/Word-Search-Game
 
-Puzle (Jigsaw Puzzle) - https://dragosholban.com/2018/03/09/how-to-build-a-jigsaw-puzzle-android-game/
+<strike> Puzle (Jigsaw Puzzle) - https://dragosholban.com/2018/03/09/how-to-build-a-jigsaw-puzzle-android-game/ </strike>
 
 Circle Menu - https://github.com/Ramotion/circle-menu-android
 
