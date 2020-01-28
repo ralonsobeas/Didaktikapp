@@ -26,7 +26,7 @@ public class WordSQLiteDataSource implements WordDataSource {
     }
 
     @Override
-    public List<Word> getWords() {
+    public List<Word> getWords(String palabras) {
         SQLiteDatabase db = mHelper.getReadableDatabase();
 
         String cols[] = {

@@ -50,12 +50,12 @@ import com.app.didaktikapp.Fragments.FragmentErrota;
 import com.app.didaktikapp.Fragments.FragmentErrotaFotos;
 import com.app.didaktikapp.Fragments.FragmentErrotaTextos;
 import com.app.didaktikapp.Fragments.FragmentErrotaVideo;
+import com.app.didaktikapp.Fragments.FragmentGernikaTexto;
 import com.app.didaktikapp.Fragments.FragmentPuzle;
 import com.app.didaktikapp.Fragments.FragmentSanMiguel;
 import com.app.didaktikapp.Fragments.FragmentSanMiguelImagenes;
 import com.app.didaktikapp.Fragments.FragmentSanMiguelTinderKotlin;
 import com.app.didaktikapp.Fragments.FragmentTrenTexto;
-import com.app.didaktikapp.Fragments.FragmentUnibertsitatea;
 import com.app.didaktikapp.Fragments.FragmentUnibertsitateaFotos;
 import com.app.didaktikapp.Fragments.FragmentUnibertsitateaPreguntas;
 import com.app.didaktikapp.Fragments.FragmentUnibertsitateaTexto;
@@ -637,7 +637,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 //                                       int fragment = actividadErrota.getFragment();
 //                                       marker.setIcon(iconoPunto(estado));
 //                                       if (entrarEnPunto(estado)) {
-//                    lanzarFragment(new FragmentGernikaTexto());
+                    lanzarFragment(new FragmentGernikaTexto());
 //                                       }
 
 
@@ -650,10 +650,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 //ARRIKRUTZEKO KOBAK (sin uso, en medio)
                 else if( (administrador && markerLatitud == 43.000583 && markerLongitud == -2.433250) ||  (distanciaCoord(latitud,longitud,43.000583,-2.433250))&& markerLatitud == 43.000583 && markerLongitud == -2.433250){
                     marker.setIcon(iconoPunto(2));
-                    Log.i("tag","s");
-                    Intent intent = new Intent(MapActivity.this, SplashScreenActivity.class);
+                    Intent intent = new Intent(MapActivity.this, GamePlayActivity.class);
                     intent.putExtra(GamePlayActivity.EXTRA_ROW_COUNT, 10);
                     intent.putExtra(GamePlayActivity.EXTRA_COL_COUNT, 10);
+                    intent.putExtra("listaPalabras", "words_errepaso2.xml");
                     startActivity(intent);
 
                 }

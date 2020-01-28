@@ -17,8 +17,11 @@ public class SplashScreenActivity extends AppCompatActivity {
 //        Intent intent = new Intent(this, MainMenuActivity.class);
 //        startActivity(intent);
         Intent intent = new Intent(SplashScreenActivity.this, GamePlayActivity.class);
+        Bundle extras = getIntent().getExtras();
         intent.putExtra(GamePlayActivity.EXTRA_ROW_COUNT, 10);
         intent.putExtra(GamePlayActivity.EXTRA_COL_COUNT, 10);
+
+
         startActivity(intent);
 
         finish();

@@ -98,7 +98,6 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
 
 
-
     //Filtro
     implementation 'com.github.zomato:androidphotofilters:1.0.1'
 
@@ -144,9 +143,9 @@ dependencies {
     //DB Debug
     debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
 // Stetho core
-    compile 'com.facebook.stetho:stetho:1.5.1'
+    implementation 'com.facebook.stetho:stetho:1.5.1'
     //If you want to add a network helper
-    compile 'com.facebook.stetho:stetho-okhttp:1.5.1'
+    implementation 'com.facebook.stetho:stetho-okhttp:1.5.1'
 
 
     //FlexboxLayout

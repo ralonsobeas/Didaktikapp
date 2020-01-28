@@ -23,7 +23,7 @@ import javax.xml.parsers.SAXParserFactory;
 
 public class WordXmlDataSource implements WordDataSource {
 
-    private static final String ASSET_WORD_BANK_FILE = "words.xml";
+    private static final String ASSET_WORD_BANK_FILE = "words_zumeltzegi.xml";
 
     private AssetManager mAssetManager;
 
@@ -32,13 +32,13 @@ public class WordXmlDataSource implements WordDataSource {
         mAssetManager = context.getAssets();
     }
 
-    @Override
-    public List<Word> getWords() {
+
+    public List<Word> getWords(String palabras) {
         try {
             XMLReader reader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
             SaxWordBankHandler wordBankHandler = new SaxWordBankHandler();
             reader.setContentHandler(wordBankHandler);
-            reader.parse(getXmlInputSource());
+            reader.parse(getXmlInputSource(palabras));
 
             return wordBankHandler.getWords();
         } catch (Exception e) {
@@ -47,7 +47,9 @@ public class WordXmlDataSource implements WordDataSource {
         return new ArrayList<>();
     }
 
-    private InputSource getXmlInputSource() throws IOException {
-        return new InputSource(mAssetManager.open(ASSET_WORD_BANK_FILE));
+    private InputSource getXmlInputSource(String palabras) throws IOException {
+        return new InputSource(mAssetManager.open(palabras));
     }
+
+
 }

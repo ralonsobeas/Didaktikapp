@@ -12,6 +12,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import androidx.lifecycle.ViewModelProviders;
@@ -132,9 +133,11 @@ public class GamePlayActivity extends FullscreenActivity {
                 int gid = extras.getInt(EXTRA_GAME_ROUND_ID);
                 mViewModel.loadGameRound(gid);
             } else {
+                Toast.makeText(getBaseContext(), extras.getString("palabras"), Toast.LENGTH_SHORT).show();
                 int rowCount = extras.getInt(EXTRA_ROW_COUNT);
                 int colCount = extras.getInt(EXTRA_COL_COUNT);
-                mViewModel.generateNewGameRound(rowCount, colCount);
+                String palabras = extras.getString("listaPalabras");
+                mViewModel.generateNewGameRound(rowCount, colCount, palabras);
             }
         }
 

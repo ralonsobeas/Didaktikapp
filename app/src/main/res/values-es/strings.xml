@@ -129,6 +129,31 @@
 
     <!-- Actividad Universidad -->
     <string name="TextoUniversidad">Unibertsitatearen sortzailea Rodrigo Mercado de Zuazola izan zen eta 1548. urtean sortu zuen. Eraikin hau, oso garrantzitsua da Euskal Herriko lehen unibertsitatea izan baitzen. Hiru mendeetan zehar honako ikasketak egin izan dira berta: medikuntza, filosofia, letrak eta teologia. Gaur egun ordea, ez da klaserik ematen bertan. Gainera, arkitektura adierazgarria dauka eta bere barruan klaustro ikusgarri bat eta Oteizaren eskultura bat daude. </string>
+    <string name="universidadTest2">2. Oñatiko unibertsitatea XV mendean eraiki zen.</string>
+    <string name="universidadFotos">Egin itzazu unibertsitatearen 3 argazki alde ezbedinetatik.</string>
+    <string name="universidad">Unibertsitatea</string>
+    <string name="universidadTest1">1. Oñatiko unibertsitatea Euskal Herriko bigarren unibertsitatea izan zen.</string>
+
+    <!-- Actividad Gernika -->
+    <string name="gernika">Gernika</string>
+    <string name="textoGernika">1917ko Otsailaren 2an landatu zen Gernikako Arbolaren kimu bat Oñatiko lurretan, herriko plazaren eta frontoiaren artean hain zuzen ere eta gaur egun, 102 urte dituen haritza da. Zuhaitz honek eta Gernikako Arbola berak, euskal herritarren askatasun tradizionala eta Euskal Herriko foruak adierazten ditu. Iparragirrek kantu bat ere idatzi zion: </string>
+    <string name="poemaGernika"><![CDATA[Gernikako arbola</br>da bedeinkatua</br>Euskaldunen artean</br>guztiz maitatua.</br>Eman ta zabal zazu munduan frutua</br>adoratzen zaitugu arbola santua. ]]>
+    </string>
+    <!-- Pregunta 1 -->
+    <string name="GernikaPregunta1Titulo">1. Zein motatako arbola da?</string>
+    <string name="GernikaPregunta1OpcionA">Haritza</string>
+    <string name="GernikaPregunta1OpcionB">Izeia </string>
+    <string name="GernikaPregunta1OpcionC">Gorostia</string>
+    <!-- Pregunta 2 -->
+    <string name="GernikaPregunta2Titulo">2. Zenbat urte ditu?</string>
+    <string name="GernikaPregunta2OpcionA">106</string>
+    <string name="GernikaPregunta2OpcionB">104</string>
+    <string name="GernikaPregunta2OpcionC">102</string>
+    <!-- Pregunta 3 -->
+    <string name="GernikaPregunta3Titulo">3. Nork idatzi zion kantu bat?</string>
+    <string name="GernikaPregunta3OpcionA">Etxebarria</string>
+    <string name="GernikaPregunta3OpcionB">Iparragirre</string>
+    <string name="GernikaPregunta3OpcionC">Neruda</string>
 
     <!-- prefs -->
     <string name="pref_showGridLine">showGridLine</string>
@@ -161,12 +186,8 @@
     <string name="grayscale">Grayscale</string>
     <string name="game_data_desc">:gridSize Grid, :wordCount Words</string>
     <string name="corregir">Zuzendu</string>
-    <string name="universidad">Unibertsitatea</string>
-    <string name="universidadTest1">1. Oñatiko unibertsitatea Euskal Herriko bigarren unibertsitatea izan zen.</string>
     <string name="si">BAI</string>
     <string name="no">EZ</string>
-    <string name="universidadTest2">2. Oñatiko unibertsitatea XV mendean eraiki zen.</string>
-    <string name="universidadFotos">Egin itzazu unibertsitatearen 3 argazki alde ezbedinetatik.</string>
     <string name="finalizar">AMAITU</string>
     <string name="nombreLugar9">Escuela</string>
     <string name="nombreLugar10">Gernika</string>
