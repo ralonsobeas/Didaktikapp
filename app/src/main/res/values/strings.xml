@@ -19,7 +19,7 @@
 <string name="nombreLugar6" translatable="false">Arantzazuko Santutegia</string>
 <string name="nombreLugar7" translatable="false">Araotz auzoa</string>
 <string name="nombreLugar8" translatable="false">Arrikrutzeko kobak</string>
-<string name="nombreLugar9">Ikastetxea</string>
+<string name="nombreLugar9" translatable="false">Ikastetxea</string>
 <string name="nombreLugar10" translatable="false">Gernika</string>
 
 <string name="new_location">Lokalizazio Berria</string>
@@ -107,17 +107,22 @@
 <string name="finished">Finished!</string>
 
 <!-- Actividad Universidad -->
-<string name="TextoUniversidad">Unibertsitatearen sortzailea Rodrigo Mercado de Zuazola izan zen eta 1548. urtean sortu zuen. Eraikin hau, oso garrantzitsua da Euskal Herriko lehen unibertsitatea izan baitzen. Hiru mendeetan zehar honako ikasketak egin izan dira berta: medikuntza, filosofia, letrak eta teologia. Gaur egun ordea, ez da klaserik ematen bertan. Gainera, arkitektura adierazgarria dauka eta bere barruan klaustro ikusgarri bat eta Oteizaren eskultura bat daude. </string>
-<string name="universidadTest2">2. Oñatiko unibertsitatea XV mendean eraiki zen.</string>
-<string name="universidadFotos">Egin itzazu unibertsitatearen 3 argazki alde ezbedinetatik.</string>
-<string name="universidad" translatable="false">Unibertsitatea</string>
-<string name="universidadTest1">1. Oñatiko unibertsitatea Euskal Herriko bigarren unibertsitatea izan zen.</string>
+<string name="UniversidadTexto">Unibertsitatearen sortzailea Rodrigo Mercado de Zuazola izan zen eta 1548. urtean sortu zuen. Eraikin hau, oso garrantzitsua da Euskal Herriko lehen unibertsitatea izan baitzen. Hiru mendeetan zehar honako ikasketak egin izan dira berta: medikuntza, filosofia, letrak eta teologia. Gaur egun ordea, ez da klaserik ematen bertan. Gainera, arkitektura adierazgarria dauka eta bere barruan klaustro ikusgarri bat eta Oteizaren eskultura bat daude. </string>
+<string name="UniversidadTest2">2. Oñatiko unibertsitatea XV mendean eraiki zen.</string>
+<string name="UniversidadFotos">Egin itzazu unibertsitatearen 3 argazki alde ezbedinetatik.</string>
+<string name="Universidad" translatable="false">Unibertsitatea</string>
+<string name="UniversidadTest1">1. Oñatiko unibertsitatea Euskal Herriko bigarren unibertsitatea izan zen.</string>
 
 <!-- Actividad Gernika -->
-<string name="gernika" translatable="false">Gernika</string>
-<string name="textoGernika">1917ko Otsailaren 2an landatu zen Gernikako Arbolaren kimu bat Oñatiko lurretan, herriko plazaren eta frontoiaren artean hain zuzen ere eta gaur egun, 102 urte dituen haritza da. Zuhaitz honek eta Gernikako Arbola berak, euskal herritarren askatasun tradizionala eta Euskal Herriko foruak adierazten ditu. Iparragirrek kantu bat ere idatzi zion: </string>
-<string name="poemaGernika"><![CDATA[Gernikako arbola</br>da bedeinkatua</br>Euskaldunen artean</br>guztiz maitatua.</br>Eman ta zabal zazu munduan frutua</br>adoratzen zaitugu arbola santua. ]]>
-    </string>
+<string name="Gernika" translatable="false">Gernika</string>
+<string name="GernikaTexto">1917ko Otsailaren 2an landatu zen Gernikako Arbolaren kimu bat Oñatiko lurretan, herriko plazaren eta frontoiaren artean hain zuzen ere eta gaur egun, 102 urte dituen haritza da. Zuhaitz honek eta Gernikako Arbola berak, euskal herritarren askatasun tradizionala eta Euskal Herriko foruak adierazten ditu. Iparragirrek kantu bat ere idatzi zion: </string>
+<!-- Poema partido en frases -->
+<string name="GernikaPoemaFrase1">Gernikako arbola</string>
+<string name="GernikaPoemaFrase2">da bedeinkatua</string>
+<string name="GernikaPoemaFrase3">Euskaldunen artean</string>
+<string name="GernikaPoemaFrase4">guztiz maitatua.</string>
+<string name="GernikaPoemaFrase5">Eman ta zabal zazu munduan frutua</string>
+<string name="GernikaPoemaFrase6">adoratzen zaitugu arbola santua. </string>
 <!-- Pregunta 1 -->
 <string name="GernikaPregunta1Titulo">1. Zein motatako arbola da?</string>
 <string name="GernikaPregunta1OpcionA">Haritza</string>
@@ -133,7 +138,6 @@
 <string name="GernikaPregunta3OpcionA" translatable="false">Etxebarria</string>
 <string name="GernikaPregunta3OpcionB" translatable="false">Iparragirre</string>
 <string name="GernikaPregunta3OpcionC" translatable="false">Neruda</string>
-
 
 <!-- prefs -->
 <string name="pref_showGridLine" translatable="false">showGridLine</string>
