@@ -2,7 +2,6 @@ package com.app.didaktikapp.wordsearch.features.gameplay;
 
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -12,12 +11,9 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
-
 
 import androidx.lifecycle.ViewModelProviders;
 
-import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.BBDD.Modelos.ActividadZumeltzegi;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.R;
@@ -133,7 +129,6 @@ public class GamePlayActivity extends FullscreenActivity {
                 int gid = extras.getInt(EXTRA_GAME_ROUND_ID);
                 mViewModel.loadGameRound(gid);
             } else {
-                Toast.makeText(getBaseContext(), extras.getString("palabras"), Toast.LENGTH_SHORT).show();
                 int rowCount = extras.getInt(EXTRA_ROW_COUNT);
                 int colCount = extras.getInt(EXTRA_COL_COUNT);
                 String palabras = extras.getString("listaPalabras");

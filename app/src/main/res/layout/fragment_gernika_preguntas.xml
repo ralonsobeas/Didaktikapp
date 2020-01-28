@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textSize="80sp"
-            android:text="@string/gernika"
+            android:text="@string/Gernika"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -150,27 +150,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="@color/negroFondo"
                     android:text="@string/GernikaPregunta3OpcionA"
-                    android:textSize="24sp" />
+                    android:textColor="@color/negroFondo"
+                    android:textSize="18sp" />
 
                 <RadioButton
                     android:id="@+id/GernikaPregunta3OpcionB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="@color/negroFondo"
                     android:text="@string/GernikaPregunta3OpcionB"
-                    android:textSize="24sp" />
+                    android:textColor="@color/negroFondo"
+                    android:textSize="18sp" />
 
                 <RadioButton
                     android:id="@+id/GernikaPregunta3OpcionC"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="@color/negroFondo"
                     android:text="@string/GernikaPregunta3OpcionC"
-                    android:textSize="24sp" />
+                    android:textColor="@color/negroFondo"
+                    android:textSize="18sp" />
 
 
             </RadioGroup>
@@ -183,7 +183,7 @@
                 android:layout_marginTop="50dp"
                 android:background="@drawable/ripple_boton_bg"
                 android:clickable="true"
-                android:enabled="true"
+                android:enabled="false"
                 android:text="@string/corregir" />
 
         </LinearLayout>

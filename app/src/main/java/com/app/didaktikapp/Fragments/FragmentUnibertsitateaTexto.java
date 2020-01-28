@@ -2,7 +2,6 @@ package com.app.didaktikapp.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,7 +72,7 @@ public class FragmentUnibertsitateaTexto extends Fragment {
         typeWriterView.setWithMusic(false);
 
         //Animating Text
-        typeWriterView.animateText(getString(R.string.TextoUniversidad));
+        typeWriterView.animateText(getString(R.string.UniversidadTexto));
 
         btnContinuar = view.findViewById(R.id.btnContinuar);
         btnContinuar.setText(R.string.Continuar);

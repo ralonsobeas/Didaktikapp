@@ -209,6 +209,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         //CARGAR OBJETO GRUPO DE LA BBDD
         idgrupo = getIntent().getExtras().getLong("IDGRUPO");
         administrador = getIntent().getExtras().getBoolean("ADMINISTRADOR");
+        administrador = true;
         grupo = DatabaseRepository.getAppDatabase().getGrupoDao().getGrupo(idgrupo);
 
         cargarListaLugares();
@@ -603,7 +604,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 //                                       int fragment = actividadErrota.getFragment();
 //                                       marker.setIcon(iconoPunto(estado));
 //                                       if (entrarEnPunto(estado)) {
-                    lanzarFragment(new FragmentGernikaTexto());
+                    lanzarFragment(FragmentGernikaTexto.newInstance(grupo.getIdGernika()));
 //                                       }
 
 

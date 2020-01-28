@@ -5,10 +5,12 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.CardStack.CardStackAdapter;
@@ -36,7 +38,11 @@ public class FragmentGernikaPoema extends Fragment {
 
     private View view = null;
 
+    private Long idActividad;
+
     private OnFragmentInteractionListener mListener;
+
+    private Button btnContinuar;
 
     public FragmentGernikaPoema() {
         // Required empty public constructor
@@ -47,15 +53,13 @@ public class FragmentGernikaPoema extends Fragment {
      * this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment FragmentSanMiguelTinder.
      */
     // TODO: Rename and change types and number of parameters
-    public static FragmentGernikaPoema newInstance(String param1, String param2) {
+    public static FragmentGernikaPoema newInstance(Long param1) {
         FragmentGernikaPoema fragment = new FragmentGernikaPoema();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putLong(ARG_PARAM1, param1);
         fragment.setArguments(args);
         return fragment;
     }
@@ -64,7 +68,7 @@ public class FragmentGernikaPoema extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            idActividad = getArguments().getLong(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
@@ -73,11 +77,28 @@ public class FragmentGernikaPoema extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view =  inflater.inflate(R.layout.fragment_san_miguel_tinder, container, false);
-        CardStackView cardStackView = view.findViewById(R.id.card_stack_view);
-                cardStackView.setLayoutManager(new CardStackLayoutManager(getContext()));
+        view =  inflater.inflate(R.layout.fragment_gernika_poema, container, false);
 
-        cardStackView.setAdapter(new CardStackAdapter());
+        btnContinuar = view.findViewById(R.id.btnContinuar);
+        btnContinuar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //ACTUALIZAR BBDD
+                //CAMBIAR DE FRAGMENT
+                getFragmentManager().beginTransaction().remove(FragmentGernikaPoema.this).commit();
+
+
+                //Lanzar siguiente fragment
+                FragmentGernikaPreguntas fragment = FragmentGernikaPreguntas.newInstance(idActividad);
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
+                transaction.replace(R.id.fragment_frame, fragment);
+                transaction.commit();
+                transaction.addToBackStack("Fragment");
+
+            }
+        });
         return view;
     }
 
@@ -91,12 +112,7 @@ public class FragmentGernikaPoema extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
+
     }
 
     @Override
@@ -126,4 +142,6 @@ public class FragmentGernikaPoema extends Fragment {
 
         ((MapActivity)getActivity()).cambiarLocalizacion();
     }
+
+
 }

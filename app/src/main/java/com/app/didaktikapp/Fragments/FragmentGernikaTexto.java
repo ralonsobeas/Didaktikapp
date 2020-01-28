@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.app.didaktikapp.R;
 
@@ -40,6 +39,8 @@ public class FragmentGernikaTexto extends Fragment {
 
     private View view;
 
+    private Long idActividad;
+
     private LinearLayout textoBreveLayout;
 
     private Button btnContinuar;
@@ -53,15 +54,13 @@ public class FragmentGernikaTexto extends Fragment {
      * this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment FragmentGernikaTexto.
      */
     // TODO: Rename and change types and number of parameters
-    public static FragmentGernikaTexto newInstance(String param1, String param2) {
+    public static FragmentGernikaTexto newInstance(Long param1) {
         FragmentGernikaTexto fragment = new FragmentGernikaTexto();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putLong(ARG_PARAM1, param1);
         fragment.setArguments(args);
         return fragment;
     }
@@ -70,7 +69,7 @@ public class FragmentGernikaTexto extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            idActividad = getArguments().getLong(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
@@ -92,10 +91,9 @@ public class FragmentGernikaTexto extends Fragment {
         typeWriterView.setWithMusic(false);
 
         //Animating Text
-        typeWriterView.animateText(getString(R.string.textoGernika));
+        typeWriterView.animateText(getString(R.string.GernikaTexto));
 
         btnContinuar = view.findViewById(R.id.btnContinuar);
-        btnContinuar.setText(R.string.Continuar);
         btnContinuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,7 +104,7 @@ public class FragmentGernikaTexto extends Fragment {
 
 
                 //Lanzar siguiente fragment
-                FragmentGernikaPoema fragment = FragmentGernikaPoema.newInstance(null,null);
+                FragmentGernikaPoema fragment = FragmentGernikaPoema.newInstance(idActividad);
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
                 transaction.replace(R.id.fragment_frame, fragment);

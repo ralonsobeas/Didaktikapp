@@ -32,29 +32,66 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <LinearLayout
-            android:id="@+id/gernikaPoemaLayout"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/poemaGernikaFrase1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
-            android:orientation="vertical"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/GernikaPoemaFrase1"
+            android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/gernikaTitulo">
+            app:layout_constraintTop_toBottomOf="@+id/gernikaTitulo" />
 
-            <in.codeshuffle.typewriterview.TypeWriterView
-                android:id="@+id/gernikaPoema"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:justificationMode="inter_word"
-                android:text=""
-                android:textAlignment="viewStart"
-                android:textSize="24sp" />
+        <TextView
+            android:id="@+id/poemaGernikaFrase2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/GernikaPoemaFrase2"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/poemaGernikaFrase1"
+            app:layout_constraintTop_toBottomOf="@+id/poemaGernikaFrase1" />
 
-        </LinearLayout>
+        <TextView
+            android:id="@+id/poemaGernikaFrase3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/GernikaPoemaFrase3"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/poemaGernikaFrase2"
+            app:layout_constraintTop_toBottomOf="@+id/poemaGernikaFrase2" />
+
+        <TextView
+            android:id="@+id/poemaGernikaFrase4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/GernikaPoemaFrase4"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/poemaGernikaFrase3"
+            app:layout_constraintTop_toBottomOf="@+id/poemaGernikaFrase3" />
+
+        <TextView
+            android:id="@+id/poemaGernikaFrase5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/GernikaPoemaFrase5"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/poemaGernikaFrase4"
+            app:layout_constraintTop_toBottomOf="@+id/poemaGernikaFrase4" />
+
+        <TextView
+            android:id="@+id/poemaGernikaFrase6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/GernikaPoemaFrase6"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/poemaGernikaFrase5"
+            app:layout_constraintTop_toBottomOf="@+id/poemaGernikaFrase5" />
 
         <Button
             android:id="@+id/btnContinuar"
