@@ -3,39 +3,21 @@
     <string name="mapbox_access_token">pk.eyJ1IjoiZGlkYWt0aWt1cHYiLCJhIjoiY2szNzhiNmt6MDNlbTNjbm8yMDNmeTZyNiJ9.10ubJTPv5AC6X6tDYZRhNw</string>
 
 
-    <string name="app_name">Didaktikapp</string>
-    <string name="html_app_name">
-        <![CDATA[ <b><font color=#222020><u>ESDidaktik</u></b><b><font color=#2B82C5><u>app</u> </b>
-        ]]>
-    </string>
-
-
     <!-- Lugares -->
-    <string name="nombreLugar1">Zumeltzegi dorrea</string>
-    <string name="nombreLugar2">Sancti Spiritus unibertsitatea</string>
-    <string name="nombreLugar3">San Miguel Parrokia</string>
-    <string name="nombreLugar4">Trena</string>
-    <string name="nombreLugar5">Errota (turismo bulegoa)</string>
-    <string name="nombreLugar6">Arantzazuko Santutegia</string>
-    <string name="nombreLugar7">Araotz auzoa</string>
-    <string name="nombreLugar8">Arrikrutzeko kobak</string>
 
     <string name="new_location">Nueva localizacion</string>
 
     <!-- Explicaciones para usuario -->
-    <string name="user_location_permission_explanation">Lokalizaziorako baimenak</string>
-    <string name="user_location_permission_not_granted">Ez duzu lokalizaziorako baimenik</string>
+    <string name="user_location_permission_explanation">Permisos de localización</string>
+    <string name="user_location_permission_not_granted">No se han otorgados permisos de localización</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- Actividad Zumeltzegi -->
-    <string name="ZumeltzegiSopaZumeltzegi">Zumeltzegi</string>
     <string name="ZumeltzegiSopaDefentsa">Defensa</string>
-    <string name="ZumeltzegiSopaKondea">El conde</string>
+    <string name="ZumeltzegiSopaKondea">La del conde</string>
     <string name="ZumeltzegiSopaHotela">Hoteles</string>
     <string name="ZumeltzegiSopaSiguiente">Siguiente</string>
-    <string name="ZumeltzegiGame_data_desc">:gridSize Grid, :wordCount Words</string>
     <string name="ZumeltzegiSopaMain_menu">Menu principal</string>
     <string name="ZumeltzegiSopaCongratulations">¡Felicidades!</string>
 
@@ -44,35 +26,28 @@
     <string name="ZumeltzegiSopaNew_game">Nuevo juego</string>
 
     <string name="ZumeltzegiTitulo"><![CDATA[Zumeltzegi ]]></string>
-    <string name="ZumeltzegiPregunta1Titulo">1.Zertarako eraiki zen dorretxea?</string>
+    <string name="ZumeltzegiPregunta1Titulo">1. ¿Para qué se construyó la torre?</string>
 
-    <string name="ZumeltzegiPregunta2Titulo">2. Ze familia bizi zen dorretxean XV. Mendean?</string>
+    <string name="ZumeltzegiPregunta2Titulo">2. ¿Qué familia vivió en la casa torre desde el siglo XV?</string>
 
     <string name="ToastImagenes">Imágenes guardadas en galería</string>
 
 
     <!-- Actividad San Miguel -->
-    <string name="SanMiguelTitulo">San Miguel</string>
     <!-- Pregunta 1 -->
-    <string name="SanMiguelPregunta1Titulo">1. Zein urtetan eraiki zen?</string>
-    <string name="SanMiguelPregunta1OpcionA">XVI</string>
-    <string name="SanMiguelPregunta1OpcionB">XII</string>
-    <string name="SanMiguelPregunta1OpcionC">XV</string>
+    <string name="SanMiguelPregunta1Titulo">1. ¿En qué siglo se construyó?</string>
     <!-- Pregunta 2 -->
-    <string name="SanMiguelPregunta2Titulo">2. Noiz egiten dute dantza bertan?</string>
-    <string name="SanMiguelPregunta2OpcionA">Herriko Jaietan</string>
-    <string name="SanMiguelPregunta2OpcionB">Korpusetan</string>
-    <string name="SanMiguelPregunta2OpcionC">Gabonetan</string>
+    <string name="SanMiguelPregunta2Titulo">2. ¿Cuando bailan en la parrokia?</string>
+    <string name="SanMiguelPregunta2OpcionA">En fiestas del pueblo</string>
+    <string name="SanMiguelPregunta2OpcionB">En los corpus</string>
+    <string name="SanMiguelPregunta2OpcionC">En navidad</string>
     <!-- Pregunta 3 -->
-    <string name="SanMiguelPregunta3Titulo">3. Zenbat nabe ditu?</string>
-    <string name="SanMiguelPregunta3OpcionA">2</string>
-    <string name="SanMiguelPregunta3OpcionB">5</string>
-    <string name="SanMiguelPregunta3OpcionC">4</string>
+    <string name="SanMiguelPregunta3Titulo">3. ¿Cuántas naves tiene la parroquia?</string>
     <!-- Pregunta 4 -->
-    <string name="SanMiguelPregunta4Titulo">4. Noiz egiten dute dantza bertan?</string>
-    <string name="SanMiguelPregunta4OpcionA">Altare azpitik</string>
-    <string name="SanMiguelPregunta4OpcionB">Klaustro azpitik</string>
-    <string name="SanMiguelPregunta4OpcionC">Eliza ondotik</string>
+    <string name="SanMiguelPregunta4Titulo">4. ¿Dónde bailan?</string>
+    <string name="SanMiguelPregunta4OpcionA">Por debajo del altar</string>
+    <string name="SanMiguelPregunta4OpcionB">Por debajo del claustro</string>
+    <string name="SanMiguelPregunta4OpcionC">Al lado de la iglesia</string>
     <string name="Continuar">Continuar</string>
 
     <string name="Correcta">Correcta</string>
@@ -80,96 +55,63 @@
 
 
     <!-- Actividad Tren -->
-    <string name="TrenTextoTitulo">Trena</string>
-    <string name="TrenTextoCambiar">Oñatin garai batean trena aurkitzen zen, gaur egun, (1) ________ den eraikina da lehengo tren estazioa. 1887 urtean sortu zen eta azken bidaia, 1967 urtean izan zen. (2) ________ deitzen zen eta Bergaratik Lizarraraino heltzen zen, (3) ________ pasata. </string>
+    <string name="TrenTextoCambiar">La antigua estación de tren es un edificio situado en Oñati, y en la actualidad es (1) ________. Fue fundada en 1887 y su último viaje fue en 1967. La ruta era la (2) ________ e iba desde Bergara hasta Estella, pasando por (3) ________.</string>
     <string-array name="TrenTextoCambiar">
-        <item>Gasteizetik</item>
-        <item>Postetxea</item>
-        <item>Vasco-Navarro</item>
+        <item>Vitoria</item>
+        <item>correos</item>
+        <item>Vasco-Navarra</item>
     </string-array>
-    <string name="TrenTextoError">Ez da </string>
+    <string name="TrenTextoError">No es</string>
 
     <!-- Actividad Tren puzle -->
     <string name="TrenPuzleTerminado">TERMINADO</string>
 
 
     <!-- Actividad San Miguel Errota -->
-    <string name="ErrotaTitulo">San Miguel Errota</string>
-    <string name="ErrotaPregunta1">Zer da tobera edo kaxa?</string>
-    <string name="ErrotaPregunta2">Zein urtean erosi zuten Santa Ana Komentuko mojek errota?</string>
+    <string name="ErrotaPregunta1">Saca una foto a la tolva y caja del molino</string>
     <string name="Terminar">Terminar</string>
 
 
     <string name="new_game_loading_text">Generating game data…</string>
-    <string name="summary_about">Word search game is a puzzle game, where the player try to find words in a grid of letters in horizontal, vertical and diagonal direction.</string>
+    <string name="summary_about">Word search game es una sopa de letras, donde el jugador intenta encontrar palabras vertical, horizontal y diagonalmente</string>
     <string name="finished">¡Terminado!</string>
 
     <!-- Actividad Universidad -->
-    <string name="UniversidadTexto">Unibertsitatearen sortzailea Rodrigo Mercado de Zuazola izan zen eta 1548. urtean sortu zuen. Eraikin hau, oso garrantzitsua da Euskal Herriko lehen unibertsitatea izan baitzen. Hiru mendeetan zehar honako ikasketak egin izan dira berta: medikuntza, filosofia, letrak eta teologia. Gaur egun ordea, ez da klaserik ematen bertan. Gainera, arkitektura adierazgarria dauka eta bere barruan klaustro ikusgarri bat eta Oteizaren eskultura bat daude. </string>
-    <string name="UniversidadTest2">2. Oñatiko unibertsitatea XV mendean eraiki zen.</string>
-    <string name="UniversidadFotos">Egin itzazu unibertsitatearen 3 argazki alde ezbedinetatik.</string>
-    <string name="Universidad">Unibertsitatea</string>
-    <string name="UniversidadTest1">1. Oñatiko unibertsitatea Euskal Herriko bigarren unibertsitatea izan zen.</string>
+    <string name="TextoUniversidad">Fue fundada por Rodrigo Mercado de Zuazola en 1548. Este edificio es muy importante ya que fue la primera universidad del País Vasco. Durante tres siglos se han realizado los siguientes estudios: Medicina, Filosofía, Letras y Teología. Hoy en día, sin embargo, no se dan clases. Además, cuenta con una arquitectura representativa y en su interior hay un espectacular claustro y una escultura de Oteiza.</string>
 
     <!-- Actividad Gernika -->
-    <string name="Gernika">Gernika</string>
-    <string name="GernikaTexto">1917ko Otsailaren 2an landatu zen Gernikako Arbolaren kimu bat Oñatiko lurretan, herriko plazaren eta frontoiaren artean hain zuzen ere eta gaur egun, 102 urte dituen haritza da. Zuhaitz honek eta Gernikako Arbola berak, euskal herritarren askatasun tradizionala eta Euskal Herriko foruak adierazten ditu. Iparragirrek kantu bat ere idatzi zion: </string>
+    <string name="GernikaTexto">El 2 de febrero de 1917 se plantó un retoño del Árbol de Gernika en tierras de Oñati, justo entre la plaza del pueblo y el frontón, y hoy en día es un roble de 102 años. Este árbol y el propio Árbol de Gernika representan la libertad tradicional de los vascos y los fueros de Euskal Herria. Iparragirre también le escribió una canción:</string>
     <!-- Poema partido en frases -->
-    <string name="GernikaPoemaFrase1">Gernikako arbola</string>
-    <string name="GernikaPoemaFrase2">da bedeinkatua</string>
-    <string name="GernikaPoemaFrase3">Euskaldunen artean</string>
-    <string name="GernikaPoemaFrase4">guztiz maitatua.</string>
-    <string name="GernikaPoemaFrase5">Eman ta zabal zazu munduan frutua</string>
-    <string name="GernikaPoemaFrase6">adoratzen zaitugu arbola santua. (...)</string>
     <!-- Pregunta 1 -->
-    <string name="GernikaPregunta1Titulo">1. Zein motatako arbola da?</string>
-    <string name="GernikaPregunta1OpcionA">Haritza</string>
-    <string name="GernikaPregunta1OpcionB">Izeia </string>
-    <string name="GernikaPregunta1OpcionC">Gorostia</string>
+    <string name="GernikaPregunta1Titulo">1. ¿Qué tipo de árbol es?</string>
+    <string name="GernikaPregunta1OpcionA">Roble</string>
+    <string name="GernikaPregunta1OpcionB">Abeto</string>
+    <string name="GernikaPregunta1OpcionC">Acebo</string>
     <!-- Pregunta 2 -->
-    <string name="GernikaPregunta2Titulo">2. Zenbat urte ditu?</string>
-    <string name="GernikaPregunta2OpcionA">106</string>
-    <string name="GernikaPregunta2OpcionB">104</string>
-    <string name="GernikaPregunta2OpcionC">102</string>
+    <string name="GernikaPregunta2Titulo">2. ¿Cuántos años tiene?</string>
     <!-- Pregunta 3 -->
-    <string name="GernikaPregunta3Titulo">3. Nork idatzi zion kantu bat?</string>
-    <string name="GernikaPregunta3OpcionA">Etxebarria</string>
-    <string name="GernikaPregunta3OpcionB">Iparragirre</string>
-    <string name="GernikaPregunta3OpcionC">Neruda</string>
+    <string name="GernikaPregunta3Titulo">3. ¿Quien le dedicó una canción?</string>
 
     <!-- prefs -->
-    <string name="pref_showGridLine">showGridLine</string>
-    <string name="pref_snapToGrid">snapToGrid</string>
-    <string name="pref_enableSound">enableSound</string>
-    <string name="pref_deleteAfterFinish">deleteAfterFinish</string>
-    <string name="pref_enableFullscreen">enableFullscreen</string>
-    <string name="pref_autoScaleGrid">autoScaleGrid</string>
-    <string name="snap_to_grid_def_val">ALWAYS_SNAP</string>
-    <string name="show_grid_line">Show Grid Line</string>
-    <string name="snap_to_grid">Snap To Grid</string>
     <string name="about">Acerca de</string>
-    <string name="saved_game">Saved game data</string>
+    <string name="saved_game">Datos guardados</string>
     <string name="enable_sound">Habilitar sonido</string>
-    <string name="about_credit">Developer: Abdul Aris R.</string>
-    <string name="delete_finish">Delete Finish</string>
+    <string name="delete_finish">Eliminar y terminar</string>
     <string name="enable_fullscreen">Pantalla completa</string>
-    <string name="auto_scale_grid">Auto Scale Grid</string>
     <string name="finish_text">¡Sopa terminada!</string>
-    <string name="version">Version</string>
-    <string name="version_num">1.0</string>
     <string name="settings">Ajustes</string>
     <string name="congratulations"><![CDATA[¡Felicidades!]]></string>
     <string name="main_menu">Regresar al mapa</string>
     <string name="new_game">JUEGO NUEVO</string>
-    <string name="auto_scale_grid_summary">Automatically scale grid based on the screen width</string>
-    <string name="pref_reverseMatching">reverseMatching</string>
-    <string name="reverse_matching">Reverse matching</string>
-    <string name="pref_grayscale">grayscale</string>
-    <string name="grayscale">Grayscale</string>
+    <string name="auto_scale_grid_summary">Tablero redimensionado acorde al tamaño de pantalla</string>
     <string name="corregir">Corregir</string>
     <string name="si">SI</string>
     <string name="no">NO</string>
     <string name="nombreLugar9">Escuela</string>
-    <string name="nombreLugar10">Gernika</string>
+    <string name="ErrotaPregunta2">¿En qué año compraron las monja de Santa Ana el molino?</string>
+    <string name="UniversidadFotos">Haz 3 fotos de la universidad.</string>
+    <string name="UniversidadTest1">1. La Universidad de Oñati fue la segunda universidad del País Vasco.</string>
+    <string name="UniversidadTest2">2. La universidad de Oñati fue construida en el siglo XV.</string>
+    <string name="Universidad">Universidad</string>
 
 </resources>
