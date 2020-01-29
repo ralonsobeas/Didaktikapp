@@ -49,16 +49,8 @@ public class FragmentGernikaPreguntas extends Fragment {
     private RadioGroup grupoPregunta1, grupoPregunta2, grupoPregunta3;
 
     private RadioButton radioPregunta1OpcionA,
-                        radioPregunta1OpcionB,
-                        radioPregunta1OpcionC;
-
-    private RadioButton radioPregunta2OpcionA,
-                        radioPregunta2OpcionB,
-                        radioPregunta2OpcionC;
-
-    private RadioButton radioPregunta3OpcionA,
-                        radioPregunta3OpcionB,
-                        radioPregunta3OpcionC;
+                        radioPregunta2OpcionC,
+                        radioPregunta3OpcionB;
 
 
 
@@ -104,16 +96,8 @@ public class FragmentGernikaPreguntas extends Fragment {
         grupoPregunta3 = view.findViewById(R.id.grupoPregunta3);
 
         radioPregunta1OpcionA = view.findViewById(R.id.GernikaPregunta1OpcionA);
-         radioPregunta1OpcionB = view.findViewById(R.id.GernikaPregunta1OpcionB);
-        radioPregunta1OpcionC = view.findViewById(R.id.GernikaPregunta1OpcionC);
-
-        radioPregunta2OpcionA = view.findViewById(R.id.GernikaPregunta2OpcionA);
-        radioPregunta2OpcionB = view.findViewById(R.id.GernikaPregunta2OpcionB);
         radioPregunta2OpcionC = view.findViewById(R.id.GernikaPregunta2OpcionC);
-
-        radioPregunta3OpcionA = view.findViewById(R.id.GernikaPregunta3OpcionA);
         radioPregunta3OpcionB = view.findViewById(R.id.GernikaPregunta3OpcionB);
-        radioPregunta3OpcionC = view.findViewById(R.id.GernikaPregunta3OpcionC);
 
         grupoPregunta1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
