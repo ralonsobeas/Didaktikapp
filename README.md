@@ -279,6 +279,17 @@ Seguimiento
 - [ ] Audios y videos 
 - [x] Traducción de los strings
 
+<h4>29/01/2020 Trabajo de desarrollo</h4>
+
+- [x] Repaso 2 terminado
+- [x] Repaso 1,2 y Gernika añadidos a BBDD
+- [x] Audios y videos añadidos
+- [ ] Faltan añadir los videos al proyecto ya que github no lo permite
+- [ ] Falta añadir audio al comienzo
+- [ ] Posible animaciónn al acabar el juego
+- [x] Todo traducido
+- [ ] Posibles crasheos en las sopas de letras (No sabemos de momento cual puede ser el problema)
+- [ ] Intento de vídeo en horizontal pero no conseguido
 
 
 Funcionamiento de la app
