@@ -248,8 +248,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 Intent intent = new Intent(context, GamePlayActivity.class);
                 intent.putExtra(GamePlayActivity.EXTRA_ROW_COUNT, 10);
                 intent.putExtra(GamePlayActivity.EXTRA_COL_COUNT, 10);
-                intent.putExtra("listaPalabras", "words_errepaso2.xml");
-                intent.putExtra(GamePlayActivity.fragment, "Zumeltzegi");
+                intent.putExtra(GamePlayActivity.NOMBRE_FRAGMENT, GamePlayActivity.FRAGMENT_ERREPASO2);
                 startActivity(intent);
 
 
@@ -502,8 +501,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                 Intent intent = new Intent(context, SplashScreenActivity.class);
                                 intent.putExtra(GamePlayActivity.EXTRA_ROW_COUNT, 10);
                                 intent.putExtra(GamePlayActivity.EXTRA_COL_COUNT, 10);
-                                intent.putExtra("listaPalabras", "words_zumeltzegi.xml");
-                                intent.putExtra(GamePlayActivity.fragment, "Zumeltzegi");
+                                intent.putExtra(GamePlayActivity.NOMBRE_FRAGMENT, GamePlayActivity.FRAGMENT_ZUMELTZEGI);
                                 startActivity(intent);
                                 break;
                         }

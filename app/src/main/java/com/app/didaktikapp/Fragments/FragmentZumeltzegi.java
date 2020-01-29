@@ -207,8 +207,7 @@ public class FragmentZumeltzegi extends Fragment {
                 Intent intent = new Intent(getActivity(), GamePlayActivity.class);
                 intent.putExtra(GamePlayActivity.EXTRA_ROW_COUNT, 10);
                 intent.putExtra(GamePlayActivity.EXTRA_COL_COUNT, 10);
-                intent.putExtra("listaPalabras", "words_zumeltzegi.xml");
-                intent.putExtra(GamePlayActivity.fragment, "Zumeltzegi");
+                intent.putExtra(GamePlayActivity.NOMBRE_FRAGMENT, GamePlayActivity.FRAGMENT_ZUMELTZEGI);
                 startActivity(intent);
 
 
