@@ -67,7 +67,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="@string/about">
+        android:title="@string/html_app_name">
 
         <Preference
             android:selectable="false"

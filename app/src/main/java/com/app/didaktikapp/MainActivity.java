@@ -517,7 +517,7 @@ public class MainActivity extends AppCompatActivity  {
         config.setPadding(20);
         config.setDismissOnTouch(true);
         config.setDismissOnBackpress(true);
-        config.setPerformClick(true);
+        config.setPerformClick(false);
         config.setHeadingTvSize(24);
         config.setHeadingTvColor(Color.parseColor("#2B82C5"));
         config.setSubHeadingTvSize(24);
