@@ -38,16 +38,16 @@
     <string name="ZumeltzegiSopaHotela">Hotelak</string>
     <string name="ZumeltzegiSopaSiguiente">Hurrengoa</string>
         <string name="ZumeltzegiSopaMain_menu">Menu nagusia</string>
-    <string name="ZumeltzegiSopaCongratulations">Zorionak!!</string>
+    <string name="ZumeltzegiSopaCongratulations">Zorionak!!!</string>
 
-    <string name="ZumeltzegiSopaSettings">Hobezpenak</string>
+    <string name="ZumeltzegiSopaSettings">Ezarpenak</string>
     <string name="ZumeltzegiSopaFinished">Amaituta</string>
     <string name="ZumeltzegiSopaNew_game">Jolas berria</string>
 
     <string name="ZumeltzegiTitulo"><![CDATA[Zumeltzegi ]]></string>
     <string name="ZumeltzegiPregunta1Titulo">1.Zertarako eraiki zen dorretxea?</string>
 
-    <string name="ZumeltzegiPregunta2Titulo">2. Ze familia bizi zen dorretxean XV. Mendean?</string>
+    <string name="ZumeltzegiPregunta2Titulo">2. Zein familia bizi izan zen dorretxean XV. Mendetik aurrera?</string>
 
     <string name="ToastImagenes">Gordetako argazkiak</string>
 
@@ -70,8 +70,8 @@
     <string name="SanMiguelPregunta3OpcionB" translatable="false">5</string>
     <string name="SanMiguelPregunta3OpcionC" translatable="false">4</string>
     <!-- Pregunta 4 -->
-    <string name="SanMiguelPregunta4Titulo">4. Non egiten dute dantza bertan?</string>
-    <string name="SanMiguelPregunta4OpcionA">Altare azpitik</string>
+    <string name="SanMiguelPregunta4Titulo">4. Non egiten dute dantza?</string>
+    <string name="SanMiguelPregunta4OpcionA">Aldare azpitik</string>
     <string name="SanMiguelPregunta4OpcionB">Klaustro azpitik</string>
     <string name="SanMiguelPregunta4OpcionC">Eliza ondotik</string>
     <string name="Continuar">Jarraitu</string>
@@ -96,24 +96,22 @@
 
     <!-- Actividad San Miguel Errota -->
     <string name="ErrotaTitulo" translatable="false">San Miguel Errota</string>
-    <string name="ErrotaPregunta1">Zer da tobera edo kaxa?</string>
-    <string name="ErrotaPregunta2">Zein urtean erosi zuten Santa Ana Komentuko mojek errota?</string>
+    <string name="ErrotaPregunta1">Atera argazki bat tobera edo kaxari!</string>
+    <string name="ErrotaPregunta2">Zein urtetan erosi zuten Santa Ana Komentuko mojek errota?</string>
     <string name="Terminar">Amaitu</string>
 
 
-    <string name="new_game_loading_text">Generating game data…</string>
-    <string name="summary_about">Word search game letra-zopa bat da, non jokalaria hitzak bertikalki, horizontalki eta diagonalki aurkitzen saiatzen den.</string>
-    <string name="finished">Amaitu!</string>
+    <string name="new_game_loading_text" translatable="false">Generating game data…</string>
+    <string name="summary_about">Word search game letra zopa bat da. Bertan, bertikalki, horizontalki zein diagonalki kokatzen diren hitzak aurkitu behar ditu jokalariak.</string>
 
     <!-- Actividad Universidad -->
         <string name="UniversidadTest2">2. Oñatiko unibertsitatea XV mendean eraiki zen.</string>
-    <string name="UniversidadFotos">Egin itzazu unibertsitatearen 3 argazki alde ezbedinetatik.</string>
+    <string name="UniversidadFotos">Egin itzazu unibertsitatearen 3 argazki ikuspegi desberdinetatik.</string>
     <string name="Universidad">Unibertsitatea</string>
     <string name="UniversidadTest1">1. Oñatiko unibertsitatea Euskal Herriko bigarren unibertsitatea izan zen.</string>
 
     <!-- Actividad Gernika -->
     <string name="Gernika" translatable="false">Gernika</string>
-    <string name="GernikaTexto">1917ko Otsailaren 2an landatu zen Gernikako Arbolaren kimu bat Oñatiko lurretan, herriko plazaren eta frontoiaren artean hain zuzen ere eta gaur egun, 102 urte dituen haritza da. Zuhaitz honek eta Gernikako Arbola berak, euskal herritarren askatasun tradizionala eta Euskal Herriko foruak adierazten ditu. Iparragirrek kantu bat ere idatzi zion: </string>
     <!-- Poema partido en frases -->
     <string name="GernikaPoemaFrase1" translatable="false">Gernikako arbola</string>
     <string name="GernikaPoemaFrase2" translatable="false">da bedeinkatua</string>
@@ -147,9 +145,8 @@
     <string name="snap_to_grid_def_val" translatable="false">ALWAYS_SNAP</string>
     <string name="show_grid_line" translatable="false">Show Grid Line</string>
     <string name="snap_to_grid" translatable="false">Snap To Grid</string>
-    <string name="about">Laguntza</string>
-    <string name="saved_game">Jokoaren datuak gordeta</string>
-    <string name="enable_sound">Soinua gaitzea</string>
+    <string name="saved_game">Datuak gorde dira</string>
+    <string name="enable_sound">Soinua gaitu</string>
     <string name="about_credit" translatable="false">Developer: Abdul Aris R.</string>
     <string name="delete_finish">Ezabatu eta amaitu</string>
     <string name="enable_fullscreen">Pantaila osoa</string>
@@ -157,11 +154,11 @@
     <string name="finish_text">Letra zopa osatu duzu!</string>
     <string name="version" translatable="false">Version</string>
     <string name="version_num" translatable="false">1.0</string>
-    <string name="settings">Hobezpenak</string>
+    <string name="settings">Ezarpenak</string>
     <string name="congratulations"><![CDATA[Zorionak! ]]></string>
     <string name="main_menu">Mapara itzuli</string>
     <string name="new_game">JOLAS BERRIA</string>
-    <string name="auto_scale_grid_summary">Taula birdimentsionatua, pantailaren tamainaren arabera</string>
+    <string name="auto_scale_grid_summary">Pantailaren tamainaren arabera taula birdimentsionatua</string>
     <string name="pref_reverseMatching" translatable="false">reverseMatching</string>
     <string name="reverse_matching" translatable="false">Reverse matching</string>
     <string name="pref_grayscale" translatable="false">grayscale</string>
@@ -169,52 +166,53 @@
     <string name="corregir">Zuzendu</string>
     <string name="si">BAI</string>
     <string name="no">EZ</string>
-    <string name="TextoUniversidad">Unibertsitatearen sortzailea Rodrigo Mercado de Zuazola izan zen eta 1548. urtean sortu zuen. Eraikin hau, oso garrantzitsua da Euskal Herriko lehen unibertsitatea izan baitzen. Hiru mendeetan zehar honako ikasketak egin izan dira berta: medikuntza, filosofia, letrak eta teologia. Gaur egun ordea, ez da klaserik ematen bertan. Gainera, arkitektura adierazgarria dauka eta bere barruan klaustro ikusgarri bat eta Oteizaren eskultura bat daude.</string>
+    <string name="TextoUniversidad">Unibertsitatearen sortzailea Rodrigo Mercado de Zuazola izan zen. 1548. urtean sortu zuen. Eraikin hau, oso garrantzitsua da Euskal Herriko lehen unibertsitatea izan baitzen. Hiru mendeetan zehar honako ikasketa hauek egin izan dira bertan: medikuntza, filosofia, letrak eta teologia. Gaur egun ordea, ez da klaserik ematen bertan. Gainera, barneko arkitektura eta klaustroa ikusgarriak dira. Horrez gain, Oteizaren eskultura bat dago.</string>
 
 
     <!-- Modo administrador -->
-    <string name="activarAdmin">Modo administrador activado</string>
+    <string name="activarAdmin">Administratzaile modua aktibatuta</string>
 
     <!-- Dialogos MainActivity -->
-    <string name="Cancelar">Cancelar</string>
-    <string name="Comenzar">Comenzar</string>
-    <string name="Eliminar">Eliminar</string>
+    <string name="Cancelar">Ezeztatu</string>
+    <string name="Comenzar">Hasi</string>
+    <string name="Eliminar">Ezabatu</string>
 
     <!-- Dialogo ayuda MainActivity -->
-    <string name="ayudaTitulo">Cambiar idioma</string>
-    <string name="ayudaSubtitulo">Selecciona el idioma de la app</string>
-    <string name="ayudaEuskera">Euskera</string>
-    <string name="ayudaCastellano">Castellano</string>
+    <string name="ayudaSubtitulo">Hizkuntza aukeratu</string>
+    <string name="ayudaEuskera">Euskara</string>
+    <string name="ayudaCastellano">Gaztelania</string>
 
     <!-- Dialogo crear grupo MainActivity -->
-    <string name="crearGrupoTitulo">Crear grupo</string>
-    <string name="crearGrupoSubtitulo">Introduce el nombre del grupo</string>
-    <string name="crearGrupoHint">Nombre del grupo</string>
+    <string name="crearGrupoHint">Taldearen izena</string>
 
     <!-- Dialogo elegir grupo MainActivity -->
-    <string name="elegirGrupoTitulo">Elegir grupo</string>
-    <string name="elegirGrupoSubtitulo">Selecciona el grupo deseado</string>
-    <string name="elegirGrupoToastSeleccion">Seleccione grupo</string>
-    <string name="elegirGrupoToastEliminado">Grupo eliminado</string>
+    <string name="elegirGrupoTitulo">Taldea aukeratu</string>
+    <string name="elegirGrupoToastEliminado">Taldea ezabatu da</string>
 
 
 
     <!-- Ayuda en MainActivity -->
-    <string name="ayudaAnimTituloComienzo">Comienzo </string>
-    <string name="ayudaAnimSubtituloComienzo">Empieza el juego </string>
+    <string name="ayudaAnimTituloComienzo">"Hasiera "</string>
+    <string name="ayudaAnimSubtituloComienzo">Hasi jokoa</string>
 
-    <string name="ayudaAnimTituloContinuar">Continuar </string>
-    <string name="ayudaAnimSubtituloContinuar">Continua la partida </string>
+    <string name="ayudaAnimSubtituloContinuar">Partidarekin jarraitu</string>
 
-    <string name="ayudaAnimTituloSalir">Salir </string>
-    <string name="ayudaAnimSubtituloSalir">Salir del juego </string>
+    <string name="ayudaAnimTituloSalir">Irten</string>
+    <string name="ayudaAnimSubtituloSalir">Jokotik irten</string>
 
-    <string name="ayudaAnimTituloAyuda">Ayuda </string>
-    <string name="ayudaAnimSubtituloAyuda">Una pequeña ayuda </string>
+    <string name="ayudaAnimTituloAyuda">Laguntza</string>
+    <string name="ayudaAnimSubtituloAyuda">Laguntza txiki bat</string>
 
-    <string name="ayudaAnimTituloIdioma">Idioma </string>
-    <string name="ayudaAnimSubtituloIdioma">Elige el idioma </string>
-
+    <string name="ayudaAnimTituloIdioma">"Hizkuntza "</string>
+    <string name="ayudaAnimSubtituloIdioma">Hizkuntza aukeratu</string>
+    <string name="ayudaAnimTituloContinuar">Jarraitu</string>
+    <string name="ayudaTitulo">Hizkuntza aldatu</string>
+    <string name="crearGrupoSubtitulo">Taldearen izena sartu</string>
+    <string name="crearGrupoTitulo">Taldea sortu</string>
+    <string name="elegirGrupoSubtitulo">Taldea aukeratu</string>
+    <string name="elegirGrupoToastSeleccion">Taldea aukeratu</string>
+    <string name="finished">Amaitu duzu!</string>
+    <string name="GernikaTexto">1917ko otsailaren 2an Gernikako Arbolaren kimu bat landatu zen  Oñatiko lurretan, herriko enparantza eta frontoiaren artean hain zuzen ere.  Gaur egun, 103 urte dituen haritza da. Arbola hau eta baita gernikakoa ere euskal herritarren askatasun tradizionala eta Euskal Herriko foruen adierazle dira. Iparragirrek ere kantu bat idatzi zion arbolari:</string>
 
 
 </resources>
