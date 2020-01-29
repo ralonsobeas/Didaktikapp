@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -37,30 +38,22 @@ public class FragmentSanMiguel extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     public static final String TAG = "FragmentSanMiguel";
 
-    // TODO: Rename and change types of parameters
+    private FragmentSanMiguel.OnFragmentInteractionListener mListener;
+
     private Long idActividad;
-    private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
-
-    private RadioGroup radioGroupPregunta1;
-    private RadioButton radioPregunta1A,radioPregunta1B,radioPregunta1C;
-
-    private RadioGroup radioGroupPregunta2;
-    private RadioButton radioPregunta2A,radioPregunta2B,radioPregunta2C;
-
-    private RadioGroup radioGroupPregunta3;
-    private RadioButton radioPregunta3A,radioPregunta3B,radioPregunta3C;
-
-    private RadioGroup radioGroupPregunta4;
-    private RadioButton radioPregunta4A,radioPregunta4B,radioPregunta4C;
-
-    private Button btnContinuar;
 
     private View view;
-    private int colorradio;
 
-    private int contpregunta;
+    private Button btnContinuar, btnCorregir;
+
+    private RadioGroup grupoPregunta1, grupoPregunta2, grupoPregunta3, grupoPregunta4;
+
+    private RadioButton radioPregunta1OpcionC,
+                        radioPregunta2OpcionB,
+                        radioPregunta3OpcionC,
+                        radioPregunta4OpcionB;
+
+    private LinearLayout layout1, layout2, layout3, layout4;
 
     private int correctas = 0;
 
@@ -88,14 +81,186 @@ public class FragmentSanMiguel extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             idActividad = getArguments().getLong(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-
-
-
-
     }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        view = inflater.inflate(R.layout.fragment_san_miguel, container, false);
+
+        btnCorregir = view.findViewById(R.id.btnCorregir);
+        btnContinuar = view.findViewById(R.id.btnContinuar);
+
+        grupoPregunta1 = view.findViewById(R.id.rgroupPregunta1);
+        grupoPregunta2 = view.findViewById(R.id.rgroupPregunta2);
+        grupoPregunta3 = view.findViewById(R.id.rgroupPregunta3);
+        grupoPregunta4 = view.findViewById(R.id.rgroupPregunta4);
+
+        radioPregunta1OpcionC = view.findViewById(R.id.rbtnPregunta1C);
+        radioPregunta2OpcionB = view.findViewById(R.id.rbtnPregunta2B);
+        radioPregunta3OpcionC = view.findViewById(R.id.rbtnPregunta3C);
+        radioPregunta4OpcionB = view.findViewById(R.id.rbtnPregunta4B);
+
+        layout1 = view.findViewById(R.id.layoutPregunta1);
+        layout2 = view.findViewById(R.id.layoutPregunta2);
+        layout3 = view.findViewById(R.id.layoutPregunta3);
+        layout4 = view.findViewById(R.id.layoutPregunta4);
+
+        grupoPregunta1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                if(checkedId != -1 ){
+                    btnCorregir.setEnabled(true);
+                }
+
+            }
+        });
+
+        grupoPregunta2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                if(checkedId != -1 ){
+                    btnCorregir.setEnabled(true);
+                }
+
+            }
+        });
+
+        grupoPregunta3.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                if(checkedId != -1 ){
+                    btnCorregir.setEnabled(true);
+                }
+
+            }
+        });
+
+        grupoPregunta4.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                if(checkedId != -1 ){
+                    btnCorregir.setEnabled(true);
+                }
+
+            }
+        });
+
+        btnCorregir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(layout1.getVisibility() == View.VISIBLE){
+
+                    RadioButton respuesta = view.findViewById(grupoPregunta1.getCheckedRadioButtonId());
+                    if(respuesta.getId() == radioPregunta1OpcionC.getId()){
+                        correctas++;
+                        respuesta.setTextColor(Color.GREEN);
+                    }else{
+                        respuesta.setTextColor(Color.RED);
+                    }
+
+                }else if(layout2.getVisibility() == View.VISIBLE){
+
+                    RadioButton respuesta = view.findViewById(grupoPregunta2.getCheckedRadioButtonId());
+                    if(respuesta.getId() == radioPregunta2OpcionB.getId()){
+                        correctas++;
+                        respuesta.setTextColor(Color.GREEN);
+                    }else{
+                        respuesta.setTextColor(Color.RED);
+                    }
+
+                }else if(layout3.getVisibility() == View.VISIBLE){
+
+                    RadioButton respuesta = view.findViewById(grupoPregunta3.getCheckedRadioButtonId());
+                    if(respuesta.getId() == radioPregunta3OpcionC.getId()){
+                        correctas++;
+                        respuesta.setTextColor(Color.GREEN);
+                    }else{
+                        respuesta.setTextColor(Color.RED);
+                    }
+
+                }else if(layout4.getVisibility() == View.VISIBLE){
+
+                    RadioButton respuesta = view.findViewById(grupoPregunta4.getCheckedRadioButtonId());
+                    if(respuesta.getId() == radioPregunta4OpcionB.getId()){
+                        correctas++;
+                        respuesta.setTextColor(Color.GREEN);
+                    }else{
+                        respuesta.setTextColor(Color.RED);
+                    }
+
+                }
+
+                btnCorregir.setEnabled(false);
+                btnContinuar.setEnabled(true);
+
+            }
+        });
+
+        btnContinuar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(layout1.getVisibility() == View.VISIBLE){
+
+                    layout1.setVisibility(View.INVISIBLE);
+                    layout2.setVisibility(View.VISIBLE);
+                    btnContinuar.setEnabled(false);
+
+                }else if(layout2.getVisibility() == View.VISIBLE){
+
+                    layout2.setVisibility(View.INVISIBLE);
+                    layout3.setVisibility(View.VISIBLE);
+                    btnContinuar.setEnabled(false);
+
+                }else if(layout3.getVisibility() == View.VISIBLE){
+
+                    layout3.setVisibility(View.INVISIBLE);
+                    layout4.setVisibility(View.VISIBLE);
+                    btnContinuar.setEnabled(false);
+
+
+                }else if(layout4.getVisibility() == View.VISIBLE){
+
+                    //Guardar en BBDD
+                    guardarBBDD();
+
+                    //Lanzar siguiente fragment
+                    FragmentSanMiguelTinderKotlin fragment = FragmentSanMiguelTinderKotlin.newInstance(idActividad);
+                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
+                    transaction.replace(R.id.fragment_frame, fragment);
+                    transaction.commit();
+                    transaction.addToBackStack("Fragment");
+
+                }
+
+            }
+        });
+
+
+
+        return view;
+    }
+
+
+
+
+
+
+
+
+
+
 
     private void guardarBBDD(){
 
@@ -111,247 +276,11 @@ public class FragmentSanMiguel extends Fragment {
 
     }
 
-    private void vibrar(){
-        // Get instance of Vibrator from current Context
-        Vibrator v = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
 
-        // Vibrate for 400 milliseconds
-        v.vibrate(400);
-    }
 
-    private void primeraPregunta(){
 
 
 
-        radioGroupPregunta1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-
-
-                radioPregunta1A.setTextColor(colorradio);
-                radioPregunta1B.setTextColor(colorradio);
-                radioPregunta1C.setTextColor(colorradio);
-
-                if(checkedId == R.id.rbtnPregunta1_A){
-                    radioPregunta1A.setTextColor(Color.RED);
-                    vibrar();
-                }
-
-                if(checkedId == R.id.rbtnPregunta1_B){
-                    radioPregunta1B.setTextColor(Color.RED);
-                    vibrar();
-                }
-
-                if(checkedId == R.id.rbtnPregunta1_C){
-                    radioPregunta1C.setTextColor(Color.GREEN);
-                    correctas++;
-                    btnContinuar.setEnabled(true);
-                }
-
-
-
-
-            }
-        });
-    }
-
-    private void segundaPregunta(){
-        view.findViewById(R.id.layoutPregunta1).setVisibility(View.INVISIBLE);
-        view.findViewById(R.id.layoutPregunta2).setVisibility(View.VISIBLE);
-        btnContinuar.setEnabled(false);
-
-
-        radioGroupPregunta2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-
-
-                radioPregunta2A.setTextColor(colorradio);
-                radioPregunta2B.setTextColor(colorradio);
-                radioPregunta2C.setTextColor(colorradio);
-
-                if(checkedId == R.id.rbtnPregunta2_A){
-                    radioPregunta2A.setTextColor(Color.RED);
-                    vibrar();
-                }
-
-                if(checkedId == R.id.rbtnPregunta2_B){
-
-                    radioPregunta2B.setTextColor(Color.GREEN);
-                    correctas++;
-                    btnContinuar.setEnabled(true);
-                }
-
-                if(checkedId == R.id.rbtnPregunta2_C){
-                    radioPregunta2C.setTextColor(Color.RED);
-                    vibrar();
-                }
-
-
-
-
-            }
-        });
-    }
-
-
-    private void terceraPregunta(){
-        view.findViewById(R.id.layoutPregunta2).setVisibility(View.INVISIBLE);
-        view.findViewById(R.id.layoutPregunta3).setVisibility(View.VISIBLE);
-        btnContinuar.setEnabled(false);
-
-        radioGroupPregunta3.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-
-
-                radioPregunta3A.setTextColor(colorradio);
-                radioPregunta3B.setTextColor(colorradio);
-                radioPregunta3C.setTextColor(colorradio);
-
-                if(checkedId == R.id.rbtnPregunta3_A){
-                    radioPregunta3A.setTextColor(Color.RED);
-                    vibrar();
-                }
-
-                if(checkedId == R.id.rbtnPregunta3_B){
-
-                    radioPregunta3B.setTextColor(Color.RED);
-                    vibrar();
-                }
-
-                if(checkedId == R.id.rbtnPregunta3_C){
-
-                    radioPregunta3C.setTextColor(Color.GREEN);
-                    correctas++;
-
-                    btnContinuar.setEnabled(true);
-                }
-
-
-
-
-            }
-        });
-    }
-
-    private void cuartaPregunta(){
-        view.findViewById(R.id.layoutPregunta3).setVisibility(View.INVISIBLE);
-        view.findViewById(R.id.layoutPregunta4).setVisibility(View.VISIBLE);
-        btnContinuar.setEnabled(false);
-
-
-        radioGroupPregunta4.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-
-
-                radioPregunta4A.setTextColor(colorradio);
-                radioPregunta4B.setTextColor(colorradio);
-                radioPregunta4C.setTextColor(colorradio);
-
-                if(checkedId == R.id.rbtnPregunta4_A){
-                    radioPregunta4A.setTextColor(Color.RED);
-                    vibrar();
-
-                }
-
-                if(checkedId == R.id.rbtnPregunta4_B){
-
-                    radioPregunta4B.setTextColor(Color.GREEN);
-
-                    btnContinuar.setEnabled(true);
-
-                    correctas++;
-
-                    btnContinuar.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            //Guardar en BBDD
-                            guardarBBDD();
-
-                            //Lanzar siguiente fragment
-                            FragmentSanMiguelTinderKotlin fragment = FragmentSanMiguelTinderKotlin.newInstance(idActividad);
-                            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                            transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
-                            transaction.replace(R.id.fragment_frame, fragment);
-                            transaction.commit();
-                            transaction.addToBackStack("Fragment");
-                        }
-                    });
-                }
-
-                if(checkedId == R.id.rbtnPregunta4_C){
-                    radioPregunta4C.setTextColor(Color.RED);
-                    vibrar();
-                }
-
-
-
-
-            }
-        });
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_san_miguel, container, false);
-
-
-
-        radioGroupPregunta1 = (RadioGroup) view.findViewById(R.id.rgroupPregunta1);
-        radioPregunta1A = view.findViewById(R.id.rbtnPregunta1_A);
-        colorradio = radioPregunta1A.getCurrentTextColor();
-        radioPregunta1B = view.findViewById(R.id.rbtnPregunta1_B);
-        radioPregunta1C = view.findViewById(R.id.rbtnPregunta1_C);
-
-
-        radioGroupPregunta2 = (RadioGroup) view.findViewById(R.id.rgroupPregunta2);
-        radioPregunta2A = view.findViewById(R.id.rbtnPregunta2_A);
-        radioPregunta2B = view.findViewById(R.id.rbtnPregunta2_B);
-        radioPregunta2C = view.findViewById(R.id.rbtnPregunta2_C);
-
-        radioGroupPregunta3 = (RadioGroup) view.findViewById(R.id.rgroupPregunta3);
-        radioPregunta3A = view.findViewById(R.id.rbtnPregunta3_A);
-        radioPregunta3B = view.findViewById(R.id.rbtnPregunta3_B);
-        radioPregunta3C = view.findViewById(R.id.rbtnPregunta3_C);
-
-        radioGroupPregunta4 = (RadioGroup) view.findViewById(R.id.rgroupPregunta4);
-        radioPregunta4A = view.findViewById(R.id.rbtnPregunta4_A);
-        radioPregunta4B = view.findViewById(R.id.rbtnPregunta4_B);
-        radioPregunta4C = view.findViewById(R.id.rbtnPregunta4_C);
-
-        contpregunta = 1;
-        btnContinuar = view.findViewById(R.id.btnContinuar);
-        btnContinuar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(contpregunta==1){
-                    contpregunta++;
-                    segundaPregunta();
-                    return;
-                }
-                if(contpregunta==2){
-                    contpregunta++;
-                    terceraPregunta();
-                    return;
-                }
-                if(contpregunta==3){
-                    contpregunta++;
-                    cuartaPregunta();
-                    return;
-                }
-
-
-            }
-        });
-
-        primeraPregunta();
-        return view;
-    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
