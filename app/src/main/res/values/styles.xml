@@ -114,20 +114,22 @@
     <style name="estiloa4_2" parent="wrap_content"> <!-- Estilo para los elementos arrastrables -->
         <item name="android:layout_marginLeft">5dp</item>
         <item name="android:layout_marginRight">5dp</item>
-        <item name="android:textSize">6pt</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:padding">5dp</item>
-        <!--<item name="android:background">@drawable/p2_border4</item>-->
+
+        <item name="android:background">@drawable/bg_palabras_errotatextos</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
     </style>
 
     <style name="estiloa4_3" parent="estiloa4_2"> <!-- Estilo para los botones -->
         <item name="android:textStyle">normal</item>
-        <item name="android:textSize">7pt</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:padding">7dp</item>
         <!--<item name="android:background">@drawable/p2_border3</item>-->
     </style>
 
     <style name="estiloa4_4" parent="wrap_content"> <!-- Estilo para los ScrollView/TextView -->
-        <item name="android:textSize">15dp</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:padding">3dp</item>
     </style>
 

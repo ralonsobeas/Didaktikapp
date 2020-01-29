@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.app.didaktikapp.BBDD.Modelos.ActividadGernika;
+import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.R;
 
 import in.codeshuffle.typewriterview.TypeWriterView;
@@ -98,7 +100,9 @@ public class FragmentGernikaTexto extends Fragment {
             @Override
             public void onClick(View v) {
 
-                //ACTUALIZAR BBDD
+                //ACTUALIZAR BBDDç
+                guardarBBDD();
+
                 //CAMBIAR DE FRAGMENT
                 getFragmentManager().beginTransaction().remove(FragmentGernikaTexto.this).commit();
 
@@ -149,4 +153,18 @@ public class FragmentGernikaTexto extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+    private void guardarBBDD(){
+
+        ActividadGernika actividadGernika = DatabaseRepository.getAppDatabase().getGernikaDao().getGernika(idActividad);
+
+        actividadGernika.setEstado(1);
+
+        actividadGernika.setFragment(1);
+
+        DatabaseRepository.getAppDatabase().getGernikaDao().updateGernika(actividadGernika);
+
+    }
+
+
 }

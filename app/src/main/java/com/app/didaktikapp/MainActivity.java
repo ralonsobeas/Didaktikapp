@@ -239,23 +239,23 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     private void activarModoAdministrador(){
-        StyleableToast.makeText(getApplicationContext(), "Modo administrador activado", Toast.LENGTH_LONG, R.style.mytoast).show();
+        StyleableToast.makeText(getApplicationContext(), getString(R.string.activarAdmin), Toast.LENGTH_LONG, R.style.mytoast).show();
         administrador = true;
     }
 
     private void dialogoCambiarIdioma(){
 
         final FlatDialog flatDialog = new FlatDialog(MainActivity.this);
-        flatDialog.setTitle("Cambiar idioma")
+        flatDialog.setTitle(getString(R.string.ayudaTitulo))
                 .setBackgroundColor(Color.parseColor("#2B82C5"))
-                .setSubtitle("cambia el idioma")
-                .setFirstButtonText("Castellano")
+                .setSubtitle(getString(R.string.ayudaSubtitulo))
+                .setFirstButtonText(getString(R.string.ayudaCastellano))
                 .setFirstButtonColor(Color.parseColor("#FAFAFA"))
                 .setFirstButtonTextColor(Color.parseColor("#2B82C5"))
-                .setSecondButtonText("Euskera")
+                .setSecondButtonText(getString(R.string.ayudaEuskera))
                 .setSecondButtonColor(Color.parseColor("#FAFAFA"))
                 .setSecondButtonTextColor(Color.parseColor("#2B82C5"))
-                .setThirdButtonText("Cancelar")
+                .setThirdButtonText(getString(R.string.Cancelar))
                 .setThirdButtonColor(Color.parseColor("#ab000d"))
                 .setThirdButtonTextColor(Color.parseColor("#FAFAFA"))
                 .withFirstButtonListner(new View.OnClickListener() {
@@ -308,18 +308,18 @@ public class MainActivity extends AppCompatActivity  {
 
 
         final com.app.didaktikapp.FlatDialog.FlatDialog flatDialog = new com.app.didaktikapp.FlatDialog.FlatDialog(MainActivity.this);
-        flatDialog.setTitle("Elegir grupo")
+        flatDialog.setTitle(getString(R.string.elegirGrupoTitulo))
                 .setBackgroundColor(Color.parseColor("#2B82C5"))
-                .setSubtitle("introduce el nombre del grupo")
+                .setSubtitle(getString(R.string.elegirGrupoSubtitulo))
                 .setFirstTextFieldHint("Nombre del grupo")
                 .withTextViewAdapter(adapter)
-                .setFirstButtonText("Comenzar")
+                .setFirstButtonText(getString(R.string.Comenzar))
                 .setFirstButtonColor(Color.parseColor("#FAFAFA"))
                 .setFirstButtonTextColor(Color.parseColor("#2B82C5"))
-                .setSecondButtonText("Eliminar")
+                .setSecondButtonText(getString(R.string.Eliminar))
                 .setSecondButtonColor(Color.parseColor("#FAFAFA"))
                 .setSecondButtonTextColor(Color.parseColor("#2B82C5"))
-                .setThirdButtonText("Cancelar")
+                .setThirdButtonText(getString(R.string.Cancelar))
                 .setThirdButtonColor(Color.parseColor("#ab000d"))
                 .setThirdButtonTextColor(Color.parseColor("#FAFAFA"))
                 .withTextViewAdapterListener(new AdapterView.OnItemClickListener() {
@@ -348,7 +348,7 @@ public class MainActivity extends AppCompatActivity  {
                             startActivity(i);
                             flatDialog.dismiss();
                         }else{
-                            StyleableToast.makeText(getApplicationContext(), "Seleccione grupo", Toast.LENGTH_SHORT, R.style.mytoastIncorrecta  ).show();
+                            StyleableToast.makeText(getApplicationContext(), getString(R.string.elegirGrupoToastSeleccion), Toast.LENGTH_SHORT, R.style.mytoastIncorrecta  ).show();
 
                         }
 
@@ -369,10 +369,10 @@ public class MainActivity extends AppCompatActivity  {
                         if(grupoSeleccionado[0]!=null && grupoSeleccionado[0].toString().equals(flatDialog.getFirstTextField())) {
                             DatabaseRepository.deleteGrupo(grupoSeleccionado[0]);
                             flatDialog.getFirst_edit_text().setText("");
-                            StyleableToast.makeText(getApplicationContext(), "Grupo eliminado", Toast.LENGTH_SHORT, R.style.mytoastCorrecta  ).show();
+                            StyleableToast.makeText(getApplicationContext(), getString(R.string.elegirGrupoToastEliminado), Toast.LENGTH_SHORT, R.style.mytoastCorrecta  ).show();
 
                         }else{
-                            StyleableToast.makeText(getApplicationContext(), "Seleccione grupo", Toast.LENGTH_SHORT, R.style.mytoastIncorrecta  ).show();
+                            StyleableToast.makeText(getApplicationContext(), getString(R.string.elegirGrupoToastSeleccion), Toast.LENGTH_SHORT, R.style.mytoastIncorrecta  ).show();
 
                         }
 
@@ -392,14 +392,14 @@ public class MainActivity extends AppCompatActivity  {
 
     private void dialogoCrearGrupo(){
         final FlatDialog flatDialog = new FlatDialog(MainActivity.this);
-        flatDialog.setTitle("Crear grupo")
+        flatDialog.setTitle(getString(R.string.crearGrupoTitulo))
                 .setBackgroundColor(Color.parseColor("#2B82C5"))
-                .setSubtitle("introduce el nombre del grupo")
-                .setFirstTextFieldHint("Nombre del grupo")
-                .setFirstButtonText("Comenzar")
+                .setSubtitle(getString(R.string.crearGrupoSubtitulo))
+                .setFirstTextFieldHint(getString(R.string.crearGrupoHint))
+                .setFirstButtonText(getString(R.string.Comenzar))
                 .setFirstButtonColor(Color.parseColor("#FAFAFA"))
                 .setFirstButtonTextColor(Color.parseColor("#2B82C5"))
-                .setSecondButtonText("Cancelar")
+                .setSecondButtonText(getString(R.string.Cancelar))
                 .setSecondButtonColor(Color.parseColor("#ab000d"))
                 .setSecondButtonTextColor(Color.parseColor("#FAFAFA"))
                 .withFirstButtonListner(new View.OnClickListener() {
@@ -532,11 +532,11 @@ public class MainActivity extends AppCompatActivity  {
             @Override
             public void run() {
                 SpotlightSequence.getInstance(MainActivity.this,config)
-                        .addSpotlight(boton1, "Comienzo ", "Inicia la partida", "circleMenuView1")
-                        .addSpotlight(boton2, "Continuar ", "Continúa una partida", "circleMenuView2")
-                        .addSpotlight(boton3, "Salir ", "Salir del juego", "circleMenuView3")
-                        .addSpotlight(boton4, "Ayuda ", "Una pequeña ayuda", "circleMenuView4")
-                        .addSpotlight(boton5, "Idioma ", "Cambia el idioma", "circleMenuView5")
+                        .addSpotlight(boton1, getString(R.string.ayudaAnimTituloComienzo), getString(R.string.ayudaAnimSubtituloComienzo), "circleMenuView1")
+                        .addSpotlight(boton2,  getString(R.string.ayudaAnimTituloContinuar),  getString(R.string.ayudaAnimSubtituloContinuar), "circleMenuView2")
+                        .addSpotlight(boton3, getString(R.string.ayudaAnimTituloSalir), getString(R.string.ayudaAnimSubtituloSalir), "circleMenuView3")
+                        .addSpotlight(boton4, getString(R.string.ayudaAnimTituloAyuda), getString(R.string.ayudaAnimSubtituloAyuda), "circleMenuView4")
+                        .addSpotlight(boton5, getString(R.string.ayudaAnimTituloIdioma), getString(R.string.ayudaAnimSubtituloIdioma), "circleMenuView5")
                         .startSequence();
             }
         }, 400);

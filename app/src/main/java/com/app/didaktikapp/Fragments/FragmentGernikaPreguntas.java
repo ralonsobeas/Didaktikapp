@@ -16,6 +16,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.app.didaktikapp.BBDD.Modelos.ActividadGernika;
+import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.R;
 
 import in.codeshuffle.typewriterview.TypeWriterView;
@@ -51,6 +53,8 @@ public class FragmentGernikaPreguntas extends Fragment {
     private RadioButton radioPregunta1OpcionA,
                         radioPregunta2OpcionC,
                         radioPregunta3OpcionB;
+
+    private int correctas;
 
 
 
@@ -139,6 +143,7 @@ public class FragmentGernikaPreguntas extends Fragment {
 
             @Override
             public void onClick(View v) {
+                correctas = 0;
 
                 //variables que almacenan las respuestas
                 RadioButton respuestaPregunta1, respuestaPregunta2, respuestaPregunta3;
@@ -150,6 +155,7 @@ public class FragmentGernikaPreguntas extends Fragment {
 
                 //comparo con la respuesta correcta
                 if(respuestaPregunta1.getId() == radioPregunta1OpcionA.getId()){
+                    correctas++;
                     respuestaPregunta1.setTextColor(Color.GREEN);
                 }else{
                     respuestaPregunta1.setTextColor(Color.RED);
@@ -157,6 +163,7 @@ public class FragmentGernikaPreguntas extends Fragment {
 
                 //comparo con la respuesta correcta
                 if(respuestaPregunta2.getId() == radioPregunta2OpcionC.getId()){
+                    correctas++;
                     respuestaPregunta2.setTextColor(Color.GREEN);
                 }else{
                     respuestaPregunta2.setTextColor(Color.RED);
@@ -164,6 +171,7 @@ public class FragmentGernikaPreguntas extends Fragment {
 
                 //comparo con la respuesta correcta
                 if(respuestaPregunta3.getId() == radioPregunta3OpcionB.getId()){
+                    correctas++;
                     respuestaPregunta3.setTextColor(Color.GREEN);
                 }else{
                     respuestaPregunta3.setTextColor(Color.RED);
@@ -181,9 +189,9 @@ public class FragmentGernikaPreguntas extends Fragment {
             public void onClick(View v) {
 
                 //ACTUALIZAR BBDD
-//                guardarBBDD();
+                guardarBBDD();
                 //CAMBIAR DE FRAGMENT
-//                getFragmentManager().beginTransaction().remove(FragmentUnibertsitateaPreguntas.this).commit();
+                getFragmentManager().beginTransaction().remove(FragmentGernikaPreguntas.this).commit();
 
                 //Lanzar siguiente fragment
                 FragmentPuzle fragment = FragmentPuzle.newInstance(idActividad, R.drawable.tren);
@@ -230,5 +238,20 @@ public class FragmentGernikaPreguntas extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    private void guardarBBDD(){
+
+        ActividadGernika actividadGernika = DatabaseRepository.getAppDatabase().getGernikaDao().getGernika(idActividad);
+
+        actividadGernika.setEstado(2);
+
+        actividadGernika.setFragment(3);
+
+        //CAMBIAR A CORRECTAS
+        actividadGernika.setTest(correctas+"/3");
+
+        DatabaseRepository.getAppDatabase().getGernikaDao().updateGernika(actividadGernika);
+
     }
 }

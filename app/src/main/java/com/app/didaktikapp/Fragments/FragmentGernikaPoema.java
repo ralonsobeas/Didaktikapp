@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.app.didaktikapp.Activities.MapActivity;
+import com.app.didaktikapp.BBDD.Modelos.ActividadGernika;
+import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.CardStack.CardStackAdapter;
 import com.app.didaktikapp.R;
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
@@ -85,6 +87,8 @@ public class FragmentGernikaPoema extends Fragment {
             public void onClick(View v) {
 
                 //ACTUALIZAR BBDD
+                guardarBBDD();
+
                 //CAMBIAR DE FRAGMENT
                 getFragmentManager().beginTransaction().remove(FragmentGernikaPoema.this).commit();
 
@@ -141,6 +145,18 @@ public class FragmentGernikaPoema extends Fragment {
         super.onDestroy();
 
         ((MapActivity)getActivity()).cambiarLocalizacion();
+    }
+
+    private void guardarBBDD(){
+
+        ActividadGernika actividadGernika = DatabaseRepository.getAppDatabase().getGernikaDao().getGernika(idActividad);
+
+        actividadGernika.setEstado(1);
+
+        actividadGernika.setFragment(2);
+
+        DatabaseRepository.getAppDatabase().getGernikaDao().updateGernika(actividadGernika);
+
     }
 
 

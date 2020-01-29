@@ -63,8 +63,12 @@
                         android:gravity="center">
                         <Button
                             android:id="@+id/btnContinuar"
-                            style="@style/estiloa4_3"
-                            android:text="@string/Continuar"/>
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/ripple_boton_bg"
+                            android:clickable="true"
+                            android:enabled="true"
+                            android:text="@string/Continuar" />
 
                     </LinearLayout>
                 </com.google.android.flexbox.FlexboxLayout>

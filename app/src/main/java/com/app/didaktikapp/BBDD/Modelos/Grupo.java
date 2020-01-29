@@ -36,6 +36,18 @@ import static androidx.room.ForeignKey.CASCADE;
                         @ForeignKey(entity = ActividadErrota.class,
                                 parentColumns = "ID",
                                 childColumns = "IDERROTA",
+                                onDelete = CASCADE),
+                        @ForeignKey(entity = ActividadGernika.class,
+                                parentColumns = "ID",
+                                childColumns = "IDGERNIKA",
+                                onDelete = CASCADE),
+                        @ForeignKey(entity = ActividadRepaso1.class,
+                                parentColumns = "ID",
+                                childColumns = "IDREPASO1",
+                                onDelete = CASCADE),
+                        @ForeignKey(entity = ActividadRepaso2.class,
+                                parentColumns = "ID",
+                                childColumns = "IDREPASO2",
                                 onDelete = CASCADE)})
 @TypeConverters(TimestampConverter.class)
 public class Grupo {
@@ -68,6 +80,12 @@ public class Grupo {
 
     @ColumnInfo(name = "IDGERNIKA")
     private Long idGernika;
+
+    @ColumnInfo(name = "IDREPASO1")
+    private Long idRepaso1;
+
+    @ColumnInfo(name = "IDREPASO2")
+    private Long idRepaso2;
 
 
 
@@ -142,6 +160,23 @@ public class Grupo {
 
     public void setIdTren(Long idTren) {
         this.idTren = idTren;
+    }
+
+
+    public Long getIdRepaso1() {
+        return idRepaso1;
+    }
+
+    public void setIdRepaso1(Long idRepaso1) {
+        this.idRepaso1 = idRepaso1;
+    }
+
+    public Long getIdRepaso2() {
+        return idRepaso2;
+    }
+
+    public void setIdRepaso2(Long idRepaso2) {
+        this.idRepaso2 = idRepaso2;
     }
 
     @Override

@@ -236,6 +236,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
 
+                lanzarFragment(FragmentErrepasoBatKotlin.newInstance(grupo.getIdRepaso1()));
 
             }
         });
@@ -473,13 +474,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                 double markerLatitud = marker.getPosition().getLatitude();
                 double markerLongitud = marker.getPosition().getLongitude();
-
-                Log.i("DISTANCIAZUM", distanciaCoord(latitud,longitud,markerLatitud,markerLongitud)+"");
-                Log.i("DISTANCIAZUM", markerLatitud+"");
-                Log.i("DISTANCIAZUM", markerLongitud+"");
-                Log.i("DISTANCIAZUM", administrador+"");
-                Log.i("DISTANCIAZUM", latitud+"");
-                Log.i("DISTANCIAZUM", longitud+"");
 
 
 
@@ -1163,7 +1157,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         progressBar.setVisibility(View.GONE);
 
         // Show a toast
-        Toast.makeText(MapActivity.this, message, Toast.LENGTH_LONG).show();
+//        Toast.makeText(MapActivity.this, message, Toast.LENGTH_LONG).show();
     }
 
 

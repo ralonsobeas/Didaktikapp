@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DiffUtil
 import com.app.didaktikapp.Activities.MapActivity
+import com.app.didaktikapp.BBDD.database.DatabaseRepository
 import com.app.didaktikapp.CardStack.CardStackAdapter
 import com.app.didaktikapp.CardStack.Spot
 import com.app.didaktikapp.CardStack.SpotDiffCallback
@@ -171,15 +172,15 @@ class FragmentErrepasoBatKotlin : Fragment(), CardStackListener {
     }
 
     private fun guardarBBDD() {
-//        val actividadSanMiguel: ActividadSanMiguel? = DatabaseRepository.getAppDatabase().sanMiguelDao.getSanMiguel(idActividad)
-//
-//        actividadSanMiguel!!.estado = 2
-//
-//
-//        actividadSanMiguel.fragment = 2
-//        actividadSanMiguel.fotos = "${correcta}/9"
-//
-//        DatabaseRepository.getAppDatabase().sanMiguelDao.updateSanMiguel(actividadSanMiguel)
+        val actividadRepaso1 = DatabaseRepository.getAppDatabase().repaso1Dao.getRepaso1(idActividad)
+
+        actividadRepaso1.estado = 1
+
+        actividadRepaso1.fragment = 1
+
+        actividadRepaso1.frases = "$correcta/10"
+
+        DatabaseRepository.getAppDatabase().repaso1Dao.updateRepaso1(actividadRepaso1)
 
     }
 
