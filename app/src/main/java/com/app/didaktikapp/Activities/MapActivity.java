@@ -46,7 +46,7 @@ import com.app.didaktikapp.Fragments.FragmentUnibertsitateaTexto;
 import com.app.didaktikapp.Fragments.FragmentZumeltzegi;
 import com.app.didaktikapp.Modelo.Lugar;
 import com.app.didaktikapp.R;
-import com.app.didaktikapp.wordsearch.features.SplashScreenActivity;
+
 import com.app.didaktikapp.wordsearch.features.gameplay.GamePlayActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mapbox.android.core.location.LocationEngine;
@@ -209,7 +209,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         //CARGAR OBJETO GRUPO DE LA BBDD
         idgrupo = getIntent().getExtras().getLong("IDGRUPO");
         administrador = getIntent().getExtras().getBoolean("ADMINISTRADOR");
-        administrador = true;
+//        administrador = true;
         grupo = DatabaseRepository.getAppDatabase().getGrupoDao().getGrupo(idgrupo);
 
         cargarListaLugares();
@@ -498,7 +498,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                 lanzarFragment(FragmentZumeltzegi.newInstance(grupo.getIdZumeltzegi()));
                                 break;
                             case 1:
-                                Intent intent = new Intent(context, SplashScreenActivity.class);
+                                Intent intent = new Intent(context, GamePlayActivity.class);
                                 intent.putExtra(GamePlayActivity.EXTRA_ROW_COUNT, 10);
                                 intent.putExtra(GamePlayActivity.EXTRA_COL_COUNT, 10);
                                 intent.putExtra(GamePlayActivity.NOMBRE_FRAGMENT, GamePlayActivity.FRAGMENT_ZUMELTZEGI);

@@ -43,7 +43,7 @@ import com.app.didaktikapp.BBDD.Modelos.ActividadZumeltzegi;
 import com.app.didaktikapp.BBDD.Service.ZumeltzegiService;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.R;
-import com.app.didaktikapp.wordsearch.features.SplashScreenActivity;
+
 import com.app.didaktikapp.wordsearch.features.gameover.GameOverActivity;
 import com.app.didaktikapp.wordsearch.features.gameplay.GamePlayActivity;
 import com.muddzdev.styleabletoast.StyleableToast;
