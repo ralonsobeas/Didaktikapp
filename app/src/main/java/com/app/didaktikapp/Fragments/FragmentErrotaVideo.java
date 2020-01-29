@@ -57,6 +57,8 @@ public class FragmentErrotaVideo extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private VideoView video;
+
 
     public FragmentErrotaVideo() {}
 
@@ -91,6 +93,8 @@ public class FragmentErrotaVideo extends Fragment {
             @Override
             public void onClick(View v) {
 
+                if (video.isPlaying()) video.stopPlayback();
+
                 //actualizar bbdd
                 guardarBBDD();
                 //cerrar fragment
@@ -104,12 +108,12 @@ public class FragmentErrotaVideo extends Fragment {
 
             }
         });
-        btnContinuar.setEnabled(false);
+        //btnContinuar.setEnabled(false);
 
-        crearVideo(view);
+        video = view.findViewById(R.id.errotaVideo);
+        video.start();
 
-        VideoView empezar = view.findViewById(R.id.errotaVideo);
-        empezar.start();
+        crearVideo();
 
         return view;
     }
@@ -127,9 +131,10 @@ public class FragmentErrotaVideo extends Fragment {
 
     }
 
-    public void crearVideo(View view) {
-        Uri path = Uri.parse("android.resource://"+getActivity().getPackageName()+"/"+R.raw.videoprueba);
-        VideoView video = view.findViewById(R.id.errotaVideo);
+    public void crearVideo() {
+        // EDITAR ESTA LINEA ->
+        Uri path = Uri.parse("android.resource://"+getActivity().getPackageName()+"/"+R.raw.video_sanmiguel_errota);
+        //VideoView video = view.findViewById(R.id.errotaVideo);
         video.setVideoURI(path);
 
         MediaController mediaController = new MediaController(getActivity());
