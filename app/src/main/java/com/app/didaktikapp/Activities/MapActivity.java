@@ -209,7 +209,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         //CARGAR OBJETO GRUPO DE LA BBDD
         idgrupo = getIntent().getExtras().getLong("IDGRUPO");
         administrador = getIntent().getExtras().getBoolean("ADMINISTRADOR");
-        administrador = true;
         grupo = DatabaseRepository.getAppDatabase().getGrupoDao().getGrupo(idgrupo);
 
         cargarListaLugares();
