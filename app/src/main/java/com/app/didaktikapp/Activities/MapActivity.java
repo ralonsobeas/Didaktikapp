@@ -245,6 +245,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
 
+                Intent intent = new Intent(context, GamePlayActivity.class);
+                intent.putExtra(GamePlayActivity.EXTRA_ROW_COUNT, 10);
+                intent.putExtra(GamePlayActivity.EXTRA_COL_COUNT, 10);
+                intent.putExtra("listaPalabras", "words_errepaso2.xml");
+                intent.putExtra(GamePlayActivity.fragment, "Zumeltzegi");
+                startActivity(intent);
+
 
             }
         });

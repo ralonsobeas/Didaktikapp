@@ -204,9 +204,10 @@ public class FragmentZumeltzegi extends Fragment {
 
                 StyleableToast.makeText(getContext(), getResources().getString(R.string.ToastImagenes), Toast.LENGTH_LONG, R.style.mytoast).show();
 
-                Intent intent = new Intent(getActivity(), SplashScreenActivity.class);
+                Intent intent = new Intent(getActivity(), GamePlayActivity.class);
                 intent.putExtra(GamePlayActivity.EXTRA_ROW_COUNT, 10);
                 intent.putExtra(GamePlayActivity.EXTRA_COL_COUNT, 10);
+                intent.putExtra("listaPalabras", "words_zumeltzegi.xml");
                 intent.putExtra(GamePlayActivity.fragment, "Zumeltzegi");
                 startActivity(intent);
 
