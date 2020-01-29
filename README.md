@@ -290,6 +290,7 @@ Seguimiento
 - [x] Todo traducido
 - [ ] Posibles crasheos en las sopas de letras (No sabemos de momento cual puede ser el problema)
 - [ ] Intento de vídeo en horizontal pero no conseguido
+- [ ] https://lottiefiles.com/7929-run-man-run
 
 
 Funcionamiento de la app
