@@ -502,6 +502,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                 Intent intent = new Intent(context, SplashScreenActivity.class);
                                 intent.putExtra(GamePlayActivity.EXTRA_ROW_COUNT, 10);
                                 intent.putExtra(GamePlayActivity.EXTRA_COL_COUNT, 10);
+                                intent.putExtra("listaPalabras", "words_zumeltzegi.xml");
                                 intent.putExtra(GamePlayActivity.fragment, "Zumeltzegi");
                                 startActivity(intent);
                                 break;
