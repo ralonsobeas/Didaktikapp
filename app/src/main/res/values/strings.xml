@@ -213,6 +213,7 @@
     <string name="elegirGrupoToastSeleccion">Taldea aukeratu</string>
     <string name="finished">Amaitu duzu!</string>
     <string name="GernikaTexto">1917ko otsailaren 2an Gernikako Arbolaren kimu bat landatu zen  Oñatiko lurretan, herriko enparantza eta frontoiaren artean hain zuzen ere.  Gaur egun, 103 urte dituen haritza da. Arbola hau eta baita gernikakoa ere euskal herritarren askatasun tradizionala eta Euskal Herriko foruen adierazle dira. Iparragirrek ere kantu bat idatzi zion arbolari:</string>
+    <string name="about" translatable="false">About</string>
 
 
 </resources>

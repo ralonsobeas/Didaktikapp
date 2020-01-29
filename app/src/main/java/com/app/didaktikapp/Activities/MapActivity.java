@@ -34,7 +34,7 @@ import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.Fragments.FragmentErrepasoBatKotlin;
 import com.app.didaktikapp.Fragments.FragmentErrotaFotos;
 import com.app.didaktikapp.Fragments.FragmentErrotaTextos;
-import com.app.didaktikapp.Fragments.FragmentErrotaVideo;
+import com.app.didaktikapp.Fragments.FragmentVideo;
 import com.app.didaktikapp.Fragments.FragmentGernikaTexto;
 import com.app.didaktikapp.Fragments.FragmentPuzle;
 import com.app.didaktikapp.Fragments.FragmentSanMiguel;
@@ -585,7 +585,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                 lanzarFragment(FragmentErrotaTextos.newInstance(grupo.getIdErrota()));
                                 break;
                             case 1:
-                                lanzarFragment(FragmentErrotaVideo.newInstance(grupo.getIdErrota()));
+                                lanzarFragment(FragmentVideo.newInstance(grupo.getIdErrota(),"errota"));
                                 break;
                             case 2:
                                 lanzarFragment(FragmentErrotaFotos.newInstance(grupo.getIdErrota()));
@@ -625,9 +625,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 }
                 //ARANTZAZUKO SANTUTEGIA (sin uso, abajo)
                 else if( (administrador && markerLatitud == 42.979194 && markerLongitud == -2.398583) ||  (distanciaCoord(latitud,longitud,42.979194,-2.398583))&& markerLatitud == 42.979194 && markerLongitud == -2.398583){
-                    marker.setIcon(iconoPunto(2));
-                    lanzarFragment(FragmentErrepasoBatKotlin.newInstance(grupo.getIdParroquia()));
-
+//                    marker.setIcon(iconoPunto(2));
+//                    lanzarFragment(FragmentErrepasoBatKotlin.newInstance(grupo.getIdParroquia()));
+                    lanzarFragment(FragmentErrotaFotos.newInstance(grupo.getIdTren()));
                 }
 
                 return false;
