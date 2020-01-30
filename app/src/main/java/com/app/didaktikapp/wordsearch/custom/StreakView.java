@@ -189,7 +189,7 @@ public class StreakView extends View {
         super.onAttachedToWindow();
 
         if (mGridId != -1 && mSnapToGrid != SnapType.NONE) {
-            mGrid = (GridBehavior) getRootView().findViewById(mGridId);
+            mGrid = getRootView().findViewById(mGridId);
         }
     }
 

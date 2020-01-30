@@ -273,7 +273,7 @@ public class LetterBoard extends CenterLayout implements Observer {
             if (dir == Direction.NONE) return "";
 
             int count = Util.getIndexLength(start, end);
-            char buff[] = new char[count];
+            char[] buff = new char[count];
             for (int i = 0; i < count; i++) {
                 buff[i] = mData.getLetter(start.row + (dir.yOff * i), start.col + (dir.xOff * i));
             }

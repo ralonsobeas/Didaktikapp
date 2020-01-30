@@ -9,9 +9,9 @@ import com.app.didaktikapp.wordsearch.custom.LetterGridDataAdapter;
 
 public class ArrayLetterGridDataAdapter extends LetterGridDataAdapter {
 
-    private char mGrid[][];
+    private char[][] mGrid;
 
-    ArrayLetterGridDataAdapter(char grid[][]) {
+    ArrayLetterGridDataAdapter(char[][] grid) {
         mGrid = grid;
     }
 

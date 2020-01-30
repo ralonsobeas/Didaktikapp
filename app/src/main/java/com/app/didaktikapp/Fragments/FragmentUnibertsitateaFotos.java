@@ -1,10 +1,13 @@
 package com.app.didaktikapp.Fragments;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -17,13 +20,18 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.BBDD.Modelos.ActividadUniversitatea;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.R;
+import com.muddzdev.styleabletoast.StyleableToast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -44,6 +52,8 @@ public class FragmentUnibertsitateaFotos extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private static final String ARG_PARAM3 = "param3";
 
+    private Long idActividad;
+
 
     final int REQUEST_IMAGE_CAPTURE1 = 2001;
     final int REQUEST_IMAGE_CAPTURE2 = 2002;
@@ -63,12 +73,10 @@ public class FragmentUnibertsitateaFotos extends Fragment {
     }
 
 
-    public static FragmentUnibertsitateaFotos newInstance(String param1, String param2, String param3) {
+    public static FragmentUnibertsitateaFotos newInstance(Long idActividad) {
         FragmentUnibertsitateaFotos fragment = new FragmentUnibertsitateaFotos();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        args.putString(ARG_PARAM3, param3);
+        args.putLong(ARG_PARAM1, idActividad);
         fragment.setArguments(args);
         return fragment;
     }
@@ -78,7 +86,7 @@ public class FragmentUnibertsitateaFotos extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            idActividad = getArguments().getLong(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
             mParam3 = getArguments().getString(ARG_PARAM3);
         }
@@ -129,6 +137,37 @@ public class FragmentUnibertsitateaFotos extends Fragment {
 
             }
         });
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            //Verifica permisos para Android 6.0+
+            int permissionCheck = ContextCompat.checkSelfPermission(
+                    getActivity().getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+
+                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 225);
+            } else {
+
+            }
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            //Verifica permisos para Android 6.0+
+            int permissionCheck = ContextCompat.checkSelfPermission(
+                    getActivity().getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE);
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+
+                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 225);
+            } else {
+
+            }
+        }
+
+        if (ContextCompat.checkSelfPermission(getActivity().getApplicationContext(),Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.CAMERA},
+                    REQUEST_IMAGE_CAPTURE1);
+        }
+
         return view;
     }
 
@@ -216,12 +255,13 @@ public class FragmentUnibertsitateaFotos extends Fragment {
     }
 
     private void guardarBBDD(ImageView iv1,ImageView iv2,ImageView  iv3){
+        StyleableToast.makeText(getContext(), getResources().getString(R.string.ToastImagenes), Toast.LENGTH_LONG, R.style.mytoast).show();
 
-        ActividadUniversitatea actividadUniversitatea = DatabaseRepository.getAppDatabase().getUniversitateaDao().getUniversitatea(new Long(1));
+        ActividadUniversitatea actividadUniversitatea = DatabaseRepository.getAppDatabase().getUniversitateaDao().getUniversitatea(idActividad);
 
         actividadUniversitatea.setEstado(2);
 
-        actividadUniversitatea.setFragment(2);
+        actividadUniversitatea.setFragment(3);
 
         actividadUniversitatea.setFoto1(imageToBase64(iv1));
 
@@ -255,6 +295,13 @@ public class FragmentUnibertsitateaFotos extends Fragment {
     public void onDetach() {
         super.onDetach();
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        ((MapActivity)getActivity()).cambiarLocalizacion();
     }
 
 

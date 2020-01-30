@@ -6,7 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".Activities.MapActivity">
 
-
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.mapbox.mapboxsdk.maps.MapView
         android:id="@+id/mapView"
@@ -15,6 +27,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+    </com.mapbox.mapboxsdk.maps.MapView>
+
+    <TextView
+        android:id="@+id/tvAdmin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:text="Administrador activado"
+        android:textColor="@android:color/holo_red_dark"
+        app:layout_constraintStart_toEndOf="@+id/ivLogo"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -27,6 +52,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logooniate" />
 
+    <include
+        android:id="@+id/ventana_marker"
+        layout="@layout/ventana_marker"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/progress_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <FrameLayout
         android:id="@+id/fragment_frame"
         android:layout_width="match_parent"
@@ -34,5 +69,36 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:translationZ="50dp"
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnRepaso1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="100dp"
+        android:backgroundTint="@color/gray"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_first"
+        android:startOffset="5000"
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnRepaso2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="100dp"
+        android:backgroundTint="@color/gray"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnRepaso1"
+        app:srcCompat="@drawable/ic_second"
+        android:startOffset="10000"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

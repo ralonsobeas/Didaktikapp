@@ -8,12 +8,15 @@ import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,17 +25,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.amitshekhar.DebugDB;
+
 import com.app.didaktikapp.Activities.MapActivity;
-import com.app.didaktikapp.BBDD.AppExecutors;
 import com.app.didaktikapp.BBDD.Modelos.Grupo;
-import com.app.didaktikapp.BBDD.SQLiteControlador;
-import com.app.didaktikapp.BBDD.Service.GrupoService;
-import com.app.didaktikapp.BBDD.database.AppDatabase;
+
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.CircleMenu.CircleMenuView;
 
-import com.example.flatdialoglibrary.dialog.FlatDialog;
+import com.app.didaktikapp.FlatDialog.FlatDialog;
 import com.facebook.stetho.Stetho;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.muddzdev.styleabletoast.StyleableToast;
@@ -46,6 +46,7 @@ import com.wooplr.spotlight.utils.Utils;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
+import java.util.Locale;
 
 import at.markushi.ui.CircleButton;
 
@@ -55,6 +56,8 @@ public class MainActivity extends AppCompatActivity  {
     private CircleButton  botonInicio,botonContinuar;
     private Button botonSalir;
     private DatabaseRepository databaseRepository;
+
+    private boolean administrador = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +92,7 @@ public class MainActivity extends AppCompatActivity  {
 
 
 
-        TextView tv=(TextView)findViewById(R.id.tvTitulo);
+        TextView tv= findViewById(R.id.tvTitulo);
         Typeface type =  ResourcesCompat.getFont(this, R.font.youthtouch);
         tv.setTypeface(type);
         tv.setText(Html.fromHtml(getString(R.string.html_app_name)));
@@ -115,6 +118,9 @@ public class MainActivity extends AppCompatActivity  {
 //        eventos();
 
         final CircleMenuView menu = findViewById(R.id.circle_menu);
+
+        boolean[] pulsadoAdministrador = {false,false,false};
+
         menu.setEventListener(new CircleMenuView.EventListener() {
             @Override
             public void onMenuOpenAnimationStart(@NonNull CircleMenuView view) {
@@ -168,6 +174,9 @@ public class MainActivity extends AppCompatActivity  {
                     case 3:
                         inicioAyuda();
                         break;
+                    case 4:
+                        dialogoCambiarIdioma();
+                        break;
                 }
 
             }
@@ -186,6 +195,37 @@ public class MainActivity extends AppCompatActivity  {
             @Override
             public void onButtonLongClickAnimationEnd(@NonNull CircleMenuView view, int index) {
                 Log.d("D", "onButtonLongClickAnimationEnd| index: " + index);
+                switch (index){
+                    case 0:
+                        pulsadoAdministrador[0] = true;
+                        break;
+                    case 1:
+                        if(pulsadoAdministrador[0]){
+                            pulsadoAdministrador[1]=true;
+                        }else{
+                            pulsadoAdministrador[0] = false;
+                        }
+                        break;
+                    case 2:
+                        if(pulsadoAdministrador[1]){
+                            pulsadoAdministrador[2]=true;
+                        }else{
+                            pulsadoAdministrador[0] = false;
+                            pulsadoAdministrador[1] = false;
+                        }
+                        break;
+
+                    case 3:
+                        if(pulsadoAdministrador[2]) {
+                            activarModoAdministrador();
+                        }
+                        pulsadoAdministrador[0] = false;
+                        pulsadoAdministrador[1] = false;
+                        pulsadoAdministrador[2] = false;
+
+                        break;
+
+                }
             }
         });
 
@@ -193,6 +233,60 @@ public class MainActivity extends AppCompatActivity  {
 
 
 
+    }
+
+    private void activarModoAdministrador(){
+        StyleableToast.makeText(getApplicationContext(), getString(R.string.activarAdmin), Toast.LENGTH_LONG, R.style.mytoast).show();
+        administrador = true;
+    }
+
+    private void dialogoCambiarIdioma(){
+
+        final FlatDialog flatDialog = new FlatDialog(MainActivity.this);
+        flatDialog.setTitle(getString(R.string.ayudaTitulo))
+                .setBackgroundColor(Color.parseColor("#2B82C5"))
+                .setSubtitle(getString(R.string.ayudaSubtitulo))
+                .setFirstButtonText(getString(R.string.ayudaCastellano))
+                .setFirstButtonColor(Color.parseColor("#FAFAFA"))
+                .setFirstButtonTextColor(Color.parseColor("#2B82C5"))
+                .setSecondButtonText(getString(R.string.ayudaEuskera))
+                .setSecondButtonColor(Color.parseColor("#FAFAFA"))
+                .setSecondButtonTextColor(Color.parseColor("#2B82C5"))
+                .setThirdButtonText(getString(R.string.Cancelar))
+                .setThirdButtonColor(Color.parseColor("#ab000d"))
+                .setThirdButtonTextColor(Color.parseColor("#FAFAFA"))
+                .withFirstButtonListner(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        setLocale("es");
+                    }
+                })
+                .withSecondButtonListner(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        setLocale("eu");
+                    }
+                })
+                .withThirdButtonListner(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        flatDialog.dismiss();
+                    }
+                })
+                .show();
+
+    }
+
+    private void setLocale(String lang) {
+        Locale myLocale = new Locale(lang);
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.locale = myLocale;
+        res.updateConfiguration(conf, dm);
+        Intent refresh = new Intent(this, MainActivity.class);
+        startActivity(refresh);
+        finish();
     }
 
     private void dialogoElegirGrupo(){
@@ -211,17 +305,20 @@ public class MainActivity extends AppCompatActivity  {
 
 
         final com.app.didaktikapp.FlatDialog.FlatDialog flatDialog = new com.app.didaktikapp.FlatDialog.FlatDialog(MainActivity.this);
-        flatDialog.setTitle("Elegir grupo")
+        flatDialog.setTitle(getString(R.string.elegirGrupoTitulo))
                 .setBackgroundColor(Color.parseColor("#2B82C5"))
-                .setSubtitle("introduce el nombre del grupo")
+                .setSubtitle(getString(R.string.elegirGrupoSubtitulo))
                 .setFirstTextFieldHint("Nombre del grupo")
                 .withTextViewAdapter(adapter)
-                .setFirstButtonText("Comenzar")
+                .setFirstButtonText(getString(R.string.Comenzar))
                 .setFirstButtonColor(Color.parseColor("#FAFAFA"))
                 .setFirstButtonTextColor(Color.parseColor("#2B82C5"))
-                .setSecondButtonText("Cancelar")
+                .setSecondButtonText(getString(R.string.Eliminar))
                 .setSecondButtonColor(Color.parseColor("#FAFAFA"))
                 .setSecondButtonTextColor(Color.parseColor("#2B82C5"))
+                .setThirdButtonText(getString(R.string.Cancelar))
+                .setThirdButtonColor(Color.parseColor("#ab000d"))
+                .setThirdButtonTextColor(Color.parseColor("#FAFAFA"))
                 .withTextViewAdapterListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -242,12 +339,13 @@ public class MainActivity extends AppCompatActivity  {
 
                         //SE CREA EL GRUPO Y TODOS LOS FRAGMENTS CON SU ESTADO Y FRAGMENT = 0
 
-                        if(grupoSeleccionado[0]!=null && grupoSeleccionado[0].getNombre().equals(flatDialog.getFirstTextField())) {
+                        if(grupoSeleccionado[0]!=null && grupoSeleccionado[0].toString().equals(flatDialog.getFirstTextField())) {
                             i.putExtra("IDGRUPO", grupoSeleccionado[0].getId());
 
                             startActivity(i);
+                            flatDialog.dismiss();
                         }else{
-                            StyleableToast.makeText(getApplicationContext(), "Seleccione grupo", Toast.LENGTH_SHORT, R.style.mytoastIncorrecta  ).show();
+                            StyleableToast.makeText(getApplicationContext(), getString(R.string.elegirGrupoToastSeleccion), Toast.LENGTH_SHORT, R.style.mytoastIncorrecta  ).show();
 
                         }
 
@@ -255,6 +353,30 @@ public class MainActivity extends AppCompatActivity  {
                     }
                 })
                 .withSecondButtonListner(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Intent i = new Intent(MainActivity.this, MapActivity.class);
+
+
+                        //BBDD
+
+                        //SE CREA EL GRUPO Y TODOS LOS FRAGMENTS CON SU ESTADO Y FRAGMENT = 0
+
+                        if(grupoSeleccionado[0]!=null && grupoSeleccionado[0].toString().equals(flatDialog.getFirstTextField())) {
+                            DatabaseRepository.deleteGrupo(grupoSeleccionado[0]);
+                            flatDialog.getFirst_edit_text().setText("");
+                            StyleableToast.makeText(getApplicationContext(), getString(R.string.elegirGrupoToastEliminado), Toast.LENGTH_SHORT, R.style.mytoastCorrecta  ).show();
+
+                        }else{
+                            StyleableToast.makeText(getApplicationContext(), getString(R.string.elegirGrupoToastSeleccion), Toast.LENGTH_SHORT, R.style.mytoastIncorrecta  ).show();
+
+                        }
+
+
+                    }
+                })
+                .withThirdButtonListner(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         flatDialog.dismiss();
@@ -267,16 +389,16 @@ public class MainActivity extends AppCompatActivity  {
 
     private void dialogoCrearGrupo(){
         final FlatDialog flatDialog = new FlatDialog(MainActivity.this);
-        flatDialog.setTitle("Crear grupo")
+        flatDialog.setTitle(getString(R.string.crearGrupoTitulo))
                 .setBackgroundColor(Color.parseColor("#2B82C5"))
-                .setSubtitle("introduce el nombre del grupo")
-                .setFirstTextFieldHint("Nombre del grupo")
-                .setFirstButtonText("Comenzar")
+                .setSubtitle(getString(R.string.crearGrupoSubtitulo))
+                .setFirstTextFieldHint(getString(R.string.crearGrupoHint))
+                .setFirstButtonText(getString(R.string.Comenzar))
                 .setFirstButtonColor(Color.parseColor("#FAFAFA"))
                 .setFirstButtonTextColor(Color.parseColor("#2B82C5"))
-                .setSecondButtonText("Cancelar")
-                .setSecondButtonColor(Color.parseColor("#FAFAFA"))
-                .setSecondButtonTextColor(Color.parseColor("#2B82C5"))
+                .setSecondButtonText(getString(R.string.Cancelar))
+                .setSecondButtonColor(Color.parseColor("#ab000d"))
+                .setSecondButtonTextColor(Color.parseColor("#FAFAFA"))
                 .withFirstButtonListner(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -290,8 +412,9 @@ public class MainActivity extends AppCompatActivity  {
 
 
                         i.putExtra("IDGRUPO",DatabaseRepository.insertTaskGrupo(flatDialog.getFirstTextField()));
-
+                        i.putExtra("ADMINISTRADOR",administrador);
                         startActivity(i);
+                        flatDialog.dismiss();
                     }
                 })
                 .withSecondButtonListner(new View.OnClickListener() {
@@ -371,12 +494,13 @@ public class MainActivity extends AppCompatActivity  {
     private void inicioAyuda(){
         PreferencesManager mPreferencesManager = new PreferencesManager(MainActivity.this);
         mPreferencesManager.resetAll();
-        TextView tvTitulo = (TextView)findViewById(R.id.tvTitulo);
-        CircleMenuView circleMenuView = (CircleMenuView) findViewById(R.id.circle_menu);
+        TextView tvTitulo = findViewById(R.id.tvTitulo);
+        CircleMenuView circleMenuView = findViewById(R.id.circle_menu);
         FloatingActionButton boton1 = findViewById(0);
         FloatingActionButton boton2 = findViewById(1);
         FloatingActionButton boton3 = findViewById(2);
         FloatingActionButton boton4 = findViewById(3);
+        FloatingActionButton boton5 = findViewById(4);
 
         circleMenuView.open(true);
 
@@ -390,7 +514,7 @@ public class MainActivity extends AppCompatActivity  {
         config.setPadding(20);
         config.setDismissOnTouch(true);
         config.setDismissOnBackpress(true);
-        config.setPerformClick(true);
+        config.setPerformClick(false);
         config.setHeadingTvSize(24);
         config.setHeadingTvColor(Color.parseColor("#2B82C5"));
         config.setSubHeadingTvSize(24);
@@ -405,14 +529,16 @@ public class MainActivity extends AppCompatActivity  {
             @Override
             public void run() {
                 SpotlightSequence.getInstance(MainActivity.this,config)
-                        .addSpotlight(boton1, "Comienzo ", "Inicia la partida", "circleMenuView1")
-                        .addSpotlight(boton2, "Continuar ", "Continúa una partida", "circleMenuView2")
-                        .addSpotlight(boton3, "Salir ", "Salir del juego", "circleMenuView3")
-                        .addSpotlight(boton4, "Ayuda ", "Una pequeña ayuda", "circleMenuView4")
-
+                        .addSpotlight(boton1, getString(R.string.ayudaAnimTituloComienzo), getString(R.string.ayudaAnimSubtituloComienzo), "circleMenuView1")
+                        .addSpotlight(boton2,  getString(R.string.ayudaAnimTituloContinuar),  getString(R.string.ayudaAnimSubtituloContinuar), "circleMenuView2")
+                        .addSpotlight(boton3, getString(R.string.ayudaAnimTituloSalir), getString(R.string.ayudaAnimSubtituloSalir), "circleMenuView3")
+                        .addSpotlight(boton4, getString(R.string.ayudaAnimTituloAyuda), getString(R.string.ayudaAnimSubtituloAyuda), "circleMenuView4")
+                        .addSpotlight(boton5, getString(R.string.ayudaAnimTituloIdioma), getString(R.string.ayudaAnimSubtituloIdioma), "circleMenuView5")
                         .startSequence();
             }
         }, 400);
+
+
 
 
 

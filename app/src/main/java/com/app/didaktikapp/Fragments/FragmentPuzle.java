@@ -1,42 +1,47 @@
 package com.app.didaktikapp.Fragments;
 
+import android.app.Dialog;
+import android.content.ClipData;
+import android.content.ClipDescription;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
+import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Base64;
 import android.util.Log;
+import android.view.DragEvent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.app.didaktikapp.Activities.MapActivity;
-import com.app.didaktikapp.Puzzle.PuzzlePiece;
+import com.app.didaktikapp.Puzle.adapter.PuzzleAdapter;
+import com.app.didaktikapp.Puzle.adapter.StorePreference;
+import com.app.didaktikapp.Puzle.models.Pieces;
+import com.app.didaktikapp.Puzle.models.PuzzlePiece;
+import com.app.didaktikapp.Puzle.puzzle.Puzzle;
 import com.app.didaktikapp.R;
+import com.muddzdev.styleabletoast.StyleableToast;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
-
-import static java.lang.Math.abs;
-import static java.lang.Math.pow;
-import static java.lang.Math.sqrt;
+import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -49,20 +54,34 @@ import static java.lang.Math.sqrt;
 public class FragmentPuzle extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    public static final String ARG_IMAGEN = "imagen";
+    private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
+    private Long idActividad;
     private int imagen;
-
-    private View view;
-    private ArrayList<PuzzlePiece> pieces;
-    private ImageView imageView;
 
     private OnFragmentInteractionListener mListener;
 
-    private MediaPlayer mediaPlayer;
+    private View view;
 
+
+
+    RelativeLayout relativeLayout;
+    FrameLayout scrollView;
+    ImageView imageView;
+    Context context;
+    List<Pieces> piecesModelListMain = new ArrayList<Pieces>();
+    HashMap<String, Pieces> piecesModelHashMap = new HashMap<String, Pieces>();
+    int countGrid = 0;
+    ArrayList<PuzzlePiece> puzzlePiecesList = new ArrayList<PuzzlePiece>();
+    private RecyclerView rvPuzzle;
+    private RecyclerView.LayoutManager linearLayoutManager;
+    private PuzzleAdapter puzzleListAdapter;
+    StorePreference storePreference;
+    Puzzle puzzle;
+    MediaPlayer mediaPlayer ;
 
     public FragmentPuzle() {
         // Required empty public constructor
@@ -72,14 +91,15 @@ public class FragmentPuzle extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param imagen Parameter 1.
+     * @param param1 Parameter 1.
      * @return A new instance of fragment FragmentPuzle.
      */
     // TODO: Rename and change types and number of parameters
-    public static FragmentPuzle newInstance(String imagen, String param2) {
+    public static FragmentPuzle newInstance(Long param1, int param2) {
         FragmentPuzle fragment = new FragmentPuzle();
         Bundle args = new Bundle();
-//        args.putInt(ARG_IMAGEN, imagen);
+        args.putLong(ARG_PARAM1, param1);
+        args.putInt(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -88,41 +108,74 @@ public class FragmentPuzle extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            imagen = getArguments().getInt(ARG_IMAGEN);
-
+            idActividad = getArguments().getLong(ARG_PARAM1);
+            imagen = getArguments().getInt(ARG_PARAM2);
+            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        view =  inflater.inflate(R.layout.fragment_puzle, container, false);
+        super.onCreate(savedInstanceState);
 
-        final RelativeLayout layout = view.findViewById(R.id.layout);
-        imageView = view.findViewById(R.id.imageView);
-        imageView.setImageResource(imagen);
+        view = inflater.inflate(R.layout.puzzle_activity, container, false);
 
-        // run image related code after the view was laid out
-        // to have all dimensions calculated
-        imageView.post(new Runnable() {
-            @Override
-            public void run() {
-                pieces = splitImage();
-                TouchListener touchListener = new TouchListener();
-                // shuffle pieces order
-                Collections.shuffle(pieces);
-                for (PuzzlePiece piece : pieces) {
-                    piece.setOnTouchListener(touchListener);
-                    layout.addView(piece);
-                    // randomize position, on the bottom of the screen
-                    RelativeLayout.LayoutParams lParams = (RelativeLayout.LayoutParams) piece.getLayoutParams();
-                    lParams.leftMargin = new Random().nextInt(layout.getWidth() - piece.pieceWidth);
-                    lParams.topMargin = layout.getHeight() - piece.pieceHeight;
-                    piece.setLayoutParams(lParams);
-                }
+        context = getContext();
+        imageView = view.findViewById(R.id.frameImage);
+        scrollView = view.findViewById(R.id.scrollView);
+        scrollView.setOnDragListener(new FragmentPuzle.MyDragListener(null));
+        relativeLayout = view.findViewById(R.id.relativeLayout);
+        relativeLayout.setOnDragListener(new FragmentPuzle.MyDragListener(null));
+        rvPuzzle = view.findViewById(R.id.listView2);
+        rvPuzzle.setOnDragListener(new FragmentPuzle.MyDragListener(null));
+        linearLayoutManager = new LinearLayoutManager(getContext());
+        rvPuzzle.setLayoutManager(linearLayoutManager);
+        storePreference=new StorePreference(context);
+        puzzle = new Puzzle();
+        puzzlePiecesList.clear();
+
+        puzzlePiecesList = puzzle.createPuzzlePieces(getActivity(), null, imageView, "/puzzles/", 3, 3,imagen);
+        RelativeLayout.LayoutParams params;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                // System.out.println("image count" +puzzlePiecesList.get(countGrid).getPath());
+                PuzzlePiece piece = puzzlePiecesList.get(countGrid);
+                params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
+                        RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+                int dimX = piece.getAnchorPoint().x - piece.getCenterPoint().x;
+                int dimY = piece.getAnchorPoint().y - piece.getCenterPoint().y;
+
+                System.out.println("dimX-" + dimX + "dimY-" + dimY);
+                params.setMargins(dimX, dimY, 0, 0);
+                final ImageView button2 = new ImageView(context);
+                button2.setId(generateViewId());
+                button2.setTag(i + "," + j);
+
+                button2.setImageResource(R.drawable.ic_1);
+
+                button2.setOnDragListener(new FragmentPuzle.MyDragListener(button2));
+                button2.setLayoutParams(params);
+                relativeLayout.addView(button2);
+
+                Pieces piecesModel = new Pieces();
+                piecesModel.setpX(i);
+                piecesModel.setpY(j);
+                piecesModel.setPosition(countGrid);
+                piecesModel.setOriginalResource(puzzlePiecesList.get(countGrid).getImage());
+                piecesModelListMain.add(piecesModel);
+                Collections.shuffle(piecesModelListMain);
+                piecesModelHashMap.put(i + "," + j, piecesModel);
+                piecesModel = null;
+
+                countGrid++;
+
             }
-        });
+        }
+
+        Log.e("size", "" + piecesModelListMain.size());
+        setPuzzleListAdapter();
         return view;
     }
 
@@ -150,6 +203,252 @@ public class FragmentPuzle extends Fragment {
         mListener = null;
     }
 
+    public int generateViewId() {
+        final AtomicInteger sNextGeneratedId = new AtomicInteger(1);
+        for (; ; ) {
+            final int result = sNextGeneratedId.get();
+            // aapt-generated IDs have the high byte nonzero; clamp to the range under that.
+            int newValue = result + 1;
+            if (newValue > 0x00FFFFFF) newValue = 1; // Roll over to 1, not 0.
+            if (sNextGeneratedId.compareAndSet(result, newValue)) {
+                return result;
+            }
+        }
+    }
+
+    public void setPuzzleListAdapter() {
+        if (puzzleListAdapter != null)
+            puzzleListAdapter = null;
+
+        puzzleListAdapter = new PuzzleAdapter(context, piecesModelListMain);
+        rvPuzzle.setHasFixedSize(true);
+        rvPuzzle.setAdapter(puzzleListAdapter);
+
+        puzzleListAdapter.notifyDataSetChanged();
+    }
+
+
+    static public class MyClickListener implements View.OnLongClickListener {
+
+        // called when the item is long-clicked
+        @Override
+        public boolean onLongClick(View view) {
+            // TODO Auto-generated method stub
+
+            // create it from the object's tag
+            ClipData.Item item = new ClipData.Item((CharSequence) view.getTag());
+
+            String[] mimeTypes = {ClipDescription.MIMETYPE_TEXT_PLAIN};
+            ClipData data = new ClipData(view.getTag().toString(), mimeTypes, item);
+            View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
+
+            view.startDrag(data, //data to be dragged
+                    shadowBuilder, //drag shadow
+                    view, //local data about the drag and drop operation
+                    0   //no needed flags
+            );
+
+            view.setVisibility(View.INVISIBLE);
+            return true;
+        }
+    }
+
+    public class MyDragListener implements View.OnDragListener {
+
+        final ImageView imageView;
+
+        public MyDragListener(final ImageView imageView) {
+            this.imageView = imageView;
+        }
+
+
+        @Override
+        public boolean onDrag(View v, DragEvent event) {
+
+            // Handles each of the expected events
+            switch (event.getAction()) {
+
+                //signal for the start of a drag and drop operation.
+                case DragEvent.ACTION_DRAG_STARTED:
+                    // do nothing
+                    break;
+
+                //the drag point has entered the bounding box of the View
+                case DragEvent.ACTION_DRAG_ENTERED:
+                    //v.setBackgroundResource(R.drawable.target_shape);    //change the shape of the view
+                    break;
+
+                //the user has moved the drag shadow outside the bounding box of the View
+                case DragEvent.ACTION_DRAG_EXITED:
+                    //v.setBackgroundResource(R.drawable.normal_shape);    //change the shape of the view back to normal
+                    break;
+
+                //drag shadow has been released,the drag point is within the bounding box of the View
+                case DragEvent.ACTION_DROP:
+                    //v is the dynamic grid imageView, we accept the drag item
+                    //view is listView imageView the dragged item
+                    if (v == imageView) {
+                        View view = (View) event.getLocalState();
+
+                        ViewGroup owner = (ViewGroup) v.getParent();
+                        if (owner == relativeLayout) {
+                            String selectedViewTag = view.getTag().toString();
+
+                            Pieces piecesModel = piecesModelHashMap.get(v.getTag().toString());
+                            String xy = piecesModel.getpX() + "," + piecesModel.getpY();
+
+                            if (xy.equals(selectedViewTag)) {
+                                ImageView imageView = (ImageView) v;
+                                imageView.setImageBitmap(piecesModel.getOriginalResource());
+                                piecesModelListMain.remove(piecesModel);
+                                setPuzzleListAdapter();
+                                piecesModel = null;
+                                System.out.println("sizeoflist" + piecesModelListMain.size());
+                                if (piecesModelListMain.size() == 0) {
+                                    StyleableToast.makeText(context, getString(R.string.TrenPuzleTerminado), Toast.LENGTH_LONG, R.style.mytoastCorrecta  ).show();
+
+                                    openPopup();
+                                } else {
+//                                    Toast.makeText(context, "The correct Puzzle", Toast.LENGTH_LONG).show();
+                                }
+
+                            } else {
+                                piecesModel = null;
+                                view.setVisibility(View.VISIBLE);
+//                                Toast.makeText(context, "Not the correct Puzzle", Toast.LENGTH_LONG).show();
+                                break;
+                            }
+                        } else {
+                            View view1 = (View) event.getLocalState();
+                            view1.setVisibility(View.VISIBLE);
+//                            Toast.makeText(context, "You can't drop the image here", Toast.LENGTH_LONG).show();
+                            break;
+                        }
+                    } else if (v == scrollView) {
+                        View view1 = (View) event.getLocalState();
+                        view1.setVisibility(View.VISIBLE);
+//                        Toast.makeText(context, "You can't drop the image here", Toast.LENGTH_LONG).show();
+                        break;
+                    } else if (v == rvPuzzle) {
+                        View view1 = (View) event.getLocalState();
+                        view1.setVisibility(View.VISIBLE);
+//                        Toast.makeText(context, "You can't drop the image here", Toast.LENGTH_LONG).show();
+                        break;
+                    } else {
+                        View view = (View) event.getLocalState();
+                        view.setVisibility(View.VISIBLE);
+//                        Toast.makeText(context, "You can't drop the image here", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    break;
+
+                //the drag and drop operation has concluded.
+                case DragEvent.ACTION_DRAG_ENDED:
+                    //v.setBackgroundResource(R.drawable.normal_shape);	//go back to normal shape
+
+                default:
+                    break;
+            }
+
+            return true;
+        }
+    }
+
+    private void openPopup() {
+        if(imagen == R.drawable.tren) {
+            mediaPlayer = MediaPlayer.create(getContext(), R.raw.trena);
+            mediaPlayer.start();
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+
+
+                }
+            });
+        }
+        final Dialog aDialog = new Dialog(context);
+        aDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        aDialog.setContentView(R.layout.pop_up_upload_doc_alert);
+        aDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        aDialog.setCancelable(true);
+
+        aDialog.show();
+        ImageView btnOk = aDialog.findViewById(R.id.popupimage);
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(imagen == R.drawable.tren) {
+                    mediaPlayer.stop();
+
+                    //                        guardarBBDD();
+
+                    FragmentTrenTexto fragment = FragmentTrenTexto.newInstance(idActividad);
+                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
+                    transaction.replace(R.id.fragment_frame, fragment);
+                    transaction.commit();
+                    transaction.addToBackStack("Fragment");
+                }
+
+                if(imagen == R.drawable.gernika){
+
+                    view.findViewById(R.id.layoutLottie).setVisibility(View.VISIBLE);
+                    view.findViewById(R.id.layoutLottie).setOnClickListener(new View.OnClickListener(){
+
+                        @Override
+                        public void onClick(View view) {
+                            getFragmentManager().beginTransaction().remove(FragmentPuzle.this).commit();
+                        }
+                    });
+//                    LottieAnimationView animationView1 = (LottieAnimationView) view.findViewById(R.id.animation_view1);
+//                    animationView1.setAnimation("run_man_run.json");
+//                    animationView1.loop(true);
+//                    animationView1.playAnimation();
+
+                    LottieAnimationView animationView2 = view.findViewById(R.id.animation_view2);
+                    animationView2.setAnimation("fireworks.json");
+                    animationView2.loop(true);
+                    animationView2.playAnimation();
+
+                    LottieAnimationView animationView3 = view.findViewById(R.id.animation_view3);
+                    animationView3.setAnimation("trophy.json");
+                    animationView3.loop(true);
+                    animationView3.playAnimation();
+
+
+                }
+                aDialog.cancel();
+            }
+        });
+
+    }
+    public Bitmap StringToBitMap(String encodedString) {
+        try {
+            byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            return bitmap;
+        } catch (Exception e) {
+            e.getMessage();
+            return null;
+        }
+    }
+    @Override
+    public void onDestroy() {
+        if(imagen == R.drawable.tren && mediaPlayer!=null)
+            mediaPlayer.stop();
+        ((MapActivity)getActivity()).cambiarLocalizacion();
+
+        super.onDestroy();
+    }
+
+    @Override
+    public void onPause() {
+        if(imagen == R.drawable.tren && mediaPlayer!=null)
+            mediaPlayer.stop();
+        super.onPause();
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -163,291 +462,5 @@ public class FragmentPuzle extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
-    }
-
-    private ArrayList<PuzzlePiece> splitImage() {
-        int piecesNumber = 9;
-        int rows = 3;
-        int cols = 3;
-
-        ImageView imageView = view.findViewById(R.id.imageView);
-        ArrayList<PuzzlePiece> pieces = new ArrayList<>(piecesNumber);
-
-        // Get the scaled bitmap of the source image
-        BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
-        Bitmap bitmap = drawable.getBitmap();
-
-        int[] dimensions = getBitmapPositionInsideImageView(imageView);
-        int scaledBitmapLeft = dimensions[0];
-        int scaledBitmapTop = dimensions[1];
-        int scaledBitmapWidth = dimensions[2];
-        int scaledBitmapHeight = dimensions[3];
-
-        int croppedImageWidth = scaledBitmapWidth - 2 * abs(scaledBitmapLeft);
-        int croppedImageHeight = scaledBitmapHeight - 2 * abs(scaledBitmapTop);
-
-        Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, scaledBitmapWidth, scaledBitmapHeight, true);
-        Bitmap croppedBitmap = Bitmap.createBitmap(scaledBitmap, abs(scaledBitmapLeft), abs(scaledBitmapTop), croppedImageWidth, croppedImageHeight);
-
-
-
-
-        // Calculate the with and height of the pieces
-        int pieceWidth = croppedImageWidth/cols;
-        int pieceHeight = croppedImageHeight/rows;
-
-        // Create each bitmap piece and add it to the resulting array
-        int yCoord = 0;
-        for (int row = 0; row < rows; row++) {
-            int xCoord = 0;
-            for (int col = 0; col < cols; col++) {
-                // calculate offset for each piece
-                int offsetX = 0;
-                int offsetY = 0;
-                if (col > 0) {
-                    offsetX = pieceWidth / 3;
-                }
-                if (row > 0) {
-                    offsetY = pieceHeight / 3;
-                }
-
-                // apply the offset to each piece
-                Bitmap pieceBitmap = Bitmap.createBitmap(croppedBitmap,  xCoord - offsetX, yCoord - offsetY, pieceWidth + offsetX, pieceHeight + offsetY);
-                PuzzlePiece piece = new PuzzlePiece(getActivity().getApplicationContext());
-                piece.setImageBitmap(pieceBitmap);
-                piece.xCoord = xCoord - offsetX + imageView.getLeft();
-                piece.yCoord = yCoord - offsetY + imageView.getTop();
-                piece.pieceWidth = pieceWidth + offsetX;
-                piece.pieceHeight = pieceHeight + offsetY;
-
-                // this bitmap will hold our final puzzle piece image
-                Bitmap puzzlePiece = Bitmap.createBitmap(pieceWidth + offsetX, pieceHeight + offsetY, Bitmap.Config.ARGB_8888);
-
-                // draw path
-                int bumpSize = pieceHeight / 4;
-                Canvas canvas = new Canvas(puzzlePiece);
-                Path path = new Path();
-                path.moveTo(offsetX, offsetY);
-                if (row == 0) {
-                    // top side piece
-                    path.lineTo(pieceBitmap.getWidth(), offsetY);
-                } else {
-                    // top bump
-                    path.lineTo(offsetX + (pieceBitmap.getWidth() - offsetX) / 3, offsetY);
-                    path.cubicTo(offsetX + (pieceBitmap.getWidth() - offsetX) / 6, offsetY - bumpSize, offsetX + (pieceBitmap.getWidth() - offsetX) / 6 * 5, offsetY - bumpSize, offsetX + (pieceBitmap.getWidth() - offsetX) / 3 * 2, offsetY);
-                    path.lineTo(pieceBitmap.getWidth(), offsetY);
-                }
-
-                if (col == cols - 1) {
-                    // right side piece
-                    path.lineTo(pieceBitmap.getWidth(), pieceBitmap.getHeight());
-                } else {
-                    // right bump
-                    path.lineTo(pieceBitmap.getWidth(), offsetY + (pieceBitmap.getHeight() - offsetY) / 3);
-                    path.cubicTo(pieceBitmap.getWidth() - bumpSize,offsetY + (pieceBitmap.getHeight() - offsetY) / 6, pieceBitmap.getWidth() - bumpSize, offsetY + (pieceBitmap.getHeight() - offsetY) / 6 * 5, pieceBitmap.getWidth(), offsetY + (pieceBitmap.getHeight() - offsetY) / 3 * 2);
-                    path.lineTo(pieceBitmap.getWidth(), pieceBitmap.getHeight());
-                }
-
-                if (row == rows - 1) {
-                    // bottom side piece
-                    path.lineTo(offsetX, pieceBitmap.getHeight());
-                } else {
-                    // bottom bump
-                    path.lineTo(offsetX + (pieceBitmap.getWidth() - offsetX) / 3 * 2, pieceBitmap.getHeight());
-                    path.cubicTo(offsetX + (pieceBitmap.getWidth() - offsetX) / 6 * 5,pieceBitmap.getHeight() - bumpSize, offsetX + (pieceBitmap.getWidth() - offsetX) / 6, pieceBitmap.getHeight() - bumpSize, offsetX + (pieceBitmap.getWidth() - offsetX) / 3, pieceBitmap.getHeight());
-                    path.lineTo(offsetX, pieceBitmap.getHeight());
-                }
-
-                if (col == 0) {
-                    // left side piece
-                    path.close();
-                } else {
-                    // left bump
-                    path.lineTo(offsetX, offsetY + (pieceBitmap.getHeight() - offsetY) / 3 * 2);
-                    path.cubicTo(offsetX - bumpSize, offsetY + (pieceBitmap.getHeight() - offsetY) / 6 * 5, offsetX - bumpSize, offsetY + (pieceBitmap.getHeight() - offsetY) / 6, offsetX, offsetY + (pieceBitmap.getHeight() - offsetY) / 3);
-                    path.close();
-                }
-
-                // mask the piece
-                Paint paint = new Paint();
-                paint.setColor(0XFF000000);
-                paint.setStyle(Paint.Style.FILL);
-
-                canvas.drawPath(path, paint);
-                paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-                canvas.drawBitmap(pieceBitmap, 0, 0, paint);
-
-
-                // draw a white border
-                Paint border = new Paint();
-                border.setColor(0X80FFFFFF);
-                border.setStyle(Paint.Style.STROKE);
-                border.setStrokeWidth(8.0f);
-                canvas.drawPath(path, border);
-
-                // draw a black border
-                border = new Paint();
-                border.setColor(0X80000000);
-                border.setStyle(Paint.Style.STROKE);
-                border.setStrokeWidth(3.0f);
-                canvas.drawPath(path, border);
-
-                // set the resulting bitmap to the piece
-                piece.setImageBitmap(puzzlePiece);
-
-                pieces.add(piece);
-                xCoord += pieceWidth;
-            }
-            yCoord += pieceHeight;
-        }
-
-        return pieces;
-    }
-
-
-
-    private int[] getBitmapPositionInsideImageView(ImageView imageView) {
-        int[] ret = new int[4];
-
-        if (imageView == null || imageView.getDrawable() == null)
-            return ret;
-
-        // Get image dimensions
-        // Get image matrix values and place them in an array
-        float[] f = new float[9];
-        imageView.getImageMatrix().getValues(f);
-
-        // Extract the scale values using the constants (if aspect ratio maintained, scaleX == scaleY)
-        final float scaleX = f[Matrix.MSCALE_X];
-        final float scaleY = f[Matrix.MSCALE_Y];
-
-        // Get the drawable (could also get the bitmap behind the drawable and getWidth/getHeight)
-        final Drawable d = imageView.getDrawable();
-        final int origW = d.getIntrinsicWidth();
-        final int origH = d.getIntrinsicHeight();
-
-        // Calculate the actual dimensions
-        final int actW = Math.round(origW * scaleX);
-        final int actH = Math.round(origH * scaleY);
-
-        ret[2] = actW;
-        ret[3] = actH;
-
-
-        // Get image position
-        // We assume that the image is centered into ImageView
-        int imgViewW = imageView.getWidth();
-        int imgViewH = imageView.getHeight();
-
-        int top = (int) (imgViewH - actH)/2;
-        int left = (int) (imgViewW - actW)/2;
-
-        ret[0] = left;
-        ret[1] = top;
-
-
-        return ret;
-    }
-
-    public class TouchListener implements View.OnTouchListener {
-        private float xDelta;
-        private float yDelta;
-
-        @Override
-        public boolean onTouch(View view, MotionEvent motionEvent) {
-            float x = motionEvent.getRawX();
-            float y = motionEvent.getRawY();
-
-            final double tolerance = sqrt(pow(view.getWidth(), 2) + pow(view.getHeight(), 2)) / 10;
-
-            PuzzlePiece piece = (PuzzlePiece) view;
-            if (!piece.canMove) {
-                return true;
-            }
-
-            RelativeLayout.LayoutParams lParams = (RelativeLayout.LayoutParams) view.getLayoutParams();
-            switch (motionEvent.getAction() & MotionEvent.ACTION_MASK) {
-                case MotionEvent.ACTION_DOWN:
-                    xDelta = x - lParams.leftMargin;
-                    yDelta = y - lParams.topMargin;
-                    piece.bringToFront();
-                    break;
-                case MotionEvent.ACTION_MOVE:
-                    lParams.leftMargin = (int) (x - xDelta);
-                    lParams.topMargin = (int) (y - yDelta);
-                    view.setLayoutParams(lParams);
-                    break;
-
-                    case MotionEvent.ACTION_UP:
-                    int xDiff = abs(piece.xCoord - lParams.leftMargin);
-                    int yDiff = abs(piece.yCoord - lParams.topMargin);
-                    if (xDiff <= tolerance && yDiff <= tolerance) {
-                        lParams.leftMargin = piece.xCoord;
-                        lParams.topMargin = piece.yCoord;
-                        piece.setLayoutParams(lParams);
-                        piece.canMove = false;
-                        sendViewToBack(piece);
-                        checkGameOver();
-                    }
-                    break;
-            }
-
-            return true;
-        }
-
-        public void sendViewToBack(final View child) {
-            final ViewGroup parent = (ViewGroup)child.getParent();
-            if (null != parent) {
-                parent.removeView(child);
-                parent.addView(child, 0);
-            }
-        }
-
-        public void checkGameOver() {
-            if (isGameOver()) {
-                if(imagen == R.drawable.tren) {
-                    mediaPlayer = MediaPlayer.create(getContext(), R.raw.trena);
-                    mediaPlayer.start();
-                    mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-
-                        @Override
-                        public void onCompletion(MediaPlayer mp) {
-                            FragmentTrenTexto fragment = new FragmentTrenTexto();
-                            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                            transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
-                            transaction.replace(R.id.fragment_frame, fragment);
-                            transaction.commit();
-                            transaction.addToBackStack("Fragment");
-                        }
-
-                    });
-                }
-            }
-        }
-
-        private boolean isGameOver() {
-            for (PuzzlePiece piece : pieces) {
-                if (piece.canMove) {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-    }
-
-    @Override
-    public void onDestroy() {
-        if(mediaPlayer!=null)
-            mediaPlayer.stop();
-        super.onDestroy();
-    }
-
-    @Override
-    public void onPause() {
-        if(mediaPlayer!=null)
-            mediaPlayer.stop();
-        super.onPause();
     }
 }

@@ -97,5 +97,56 @@
         <item name="stRadius">25dp</item>
     </style>
 
+    <style name="wrap_content">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="estiloa4_1"> <!-- Estilo del primer linearLayout -->
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <style name="estiloa4_2" parent="wrap_content"> <!-- Estilo para los elementos arrastrables -->
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:padding">5dp</item>
+
+        <item name="android:background">@drawable/bg_palabras_errotatextos</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="estiloa4_3" parent="estiloa4_2"> <!-- Estilo para los botones -->
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:padding">7dp</item>
+        <!--<item name="android:background">@drawable/p2_border3</item>-->
+    </style>
+
+    <style name="estiloa4_4" parent="wrap_content"> <!-- Estilo para los ScrollView/TextView -->
+        <item name="android:textSize">20sp</item>
+        <item name="android:padding">3dp</item>
+    </style>
+
+    <style name="estiloa4_5" parent="estiloa4_4"> <!-- Estilo para los ScrollView/EditText -->
+        <item name="android:layout_width">120dp</item>
+        <item name="android:focusable">false</item>
+    </style>
+
+    <style name="estiloa4_6" > <!-- Estilo para el ScrollView de la Actividad 4 -->
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <!--        <item name="android:background">@drawable/a4_border1</item>-->
+        <item name="android:fadeScrollbars">false</item>
+        <!--        <item name="android:padding">25dp</item>-->
+        <item name="android:padding">15dp</item>
+        <item name="android:scrollbarSize">20dp</item>
+    </style>
+
 
 </resources>

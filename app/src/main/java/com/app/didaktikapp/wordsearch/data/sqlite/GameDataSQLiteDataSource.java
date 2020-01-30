@@ -32,7 +32,7 @@ public class GameDataSQLiteDataSource implements GameDataSource {
     public void getGameData(int gid, GameRoundCallback callback) {
         SQLiteDatabase db = mHelper.getReadableDatabase();
 
-        String cols[] = {
+        String[] cols = {
                 DbContract.GameRound._ID,
                 DbContract.GameRound.COL_NAME,
                 DbContract.GameRound.COL_DURATION,
@@ -41,7 +41,7 @@ public class GameDataSQLiteDataSource implements GameDataSource {
                 DbContract.GameRound.COL_GRID_DATA
         };
         String sel = DbContract.GameRound._ID + "=?";
-        String selArgs[] = {String.valueOf(gid)};
+        String[] selArgs = {String.valueOf(gid)};
 
         Cursor c = db.query(DbContract.GameRound.TABLE_NAME, cols, sel, selArgs, null, null, null);
         GameDataEntity ent = null;
@@ -122,7 +122,7 @@ public class GameDataSQLiteDataSource implements GameDataSource {
     public void deleteGameData(int gid) {
         SQLiteDatabase db = mHelper.getWritableDatabase();
         String sel = DbContract.GameRound._ID + "=?";
-        String selArgs[] = {String.valueOf(gid)};
+        String[] selArgs = {String.valueOf(gid)};
 
         db.delete(DbContract.GameRound.TABLE_NAME, sel, selArgs);
 
@@ -144,7 +144,7 @@ public class GameDataSQLiteDataSource implements GameDataSource {
         values.put(DbContract.GameRound.COL_DURATION, newDuration);
 
         String where = DbContract.GameRound._ID + "=?";
-        String whereArgs[] = {String.valueOf(gid)};
+        String[] whereArgs = {String.valueOf(gid)};
 
         db.update(DbContract.GameRound.TABLE_NAME, values, where, whereArgs);
     }
@@ -157,7 +157,7 @@ public class GameDataSQLiteDataSource implements GameDataSource {
         values.put(DbContract.UsedWord.COL_LINE_COLOR, usedWord.getAnswerLine().color);
 
         String where = DbContract.UsedWord._ID + "=?";
-        String whereArgs[] = {String.valueOf(usedWord.getId())};
+        String[] whereArgs = {String.valueOf(usedWord.getId())};
 
         db.update(DbContract.UsedWord.TABLE_NAME, values, where, whereArgs);
     }
@@ -196,7 +196,7 @@ public class GameDataSQLiteDataSource implements GameDataSource {
     private List<UsedWord> getUsedWords(int gid) {
         SQLiteDatabase db = mHelper.getReadableDatabase();
 
-        String cols[] = {
+        String[] cols = {
                 DbContract.UsedWord._ID,
                 DbContract.UsedWord.COL_WORD_STRING,
                 DbContract.UsedWord.COL_ANSWER_LINE_DATA,
@@ -205,7 +205,7 @@ public class GameDataSQLiteDataSource implements GameDataSource {
                 DbContract.UsedWord.COL_REVEAL_COUNT
         };
         String sel = DbContract.UsedWord.COL_GAME_ROUND_ID + "=?";
-        String selArgs[] = {String.valueOf(gid)};
+        String[] selArgs = {String.valueOf(gid)};
 
         Cursor c = db.query(DbContract.UsedWord.TABLE_NAME, cols, sel, selArgs, null, null, null);
 

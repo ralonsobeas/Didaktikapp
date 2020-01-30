@@ -20,6 +20,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <Button
+            android:id="@+id/btnCorregir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="161dp"
+            android:layout_marginTop="364dp"
+            android:layout_marginEnd="161dp"
+            android:enabled="false"
+            android:text="@string/corregir"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitulo" />
+
         <TextView
             android:id="@+id/tvTitulo"
             android:layout_width="match_parent"
@@ -37,13 +50,13 @@
             android:id="@+id/layoutPregunta1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:orientation="vertical"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitulo"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp">
+            app:layout_constraintTop_toBottomOf="@+id/tvTitulo">
 
             <TextView
                 android:id="@+id/tvPregunta1"
@@ -58,28 +71,28 @@
                 android:layout_height="match_parent">
 
                 <RadioButton
-                    android:id="@+id/rbtnPregunta1.A"
+                    android:id="@+id/rbtnPregunta1A"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/SanMiguelPregunta1OpcionA"
-                    android:textSize="30sp"
-                    android:textColor="@color/negroFondo"/>
+                    android:textColor="@color/negroFondo"
+                    android:textSize="30sp" />
 
                 <RadioButton
-                    android:id="@+id/rbtnPregunta1.B"
+                    android:id="@+id/rbtnPregunta1B"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/SanMiguelPregunta1OpcionB"
-                    android:textSize="30sp"
-                    android:textColor="@color/negroFondo"/>
+                    android:textColor="@color/negroFondo"
+                    android:textSize="30sp" />
 
                 <RadioButton
-                    android:id="@+id/rbtnPregunta1.C"
+                    android:id="@+id/rbtnPregunta1C"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/SanMiguelPregunta1OpcionC"
-                    android:textSize="30sp"
-                    android:textColor="@color/negroFondo"/>
+                    android:textColor="@color/negroFondo"
+                    android:textSize="30sp" />
             </RadioGroup>
         </LinearLayout>
 
@@ -87,6 +100,8 @@
             android:id="@+id/layoutPregunta2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:orientation="vertical"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
@@ -106,27 +121,27 @@
                 android:layout_height="match_parent">
 
                 <RadioButton
-                    android:id="@+id/rbtnPregunta2.A"
+                    android:id="@+id/rbtnPregunta2A"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/SanMiguelPregunta2OpcionA"
-                    android:textSize="30sp"
-                    android:textColor="@color/negroFondo"/>
+                    android:textColor="@color/negroFondo"
+                    android:textSize="30sp" />
 
                 <RadioButton
-                    android:id="@+id/rbtnPregunta2.B"
+                    android:id="@+id/rbtnPregunta2B"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/SanMiguelPregunta2OpcionB"
                     android:textSize="30sp" />
 
                 <RadioButton
-                    android:id="@+id/rbtnPregunta2.C"
+                    android:id="@+id/rbtnPregunta2C"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/SanMiguelPregunta2OpcionC"
-                    android:textSize="30sp"
-                    android:textColor="@color/negroFondo"/>
+                    android:textColor="@color/negroFondo"
+                    android:textSize="30sp" />
             </RadioGroup>
         </LinearLayout>
 
@@ -134,6 +149,8 @@
             android:id="@+id/layoutPregunta3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:orientation="vertical"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
@@ -153,28 +170,28 @@
                 android:layout_height="match_parent">
 
                 <RadioButton
-                    android:id="@+id/rbtnPregunta3.A"
+                    android:id="@+id/rbtnPregunta3A"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/SanMiguelPregunta3OpcionA"
-                    android:textSize="30sp"
-                    android:textColor="@color/negroFondo"/>
+                    android:textColor="@color/negroFondo"
+                    android:textSize="30sp" />
 
                 <RadioButton
-                    android:id="@+id/rbtnPregunta3.B"
+                    android:id="@+id/rbtnPregunta3B"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/SanMiguelPregunta3OpcionB"
-                    android:textSize="30sp"
-                    android:textColor="@color/negroFondo"/>
+                    android:textColor="@color/negroFondo"
+                    android:textSize="30sp" />
 
                 <RadioButton
-                    android:id="@+id/rbtnPregunta3.C"
+                    android:id="@+id/rbtnPregunta3C"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/SanMiguelPregunta3OpcionC"
-                    android:textSize="30sp"
-                    android:textColor="@color/negroFondo"/>
+                    android:textColor="@color/negroFondo"
+                    android:textSize="30sp" />
             </RadioGroup>
         </LinearLayout>
 
@@ -182,6 +199,8 @@
             android:id="@+id/layoutPregunta4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:orientation="vertical"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
@@ -201,28 +220,28 @@
                 android:layout_height="match_parent">
 
                 <RadioButton
-                    android:id="@+id/rbtnPregunta4.A"
+                    android:id="@+id/rbtnPregunta4A"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/SanMiguelPregunta4OpcionA"
-                    android:textSize="30sp"
-                    android:textColor="@color/negroFondo"/>
+                    android:textColor="@color/negroFondo"
+                    android:textSize="30sp" />
 
                 <RadioButton
-                    android:id="@+id/rbtnPregunta4.B"
+                    android:id="@+id/rbtnPregunta4B"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/SanMiguelPregunta4OpcionB"
-                    android:textSize="30sp"
-                    android:textColor="@color/negroFondo"/>
+                    android:textColor="@color/negroFondo"
+                    android:textSize="30sp" />
 
                 <RadioButton
-                    android:id="@+id/rbtnPregunta4.C"
+                    android:id="@+id/rbtnPregunta4C"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/SanMiguelPregunta4OpcionC"
-                    android:textSize="30sp"
-                    android:textColor="@color/negroFondo"/>
+                    android:textColor="@color/negroFondo"
+                    android:textSize="30sp" />
             </RadioGroup>
         </LinearLayout>
 

@@ -137,8 +137,8 @@ public class SQLiteControlador {
 //            case "FragmentTrenTexto":
 //                tabla = "Trena";
 //                break;
-//            case "FragmentErrota":
-//                tabla = "SanMiguelErrota";
+//            case "FragmentErrotaTextos":
+//                tabla = "SanMiguelErrotaTextos";
 //                break;
 //
 //        }

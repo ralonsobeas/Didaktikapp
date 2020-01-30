@@ -15,13 +15,19 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.app.didaktikapp.BBDD.AppExecutors;
 import com.app.didaktikapp.BBDD.Dao.ErrotaDao;
+import com.app.didaktikapp.BBDD.Dao.GernikaDao;
 import com.app.didaktikapp.BBDD.Dao.GrupoDao;
+import com.app.didaktikapp.BBDD.Dao.Repaso1Dao;
+import com.app.didaktikapp.BBDD.Dao.Repaso2Dao;
 import com.app.didaktikapp.BBDD.Dao.SanMiguelDao;
 import com.app.didaktikapp.BBDD.Dao.TrenDao;
 import com.app.didaktikapp.BBDD.Dao.UniversitateaDao;
 import com.app.didaktikapp.BBDD.Dao.UsuarioDao;
 import com.app.didaktikapp.BBDD.Dao.ZumeltzegiDao;
 import com.app.didaktikapp.BBDD.Modelos.ActividadErrota;
+import com.app.didaktikapp.BBDD.Modelos.ActividadGernika;
+import com.app.didaktikapp.BBDD.Modelos.ActividadRepaso1;
+import com.app.didaktikapp.BBDD.Modelos.ActividadRepaso2;
 import com.app.didaktikapp.BBDD.Modelos.ActividadSanMiguel;
 import com.app.didaktikapp.BBDD.Modelos.ActividadTren;
 import com.app.didaktikapp.BBDD.Modelos.ActividadUniversitatea;
@@ -37,8 +43,11 @@ import java.util.List;
                     ActividadUniversitatea.class,
                     ActividadTren.class,
                     ActividadSanMiguel.class,
-                    ActividadErrota.class},
-        version = 2 )
+                    ActividadErrota.class,
+                    ActividadGernika.class,
+                    ActividadRepaso1.class,
+                    ActividadRepaso2.class},
+                    version = 2 )
 public abstract class AppDatabase extends RoomDatabase {
 
 
@@ -55,6 +64,12 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract SanMiguelDao getSanMiguelDao();
 
     public abstract ErrotaDao getErrotaDao();
+
+    public abstract GernikaDao getGernikaDao();
+
+    public abstract Repaso1Dao getRepaso1Dao();
+
+    public abstract Repaso2Dao getRepaso2Dao();
 
 
 

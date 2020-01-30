@@ -12,7 +12,11 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
+import com.app.didaktikapp.Activities.MapActivity;
+import com.app.didaktikapp.BBDD.Modelos.ActividadUniversitatea;
+import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.R;
 
 
@@ -22,6 +26,12 @@ public class FragmentUnibertsitateaPreguntas extends Fragment {
     private View view;
 
     private LinearLayout preguntasLayout;
+
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+    private Long idActividad;
+    private String mParam2;
 
     private Button btnContinuar, btnCorregir;
 
@@ -35,10 +45,10 @@ public class FragmentUnibertsitateaPreguntas extends Fragment {
     }
 
 
-    public static FragmentUnibertsitateaPreguntas newInstance() {
+    public static FragmentUnibertsitateaPreguntas newInstance(Long param1) {
         FragmentUnibertsitateaPreguntas fragment = new FragmentUnibertsitateaPreguntas();
         Bundle args = new Bundle();
-
+        args.putLong(ARG_PARAM1, param1);
         fragment.setArguments(args);
         return fragment;
     }
@@ -46,6 +56,10 @@ public class FragmentUnibertsitateaPreguntas extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            idActividad = getArguments().getLong(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
     }
 
     @Override
@@ -127,12 +141,31 @@ public class FragmentUnibertsitateaPreguntas extends Fragment {
             public void onClick(View v) {
 
                 //ACTUALIZAR BBDD
-                //CAMBIAR DE FRAGMENT
-                getFragmentManager().beginTransaction().remove(FragmentUnibertsitateaPreguntas.this).commit();
+                guardarBBDD();
+                //Cerrar fragment y abrir el siguiente
+                FragmentUnibertsitateaFotos fragmentUnibertsitateaFotos = FragmentUnibertsitateaFotos.newInstance(idActividad);
+                FragmentTransaction transactionSanMiguel = getActivity().getSupportFragmentManager().beginTransaction();
+                transactionSanMiguel.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
+                transactionSanMiguel.replace(R.id.fragment_frame, fragmentUnibertsitateaFotos);
+                transactionSanMiguel.commit();
+                transactionSanMiguel.addToBackStack("Fragment");
 
             }
         });
         return view;
+    }
+
+    private void guardarBBDD(){
+        ActividadUniversitatea actividadUniversitatea = DatabaseRepository.getAppDatabase().getUniversitateaDao().getUniversitatea(idActividad);
+
+        actividadUniversitatea.setFragment(2);
+
+
+        //Todo: AÑADIR CUANTAS CORRECTAS SE HAN HECHO
+        actividadUniversitatea.setTest("CORRECTAS");
+
+        DatabaseRepository.getAppDatabase().getUniversitateaDao().updateUniversitatea(actividadUniversitatea);
+
     }
 
 
@@ -146,6 +179,13 @@ public class FragmentUnibertsitateaPreguntas extends Fragment {
     public void onDetach() {
         super.onDetach();
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        ((MapActivity)getActivity()).cambiarLocalizacion();
     }
 
 

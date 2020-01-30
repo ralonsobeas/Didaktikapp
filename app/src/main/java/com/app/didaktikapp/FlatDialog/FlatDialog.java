@@ -128,6 +128,10 @@ public class FlatDialog extends Dialog {
             return first_edit_text.getText().toString();
     }
 
+    public AutoCompleteTextView getFirst_edit_text (){
+        return first_edit_text;
+    }
+
     public FlatDialog withFirstTextField(boolean hasEditText){
         if (hasEditText) {
             first_edit_text.setVisibility(View.VISIBLE);

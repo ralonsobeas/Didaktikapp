@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#99FFFFFF"
+    android:clickable="true"
+    android:orientation="vertical"
+    tools:context=".Fragments.FragmentGernikaPreguntas">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="60dp"
+        android:background="@color/gray"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/gernikaTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="80sp"
+            android:text="@string/Gernika"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:fontFamily="@font/youthtouch"/>
+
+
+        <LinearLayout
+            android:id="@+id/gernikaPreguntasLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="vertical"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/gernikaTitulo">
+
+            <TextView
+                android:id="@+id/gernikaPregunta1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/GernikaPregunta1Titulo"
+                android:textSize="24sp" />
+
+            <RadioGroup
+                android:id="@+id/grupoPregunta1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/GernikaPregunta1OpcionA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/negroFondo"
+                    android:text="@string/GernikaPregunta1OpcionA"
+                    android:textSize="24sp" />
+
+                <RadioButton
+                    android:id="@+id/GernikaPregunta1OpcionB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/negroFondo"
+                    android:text="@string/GernikaPregunta1OpcionB"
+                    android:textSize="24sp" />
+
+                <RadioButton
+                    android:id="@+id/GernikaPregunta1OpcionC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/negroFondo"
+                    android:text="@string/GernikaPregunta1OpcionC"
+                    android:textSize="24sp" />
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/GernikaPregunta2Titulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/GernikaPregunta2Titulo"
+                android:textSize="24sp" />
+
+            <RadioGroup
+                android:id="@+id/grupoPregunta2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/GernikaPregunta2OpcionA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/negroFondo"
+                    android:text="@string/GernikaPregunta2OpcionA"
+                    android:textSize="24sp" />
+
+                <RadioButton
+                    android:id="@+id/GernikaPregunta2OpcionB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/negroFondo"
+                    android:text="@string/GernikaPregunta2OpcionB"
+                    android:textSize="24sp" />
+
+                <RadioButton
+                    android:id="@+id/GernikaPregunta2OpcionC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/negroFondo"
+                    android:text="@string/GernikaPregunta2OpcionC"
+                    android:textSize="24sp" />
+
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/GernikaPregunta3Titulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/GernikaPregunta3Titulo"
+                android:textSize="24sp" />
+
+            <RadioGroup
+                android:id="@+id/grupoPregunta3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/GernikaPregunta3OpcionA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/GernikaPregunta3OpcionA"
+                    android:textColor="@color/negroFondo"
+                    android:textSize="18sp" />
+
+                <RadioButton
+                    android:id="@+id/GernikaPregunta3OpcionB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/GernikaPregunta3OpcionB"
+                    android:textColor="@color/negroFondo"
+                    android:textSize="18sp" />
+
+                <RadioButton
+                    android:id="@+id/GernikaPregunta3OpcionC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/GernikaPregunta3OpcionC"
+                    android:textColor="@color/negroFondo"
+                    android:textSize="18sp" />
+
+
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/btnCorregir"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/ripple_boton_bg"
+                android:clickable="true"
+                android:enabled="false"
+                android:text="@string/corregir" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnContinuar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="307dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/ripple_boton_bg"
+            android:clickable="true"
+            android:enabled="false"
+            android:text="@string/Continuar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

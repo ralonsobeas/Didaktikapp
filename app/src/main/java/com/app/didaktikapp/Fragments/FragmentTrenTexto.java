@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -44,7 +45,7 @@ public class FragmentTrenTexto extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
+    private Long idActividad;
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
@@ -59,6 +60,8 @@ public class FragmentTrenTexto extends Fragment {
 
     boolean primerError;
 
+    private Button btnContinuar;
+
     public FragmentTrenTexto() {
         // Required empty public constructor
     }
@@ -67,16 +70,14 @@ public class FragmentTrenTexto extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     * @param idActividad Parameter 1.
      * @return A new instance of fragment FragmentTrenTexto.
      */
     // TODO: Rename and change types and number of parameters
-    public static FragmentTrenTexto newInstance(String param1, String param2) {
+    public static FragmentTrenTexto newInstance(Long idActividad) {
         FragmentTrenTexto fragment = new FragmentTrenTexto();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putLong(ARG_PARAM1, idActividad);
         fragment.setArguments(args);
         return fragment;
     }
@@ -85,7 +86,7 @@ public class FragmentTrenTexto extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            idActividad = getArguments().getLong(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
@@ -102,6 +103,18 @@ public class FragmentTrenTexto extends Fragment {
         textoCambiar = view.findViewById(R.id.trenTextoCambiar);
         textoPregunta = view.findViewById(R.id.trenTextoPregunta);
         textoError = view.findViewById(R.id.trenTextoError);
+
+        btnContinuar = view.findViewById(R.id.btnContinuar);
+        btnContinuar.setEnabled(false);
+
+        btnContinuar.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+
+                //CERRAR FRAGMENT
+            }
+        });
 
         //Al iniciar la actividad detecta que ha habido un click en el spinner,
         //asi que este booleano evita que salga el mensaje de error la primera vez
@@ -151,6 +164,7 @@ public class FragmentTrenTexto extends Fragment {
                         String pp = texto.substring(0,location);
                         String sp = texto.substring(location+8);
                         textoCambiar.setText(pp+"gasteizetik"+sp);
+                        btnContinuar.setEnabled(true);
                     } else {
                         textoError.setText(getResources().getString(R.string.TrenTextoError)+" "+seleccionado);
                     }
@@ -258,5 +272,12 @@ public class FragmentTrenTexto extends Fragment {
         }
 
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        ((MapActivity)getActivity()).cambiarLocalizacion();
     }
 }

@@ -1,0 +1,141 @@
+<resources>
+    <!-- Clave mapa -->
+    <string name="mapbox_access_token">pk.eyJ1IjoiZGlkYWt0aWt1cHYiLCJhIjoiY2szNzhiNmt6MDNlbTNjbm8yMDNmeTZyNiJ9.10ubJTPv5AC6X6tDYZRhNw</string>
+
+    <!-- MODO ADMIN -->
+    <string name="adminOn">Administrador activado</string>
+    <!-- Lugares -->
+
+    <string name="new_location">Nueva localización</string>
+
+    <!-- Explicaciones para usuario -->
+    <string name="user_location_permission_explanation">Permisos de localización</string>
+    <string name="user_location_permission_not_granted">No se han otorgados permisos de localización</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <!-- Actividad Zumeltzegi -->
+    <string name="ZumeltzegiSopaDefentsa">Defensa</string>
+    <string name="ZumeltzegiSopaKondea">La del conde</string>
+    <string name="ZumeltzegiSopaHotela">Hoteles</string>
+    <string name="ZumeltzegiSopaSiguiente">Siguiente</string>
+    <string name="ZumeltzegiSopaMain_menu">Menu principal</string>
+    <string name="ZumeltzegiSopaCongratulations">¡Felicidades!</string>
+
+    <string name="ZumeltzegiSopaSettings">Ajustes</string>
+    <string name="ZumeltzegiSopaFinished">Acabado</string>
+    <string name="ZumeltzegiSopaNew_game">Nuevo juego</string>
+
+    <string name="ZumeltzegiTitulo"><![CDATA[Zumeltzegi ]]></string>
+    <string name="ZumeltzegiPregunta1Titulo">1. ¿Para qué se construyó la torre?</string>
+
+    <string name="ZumeltzegiPregunta2Titulo">2. ¿Qué familia vivió en la casa torre desde el siglo XV?</string>
+
+    <string name="ToastImagenes">Imágenes guardadas</string>
+
+
+    <!-- Actividad San Miguel -->
+    <!-- Pregunta 1 -->
+    <string name="SanMiguelPregunta1Titulo">1. ¿En qué siglo se construyó?</string>
+    <!-- Pregunta 2 -->
+    <string name="SanMiguelPregunta2Titulo">2. ¿Cuando bailan en la parrokia?</string>
+    <string name="SanMiguelPregunta2OpcionA">En fiestas del pueblo</string>
+    <string name="SanMiguelPregunta2OpcionB">En los corpus</string>
+    <string name="SanMiguelPregunta2OpcionC">En navidad</string>
+    <!-- Pregunta 3 -->
+    <string name="SanMiguelPregunta3Titulo">3. ¿Cuántas naves tiene la parroquia?</string>
+    <!-- Pregunta 4 -->
+    <string name="SanMiguelPregunta4Titulo">4. ¿Dónde bailan?</string>
+    <string name="SanMiguelPregunta4OpcionA">Por debajo del altar</string>
+    <string name="SanMiguelPregunta4OpcionB">Por debajo del claustro</string>
+    <string name="SanMiguelPregunta4OpcionC">Al lado de la iglesia</string>
+    <string name="Continuar">Continuar</string>
+
+    <string name="Correcta">Correcta</string>
+    <string name="Incorrecta">Incorrecta</string>
+
+
+    <!-- Actividad Tren -->
+    <string name="TrenTextoCambiar">La antigua estación de tren es un edificio situado en Oñati, y en la actualidad es (1) ________. Fue fundada en 1887 y su último viaje fue en 1967. La ruta era la (2) ________ e iba desde Bergara hasta Estella, pasando por (3) ________.</string>
+    <string-array name="TrenTextoCambiar">
+        <item>Vitoria</item>
+        <item>correos</item>
+        <item>Vasco-Navarra</item>
+    </string-array>
+    <string name="TrenTextoError">No es</string>
+
+    <!-- Actividad Tren puzle -->
+    <string name="TrenPuzleTerminado">TERMINADO</string>
+
+
+    <!-- Actividad San Miguel Errota -->
+    <string name="ErrotaPregunta1">Saca una foto a la tolva y caja del molino</string>
+    <string name="Terminar">Terminar</string>
+
+
+    <string name="summary_about">Word search game es una sopa de letras, donde el jugador intenta encontrar palabras vertical, horizontal y diagonalmente</string>
+    <string name="finished">¡Terminado!</string>
+
+    <!-- Actividad Universidad -->
+    <string name="TextoUniversidad">Fue fundada por Rodrigo Mercado de Zuazola en 1548. Este edificio es muy importante ya que fue la primera universidad del País Vasco. Durante tres siglos se han realizado los siguientes estudios: Medicina, Filosofía, Letras y Teología. Hoy en día, sin embargo, no se dan clases. Además, cuenta con una arquitectura representativa y en su interior hay un espectacular claustro y una escultura de Oteiza.</string>
+
+    <!-- Actividad Gernika -->
+    <string name="GernikaTexto">El 2 de febrero de 1917 se plantó un retoño del Árbol de Gernika en tierras de Oñati, justo entre la plaza del pueblo y el frontón, y hoy en día es un roble de 103 años. Este árbol y el propio Árbol de Gernika representan la libertad tradicional de los vascos y los fueros de Euskal Herria. Iparragirre también le escribió una canción:</string>
+    <!-- Poema partido en frases -->
+    <!-- Pregunta 1 -->
+    <string name="GernikaPregunta1Titulo">1. ¿Qué tipo de árbol es?</string>
+    <string name="GernikaPregunta1OpcionA">Roble</string>
+    <string name="GernikaPregunta1OpcionB">Abeto</string>
+    <string name="GernikaPregunta1OpcionC">Acebo</string>
+    <!-- Pregunta 2 -->
+    <string name="GernikaPregunta2Titulo">2. ¿Cuántos años tiene?</string>
+    <!-- Pregunta 3 -->
+    <string name="GernikaPregunta3Titulo">3. ¿Quien le dedicó una canción?</string>
+
+    <!-- prefs -->
+    <string name="saved_game">Datos guardados</string>
+    <string name="enable_sound">Habilitar sonido</string>
+    <string name="delete_finish">Eliminar y terminar</string>
+    <string name="enable_fullscreen">Pantalla completa</string>
+    <string name="finish_text">¡Sopa de letras terminada!</string>
+    <string name="settings">Ajustes</string>
+    <string name="congratulations"><![CDATA[¡Felicidades!]]></string>
+    <string name="main_menu">Regresar al mapa</string>
+    <string name="new_game">JUEGO NUEVO</string>
+    <string name="auto_scale_grid_summary">Tablero redimensionado acorde al tamaño de pantalla</string>
+    <string name="corregir">Corregir</string>
+    <string name="si">SI</string>
+    <string name="no">NO</string>
+    <string name="nombreLugar9">Escuela</string>
+    <string name="ErrotaPregunta2">¿En qué año compraron las monja de Santa Ana el molino?</string>
+    <string name="UniversidadFotos">Haz 3 fotos de la universidad.</string>
+    <string name="UniversidadTest1">1. La Universidad de Oñati fue la segunda universidad del País Vasco.</string>
+    <string name="UniversidadTest2">2. La universidad de Oñati fue construida en el siglo XV.</string>
+    <string name="Universidad">Universidad</string>
+    <string name="Eliminar">Eliminar</string>
+    <string name="Comenzar">Comenzar</string>
+    <string name="Cancelar">Cancelar</string>
+    <string name="activarAdmin">Modo administrador activado</string>
+    <string name="ayudaAnimSubtituloAyuda">"Una pequeña ayuda "</string>
+    <string name="ayudaAnimSubtituloComienzo">"Empieza el juego "</string>
+    <string name="ayudaAnimSubtituloContinuar">"Continua la partida "</string>
+    <string name="ayudaAnimSubtituloIdioma">"Elige el idioma "</string>
+    <string name="ayudaAnimSubtituloSalir">"Salir del juego "</string>
+    <string name="ayudaAnimTituloAyuda">Ayuda</string>
+    <string name="ayudaAnimTituloComienzo">Comienzo</string>
+    <string name="ayudaAnimTituloContinuar">"Continuar "</string>
+    <string name="ayudaAnimTituloIdioma">Idioma</string>
+    <string name="ayudaAnimTituloSalir">Salir</string>
+    <string name="ayudaCastellano">Castellano</string>
+    <string name="ayudaEuskera">Euskera</string>
+    <string name="ayudaSubtitulo">Seleccionar idioma</string>
+    <string name="ayudaTitulo">Cambiar idioma</string>
+    <string name="crearGrupoHint">Nombre del grupo</string>
+    <string name="crearGrupoSubtitulo">Introduce el nombre del grupo</string>
+    <string name="crearGrupoTitulo">Crear grupo</string>
+    <string name="elegirGrupoSubtitulo">"Seleccionar grupo "</string>
+    <string name="elegirGrupoTitulo">Elegir grupo</string>
+    <string name="elegirGrupoToastEliminado">Grupo eliminado</string>
+    <string name="elegirGrupoToastSeleccion">Seleccione grupo</string>
+
+</resources>

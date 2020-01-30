@@ -7,7 +7,7 @@
     android:background="#99FFFFFF"
     android:clickable="true"
     android:orientation="vertical"
-    tools:context=".Fragments.FragmentUnibertsitatea">
+    tools:context=".Fragments.FragmentUnibertsitateaPreguntas">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textSize="80sp"
-            android:text="@string/universidad"
+            android:text="@string/Universidad"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -49,7 +49,7 @@
                 android:id="@+id/uniPregunta1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/universidadTest1"
+                android:text="@string/UniversidadTest1"
                 android:textSize="24sp" />
 
             <RadioGroup
@@ -83,7 +83,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="@string/universidadTest2"
+                android:text="@string/UniversidadTest2"
                 android:textSize="24sp" />
 
             <RadioGroup
@@ -134,7 +134,7 @@
             android:layout_marginBottom="16dp"
             android:background="@drawable/ripple_boton_bg"
             android:clickable="true"
-            android:enabled="true"
+            android:enabled="false"
             android:text="@string/Continuar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

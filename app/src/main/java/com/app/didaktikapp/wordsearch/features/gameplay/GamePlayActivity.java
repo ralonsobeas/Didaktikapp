@@ -2,7 +2,6 @@ package com.app.didaktikapp.wordsearch.features.gameplay;
 
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -13,10 +12,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-
 import androidx.lifecycle.ViewModelProviders;
 
-import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.BBDD.Modelos.ActividadZumeltzegi;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.R;
@@ -53,7 +50,16 @@ public class GamePlayActivity extends FullscreenActivity {
 
     private static final StreakLineMapper STREAK_LINE_MAPPER = new StreakLineMapper();
 
-    public static String fragment = "";
+    //variable que referencia el nombre del fragment para la base de datos y sus dos posibles opciones
+    public static final String  NOMBRE_FRAGMENT = "nombre_fragment";
+    public static final String  FRAGMENT_ZUMELTZEGI = "zumeltzegui";
+    public static final String  FRAGMENT_ERREPASO2 = "errepaso2";
+
+    //se cargara en funcion del nombre
+    public static  String  ruta_sopa;
+    public static final String SOPA_ZUMELTZEGI = "words_zumeltzegi.xml";
+    public static final String SOPA_ERREPASO2 = "words_errepaso2.xml";
+
 
 
     @Inject
@@ -128,13 +134,22 @@ public class GamePlayActivity extends FullscreenActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
+
+            //seleccionar una sopa u otra en funcion del fragment
+            String nombre = extras.getString(NOMBRE_FRAGMENT);
+            if(nombre.equals(FRAGMENT_ZUMELTZEGI)){
+                ruta_sopa = SOPA_ZUMELTZEGI;
+            }else if(nombre.equals(FRAGMENT_ERREPASO2)){
+                ruta_sopa = SOPA_ERREPASO2;
+            }
+
             if (extras.containsKey(EXTRA_GAME_ROUND_ID)) {
                 int gid = extras.getInt(EXTRA_GAME_ROUND_ID);
                 mViewModel.loadGameRound(gid);
             } else {
                 int rowCount = extras.getInt(EXTRA_ROW_COUNT);
                 int colCount = extras.getInt(EXTRA_COL_COUNT);
-                mViewModel.generateNewGameRound(rowCount, colCount);
+                mViewModel.generateNewGameRound(rowCount, colCount, ruta_sopa);
             }
         }
 
@@ -272,10 +287,13 @@ public class GamePlayActivity extends FullscreenActivity {
     private void showFinishGame(int gameId) {
         Intent intent = new Intent(this, GameOverActivity.class);
         intent.putExtra(GameOverActivity.EXTRA_GAME_ROUND_ID, gameId);
-        fragment = "Zumeltzegi";
-        Log.i("FRAGMENT",fragment);
 
-        if(fragment.equals("Zumeltzegi")){
+
+        //seleccionar una sopa u otra en funcion del fragment
+        Bundle extras = getIntent().getExtras();
+        String nombre = extras.getString(NOMBRE_FRAGMENT);
+        if(nombre.equals(FRAGMENT_ZUMELTZEGI)){
+
 //            DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(DatabaseRepository.getAppDatabase().getGrupoDao().getGrupo(MapActivity.idgrupo)).setSopa(mTextDuration);
             ActividadZumeltzegi actividadZumeltzegi = DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(new Long(1));
             actividadZumeltzegi.setSopa(mTextDuration.getText().toString());
@@ -284,8 +302,12 @@ public class GamePlayActivity extends FullscreenActivity {
 
             DatabaseRepository.getAppDatabase().getZumeltzegiDao().updateZumeltzegi(actividadZumeltzegi);
 
-
+        }else if(nombre.equals(FRAGMENT_ERREPASO2)){
+            String a = "hola";
+            Log.i("tag","repaso");
         }
+
+
         startActivity(intent);
         finish();
     }
