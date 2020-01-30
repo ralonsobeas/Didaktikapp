@@ -12,6 +12,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.BBDD.Modelos.ActividadUniversitatea;
@@ -141,8 +142,13 @@ public class FragmentUnibertsitateaPreguntas extends Fragment {
 
                 //ACTUALIZAR BBDD
                 guardarBBDD();
-                //CAMBIAR DE FRAGMENT
-                getFragmentManager().beginTransaction().remove(FragmentUnibertsitateaPreguntas.this).commit();
+                //Cerrar fragment y abrir el siguiente
+                FragmentUnibertsitateaFotos fragmentUnibertsitateaFotos = FragmentUnibertsitateaFotos.newInstance(idActividad);
+                FragmentTransaction transactionSanMiguel = getActivity().getSupportFragmentManager().beginTransaction();
+                transactionSanMiguel.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
+                transactionSanMiguel.replace(R.id.fragment_frame, fragmentUnibertsitateaFotos);
+                transactionSanMiguel.commit();
+                transactionSanMiguel.addToBackStack("Fragment");
 
             }
         });

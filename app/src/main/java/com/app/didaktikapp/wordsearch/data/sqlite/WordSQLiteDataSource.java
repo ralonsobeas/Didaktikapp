@@ -29,7 +29,7 @@ public class WordSQLiteDataSource implements WordDataSource {
     public List<Word> getWords(String palabras) {
         SQLiteDatabase db = mHelper.getReadableDatabase();
 
-        String cols[] = {
+        String[] cols = {
                 DbContract.WordBank._ID,
                 DbContract.WordBank.COL_STRING
         };

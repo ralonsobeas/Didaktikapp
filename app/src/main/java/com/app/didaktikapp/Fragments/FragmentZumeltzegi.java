@@ -46,6 +46,7 @@ import com.app.didaktikapp.R;
 
 import com.app.didaktikapp.wordsearch.features.gameover.GameOverActivity;
 import com.app.didaktikapp.wordsearch.features.gameplay.GamePlayActivity;
+import com.google.android.material.textfield.TextInputEditText;
 import com.muddzdev.styleabletoast.StyleableToast;
 
 import org.w3c.dom.Text;
@@ -88,6 +89,9 @@ public class FragmentZumeltzegi extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    private TextInputEditText respuesta1;
+    private TextInputEditText respuesta2;
+
 
     public FragmentZumeltzegi() {
         // Required empty public constructor
@@ -126,37 +130,37 @@ public class FragmentZumeltzegi extends Fragment {
         // Inflate the layout for this fragment
 
         view = inflater.inflate(R.layout.fragment_zumeltzegi, container, false);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            //Verifica permisos para Android 6.0+
-            int permissionCheck = ContextCompat.checkSelfPermission(
-                    getActivity().getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
-            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+//            //Verifica permisos para Android 6.0+
+//            int permissionCheck = ContextCompat.checkSelfPermission(
+//                    getActivity().getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
+//            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+//
+//                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 225);
+//            } else {
+//
+//            }
+//        }
+//
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+//            //Verifica permisos para Android 6.0+
+//            int permissionCheck = ContextCompat.checkSelfPermission(
+//                    getActivity().getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE);
+//            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+//
+//                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 225);
+//            } else {
+//
+//            }
+//        }
+//
+//        if (ContextCompat.checkSelfPermission(getActivity().getApplicationContext(),Manifest.permission.CAMERA)
+//                != PackageManager.PERMISSION_GRANTED) {
+//            requestPermissions(new String[]{Manifest.permission.CAMERA},
+//                    REQUEST_IMAGE_CAPTURE1);
+//        }
 
-                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 225);
-            } else {
-
-            }
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            //Verifica permisos para Android 6.0+
-            int permissionCheck = ContextCompat.checkSelfPermission(
-                    getActivity().getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE);
-            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
-
-                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 225);
-            } else {
-
-            }
-        }
-
-        if (ContextCompat.checkSelfPermission(getActivity().getApplicationContext(),Manifest.permission.CAMERA)
-                != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.CAMERA},
-                    REQUEST_IMAGE_CAPTURE1);
-        }
-
-        TextView tv=(TextView)view.findViewById(R.id.tvTitulo);
+        TextView tv= view.findViewById(R.id.tvTitulo);
         Typeface type =  ResourcesCompat.getFont(getActivity(), R.font.youthtouch);
         tv.setTypeface(type);
         tv.setText(Html.fromHtml(getString(R.string.ZumeltzegiTitulo)));
@@ -185,24 +189,24 @@ public class FragmentZumeltzegi extends Fragment {
 
 
         ScrollView scroll = view.findViewById(R.id.scroll);
-        ivPregunta1 = view.findViewById(R.id.ivPregunta1);
-        ivPregunta2 = view.findViewById(R.id.ivPregunta2);
+        respuesta1 = view.findViewById(R.id.ivPregunta1);
+        respuesta2 = view.findViewById(R.id.ivPregunta2);
 
-        Button btnPregunta1 = view.findViewById(R.id.btnCameraPregunta1);
-        btnPregunta1.setOnClickListener(new ListenerBoton());
-
-        Button btnPregunta2 = view.findViewById(R.id.btnCameraPregunta2);
-        btnPregunta2.setOnClickListener(new ListenerBoton());
+//        Button btnPregunta1 = view.findViewById(R.id.btnCameraPregunta1);
+//        btnPregunta1.setOnClickListener(new ListenerBoton());
+//
+//        Button btnPregunta2 = view.findViewById(R.id.btnCameraPregunta2);
+//        btnPregunta2.setOnClickListener(new ListenerBoton());
 
         Button btnContinuar = view.findViewById(R.id.btnContinuar);
         btnContinuar.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
-                guardarImagen(ivPregunta1);
-                guardarImagen(ivPregunta2);
+//                guardarImagen(ivPregunta1);
+//                guardarImagen(ivPregunta2);
 
-                StyleableToast.makeText(getContext(), getResources().getString(R.string.ToastImagenes), Toast.LENGTH_LONG, R.style.mytoast).show();
+//                StyleableToast.makeText(getContext(), getResources().getString(R.string.ToastImagenes), Toast.LENGTH_LONG, R.style.mytoast).show();
 
                 Intent intent = new Intent(getActivity(), GamePlayActivity.class);
                 intent.putExtra(GamePlayActivity.EXTRA_ROW_COUNT, 10);
@@ -215,8 +219,8 @@ public class FragmentZumeltzegi extends Fragment {
                 ActividadZumeltzegi actividadZumeltzegi = DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(idActividad);
                 actividadZumeltzegi.setEstado(1);
                 actividadZumeltzegi.setFragment(1);
-                actividadZumeltzegi.setFoto1(imageToBase64(ivPregunta1));
-                actividadZumeltzegi.setFoto2(imageToBase64(ivPregunta2));
+                actividadZumeltzegi.setFoto1(respuesta1.getText().toString());
+                actividadZumeltzegi.setFoto2(respuesta2.getText().toString());
 
                 DatabaseRepository.getAppDatabase().getZumeltzegiDao().updateZumeltzegi(actividadZumeltzegi);
 
@@ -253,18 +257,18 @@ public class FragmentZumeltzegi extends Fragment {
 
 
         private void dispatchTakePictureIntent(View v){
-            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-            int request;
-            if(v == view.findViewById(R.id.btnCameraPregunta1)){
-                request = REQUEST_IMAGE_CAPTURE1;
-            }else{
-                request = REQUEST_IMAGE_CAPTURE2;
-            }
-
-            if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-                startActivityForResult(takePictureIntent, request);
-            }
+//            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//
+//            int request;
+//            if(v == view.findViewById(R.id.btnCameraPregunta1)){
+//                request = REQUEST_IMAGE_CAPTURE1;
+//            }else{
+//                request = REQUEST_IMAGE_CAPTURE2;
+//            }
+//
+//            if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+//                startActivityForResult(takePictureIntent, request);
+//            }
         }
 
 
@@ -324,9 +328,9 @@ public class FragmentZumeltzegi extends Fragment {
 
         }
 
-        if(ivPregunta1.getDrawable() != null && ivPregunta2.getDrawable() != null){
-            view.findViewById(R.id.btnContinuar).setEnabled(true);
-        }
+//        if(ivPregunta1.getDrawable() != null && ivPregunta2.getDrawable() != null){
+//            view.findViewById(R.id.btnContinuar).setEnabled(true);
+//        }
     }
 
     @Override

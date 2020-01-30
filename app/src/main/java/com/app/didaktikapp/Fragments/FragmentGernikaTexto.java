@@ -84,7 +84,7 @@ public class FragmentGernikaTexto extends Fragment {
         textoBreveLayout = view.findViewById(R.id.gernikaTextoBreveLayout);
         textoBreveLayout.setVisibility(View.VISIBLE);
         //Create Object and refer to layout view
-        TypeWriterView typeWriterView=(TypeWriterView)view.findViewById(R.id.gernikaTextoBreve);
+        TypeWriterView typeWriterView= view.findViewById(R.id.gernikaTextoBreve);
 
         //Setting each character animation delay
         typeWriterView.setDelay(10);

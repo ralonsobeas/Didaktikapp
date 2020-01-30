@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.BBDD.Modelos.ActividadUniversitatea;
@@ -63,7 +64,7 @@ public class FragmentUnibertsitateaTexto extends Fragment {
         textoBreveLayout = view.findViewById(R.id.uniTextoBreveLayout);
         textoBreveLayout.setVisibility(View.VISIBLE);
         //Create Object and refer to layout view
-        TypeWriterView typeWriterView=(TypeWriterView)view.findViewById(R.id.uniTextoBreve);
+        TypeWriterView typeWriterView= view.findViewById(R.id.uniTextoBreve);
 
         //Setting each character animation delay
         typeWriterView.setDelay(10);
@@ -83,7 +84,13 @@ public class FragmentUnibertsitateaTexto extends Fragment {
                 //ACTUALIZAR BBDD
                 guardarBBDD();
                 //CAMBIAR DE FRAGMENT
-                getFragmentManager().beginTransaction().remove(FragmentUnibertsitateaTexto.this).commit();
+                //Cerrar fragment y abrir el siguiente
+                FragmentUnibertsitateaPreguntas fragmentUnibertsitateaPreguntas = FragmentUnibertsitateaPreguntas.newInstance(idActividad);
+                FragmentTransaction transactionSanMiguel = getActivity().getSupportFragmentManager().beginTransaction();
+                transactionSanMiguel.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
+                transactionSanMiguel.replace(R.id.fragment_frame, fragmentUnibertsitateaPreguntas);
+                transactionSanMiguel.commit();
+                transactionSanMiguel.addToBackStack("Fragment");
 
 
             }

@@ -60,7 +60,7 @@ public class PuzzleAdapter extends RecyclerView.Adapter<PuzzleAdapter.DateViewHo
 
         public DateViewHolder(View itemView) {
             super(itemView);
-            imageView = (ImageView) itemView.findViewById(R.id.imageView);
+            imageView = itemView.findViewById(R.id.imageView);
         }
     }
     void animationmethod(DateViewHolder holder, int position)

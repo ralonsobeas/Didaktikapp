@@ -25,13 +25,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.amitshekhar.DebugDB;
+
 import com.app.didaktikapp.Activities.MapActivity;
-import com.app.didaktikapp.BBDD.AppExecutors;
 import com.app.didaktikapp.BBDD.Modelos.Grupo;
-import com.app.didaktikapp.BBDD.SQLiteControlador;
-import com.app.didaktikapp.BBDD.Service.GrupoService;
-import com.app.didaktikapp.BBDD.database.AppDatabase;
+
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.CircleMenu.CircleMenuView;
 
@@ -95,7 +92,7 @@ public class MainActivity extends AppCompatActivity  {
 
 
 
-        TextView tv=(TextView)findViewById(R.id.tvTitulo);
+        TextView tv= findViewById(R.id.tvTitulo);
         Typeface type =  ResourcesCompat.getFont(this, R.font.youthtouch);
         tv.setTypeface(type);
         tv.setText(Html.fromHtml(getString(R.string.html_app_name)));
@@ -497,8 +494,8 @@ public class MainActivity extends AppCompatActivity  {
     private void inicioAyuda(){
         PreferencesManager mPreferencesManager = new PreferencesManager(MainActivity.this);
         mPreferencesManager.resetAll();
-        TextView tvTitulo = (TextView)findViewById(R.id.tvTitulo);
-        CircleMenuView circleMenuView = (CircleMenuView) findViewById(R.id.circle_menu);
+        TextView tvTitulo = findViewById(R.id.tvTitulo);
+        CircleMenuView circleMenuView = findViewById(R.id.circle_menu);
         FloatingActionButton boton1 = findViewById(0);
         FloatingActionButton boton2 = findViewById(1);
         FloatingActionButton boton3 = findViewById(2);

@@ -62,44 +62,48 @@
                 <ImageButton
                     android:id="@+id/uniImagen1"
                     android:layout_width="100dp"
-                    android:layout_height="200dp"
+                    android:layout_height="100dp"
                     android:layout_weight="1"
-                    android:src="@android:drawable/ic_menu_camera" />
+                    android:src="@android:drawable/ic_menu_camera"
+                    android:background="@drawable/rounded_corners"/>
 
                 <ImageView
                     android:id="@+id/uniImagenSacada1"
                     android:layout_width="100dp"
-                    android:layout_height="200dp"
+                    android:layout_height="100dp"
                     android:layout_weight="1"
                     android:visibility="gone"/>
 
                 <ImageButton
                     android:id="@+id/uniImagen2"
                     android:layout_width="100dp"
-                    android:layout_height="200dp"
+                    android:layout_height="100dp"
                     android:layout_weight="1"
-                    android:src="@android:drawable/ic_menu_camera" />
+                    android:src="@android:drawable/ic_menu_camera"
+                    android:background="@drawable/rounded_corners"/>
 
                 <ImageView
                     android:id="@+id/uniImagenSacada2"
                     android:layout_width="100dp"
-                    android:layout_height="200dp"
+                    android:layout_height="100dp"
                     android:layout_weight="1"
                     android:visibility="gone"/>
 
                 <ImageButton
                     android:id="@+id/uniImagen3"
                     android:layout_width="100dp"
-                    android:layout_height="200dp"
+                    android:layout_height="100dp"
                     android:layout_weight="1"
-                    android:src="@android:drawable/ic_menu_camera" />
+                    android:src="@android:drawable/ic_menu_camera"
+                    android:background="@drawable/rounded_corners"/>
 
                 <ImageView
                     android:id="@+id/uniImagenSacada3"
                     android:layout_width="100dp"
-                    android:layout_height="200dp"
+                    android:layout_height="100dp"
                     android:layout_weight="1"
-                    android:visibility="gone"/>
+                    android:visibility="gone"
+                    />
             </LinearLayout>
 
         </LinearLayout>
@@ -113,7 +117,7 @@
             android:layout_marginBottom="16dp"
             android:background="@drawable/ripple_boton_bg"
             android:clickable="true"
-            android:enabled="true"
+            android:enabled="false"
             android:text="@string/Continuar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -153,6 +153,9 @@ dependencies {
 
     //Dialog
     implementation 'com.github.mejdi14:Flat-Dialog-Android:1.0.4'
+
+    //Lottie
+    implementation 'com.airbnb.android:lottie:3.3.0'
 }
 
 /*implementation 'com.jakewharton:butterknife:10.2.0'

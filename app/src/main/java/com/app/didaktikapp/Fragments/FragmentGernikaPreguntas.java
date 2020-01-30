@@ -178,6 +178,7 @@ public class FragmentGernikaPreguntas extends Fragment {
                 }
 
                 btnCorregir.setEnabled(false);
+                btnContinuar.setEnabled(true);
 
             }
         });
@@ -194,7 +195,7 @@ public class FragmentGernikaPreguntas extends Fragment {
                 getFragmentManager().beginTransaction().remove(FragmentGernikaPreguntas.this).commit();
 
                 //Lanzar siguiente fragment
-                FragmentPuzle fragment = FragmentPuzle.newInstance(idActividad, R.drawable.tren);
+                FragmentPuzle fragment = FragmentPuzle.newInstance(idActividad, R.drawable.gernika);
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
                 transaction.replace(R.id.fragment_frame, fragment);

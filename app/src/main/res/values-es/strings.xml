@@ -2,7 +2,8 @@
     <!-- Clave mapa -->
     <string name="mapbox_access_token">pk.eyJ1IjoiZGlkYWt0aWt1cHYiLCJhIjoiY2szNzhiNmt6MDNlbTNjbm8yMDNmeTZyNiJ9.10ubJTPv5AC6X6tDYZRhNw</string>
 
-
+    <!-- MODO ADMIN -->
+    <string name="adminOn">Administrador activado</string>
     <!-- Lugares -->
 
     <string name="new_location">Nueva localización</string>

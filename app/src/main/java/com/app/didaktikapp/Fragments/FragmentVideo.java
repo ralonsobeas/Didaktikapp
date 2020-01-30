@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.MediaController;
+import android.widget.TextView;
 import android.widget.VideoView;
 
 import androidx.fragment.app.Fragment;
@@ -65,16 +66,20 @@ public class FragmentVideo extends Fragment {
                              Bundle savedInstanceState) {
         // OBTENEMOS LA VIEW
         view = inflater.inflate(R.layout.fragment_errota_video, container, false);
+        TextView titulo = view.findViewById(R.id.errotaTitulo);
 
         switch(fragment) {
             case "errota":
+                titulo.setText(R.string.nombreLugar5);
                 rawvideo = R.raw.video_sanmiguel_errota;
                 break;
             case "parrokia":
+                titulo.setText(R.string.nombreLugar3);
                 rawvideo = R.raw.video_sanmiguel_parrokia;
                 break;
             case "zumeltzegi":
-                rawvideo = R.raw.video_zumeltzegi;
+                titulo.setText(R.string.nombreLugar1);
+//                rawvideo = R.raw.video_zumeltzegi;
                 break;
             default:
                 Log.e("VIDEO","Nombre '"+fragment+"' no reconocido");
@@ -108,9 +113,22 @@ public class FragmentVideo extends Fragment {
                         transaction.addToBackStack("Fragment");
                         break;
                     case "parrokia":
-
+                        //Cerrar fragment y abrir el siguiente
+                        FragmentSanMiguel fragmentSanMiguel = FragmentSanMiguel.newInstance(idActividad);
+                        FragmentTransaction transactionSanMiguel = getActivity().getSupportFragmentManager().beginTransaction();
+                        transactionSanMiguel.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
+                        transactionSanMiguel.replace(R.id.fragment_frame, fragmentSanMiguel);
+                        transactionSanMiguel.commit();
+                        transactionSanMiguel.addToBackStack("Fragment");
                         break;
                     case "zumeltzegi":
+                        //Cerrar fragment y abrir el siguiente
+                        FragmentZumeltzegi fragmentZumeltzegi = FragmentZumeltzegi.newInstance(idActividad);
+                        FragmentTransaction transactionZumeltzegi = getActivity().getSupportFragmentManager().beginTransaction();
+                        transactionZumeltzegi.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
+                        transactionZumeltzegi.replace(R.id.fragment_frame, fragmentZumeltzegi);
+                        transactionZumeltzegi.commit();
+                        transactionZumeltzegi.addToBackStack("Fragment");
 
                         break;
                     default:

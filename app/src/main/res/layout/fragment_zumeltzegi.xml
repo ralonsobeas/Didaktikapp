@@ -61,17 +61,17 @@
                 android:text="@string/ZumeltzegiPregunta1Titulo"
                 android:textSize="30sp"/>
 
-            <ImageView
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ivPregunta1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <Button
-                android:id="@+id/btnCameraPregunta1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:icon="@drawable/ic_camera_alt_black_24dp"
-                app:iconGravity="textStart"/>
+<!--            <Button-->
+<!--                android:id="@+id/btnCameraPregunta1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:icon="@drawable/ic_camera_alt_black_24dp"-->
+<!--                app:iconGravity="textStart"/>-->
 
             <TextView
                 android:id="@+id/tvPregunta2"
@@ -80,17 +80,17 @@
                 android:text="@string/ZumeltzegiPregunta2Titulo"
                 android:textSize="30sp"/>
 
-            <ImageView
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ivPregunta2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <Button
-                android:id="@+id/btnCameraPregunta2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:icon="@drawable/ic_camera_alt_black_24dp"
-                app:iconGravity="textStart"/>
+<!--            <Button-->
+<!--                android:id="@+id/btnCameraPregunta2"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:icon="@drawable/ic_camera_alt_black_24dp"-->
+<!--                app:iconGravity="textStart"/>-->
 
             <Button
                 android:id="@+id/btnContinuar"
@@ -99,7 +99,7 @@
                 android:layout_gravity="right"
                 android:background="@drawable/ripple_boton_bg"
                 android:clickable="true"
-                android:enabled="false"
+                android:enabled="true"
                 android:text="@string/Continuar" />
         </LinearLayout>
     </ScrollView>

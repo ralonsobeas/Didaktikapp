@@ -2,6 +2,8 @@
     <!-- Clave mapa -->
     <string name="mapbox_access_token">pk.eyJ1IjoiZGlkYWt0aWt1cHYiLCJhIjoiY2szNzhiNmt6MDNlbTNjbm8yMDNmeTZyNiJ9.10ubJTPv5AC6X6tDYZRhNw</string>
 
+    <!-- MODO ADMIN -->
+    <string name="adminOn">Administrador activado</string>
 
     <string name="app_name" translatable="false">Didaktikapp</string>
     <string name="html_app_name" translatable="false">

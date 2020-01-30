@@ -70,7 +70,7 @@ public class Util {
      * Isi slot / element yang masih kosong dengan karakter acak
      *
      */
-    public static void fillNullCharWidthRandom(char gridArr[][]) {
+    public static void fillNullCharWidthRandom(char[][] gridArr) {
         for (int i = 0; i < gridArr.length; i++) {
             for (int j = 0; j < gridArr[i].length; j++) {
                 if (gridArr[i][j] == NULL_CHAR)

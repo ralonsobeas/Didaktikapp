@@ -8,9 +8,9 @@ public class Grid {
     public static final char GRID_NEWLINE_SEPARATOR = ',';
     public static final char NULL_CHAR = '\0';
 
-    private char mArray[][];
+    private char[][] mArray;
 
-    public Grid(char grid[][]) {
+    public Grid(char[][] grid) {
         mArray = grid;
     }
 

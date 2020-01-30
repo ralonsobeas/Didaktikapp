@@ -2,16 +2,10 @@ package com.app.didaktikapp.BBDD.database;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.provider.ContactsContract;
-import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.VisibleForTesting;
 import androidx.room.Room;
 
-import com.amitshekhar.DebugDB;
-import com.amitshekhar.sqlite.DBFactory;
-import com.app.didaktikapp.BBDD.Dao.ZumeltzegiDao;
 import com.app.didaktikapp.BBDD.Modelos.ActividadErrota;
 import com.app.didaktikapp.BBDD.Modelos.ActividadGernika;
 import com.app.didaktikapp.BBDD.Modelos.ActividadRepaso1;

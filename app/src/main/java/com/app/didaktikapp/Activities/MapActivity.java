@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.location.Location;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -196,7 +197,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private FloatingActionButton btnRepaso1;
     private FloatingActionButton btnRepaso2;
 
-
+    private MediaPlayer mediaPlayer ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -259,7 +260,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         ventanaMarker = findViewById(R.id.ventana_marker);
 
-        mapView = (MapView) findViewById(R.id.mapView);
+        mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
         TextView textView = findViewById(R.id.tvAdmin);
@@ -282,6 +283,25 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
             }
         });
+
+        //AUDIO DEL PRINCIPIO
+        ActividadZumeltzegi actividadZumeltzegi =   DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(grupo.getIdZumeltzegi());
+        int fragment = actividadZumeltzegi.getFragment();
+
+//        if(fragment == 0){
+//            mediaPlayer = MediaPlayer.create(context, R.raw.trena);
+//            mediaPlayer.start();
+//            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+//
+//                @Override
+//                public void onCompletion(MediaPlayer mp) {
+//
+//
+//                }
+//
+//            });
+//
+//        }
 
 
 
@@ -515,7 +535,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     if (entrarEnPunto(estado)) {
                         switch (fragment){
                             case 0:
-                                lanzarFragment(FragmentSanMiguel.newInstance(grupo.getIdParroquia()));
+                                lanzarFragment(FragmentVideo.newInstance(grupo.getIdParroquia(),"parrokia"));
                                 break;
                             case 1:
                                 lanzarFragment(FragmentSanMiguelTinderKotlin.newInstance(grupo.getIdParroquia()));
@@ -597,14 +617,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 }
                 //GERNIKA
                 else if( (administrador && markerLatitud == 43.032444 && markerLongitud == -2.413722) ||  (distanciaCoord(latitud,longitud,43.032444,-2.413722))&& markerLatitud == 43.032444 && markerLongitud == -2.413722){
-//TODO bbdd
-//                                       ActividadErrota actividadErrota =   DatabaseRepository.getAppDatabase().getErrotaDao().getErrota(new Long(1));
-//                                       int estado = actividadErrota.getEstado();
-//                                       int fragment = actividadErrota.getFragment();
-//                                       marker.setIcon(iconoPunto(estado));
-//                                       if (entrarEnPunto(estado)) {
+
                     lanzarFragment(FragmentGernikaTexto.newInstance(grupo.getIdGernika()));
-//                                       }
+
 
 
                 }
@@ -615,19 +630,19 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 }
                 //ARRIKRUTZEKO KOBAK (sin uso, en medio)
                 else if( (administrador && markerLatitud == 43.000583 && markerLongitud == -2.433250) ||  (distanciaCoord(latitud,longitud,43.000583,-2.433250))&& markerLatitud == 43.000583 && markerLongitud == -2.433250){
-                    marker.setIcon(iconoPunto(2));
-                    Intent intent = new Intent(MapActivity.this, GamePlayActivity.class);
-                    intent.putExtra(GamePlayActivity.EXTRA_ROW_COUNT, 10);
-                    intent.putExtra(GamePlayActivity.EXTRA_COL_COUNT, 10);
-                    intent.putExtra("listaPalabras", "words_errepaso2.xml");
-                    startActivity(intent);
+//                    marker.setIcon(iconoPunto(2));
+//                    Intent intent = new Intent(MapActivity.this, GamePlayActivity.class);
+//                    intent.putExtra(GamePlayActivity.EXTRA_ROW_COUNT, 10);
+//                    intent.putExtra(GamePlayActivity.EXTRA_COL_COUNT, 10);
+//                    intent.putExtra("listaPalabras", "words_errepaso2.xml");
+//                    startActivity(intent);
 
                 }
                 //ARANTZAZUKO SANTUTEGIA (sin uso, abajo)
                 else if( (administrador && markerLatitud == 42.979194 && markerLongitud == -2.398583) ||  (distanciaCoord(latitud,longitud,42.979194,-2.398583))&& markerLatitud == 42.979194 && markerLongitud == -2.398583){
 //                    marker.setIcon(iconoPunto(2));
 //                    lanzarFragment(FragmentErrepasoBatKotlin.newInstance(grupo.getIdParroquia()));
-                    lanzarFragment(FragmentErrotaFotos.newInstance(grupo.getIdTren()));
+//                    lanzarFragment(FragmentErrotaFotos.newInstance(grupo.getIdTren()));
                 }
 
                 return false;
@@ -765,8 +780,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
     private boolean entrarEnPunto(int estado) {
-        if (estado==0||estado==1) return true;
-        else return false;
+        return estado == 0 || estado == 1;
     }
 
     private void showBoundsArea(MapboxMap mapboxMap) {
@@ -889,7 +903,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     private void cargarListaLugares(){
 
-        this.listaLugares = new ArrayList<Lugar>();
+        listaLugares = new ArrayList<Lugar>();
 
         listaLugares.add(new Lugar(getString(R.string.nombreLugar1),new LatLng(43.035000, -2.412889)));
         listaLugares.add(new Lugar(getString(R.string.nombreLugar2),new LatLng(43.033944, -2.415361)));
@@ -1204,12 +1218,18 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     public void onPause() {
         super.onPause();
 
-        ventanaMarker.clearAnimation();
-        TranslateAnimation animate = new TranslateAnimation(0,0,0,ventanaMarker.getHeight());
-        animate.setDuration(1000);
-        animate.setFillAfter(true);
-        ventanaMarker.startAnimation(animate);
-        ventanaMarker.setVisibility(View.INVISIBLE);
+        if(mediaPlayer!=null){
+            mediaPlayer.stop();
+        }
+
+        if(ventanaMarker.getVisibility() == View.VISIBLE) {
+            ventanaMarker.clearAnimation();
+            TranslateAnimation animate = new TranslateAnimation(0, 0, 0, ventanaMarker.getHeight());
+            animate.setDuration(1000);
+            animate.setFillAfter(true);
+            ventanaMarker.startAnimation(animate);
+            ventanaMarker.setVisibility(View.INVISIBLE);
+        }
 
 
 
@@ -1239,6 +1259,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if(mediaPlayer!=null){
+            mediaPlayer.stop();
+        }
         mapView.onDestroy();
     }
 

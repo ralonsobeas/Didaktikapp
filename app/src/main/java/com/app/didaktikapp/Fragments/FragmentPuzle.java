@@ -27,6 +27,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.Puzle.adapter.PuzzleAdapter;
 import com.app.didaktikapp.Puzle.adapter.StorePreference;
@@ -34,6 +35,7 @@ import com.app.didaktikapp.Puzle.models.Pieces;
 import com.app.didaktikapp.Puzle.models.PuzzlePiece;
 import com.app.didaktikapp.Puzle.puzzle.Puzzle;
 import com.app.didaktikapp.R;
+import com.muddzdev.styleabletoast.StyleableToast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -120,12 +122,12 @@ public class FragmentPuzle extends Fragment {
         view = inflater.inflate(R.layout.puzzle_activity, container, false);
 
         context = getContext();
-        imageView = (ImageView) view.findViewById(R.id.frameImage);
-        scrollView = (FrameLayout)  view.findViewById(R.id.scrollView);
+        imageView = view.findViewById(R.id.frameImage);
+        scrollView = view.findViewById(R.id.scrollView);
         scrollView.setOnDragListener(new FragmentPuzle.MyDragListener(null));
-        relativeLayout = (RelativeLayout)  view.findViewById(R.id.relativeLayout);
+        relativeLayout = view.findViewById(R.id.relativeLayout);
         relativeLayout.setOnDragListener(new FragmentPuzle.MyDragListener(null));
-        rvPuzzle = (RecyclerView)  view.findViewById(R.id.listView2);
+        rvPuzzle = view.findViewById(R.id.listView2);
         rvPuzzle.setOnDragListener(new FragmentPuzle.MyDragListener(null));
         linearLayoutManager = new LinearLayoutManager(getContext());
         rvPuzzle.setLayoutManager(linearLayoutManager);
@@ -303,7 +305,8 @@ public class FragmentPuzle extends Fragment {
                                 piecesModel = null;
                                 System.out.println("sizeoflist" + piecesModelListMain.size());
                                 if (piecesModelListMain.size() == 0) {
-                                    Toast.makeText(context, R.string.TrenPuzleTerminado, Toast.LENGTH_LONG).show();
+                                    StyleableToast.makeText(context, getString(R.string.TrenPuzleTerminado), Toast.LENGTH_LONG, R.style.mytoastCorrecta  ).show();
+
                                     openPopup();
                                 } else {
 //                                    Toast.makeText(context, "The correct Puzzle", Toast.LENGTH_LONG).show();
@@ -352,30 +355,31 @@ public class FragmentPuzle extends Fragment {
     }
 
     private void openPopup() {
+        if(imagen == R.drawable.tren) {
+            mediaPlayer = MediaPlayer.create(getContext(), R.raw.trena);
+            mediaPlayer.start();
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+
+
+                }
+            });
+        }
         final Dialog aDialog = new Dialog(context);
         aDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         aDialog.setContentView(R.layout.pop_up_upload_doc_alert);
+        aDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         aDialog.setCancelable(true);
 
         aDialog.show();
-        ImageView btnOk = (ImageView) aDialog.findViewById(R.id.popupimage);
-        String image= storePreference.getStringValue("bitmap");
-        btnOk.setImageBitmap(StringToBitMap(image));
+        ImageView btnOk = aDialog.findViewById(R.id.popupimage);
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(imagen == R.drawable.tren) {
-                    mediaPlayer = MediaPlayer.create(getContext(), R.raw.trena);
-                    mediaPlayer.start();
-                    mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-
-                        @Override
-                        public void onCompletion(MediaPlayer mp) {
-
-
-                        }
-
-                    });
+                    mediaPlayer.stop();
 
                     //                        guardarBBDD();
 
@@ -385,6 +389,34 @@ public class FragmentPuzle extends Fragment {
                     transaction.replace(R.id.fragment_frame, fragment);
                     transaction.commit();
                     transaction.addToBackStack("Fragment");
+                }
+
+                if(imagen == R.drawable.gernika){
+
+                    view.findViewById(R.id.layoutLottie).setVisibility(View.VISIBLE);
+                    view.findViewById(R.id.layoutLottie).setOnClickListener(new View.OnClickListener(){
+
+                        @Override
+                        public void onClick(View view) {
+                            getFragmentManager().beginTransaction().remove(FragmentPuzle.this).commit();
+                        }
+                    });
+//                    LottieAnimationView animationView1 = (LottieAnimationView) view.findViewById(R.id.animation_view1);
+//                    animationView1.setAnimation("run_man_run.json");
+//                    animationView1.loop(true);
+//                    animationView1.playAnimation();
+
+                    LottieAnimationView animationView2 = view.findViewById(R.id.animation_view2);
+                    animationView2.setAnimation("fireworks.json");
+                    animationView2.loop(true);
+                    animationView2.playAnimation();
+
+                    LottieAnimationView animationView3 = view.findViewById(R.id.animation_view3);
+                    animationView3.setAnimation("trophy.json");
+                    animationView3.loop(true);
+                    animationView3.playAnimation();
+
+
                 }
                 aDialog.cancel();
             }
