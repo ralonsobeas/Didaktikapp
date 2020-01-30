@@ -292,6 +292,10 @@ Seguimiento
 - [ ] Intento de vídeo en horizontal pero no conseguido
 - [ ] https://lottiefiles.com/7929-run-man-run
 
+<h4>30/01/2020 Trabajo de desarrollo</h4>
+
+- [x] Merge para versión v1.0.0
+- [x] App subida en espera
 
 Funcionamiento de la app
 ------------------------------------------------------------------------
