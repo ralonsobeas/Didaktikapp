@@ -110,6 +110,12 @@ import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineJoin;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineWidth;
 
 
+/**
+ *
+ * Gestiona el mapa, la localización y los lanzamientos de los fragment.
+ * @author gennakk
+ *
+ */
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, PermissionsListener
         , FragmentSanMiguel.OnFragmentInteractionListener
         , FragmentSanMiguelImagenes.OnFragmentInteractionListener
@@ -199,6 +205,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     private MediaPlayer mediaPlayer ;
 
+    /**
+     *
+     * Crea la actividad MapActivity
+     * @author gennakk
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -307,6 +319,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     }
 
+    /**
+     *
+     * Crea los estilos,los marcadores y descarga el mapa cuando el mapa está listo.
+     * Crea los listener de los markers dependiendo de las coordenadas lanza diferentes fragments.
+     * Crea capas para las rutas.
+     * @author gennakk
+     *
+     */
     @Override
     public void onMapReady(@NonNull final MapboxMap mapboxMap) {
 
@@ -460,9 +480,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         //RUTA
         dibujarRuta(1);
 
-// Call this method with Context from within an Activity
 
-
+        // Lanza los fragments dependiendo de las coordenadas del marcador que se clicken
 
         mapboxMap.setOnMarkerClickListener(new MapboxMap.OnMarkerClickListener() {
 
@@ -654,6 +673,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     }
 
+    /**
+     *
+     * Crea las rutas
+     * @author gennakk
+     * @param numruta Número de ruta para crear la ruta correspondiente.
+     *
+     */
     private void dibujarRuta(int numruta) {
 
         new LoadGeoJson(MapActivity.this,numruta).execute();
@@ -661,12 +687,27 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     }
 
+
+    /**
+     *
+     * Clase que se encarga de leer el GeoJson con la ruta
+     * @author gennakk
+     *
+     */
     private static class LoadGeoJson extends AsyncTask<Void, Void, FeatureCollection> {
 
         private WeakReference<MapActivity> weakReference;
         private String json;
         private int numruta;
 
+        /**
+         *
+         * Constructor de la clase GeoJson. Carga diferentes json dependiendo de numruta.
+         * @author gennakk
+         * @param activity Actividad MapActivity.
+         * @param numruta Número de ruta correspondiente para cargar el json.
+         *
+         */
         LoadGeoJson(MapActivity activity, int numruta) {
             this.weakReference = new WeakReference<MapActivity>(activity);
             this.numruta = numruta;
@@ -693,6 +734,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             }
         }
 
+        /**
+         *
+         * Lee en background el Json de la ruta
+         * @author gennakk
+         *
+         */
         @Override
         protected FeatureCollection doInBackground(Void... voids) {
             try {
@@ -709,11 +756,24 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             return null;
         }
 
+        /**
+         *
+         * Convierte el Stream a un String
+         * @author gennakk
+         * @param is InputStream de entrada con el Json
+         *
+         */
         static String convertStreamToString(InputStream is) {
             Scanner scanner = new Scanner(is).useDelimiter("\\A");
             return scanner.hasNext() ? scanner.next() : "";
         }
 
+        /**
+         *
+         * Despues de ejecutar la carga del json se ejecuta para dibujar la ruta.
+         * @author gennakk
+         * @param featureCollection Colección para renderizar la ruta.
+         */
         @Override
         protected void onPostExecute(@Nullable FeatureCollection featureCollection) {
             super.onPostExecute(featureCollection);
@@ -727,7 +787,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
     //http://geojson.io/#map=18/43.03427/-2.41376
-
+    /**
+     *
+     * Dibuja la línea de la ruta en el mapa
+     * @author gennakk
+     * @param featureCollection Colección para renderizar la ruta.
+     * @param num Recibe un número de ruta para asignar a Source y Layer.
+     *
+     */
     private void drawLines(@NonNull FeatureCollection featureCollection,int num) {
         if (mapboxMap != null) {
             mapboxMap.getStyle(style -> {
@@ -755,7 +822,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
     }
 
-
+    /**
+     *
+     * Lanza el fragment pasado por parámetro.
+     * @author gennakk
+     * @param fragment Fragment que se desea lanzar.
+     *
+     */
     private void lanzarFragment(Fragment fragment){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
@@ -771,7 +844,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     }
 
-
+    /**
+     *
+     * Devuelve un icono dependiendo del estado
+     * @author gennakk
+     * @param estado Estado de la actividad.
+     * @return Devuelve un Icon con el color correspondiente.
+     *
+     */
     private Icon iconoPunto(int estado) {
         IconFactory iconFactory = IconFactory.getInstance(context);
         if (estado==-1) return iconFactory.fromResource(R.drawable.pin_sinhacer);
@@ -779,10 +859,24 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         else return iconFactory.fromResource(R.drawable.pin_empezado);
     }
 
+    /**
+     *
+     * Devuelve si se puede entrar en el estado
+     * @author gennakk
+     * @return Devuelve true o false dependiendo del valor
+     *
+     */
     private boolean entrarEnPunto(int estado) {
         return estado == 0 || estado == 1;
     }
 
+    /**
+     *
+     * Tamaño a mostrar del mapa
+     * @author gennakk
+     * @param mapboxMap Mapa usado por MapActivity.
+     *
+     */
     private void showBoundsArea(MapboxMap mapboxMap) {
 
         //Delimitamos los limites del mapa en la pantalla -> Getxo
@@ -796,6 +890,16 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mapboxMap.addPolygon(boundsArea);
     }
 
+    /**
+     *
+     * Actualiza la línea de la ruta
+     * @author gennakk
+     * @param latOrigen Latitud de origen
+     * @param lngOrigen Longitud de origen
+     * @param latDestino Latitud de destino
+     * @param lngDestino Longitud de destino
+     *
+     */
     public void actualizarMarkerLinea(Double lngOrigen, Double latOrigen, Double lngDestino, Double latDestino) {
         routeCoordinates = new ArrayList<>();
         routeCoordinates.add(Point.fromLngLat(lngOrigen, latOrigen));
@@ -808,7 +912,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     /**
      * Update the GeoJson data that's part of the LineLayer.
-     *
+     * @author gennakk
+     * @param routeCoordinates Lista de puntos con las coordenadas para la ruta.
      *
      */
     private void drawNavigationPolylineRoute(List<Point> routeCoordinates) {
@@ -831,6 +936,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
     }
 
+    /**
+     *
+     * Crea los iconos de cada marker dependiendo de su estado
+     * @author gennakk
+     *
+     */
     private void crearIconos(){
         IconFactory iconFactory = IconFactory.getInstance(context);
         Icon iconorojo = iconFactory.fromResource(R.drawable.pin_sinhacer);
@@ -890,6 +1001,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
     }
 
+    /**
+     *
+     * Hace visible los botones de repaso con una animación.
+     * @author gennakk
+     *
+     */
     private void btnRepasoVisibles(){
         TranslateAnimation animate = new TranslateAnimation(0,0,btnRepaso1.getHeight(),0);
         animate.setDuration(1000);
@@ -901,6 +1018,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         btnRepaso2.setVisibility(View.VISIBLE);
     }
 
+    /**
+     *
+     * Carga en una lista los lugares para los markers.
+     * @author gennakk
+     *
+     */
     private void cargarListaLugares(){
 
         listaLugares = new ArrayList<Lugar>();
@@ -919,7 +1042,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     }
 
-
+    /**
+     *
+     * Realiza una tarea al recibir los permisos
+     * @author gennakk
+     *
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         permissionsManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -927,7 +1055,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
 
 
-
+    /**
+     *
+     * Cambia el icono de localización del usuario y trackea la ubicación.
+     * @author gennakk
+     * @param loadedMapStyle Recibe el estilo del mapa.
+     *
+     */
     @SuppressWarnings( {"MissingPermission"})
     private void enableLocationComponent(@NonNull Style loadedMapStyle) {
         // Check if permissions are enabled and if not request
@@ -968,7 +1102,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
     /**
-     * Set up the LocationEngine and the parameters for querying the device's location
+     * Set up the LocationEngine and the parameters for querying the device's location.
+     * @author gennakk
+     *
      */
     @SuppressLint("MissingPermission")
     public void initLocationEngine() {
@@ -982,12 +1118,23 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         locationEngine.getLastLocation(callback);
     }
 
-
+    /**
+     *
+     * Explicación de los permisos del mapa.
+     * @author gennakk
+     *
+     */
     @Override
     public void onExplanationNeeded(List<String> permissionsToExplain) {
         Toast.makeText(this, R.string.user_location_permission_explanation, Toast.LENGTH_LONG).show();
     }
 
+    /**
+     *
+     * Carga el estilo del mapa si hay permisos.
+     * @author gennakk
+     * @param granted Indica si hay o no permisos.
+     */
     @Override
     public void onPermissionResult(boolean granted) {
         if (granted) {
@@ -1003,7 +1150,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
     }
 
-
+    /**
+     *
+     * Interacción con fragment.
+     * @author gennakk
+     * @param fragment Recibe el fragment.
+     * @param terminado Recibe si se ha terminado.
+     */
     @Override
     public void onFragmentInteraction(Fragment fragment,boolean terminado) {
         if(fragment instanceof FragmentSanMiguelImagenes) {
@@ -1012,11 +1165,23 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
     }
 
+    /**
+     *
+     * Interacción con fragment.
+     * @author gennakk
+     *
+     */
     @Override
     public void onFragmentInteraction(Uri uri) {
 
     }
 
+    /**
+     *
+     * Listener de la localización.
+     * @author gennakk
+     *
+     */
     private class LocationChangeListeningActivityLocationCallback
             implements LocationEngineCallback<LocationEngineResult> {
 
@@ -1124,8 +1289,16 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
     }
 
-
-
+    /**
+     *
+     * Cálculo de distancia entre coordenadas.
+     * @author gennakk
+     * @param lat1 Latitud del primer punto.
+     * @param lng1 Longitud del primer punto.
+     * @param lat2 Latitud del segundo punto.
+     * @param lng2 Longitud del segundo punto.
+     *
+     */
     public static boolean distanciaCoord(double lat1, double lng1, double lat2, double lng2) {
         //double radioTierra = 3958.75;//en millas
         double radioTierra = 6371;//en kilómetros
@@ -1142,13 +1315,23 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
 
-
+    /**
+     *
+     * Calcula el porcentaje de carga
+     * @author gennakk
+     * @param percentage Porcentaje.
+     */
     private void setPercentage(final int percentage) {
         progressBar.setIndeterminate(false);
         progressBar.setProgress(percentage);
     }
 
-
+    /**
+     *
+     * Barra de progreso inicio.
+     * @author gennakk
+     *
+     */
     // Progress bar methods
     private void startProgress() {
 
@@ -1158,6 +1341,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         progressBar.setVisibility(View.VISIBLE);
     }
 
+    /**
+     *
+     * Barra de progreso final.
+     * @author gennakk
+     * @param message Mensaje de notificación.
+     *
+     */
     private void endProgress(final String message) {
         // Don't notify more than once
         if (isEndNotified) {
@@ -1174,6 +1364,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
 
+    /**
+     *
+     * Se lanza cuando carga el fragment.
+     * @author gennakk
+     * @param fragment Fragment cargado.
+     */
     @Override
     public void onAttachFragment(Fragment fragment) {
         if (fragment instanceof FragmentSanMiguelImagenes) {
@@ -1184,7 +1380,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
 
 
-
+    /**
+     *
+     * Método onStart de MapActivity, carga al empezar.
+     * @author gennakk
+     *
+     */
     @Override
     @SuppressWarnings( {"MissingPermission"})
     protected void onStart() {
@@ -1192,9 +1393,15 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mapView.onStart();
     }
 
+    /**
+     *
+     * Cambia la localización a una determinada
+     * @author gennakk
+     *
+     */
     public void cambiarLocalizacion(){
         Location targetLocation = new Location("");//provider name is unnecessary
-        targetLocation.setLatitude(0.0d);//your coords of course
+        targetLocation.setLatitude(0.0d);//your coords
         targetLocation.setLongitude(0.0d);
 
         LocationEngineResult locationEngineResults = LocationEngineResult.create(targetLocation);
@@ -1204,6 +1411,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         crearIconos();
     }
 
+    /**
+     *
+     * Método onResume de MapActivity, carga al volver a la actividad.
+     * @author gennakk
+     *
+     */
     @Override
     public void onResume() {
 
@@ -1214,6 +1427,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mapView.onResume();
     }
 
+    /**
+     *
+     * Método onPause de MapActivity, carga al pausar la actividad.
+     * Cierra la ventana de ayuda al pulsar si está activa para no solapar con los fragment.
+     * @author gennakk
+     *
+     */
     @Override
     public void onPause() {
         super.onPause();
@@ -1237,7 +1457,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
 
-
+    /**
+     *
+     * Método onStop de MapActivity, carga al parar la actividad.
+     * Para de pedir la localización del usuario.
+     * @author gennakk
+     *
+     */
     @Override
     protected void onStop() {
 
@@ -1250,12 +1476,25 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mapView.onStop();
     }
 
+
+    /**
+     *
+     * I like pineapple juice.
+     * @author gennakk
+     *
+     */
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         mapView.onSaveInstanceState(outState);
     }
 
+    /**
+     *
+     * Método onDestroy de MapActivity, carga al matar la actividad.
+     * @author gennakk
+     *
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -1265,12 +1504,24 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mapView.onDestroy();
     }
 
+    /**
+     *
+     * En caso de baja memoria se lanza.
+     * @author gennakk
+     *
+     */
     @Override
     public void onLowMemory() {
         super.onLowMemory();
         mapView.onLowMemory();
     }
 
+    /**
+     *
+     * Método que se ejecuta cuando se pulsa el botón de volver.
+     * @author gennakk
+     *
+     */
     @Override
     public void onBackPressed() {
         if (getFragmentManager().getBackStackEntryCount() > 0) {

@@ -3,6 +3,7 @@ package com.app.didaktikapp.Fragments
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
+import android.os.Vibrator
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -145,6 +146,8 @@ class FragmentErrepasoBatKotlin : Fragment(), CardStackListener {
 
                 }else{
                     StyleableToast.makeText(context!!, resources.getString(R.string.Incorrecta), Toast.LENGTH_SHORT, R.style.mytoastIncorrecta  ).show()
+                    vibrar()
+
 
                 }
             }
@@ -155,6 +158,7 @@ class FragmentErrepasoBatKotlin : Fragment(), CardStackListener {
 
                 }else{
                     StyleableToast.makeText(context!!, resources.getString(R.string.Incorrecta), Toast.LENGTH_SHORT, R.style.mytoastIncorrecta  ).show()
+                    vibrar()
 
                 }
             }
@@ -169,6 +173,12 @@ class FragmentErrepasoBatKotlin : Fragment(), CardStackListener {
             fragmentManager!!.beginTransaction().remove(this@FragmentErrepasoBatKotlin).commit()
 
         }
+    }
+
+    private fun vibrar() { // Get instance of Vibrator from current Context
+        val v = context!!.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        // Vibrate for 400 milliseconds
+        v.vibrate(400)
     }
 
     private fun guardarBBDD() {
