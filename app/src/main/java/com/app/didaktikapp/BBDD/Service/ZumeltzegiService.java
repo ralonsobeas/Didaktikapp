@@ -13,7 +13,11 @@ import com.app.didaktikapp.BBDD.database.AppDatabase;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 
 import java.util.List;
-
+/**
+ * Servicio de Zumeltzegi, implementa el DAO.
+ * Uh! Pen-pineapple-apple-pen!
+ * @author gennakk
+ */
 public class ZumeltzegiService {
     @SuppressLint("StaticFieldLeak")
     private static ZumeltzegiService zumeltzegiService;

@@ -13,7 +13,11 @@ import com.app.didaktikapp.BBDD.database.AppDatabase;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 
 import java.util.List;
-
+/**
+ * Servicio de Universitatea, implementa el DAO.
+ * Uh! Apple-pineapple!
+ * @author gennakk
+ */
 public class UniversitateaService {
 
     @SuppressLint("StaticFieldLeak")

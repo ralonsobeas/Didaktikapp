@@ -5,6 +5,13 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+
+/**
+ * Entidad ActividadRepaso1 que crea la tabla en la BBDD REPASO1.
+ * Autogenera el ID.
+ * Uh! Pen-pineapple-apple-pen!
+ * @author gennakk
+ */
 @Entity(tableName = "REPASO1")
 public class ActividadRepaso1 {
 

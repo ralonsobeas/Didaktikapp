@@ -11,7 +11,11 @@ import com.app.didaktikapp.BBDD.database.AppDatabase;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 
 import java.util.List;
-
+/**
+ * Servicio de Tren, implementa el DAO.
+ * I have a apple, I have pineapple
+ * @author gennakk
+ */
 public class TrenService {
 
     @SuppressLint("StaticFieldLeak")

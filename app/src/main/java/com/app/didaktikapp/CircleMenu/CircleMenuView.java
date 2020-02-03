@@ -33,7 +33,9 @@ import androidx.core.view.ViewCompat;
 
 
 /**
- * CircleMenuView
+ * Clase customizada de CircleMenuView.
+ * I have a pen, I have pineapple
+ * @author gennakk
  */
 public class CircleMenuView extends FrameLayout {
 
@@ -130,6 +132,10 @@ public class CircleMenuView extends FrameLayout {
         public void onButtonLongClickAnimationEnd(@NonNull CircleMenuView view, int buttonIndex) {}
     }
 
+    /**
+     * Listener de los botones. Pulsación corta.
+     * @author gennakk
+     */
     private class OnButtonClickListener implements View.OnClickListener {
         @Override
         public void onClick(final View view) {
@@ -158,6 +164,10 @@ public class CircleMenuView extends FrameLayout {
         }
     }
 
+    /**
+     * Listener de los botones. Pulsación larga.
+     * @author gennakk
+     */
     private class OnButtonLongClickListener implements View.OnLongClickListener {
         @Override
         public boolean onLongClick(final View view) {
@@ -187,10 +197,23 @@ public class CircleMenuView extends FrameLayout {
         }
     }
 
+    /**
+     * Constructor de la clase CircleMenuView.
+     * @param context
+     * @param attrs
+     * @gennnakk
+     */
     public CircleMenuView(@NonNull Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
+    /**
+     * Constructor de la clase CircleMenuView.
+     * @param context
+     * @param attrs
+     * @param defStyleAttr
+     * @author gennakk
+     */
     public CircleMenuView(@NonNull Context context, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
@@ -272,6 +295,12 @@ public class CircleMenuView extends FrameLayout {
         initButtons(context, icons, colors);
     }
 
+    /**
+     * Medidas del menú.
+     * @param widthMeasureSpec
+     * @param heightMeasureSpec
+     * @author gennakk
+     */
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -282,6 +311,15 @@ public class CircleMenuView extends FrameLayout {
         setMeasuredDimension(w, h);
     }
 
+    /**
+     * Gestión de cambios en el layout.
+     * @param changed
+     * @param left
+     * @param top
+     * @param right
+     * @param bottom
+     * @author gennakk
+     */
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
@@ -300,6 +338,11 @@ public class CircleMenuView extends FrameLayout {
         lp.height = bottom - top;
     }
 
+    /**
+     * Inicio del layout.
+     * @param context
+     * @author gennakk
+     */
     private void initLayout(@NonNull Context context) {
         LayoutInflater.from(context).inflate(R.layout.circle_menu, this, true);
 
@@ -316,6 +359,11 @@ public class CircleMenuView extends FrameLayout {
         mRingView = findViewById(R.id.ring_view);
     }
 
+    /**
+     * Inicio del Menú.
+     * @param menuButtonColor
+     * @author gennakk
+     */
     private void initMenu(int menuButtonColor) {
         final AnimatorListenerAdapter animListener = new AnimatorListenerAdapter() {
             @Override
@@ -360,6 +408,13 @@ public class CircleMenuView extends FrameLayout {
         });
     }
 
+    /**
+     * Inicio de los botones.
+     * @param context
+     * @param icons
+     * @param colors
+     * @author gennakk
+     */
     private void initButtons(@NonNull Context context, @NonNull List<Integer> icons, @NonNull List<Integer> colors) {
         final int buttonsCount = Math.min(icons.size(), colors.size());
         for (int i = 0; i < buttonsCount; i++) {
@@ -379,6 +434,15 @@ public class CircleMenuView extends FrameLayout {
         }
     }
 
+    /**
+     * Escalado de los botones
+     * @param centerX
+     * @param centerY
+     * @param angleStep
+     * @param offset
+     * @param scale
+     * @author gennakk
+     */
     private void offsetAndScaleButtons(float centerX, float centerY, float angleStep, float offset, float scale) {
         for (int i = 0, cnt = mButtons.size(); i < cnt; i++) {
             final float angle = angleStep * i - 90;
@@ -393,6 +457,12 @@ public class CircleMenuView extends FrameLayout {
         }
     }
 
+    /**
+     * Getter de la animación de los botones.
+     * @param button
+     * @return Animación del botón.
+     * @author gennakk
+     */
     private Animator getButtonClickAnimation(final @NonNull FloatingActionButton button) {
         final int buttonNumber = mButtons.indexOf(button) + 1;
         final float stepAngle = 360f / mButtons.size();
@@ -479,6 +549,11 @@ public class CircleMenuView extends FrameLayout {
         return result;
     }
 
+    /**
+     * Getter de la animación del menú al abrir.
+     * @return Animación del menú al abrir.
+     * @author gennakk
+     */
     private Animator getOpenMenuAnimation() {
         final ObjectAnimator alphaAnimation = ObjectAnimator.ofFloat(mMenuButton, "alpha", DEFAULT_CLOSE_ICON_ALPHA);
 
@@ -540,6 +615,11 @@ public class CircleMenuView extends FrameLayout {
         return result;
     }
 
+    /**
+     * Getter de animación de cierre del menú.
+     * @return Animación de cierre del menú.
+     * @author gennakk
+     */
     private Animator getCloseMenuAnimation() {
         final ObjectAnimator scaleX1 = ObjectAnimator.ofFloat(mMenuButton, "scaleX", 0f);
         final ObjectAnimator scaleY1 = ObjectAnimator.ofFloat(mMenuButton, "scaleY", 0f);

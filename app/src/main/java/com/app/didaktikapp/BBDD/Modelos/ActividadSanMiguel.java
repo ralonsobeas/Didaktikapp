@@ -5,6 +5,12 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+/**
+ * Entidad ActividadSanMiguel que crea la tabla en la BBDD SANMIGUEL.
+ * Autogenera el ID.
+ * PPAP (Pen-Pineapple-Apple-Pen)
+ * @author gennakk
+ */
 @Entity(tableName = "SANMIGUEL")
 public class ActividadSanMiguel {
 

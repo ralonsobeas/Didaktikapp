@@ -101,8 +101,9 @@ public class FragmentZumeltzegi extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
+     * @param param1 Parámetro con el id de la actividad.
      * @return A new instance of fragment FragmentZumeltzegi.
+     * @author gennakk
      */
     // TODO: Rename and change types and number of parameters
     public static FragmentZumeltzegi newInstance(Long param1) {
@@ -114,6 +115,10 @@ public class FragmentZumeltzegi extends Fragment {
         return fragment;
     }
 
+    /**
+     *  Método para crear el fragment.
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -124,6 +129,13 @@ public class FragmentZumeltzegi extends Fragment {
         }
     }
 
+    /**
+     * Método para crear la vista del fragment.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return La vista del fragment Zumeltzegi.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -233,6 +245,12 @@ public class FragmentZumeltzegi extends Fragment {
         return view;
     }
 
+    /**
+     * Método para convertir imagen a Base64.
+     * @param iv ImageView
+     * @return String Base64 con la imagen.
+     * @author gennakk
+     */
     private String imageToBase64(ImageView iv){
         iv.buildDrawingCache();
         Bitmap bitmap = iv.getDrawingCache();
@@ -244,6 +262,10 @@ public class FragmentZumeltzegi extends Fragment {
         return  Base64.encodeToString(image, 0);
     }
 
+    /**
+     * Clase para imlpementar listener a un bóton de cámara.
+     * @author gennakk
+     */
     private class ListenerBoton implements View.OnClickListener {
         @Override
         public void onClick(View v) {
@@ -256,6 +278,11 @@ public class FragmentZumeltzegi extends Fragment {
         }
 
 
+        /**
+         * Método para ejecutar la cámara.
+         * @param v Vista del fragment.
+         * @author gennakk
+         */
         private void dispatchTakePictureIntent(View v){
 //            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 //
@@ -274,13 +301,22 @@ public class FragmentZumeltzegi extends Fragment {
 
     }
 
-        // TODO: Rename method, update argument and hook method into UI event
+    /**
+     * Fragment interaction.
+     * @param uri
+     * @author gennakk
+     */
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
     }
 
+    /**
+     * Método para implementar fragment.
+     * @param context Contexto de la app.
+     * @author gennakk
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -292,6 +328,10 @@ public class FragmentZumeltzegi extends Fragment {
         }
     }
 
+    /**
+     * Método para quitar el fragment.
+     * @author gennakk
+     */
     @Override
     public void onDetach() {
         super.onDetach();
@@ -313,6 +353,13 @@ public class FragmentZumeltzegi extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
+    /**
+     * Recibe el result del intent de la cámara con su imagen.
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     * @author gennakk
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -333,13 +380,24 @@ public class FragmentZumeltzegi extends Fragment {
 //        }
     }
 
+    /**
+     * Resultado de pedir los permisos.
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     * @author gennakk
+     */
     @Override
-
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
+    /**
+     * Guarda imagen en una galería.
+     * @param iv ImageView
+     * @author gennakk
+     */
     public void guardarImagen(ImageView iv){
         //to get the image from the ImageView (say iv)
         BitmapDrawable draw = (BitmapDrawable) iv.getDrawable();
@@ -368,12 +426,20 @@ public class FragmentZumeltzegi extends Fragment {
         MediaStore.Images.Media.insertImage(getActivity().getContentResolver(), bitmap, "Titulo" , "descripcion");
     }
 
+    /**
+     * Método onPause del fragment Zumeltzegi.
+     * @author gennakk
+     */
     @Override
     public void onPause() {
         super.onPause();
 
     }
 
+    /**
+     * Método onDestroy del fragment Zumeltegi
+     * @author gennakk
+     */
     @Override
     public void onDestroy() {
         super.onDestroy();

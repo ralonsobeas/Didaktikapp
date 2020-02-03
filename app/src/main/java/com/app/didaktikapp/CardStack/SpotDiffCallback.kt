@@ -2,6 +2,11 @@ package com.app.didaktikapp.CardStack
 
 import androidx.recyclerview.widget.DiffUtil
 
+/**
+ * Callback para la lista de cartas.
+ * Uh! Apple-pen!
+ * @author gennakk
+ */
 class SpotDiffCallback(
         private val old: List<Spot>,
         private val new: List<Spot>

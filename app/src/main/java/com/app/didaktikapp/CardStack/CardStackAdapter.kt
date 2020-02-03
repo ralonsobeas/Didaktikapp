@@ -11,6 +11,11 @@ import com.app.didaktikapp.R
 import java.util.Collections.emptyList
 import com.bumptech.glide.Glide
 
+/**
+ * Adaptador para el CardStack, crea la vista para las cartas.
+ * P-P-A-P
+ * @author gennakk
+ */
 class CardStackAdapter(
         private var spots: List<Spot> = emptyList()
 ) : RecyclerView.Adapter<CardStackAdapter.ViewHolder>() {

@@ -8,7 +8,6 @@ import android.widget.TextView;
 import androidx.core.app.NavUtils;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.app.didaktikapp.BBDD.SQLiteControlador;
 import com.app.didaktikapp.R;
 import com.app.didaktikapp.wordsearch.WordSearchApp;
 import com.app.didaktikapp.wordsearch.commons.DurationFormatter;

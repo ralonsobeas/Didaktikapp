@@ -30,7 +30,6 @@ import com.app.didaktikapp.BBDD.Modelos.ActividadTren;
 import com.app.didaktikapp.BBDD.Modelos.ActividadUniversitatea;
 import com.app.didaktikapp.BBDD.Modelos.ActividadZumeltzegi;
 import com.app.didaktikapp.BBDD.Modelos.Grupo;
-import com.app.didaktikapp.BBDD.SQLiteControlador;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.Fragments.FragmentErrepasoBatKotlin;
 import com.app.didaktikapp.Fragments.FragmentErrotaFotos;
@@ -1479,7 +1478,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     /**
      *
-     * I like pineapple juice.
+     * PPAP (Pen-Pineapple-Apple-Pen).
      * @author gennakk
      *
      */

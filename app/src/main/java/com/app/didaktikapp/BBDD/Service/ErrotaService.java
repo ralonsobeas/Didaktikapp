@@ -12,6 +12,11 @@ import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 
 import java.util.List;
 
+/**
+ * Servicio de Errota, implementa el DAO.
+ * Apple-pen, pineapple-pen
+ * @author gennakk
+ */
 public class ErrotaService {
 
 
