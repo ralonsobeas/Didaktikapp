@@ -1,5 +1,7 @@
 # Didaktikapp
 
+<h4><a href = 'https://play.google.com/store/apps/details?id=com.app.didaktikapp'>Enlace a GooglePlay.</a></h4>
+
 <p align="center"><img src="https://www.theblocklearning.com/wp-content/uploads/2018/09/mobile.png" alt="Imagen"></p>
 
 Aplicación creada por alumnos del centro CIFP Ciudad Jardin (Vitoria) en colaboración con los alumnos de magisterio de la UPV en Leioa.
@@ -34,7 +36,7 @@ Animación texto máquina de escribir (TypeWriterView) - https://github.com/skym
 Estilos para la app, botones, colores etc... (Material Design) - https://material.io/design/
 
 Sopa de letras (Word Search) - https://github.com/abdularis/Word-Search-Game
-
+https://play.google.com/store/apps/details?id=com.app.didaktikapp
 <strike> Puzle (Jigsaw Puzzle) - https://dragosholban.com/2018/03/09/how-to-build-a-jigsaw-puzzle-android-game/ </strike>
 
 Circle Menu - https://github.com/Ramotion/circle-menu-android
