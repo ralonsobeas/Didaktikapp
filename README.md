@@ -1,5 +1,5 @@
 # Didaktikapp
-<a href = 'https://play.google.com/store/apps/details?id=com.app.didaktikapp'><img src='https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg' alt ="Imagen"></a>
+<a href = 'https://play.google.com/store/apps/details?id=com.app.didaktikapp'  target="_blank" ><img src='https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg' alt ="Imagen"></a>
 
 
 <p align="center"><img src="https://www.theblocklearning.com/wp-content/uploads/2018/09/mobile.png" alt="Imagen"></p>
