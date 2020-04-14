@@ -1568,7 +1568,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         Gson gson = new Gson();
                         Type type = new TypeToken<List<Grupo>>(){}.getType();
                         String json = gson.toJson(responseList, type);
-                        Ftp.sendData(json);
+                        Log.v("upload result", "send?");
+
+                        Ftp ftp = new Ftp();
+                        ftp.execute(json,context);
+
+                        Log.v("upload result", "sended");
+
                     }
 
                     @Override

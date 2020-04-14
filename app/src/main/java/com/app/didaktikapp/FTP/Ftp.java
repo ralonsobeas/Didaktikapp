@@ -1,32 +1,49 @@
 package com.app.didaktikapp.FTP;
 
+import android.app.Application;
+import android.content.Context;
+import android.os.AsyncTask;
 import android.util.Log;
+
+import androidx.core.content.ContextCompat;
 
 import com.google.gson.JsonObject;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 
-public class Ftp {
+public class Ftp extends  AsyncTask {
 
-    public static void sendData(String jsonString){
+    public static void sendData(String jsonString, Context context){
 
         FTPClient con = null;
 
         try
         {
             con = new FTPClient();
-            con.connect("192.168.2.57");
-
-            if (con.login("Administrator", "KUjWbk"))
+            con.connect("ftp.dlptest.com");
+            Log.v("upload result", "loging");
+            if (con.login("dlpuser@dlptest.com", "SzMf7rTE4pCrf9dV286GuNe4N"))
             {
+                Log.v("upload result", "logged");
                 con.enterLocalPassiveMode(); // important!
                 con.setFileType(FTP.BINARY_FILE_TYPE);
+                File file;
+                file = File.createTempFile("json", null, context.getCacheDir());
+                BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+                writer.write(jsonString);
 
-                FileInputStream in = new FileInputStream(new File(jsonString));
+                writer.close();
+
+                FileInputStream in = new FileInputStream(file);
+
+
                 boolean result = con.storeFile("/json.txt", in);
                 in.close();
                 if (result) Log.v("upload result", "succeeded");
@@ -45,4 +62,13 @@ public class Ftp {
 
 
     }
+
+
+    @Override
+    protected Object doInBackground(Object[] objects) {
+
+        sendData((String)objects[0],(Context) objects[1]);
+        return null;
+    }
+
 }
