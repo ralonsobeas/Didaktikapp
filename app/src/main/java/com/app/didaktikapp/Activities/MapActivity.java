@@ -31,6 +31,7 @@ import com.app.didaktikapp.BBDD.Modelos.ActividadUniversitatea;
 import com.app.didaktikapp.BBDD.Modelos.ActividadZumeltzegi;
 import com.app.didaktikapp.BBDD.Modelos.Grupo;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
+import com.app.didaktikapp.FTP.Ftp;
 import com.app.didaktikapp.Fragments.FragmentErrepasoBatKotlin;
 import com.app.didaktikapp.Fragments.FragmentErrotaFotos;
 import com.app.didaktikapp.Fragments.FragmentErrotaTextos;
@@ -49,6 +50,8 @@ import com.app.didaktikapp.R;
 
 import com.app.didaktikapp.wordsearch.features.gameplay.GamePlayActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.mapbox.android.core.location.LocationEngine;
 import com.mapbox.android.core.location.LocationEngineCallback;
 import com.mapbox.android.core.location.LocationEngineProvider;
@@ -97,10 +100,17 @@ import org.json.JSONObject;
 
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import io.reactivex.Completable;
+import io.reactivex.CompletableObserver;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
+import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineCap;
@@ -221,8 +231,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         //CARGAR OBJETO GRUPO DE LA BBDD
         idgrupo = getIntent().getExtras().getLong("IDGRUPO");
         administrador = getIntent().getExtras().getBoolean("ADMINISTRADOR");
-        grupo = DatabaseRepository.getAppDatabase().getGrupoDao().getGrupo(idgrupo);
 
+        //CUIDADO
+        administrador = true;
+
+        grupo = DatabaseRepository.getAppDatabase().getGrupoDao().getGrupo(idgrupo);
+        generateData();
         cargarListaLugares();
 
         // Mapbox Access token
@@ -962,7 +976,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         * para asignarle el icono correspondiente por si está o no está hecho
         *
         * He comentado el anterior for para no perder el código*/
-        SQLiteControlador sql = new SQLiteControlador(getApplicationContext());
         for (int x=0;x<listaLugares.size();x++) {
             Icon icono = iconorojo;
             int dis;
@@ -1529,7 +1542,43 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             super.onBackPressed();
         }
     }
+
+
+    private void generateData(){
+
+
+        Completable.fromAction(new Action() {
+            @Override
+            public void run() throws Exception {
+                DatabaseRepository.getAppDatabase().getGrupoDao().getGrupos();
+            }
+        }).observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new CompletableObserver() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+
+                        List<Grupo> responseList;
+                        responseList = DatabaseRepository.getAppDatabase().getGrupoDao().getGrupos();
+                        Gson gson = new Gson();
+                        Type type = new TypeToken<List<Grupo>>(){}.getType();
+                        String json = gson.toJson(responseList, type);
+                        Ftp.sendData(json);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Toast.makeText(MapActivity.this, "Empty data",Toast.LENGTH_LONG).show();
+                    }
+                });
+    }
 }
+
 
 
 

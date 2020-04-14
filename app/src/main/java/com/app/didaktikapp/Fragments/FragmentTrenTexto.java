@@ -113,6 +113,7 @@ public class FragmentTrenTexto extends Fragment {
             public void onClick(View v) {
 
                 //CERRAR FRAGMENT
+                getFragmentManager().beginTransaction().remove(FragmentTrenTexto.this).commit();
             }
         });
 
@@ -131,7 +132,7 @@ public class FragmentTrenTexto extends Fragment {
                 String texto = textoCambiar.getText().toString();
 
                 if (pregunta.equals("(1) ->")) {
-                    if (seleccionado.equals("Postetxea")) {
+                    if (seleccionado.equals(getResources().getStringArray(R.array.TrenTextoCambiar)[1])) {
                         textoError.setText("");
                         textoPregunta.setText("(2) ->");
                         int location = texto.indexOf("________");
@@ -146,7 +147,7 @@ public class FragmentTrenTexto extends Fragment {
                     }
 
                 } else if (pregunta.equals("(2) ->")) {
-                    if (seleccionado.equals("Vasco-Navarro")) {
+                    if (seleccionado.equals(getResources().getStringArray(R.array.TrenTextoCambiar)[2])) {
                         textoError.setText("");
                         textoPregunta.setText("(3) ->");
                         int location = texto.indexOf("________");
@@ -158,7 +159,7 @@ public class FragmentTrenTexto extends Fragment {
                     }
 
                 } else if (pregunta.equals("(3) ->")) {
-                    if (seleccionado.equals("Gasteizetik")) {
+                    if (seleccionado.equals(getResources().getStringArray(R.array.TrenTextoCambiar)[0])) {
                         textoError.setText("");
                         int location = texto.indexOf("________");
                         String pp = texto.substring(0,location);

@@ -1,10 +1,14 @@
 package com.app.didaktikapp.BBDD.database;
 
+import android.accounts.Account;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.telephony.TelephonyManager;
 
 import androidx.annotation.VisibleForTesting;
 import androidx.room.Room;
+import androidx.room.migration.Migration;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.app.didaktikapp.BBDD.Modelos.ActividadErrota;
 import com.app.didaktikapp.BBDD.Modelos.ActividadGernika;
@@ -62,6 +66,8 @@ public class DatabaseRepository {
         return Room.databaseBuilder(context,
                 AppDatabase.class,
                 DATABASE_NAME)
+                .addMigrations(MIGRATION_2_3)
+                .fallbackToDestructiveMigration()
                 .allowMainThreadQueries().build();
     }
 
@@ -79,7 +85,7 @@ public class DatabaseRepository {
      * @return ID autogenerado.
      * @author gennakk
      */
-    public static Long insertTaskGrupo(String nombreGrupo){
+    public static Long insertTaskGrupo(String nombreGrupo, String email){
 
 
         try {
@@ -88,8 +94,10 @@ public class DatabaseRepository {
                 protected Long doInBackground(Void... voids) {
                     Grupo grupo = new Grupo();
                     grupo.setNombre(nombreGrupo);
+                    grupo.setDeviceId(email);
                     grupo.setFecha( Calendar.getInstance().getTime());
                     ActividadZumeltzegi actividadZumeltzegi = new ActividadZumeltzegi();
+
                     grupo.setIdZumeltzegi(appDatabase.getZumeltzegiDao().addZumeltzegi(actividadZumeltzegi));
                     grupo.setIdUniversidad(appDatabase.getUniversitateaDao().addUniversitatea(new ActividadUniversitatea()));
                     grupo.setIdTren(appDatabase.getTrenDao().addTren(new ActividadTren()));
@@ -246,4 +254,20 @@ public class DatabaseRepository {
     public static void setAppDatabase(AppDatabase appDatabase) {
         DatabaseRepository.appDatabase = appDatabase;
     }
+
+    static final Migration MIGRATION_2_3 = new Migration(2, 3) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+            database.execSQL("DROP TABLE ERROTA");
+            database.execSQL("DROP TABLE GERNIKA");
+            database.execSQL("DROP TABLE REPASO1");
+            database.execSQL("DROP TABLE REPASO2");
+            database.execSQL("DROP TABLE SANMIGUEL");
+            database.execSQL("DROP TABLE TREN");
+            database.execSQL("DROP TABLE UNIVERSITATEA");
+            database.execSQL("DROP TABLE ZUMELTZEGI");
+            database.execSQL("DROP TABLE GRUPO");
+            database.execSQL("DROP TABLE USUARIO");
+        }
+    };
 }

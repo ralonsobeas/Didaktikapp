@@ -63,6 +63,9 @@ public class Grupo {
     @NonNull
     private Long id ;
 
+    @ColumnInfo(name = "DEVICEID")
+    private String deviceId ;
+
     @ColumnInfo(name = "NOMBRE")
     private String nombre;
 
@@ -102,6 +105,14 @@ public class Grupo {
 
     public void setId(@NonNull Long id) {
         this.id = id;
+    }
+
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
     }
 
     public String getNombre() {

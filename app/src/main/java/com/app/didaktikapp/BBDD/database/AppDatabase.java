@@ -50,7 +50,7 @@ import java.util.List;
                     ActividadGernika.class,
                     ActividadRepaso1.class,
                     ActividadRepaso2.class},
-                    version = 2 )
+                    version = 3 )
 public abstract class AppDatabase extends RoomDatabase {
 
     /**
