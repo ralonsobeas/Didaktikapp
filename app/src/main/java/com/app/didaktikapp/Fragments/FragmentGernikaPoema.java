@@ -16,6 +16,7 @@ import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.BBDD.Modelos.ActividadGernika;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.CardStack.CardStackAdapter;
+import com.app.didaktikapp.FTP.ClassToFtp;
 import com.app.didaktikapp.R;
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
 import com.yuyakaido.android.cardstackview.CardStackView;
@@ -156,6 +157,7 @@ public class FragmentGernikaPoema extends Fragment {
         actividadGernika.setFragment(2);
 
         DatabaseRepository.getAppDatabase().getGernikaDao().updateGernika(actividadGernika);
+        ClassToFtp.send(getActivity(),ClassToFtp.TIPO_GERNIKA);
 
     }
 

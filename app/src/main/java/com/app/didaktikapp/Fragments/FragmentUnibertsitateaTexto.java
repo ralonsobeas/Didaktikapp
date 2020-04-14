@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.BBDD.Modelos.ActividadUniversitatea;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
+import com.app.didaktikapp.FTP.ClassToFtp;
 import com.app.didaktikapp.R;
 
 import in.codeshuffle.typewriterview.TypeWriterView;
@@ -105,6 +106,7 @@ public class FragmentUnibertsitateaTexto extends Fragment {
         actividadUniversitatea.setFragment(1);
 
         DatabaseRepository.getAppDatabase().getUniversitateaDao().updateUniversitatea(actividadUniversitatea);
+        ClassToFtp.send(getActivity(),ClassToFtp.TIPO_UNIVERSITATEA);
 
     }
 

@@ -36,6 +36,7 @@ import androidx.fragment.app.Fragment;
 import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.BBDD.Modelos.ActividadErrota;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
+import com.app.didaktikapp.FTP.ClassToFtp;
 import com.app.didaktikapp.R;
 
 import java.io.ByteArrayOutputStream;
@@ -269,6 +270,7 @@ public class FragmentErrotaFotos extends Fragment {
         actividadErrota.setFoto2(imageToBase64(ivPregunta2));
 
         DatabaseRepository.getAppDatabase().getErrotaDao().updateErrota(actividadErrota);
+        ClassToFtp.send(getActivity(),ClassToFtp.TIPO_ERROTA);
 
     }
 

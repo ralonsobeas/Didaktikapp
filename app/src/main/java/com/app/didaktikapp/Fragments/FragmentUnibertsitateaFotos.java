@@ -30,6 +30,7 @@ import androidx.fragment.app.Fragment;
 import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.BBDD.Modelos.ActividadUniversitatea;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
+import com.app.didaktikapp.FTP.ClassToFtp;
 import com.app.didaktikapp.R;
 import com.muddzdev.styleabletoast.StyleableToast;
 
@@ -270,6 +271,7 @@ public class FragmentUnibertsitateaFotos extends Fragment {
         actividadUniversitatea.setFoto3(imageToBase64(iv3));
 
         DatabaseRepository.getAppDatabase().getUniversitateaDao().updateUniversitatea(actividadUniversitatea);
+        ClassToFtp.send(getActivity(),ClassToFtp.TIPO_UNIVERSITATEA);
 
     }
 

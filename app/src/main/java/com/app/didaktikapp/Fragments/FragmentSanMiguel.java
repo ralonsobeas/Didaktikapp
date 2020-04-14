@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.BBDD.Modelos.ActividadSanMiguel;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
+import com.app.didaktikapp.FTP.ClassToFtp;
 import com.app.didaktikapp.R;
 
 /**
@@ -273,6 +274,7 @@ public class FragmentSanMiguel extends Fragment {
         actividadSanMiguel.setTest(correctas+"/4");
 
         DatabaseRepository.getAppDatabase().getSanMiguelDao().updateSanMiguel(actividadSanMiguel);
+        ClassToFtp.send(getActivity(),ClassToFtp.TIPO_SANMIGUEL);
 
     }
 

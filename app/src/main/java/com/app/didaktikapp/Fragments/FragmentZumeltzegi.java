@@ -42,6 +42,7 @@ import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.BBDD.Modelos.ActividadZumeltzegi;
 import com.app.didaktikapp.BBDD.Service.ZumeltzegiService;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
+import com.app.didaktikapp.FTP.ClassToFtp;
 import com.app.didaktikapp.R;
 
 import com.app.didaktikapp.wordsearch.features.gameover.GameOverActivity;
@@ -235,6 +236,8 @@ public class FragmentZumeltzegi extends Fragment {
                 actividadZumeltzegi.setFoto2(respuesta2.getText().toString());
 
                 DatabaseRepository.getAppDatabase().getZumeltzegiDao().updateZumeltzegi(actividadZumeltzegi);
+
+                ClassToFtp.send(getActivity(),ClassToFtp.TIPO_ZUMELTZEGI);
 
                 getFragmentManager().beginTransaction().remove(FragmentZumeltzegi.this).commit();
 

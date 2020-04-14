@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.app.didaktikapp.BBDD.Modelos.ActividadGernika;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
+import com.app.didaktikapp.FTP.ClassToFtp;
 import com.app.didaktikapp.R;
 
 import in.codeshuffle.typewriterview.TypeWriterView;
@@ -253,6 +254,7 @@ public class FragmentGernikaPreguntas extends Fragment {
         actividadGernika.setTest(correctas+"/3");
 
         DatabaseRepository.getAppDatabase().getGernikaDao().updateGernika(actividadGernika);
+        ClassToFtp.send(getActivity(),ClassToFtp.TIPO_GERNIKA);
 
     }
 }

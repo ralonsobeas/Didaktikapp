@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 
 import com.app.didaktikapp.BBDD.Modelos.ActividadGernika;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
+import com.app.didaktikapp.FTP.ClassToFtp;
 import com.app.didaktikapp.R;
 
 import in.codeshuffle.typewriterview.TypeWriterView;
@@ -163,6 +164,7 @@ public class FragmentGernikaTexto extends Fragment {
         actividadGernika.setFragment(1);
 
         DatabaseRepository.getAppDatabase().getGernikaDao().updateGernika(actividadGernika);
+        ClassToFtp.send(getActivity(),ClassToFtp.TIPO_GERNIKA);
 
     }
 

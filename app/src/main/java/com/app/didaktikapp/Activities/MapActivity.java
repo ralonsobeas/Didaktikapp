@@ -180,7 +180,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
 
     private Long idgrupo ;
+
     private Grupo grupo;
+
+    public static Grupo GRUPO_S;
 
     private static final double DISTANCIA_MARKER = 15;
 
@@ -236,6 +239,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         administrador = true;
 
         grupo = DatabaseRepository.getAppDatabase().getGrupoDao().getGrupo(idgrupo);
+        GRUPO_S = grupo;
         generateData();
         cargarListaLugares();
 

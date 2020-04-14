@@ -22,6 +22,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.BBDD.Modelos.ActividadErrota;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
+import com.app.didaktikapp.FTP.ClassToFtp;
 import com.app.didaktikapp.R;
 
 import java.util.ArrayList;
@@ -228,6 +229,7 @@ public class FragmentErrotaTextos extends Fragment {
         actividadErrota.setFrases("5");
 
         DatabaseRepository.getAppDatabase().getErrotaDao().updateErrota(actividadErrota);
+        ClassToFtp.send(getActivity(),ClassToFtp.TIPO_ERROTA);
 
     }
 

@@ -22,6 +22,7 @@ import com.app.didaktikapp.BBDD.database.DatabaseRepository
 import com.app.didaktikapp.CardStack.CardStackAdapter
 import com.app.didaktikapp.CardStack.Spot
 import com.app.didaktikapp.CardStack.SpotDiffCallback
+import com.app.didaktikapp.FTP.ClassToFtp
 import com.app.didaktikapp.R
 import com.muddzdev.styleabletoast.StyleableToast
 import com.yuyakaido.android.cardstackview.*
@@ -191,6 +192,7 @@ class FragmentErrepasoBatKotlin : Fragment(), CardStackListener {
         actividadRepaso1.frases = "$correcta/10"
 
         DatabaseRepository.getAppDatabase().repaso1Dao.updateRepaso1(actividadRepaso1)
+        ClassToFtp.send(activity, ClassToFtp.TIPO_REPASO1)
 
     }
 

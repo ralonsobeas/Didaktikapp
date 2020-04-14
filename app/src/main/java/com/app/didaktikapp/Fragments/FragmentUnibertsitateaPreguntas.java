@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.BBDD.Modelos.ActividadUniversitatea;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
+import com.app.didaktikapp.FTP.ClassToFtp;
 import com.app.didaktikapp.R;
 
 
@@ -165,6 +166,7 @@ public class FragmentUnibertsitateaPreguntas extends Fragment {
         actividadUniversitatea.setTest("CORRECTAS");
 
         DatabaseRepository.getAppDatabase().getUniversitateaDao().updateUniversitatea(actividadUniversitatea);
+        ClassToFtp.send(getActivity(),ClassToFtp.TIPO_UNIVERSITATEA);
 
     }
 

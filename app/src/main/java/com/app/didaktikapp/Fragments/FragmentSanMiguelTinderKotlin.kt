@@ -23,6 +23,7 @@ import com.app.didaktikapp.BBDD.database.DatabaseRepository
 import com.app.didaktikapp.CardStack.CardStackAdapter
 import com.app.didaktikapp.CardStack.Spot
 import com.app.didaktikapp.CardStack.SpotDiffCallback
+import com.app.didaktikapp.FTP.ClassToFtp
 import com.app.didaktikapp.R
 import com.muddzdev.styleabletoast.StyleableToast
 import com.yuyakaido.android.cardstackview.*
@@ -226,6 +227,7 @@ class FragmentSanMiguelTinderKotlin : Fragment(), CardStackListener {
         actividadSanMiguel.fotos = "${correcta}/6"
 
         DatabaseRepository.getAppDatabase().sanMiguelDao.updateSanMiguel(actividadSanMiguel)
+        ClassToFtp.send(getActivity(), ClassToFtp.TIPO_SANMIGUEL);
 
     }
 

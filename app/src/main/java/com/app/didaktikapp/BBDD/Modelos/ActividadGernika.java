@@ -13,7 +13,7 @@ import androidx.room.PrimaryKey;
  * @author gennakk
  */
 @Entity(tableName = "GERNIKA")
-public class ActividadGernika {
+public class ActividadGernika extends Actividad{
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "ID")

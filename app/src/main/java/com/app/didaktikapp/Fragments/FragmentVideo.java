@@ -19,6 +19,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.BBDD.Modelos.ActividadErrota;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
+import com.app.didaktikapp.FTP.ClassToFtp;
 import com.app.didaktikapp.R;
 
 public class FragmentVideo extends Fragment {
@@ -103,6 +104,7 @@ public class FragmentVideo extends Fragment {
                         ActividadErrota actividadErrota = DatabaseRepository.getAppDatabase().getErrotaDao().getErrota(idActividad);
                         actividadErrota.setFragment(2);
                         DatabaseRepository.getAppDatabase().getErrotaDao().updateErrota(actividadErrota);
+                        ClassToFtp.send(getActivity(),ClassToFtp.TIPO_ERROTA);
 
                         //Cerrar fragment y abrir el siguiente
                         FragmentErrotaFotos fragment = FragmentErrotaFotos.newInstance(idActividad);

@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.app.didaktikapp.BBDD.Modelos.ActividadZumeltzegi;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
+import com.app.didaktikapp.FTP.ClassToFtp;
 import com.app.didaktikapp.R;
 import com.app.didaktikapp.wordsearch.WordSearchApp;
 import com.app.didaktikapp.wordsearch.commons.DurationFormatter;
@@ -304,6 +305,8 @@ public class GamePlayActivity extends FullscreenActivity {
             actividadZumeltzegi.setEstado(2);
 
             DatabaseRepository.getAppDatabase().getZumeltzegiDao().updateZumeltzegi(actividadZumeltzegi);
+            ClassToFtp.send(getBaseContext(),ClassToFtp.TIPO_ZUMELTZEGI);
+
 
         }else if(nombre.equals(FRAGMENT_ERREPASO2)){
             String a = "hola";

@@ -15,7 +15,7 @@ import static androidx.room.ForeignKey.CASCADE;
  * @author gennakk
  */
 @Entity(tableName = "ZUMELTZEGI")
-public class ActividadZumeltzegi {
+public class ActividadZumeltzegi  extends Actividad{
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "ID")
