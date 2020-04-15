@@ -7,6 +7,7 @@ import android.util.Log;
 
 import androidx.core.content.ContextCompat;
 
+import com.app.didaktikapp.R;
 import com.google.gson.JsonObject;
 
 import java.io.BufferedWriter;
@@ -18,8 +19,17 @@ import java.io.FileWriter;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 
+/**
+ * Clase asíncrona encargada de el upload de datos al FTP
+ *
+ */
 public class Ftp extends  AsyncTask {
 
+    /**
+     * Método encargado de la llamada
+     * @param jsonString string con el json a enviar
+     * @param context contexto de la aplicación
+     */
     public static void sendData(String jsonString, Context context){
 
         FTPClient con = null;
@@ -27,9 +37,9 @@ public class Ftp extends  AsyncTask {
         try
         {
             con = new FTPClient();
-            con.connect("ftp.dlptest.com");
+            con.connect(context.getString(R.string.hostNameFTP));
             Log.v("upload result", "loging");
-            if (con.login("dlpuser@dlptest.com", "SzMf7rTE4pCrf9dV286GuNe4N"))
+            if (con.login(context.getString(R.string.hostUserFTP), context.getString(R.string.hostpassFTP)))
             {
                 Log.v("upload result", "logged");
                 con.enterLocalPassiveMode(); // important!
@@ -44,7 +54,7 @@ public class Ftp extends  AsyncTask {
                 FileInputStream in = new FileInputStream(file);
 
 
-                boolean result = con.storeFile("/json.txt", in);
+                boolean result = con.storeFile("/json.json", in);
                 in.close();
                 if (result) Log.v("upload result", "succeeded");
                 con.logout();
