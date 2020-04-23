@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.MediaPlayer;
@@ -22,6 +23,7 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.Html;
 import android.util.Base64;
@@ -43,12 +45,17 @@ import com.app.didaktikapp.BBDD.Modelos.ActividadZumeltzegi;
 import com.app.didaktikapp.BBDD.Service.ZumeltzegiService;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.FTP.ClassToFtp;
+import com.app.didaktikapp.MainActivity;
 import com.app.didaktikapp.R;
 
 import com.app.didaktikapp.wordsearch.features.gameover.GameOverActivity;
 import com.app.didaktikapp.wordsearch.features.gameplay.GamePlayActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.muddzdev.styleabletoast.StyleableToast;
+import com.wooplr.spotlight.SpotlightConfig;
+import com.wooplr.spotlight.utils.SpotlightSequence;
+import com.wooplr.spotlight.utils.Utils;
 
 import org.w3c.dom.Text;
 
@@ -244,6 +251,48 @@ public class FragmentZumeltzegi extends Fragment {
 
             }
         });
+
+        /*
+        Botón flotante de ayuda
+         */
+        FloatingActionButton floatingActionButton = view.findViewById(R.id.helpButton);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View viewBoton) {
+
+                SpotlightConfig config = new SpotlightConfig();
+                config.setMaskColor( Color.parseColor("#E63A3A3A"));
+                config.setIntroAnimationDuration(400);
+                config.setFadingTextDuration(400);
+                config.setPadding(20);
+                config.setDismissOnTouch(true);
+                config.setDismissOnBackpress(true);
+                config.setPerformClick(false);
+                config.setHeadingTvSize(24);
+                config.setHeadingTvColor(Color.parseColor("#2B82C5"));
+                config.setSubHeadingTvSize(24);
+                config.setSubHeadingTvColor(Color.parseColor("#FAFAFA"));
+                config.setLineAnimationDuration(300);
+                config.setLineStroke(Utils.dpToPx(4));
+                config.setLineAndArcColor( Color.parseColor("#2B82C5"));
+                config.setShowTargetArc(true);
+
+
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        SpotlightSequence.getInstance(getActivity(),config)
+                                .addSpotlight(view.findViewById(R.id.helpButton), getString(R.string.AyudaZumTituloPregunta), getString(R.string.AyudaZumDetallePregunta), "pregunta")
+                                .addSpotlight(view.findViewById(R.id.helpButton),  getString(R.string.AyudaZumTituloRespuesta),  getString(R.string.AyudaZumDetalleRespuesta), "respuesta")
+                                .addSpotlight(view.findViewById(R.id.btnContinuar), getString(R.string.AyudaZumTituloContinuar), getString(R.string.AyudaZumDetalleContinuar), "continuar")
+                                .startSequence();
+                    }
+                },0);
+            }
+        });
+
 
         return view;
     }

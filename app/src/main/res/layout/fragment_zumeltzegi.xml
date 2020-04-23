@@ -22,8 +22,22 @@
         app:layout_constraintVertical_bias="1.0"
         android:visibility="invisible"/>
 
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/helpButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:src="@drawable/ic_help_outline_black_24dp"
+        android:backgroundTint="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="@+id/videoView"
+        app:layout_constraintTop_toTopOf="@+id/scroll"
+        app:fabCustomSize="40dp"
+        app:maxImageSize="40dp"/>
+
     <ScrollView
         android:id="@+id/scroll"
+        style="@style/StyleFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="60dp"
@@ -33,18 +47,17 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        style="@style/StyleFragment">
-      <!--  android:background="@color/gray" -->
+        app:layout_constraintVertical_bias="0.0">
+        <!--  android:background="@color/gray" -->
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp">
+            android:layout_marginEnd="20dp"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tvTitulo"
@@ -59,38 +72,38 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/ZumeltzegiPregunta1Titulo"
-                android:textSize="30sp"/>
+                android:textSize="30sp" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ivPregunta1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-<!--            <Button-->
-<!--                android:id="@+id/btnCameraPregunta1"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                app:icon="@drawable/ic_camera_alt_black_24dp"-->
-<!--                app:iconGravity="textStart"/>-->
+            <!--            <Button-->
+            <!--                android:id="@+id/btnCameraPregunta1"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                app:icon="@drawable/ic_camera_alt_black_24dp"-->
+            <!--                app:iconGravity="textStart"/>-->
 
             <TextView
                 android:id="@+id/tvPregunta2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/ZumeltzegiPregunta2Titulo"
-                android:textSize="30sp"/>
+                android:textSize="30sp" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ivPregunta2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-<!--            <Button-->
-<!--                android:id="@+id/btnCameraPregunta2"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                app:icon="@drawable/ic_camera_alt_black_24dp"-->
-<!--                app:iconGravity="textStart"/>-->
+            <!--            <Button-->
+            <!--                android:id="@+id/btnCameraPregunta2"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                app:icon="@drawable/ic_camera_alt_black_24dp"-->
+            <!--                app:iconGravity="textStart"/>-->
 
             <Button
                 android:id="@+id/btnContinuar"

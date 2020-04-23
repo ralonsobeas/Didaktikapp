@@ -1,8 +1,8 @@
 <resources>
     <!-- FTP -->
-    <string name="hostNameFTP">88.27.169.221</string>
-    <string name="hostUserFTP">didaktikapp</string>
-    <string name="hostpassFTP">Dw2*</string>
+    <string name="hostNameFTP" translatable="false">88.27.169.221</string>
+    <string name="hostUserFTP" translatable="false">didaktikapp</string>
+    <string name="hostpassFTP" translatable="false">Dw2*</string>
     <!-- Clave mapa -->
     <string name="mapbox_access_token">pk.eyJ1IjoiZGlkYWt0aWt1cHYiLCJhIjoiY2szNzhiNmt6MDNlbTNjbm8yMDNmeTZyNiJ9.10ubJTPv5AC6X6tDYZRhNw</string>
 
@@ -57,6 +57,12 @@
 
     <string name="ToastImagenes">Gordetako argazkiak</string>
 
+    <string name="AyudaZumTituloPregunta">Pregunta</string>
+    <string name="AyudaZumDetallePregunta">Lee la pregunta</string>
+    <string name="AyudaZumTituloRespuesta">Respuesta</string>
+    <string name="AyudaZumDetalleRespuesta">Escribe la respuesta</string>
+    <string name="AyudaZumTituloContinuar">Continúa</string>
+    <string name="AyudaZumDetalleContinuar">Pulsa para terminar</string>
 
     <!-- Actividad San Miguel -->
     <string name="SanMiguelTitulo" translatable="false">San Miguel</string>
@@ -221,5 +227,7 @@
     <string name="GernikaTexto">1917ko otsailaren 2an Gernikako Arbolaren kimu bat landatu zen  Oñatiko lurretan, herriko enparantza eta frontoiaren artean hain zuzen ere.  Gaur egun, 103 urte dituen haritza da. Arbola hau eta baita gernikakoa ere euskal herritarren askatasun tradizionala eta Euskal Herriko foruen adierazle dira. Iparragirrek ere kantu bat idatzi zion arbolari:</string>
     <string name="about" translatable="false">About</string>
 
+    <!-- Ayuda -->
+    <string name="interrogacion" translatable="false" >\?</string>
 
 </resources>
