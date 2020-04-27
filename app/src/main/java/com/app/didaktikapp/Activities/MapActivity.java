@@ -23,6 +23,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.work.Constraints;
+import androidx.work.Data;
+import androidx.work.NetworkType;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkManager;
 
 import com.app.didaktikapp.BBDD.Modelos.ActividadErrota;
 import com.app.didaktikapp.BBDD.Modelos.ActividadSanMiguel;
@@ -1574,8 +1579,22 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         String json = gson.toJson(responseList, type);
                         Log.v("upload result", "send?");
 
-                        Ftp ftp = new Ftp();
-                        ftp.execute(json,context);
+
+                        /***  Logic to set Data while creating worker **/
+                        Constraints constraints = new Constraints.Builder()
+                                .setRequiredNetworkType(NetworkType.CONNECTED)
+                                .build();
+                        Data.Builder dataBuilder = new Data.Builder();
+                        //Add parameter in Data class. just like bundle. You can also add Boolean and Number in parameter.
+                        dataBuilder.putString(Ftp.JSON, json);
+                        Data data =  dataBuilder.build();
+
+                        OneTimeWorkRequest onetimeJob = new OneTimeWorkRequest.Builder(Ftp.class)
+                                .setConstraints(constraints)
+                                .setInputData(data).build(); // or PeriodicWorkRequest
+                        //enque worker
+                        WorkManager.getInstance().enqueue(onetimeJob);
+
 
                         Log.v("upload result", "sended");
 
