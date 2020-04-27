@@ -1,9 +1,11 @@
 package com.app.didaktikapp.Fragments;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +23,10 @@ import com.app.didaktikapp.BBDD.Modelos.ActividadErrota;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.FTP.ClassToFtp;
 import com.app.didaktikapp.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.wooplr.spotlight.SpotlightConfig;
+import com.wooplr.spotlight.utils.SpotlightSequence;
+import com.wooplr.spotlight.utils.Utils;
 
 public class FragmentVideo extends Fragment {
 
@@ -40,7 +46,8 @@ public class FragmentVideo extends Fragment {
     private static String fragment;
     private int rawvideo;
 
-    public FragmentVideo() {}
+    public FragmentVideo() {
+    }
 
 
     public static FragmentVideo newInstance(Long param1, String nombre) {
@@ -69,7 +76,7 @@ public class FragmentVideo extends Fragment {
         view = inflater.inflate(R.layout.fragment_errota_video, container, false);
         TextView titulo = view.findViewById(R.id.errotaTitulo);
 
-        switch(fragment) {
+        switch (fragment) {
             case "errota":
                 titulo.setText(R.string.nombreLugar5);
                 rawvideo = R.raw.video_sanmiguel_errota;
@@ -83,10 +90,53 @@ public class FragmentVideo extends Fragment {
 //                rawvideo = R.raw.video_zumeltzegi;
                 break;
             default:
-                Log.e("VIDEO","Nombre '"+fragment+"' no reconocido");
+                Log.e("VIDEO", "Nombre '" + fragment + "' no reconocido");
         }
 
-        //CONFIGURAMOS EL BOTON CONTINUAR
+          /*
+        Botón flotante de ayuda
+         */
+        FloatingActionButton floatingActionButton = view.findViewById(R.id.helpButton);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View viewBoton) {
+
+                SpotlightConfig config = new SpotlightConfig();
+                config.setMaskColor(Color.parseColor("#E63A3A3A"));
+                config.setIntroAnimationDuration(400);
+                config.setFadingTextDuration(400);
+                config.setPadding(20);
+                config.setDismissOnTouch(true);
+                config.setDismissOnBackpress(true);
+                config.setPerformClick(false);
+                config.setHeadingTvSize(24);
+                config.setHeadingTvColor(Color.parseColor("#2B82C5"));
+                config.setSubHeadingTvSize(24);
+                config.setSubHeadingTvColor(Color.parseColor("#FAFAFA"));
+                config.setLineAnimationDuration(300);
+                config.setLineStroke(Utils.dpToPx(4));
+                config.setLineAndArcColor(Color.parseColor("#2B82C5"));
+                config.setShowTargetArc(true);
+
+
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        SpotlightSequence.getInstance(getActivity(), config)
+                                .addSpotlight(view.findViewById(R.id.helpButton), getString(R.string.AyudaVideoTitulo), getString(R.string.AyudaVideoDetalle), "video")
+                                .addSpotlight(view.findViewById(R.id.btnContinuar), getString(R.string.AyudaZumTituloContinuar), getString(R.string.AyudaZumDetalleContinuar), "continuar")
+                                .startSequence();
+                    }
+                }, 0);
+            }
+        });
+
+
+
+
+    //CONFIGURAMOS EL BOTON CONTINUAR
         btnContinuar = view.findViewById(R.id.btnContinuar);
         btnContinuar.setText(getResources().getString(R.string.Continuar));
         btnContinuar.setOnClickListener(new View.OnClickListener() {

@@ -20,6 +20,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
         <Button
             android:id="@+id/btnCorregir"
             android:layout_width="wrap_content"
@@ -33,6 +34,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvTitulo" />
 
+
         <TextView
             android:id="@+id/tvTitulo"
             android:layout_width="match_parent"
@@ -41,10 +43,11 @@
             android:gravity="center"
             android:text="@string/SanMiguelTitulo"
             android:textSize="80sp"
+            app:layout_constraintBottom_toTopOf="@+id/layoutPregunta1"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
         <LinearLayout
             android:id="@+id/layoutPregunta1"
@@ -259,6 +262,18 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/helpButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimary"
+            android:clickable="true"
+            android:src="@drawable/ic_help_outline_black_24dp"
+            app:fabCustomSize="40dp"
+            app:layout_constraintEnd_toEndOf="@+id/tvTitulo"
+            app:layout_constraintTop_toTopOf="@+id/tvTitulo"
+            app:maxImageSize="40dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

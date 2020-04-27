@@ -91,6 +91,19 @@
     <string name="Correcta">Zuzena</string>
     <string name="Incorrecta">Okerra</string>
 
+    <!-- Ayuda San Miguel -->
+    <string name="AyudaSanMiguelTituloPregunta">Responde a la pregunta</string>
+    <string name="AyudaSanMiguelDetallePregunta">Elige la opción correcta</string>
+    <string name="AyudaSanMiguelTituloRespuesta">Corrige</string>
+    <string name="AyudaSanMiguelDetalleRespuesta">Sabrás si has acertado</string>
+
+    <string name="AyudaSanMiguelTinderTituloCorrecta">Correcta</string>
+    <string name="AyudaSanMiguelTinderDetalleCorrecta">Desliza a la derecha o pincha si coinciden la imagen y el nombre</string>
+    <string name="AyudaSanMiguelTinderTituloIncorrecta">Incorrecta</string>
+    <string name="AyudaSanMiguelTinderDetalleIncorrecta">Desliza a la izquierda o pincha si no coinciden la imagen y el nombre</string>
+    <string name="AyudaSanMiguelTinderTituloRetroceder">Retrocede</string>
+    <string name="AyudaSanMiguelTinderDetalleRetroceder">Vuelve a la imagen anterior</string>
+
 
     <!-- Actividad Tren -->
     <string name="TrenTextoTitulo" translatable="false">Trena</string>
@@ -121,6 +134,14 @@
     <string name="UniversidadFotos">Egin itzazu unibertsitatearen 3 argazki ikuspegi desberdinetatik.</string>
     <string name="Universidad">Unibertsitatea</string>
     <string name="UniversidadTest1">1. Oñatiko unibertsitatea Euskal Herriko bigarren unibertsitatea izan zen.</string>
+
+    <!-- Ayuda Universidad -->
+    <string name="AyudaUniversidadTituloPregunta">Responde a la preguntas</string>
+    <string name="AyudaUniversidadDetallePregunta">Elige la opciónes correctas</string>
+    <string name="AyudaUniversidadTituloRespuesta">Corrige</string>
+    <string name="AyudaUniversidadDetalleRespuesta">Sabrás si has acertado</string>
+    <string name="AyudaUniversidadTituloFotos">Fotografía</string>
+    <string name="AyudaUniversidadDetalleFotos">Haz tres fotos a la universidad</string>
 
     <!-- Actividad Gernika -->
     <string name="Gernika" translatable="false">Gernika</string>
@@ -229,5 +250,7 @@
 
     <!-- Ayuda -->
     <string name="interrogacion" translatable="false" >\?</string>
+    <string name="AyudaVideoTitulo">Mira el video</string>
+    <string name="AyudaVideoDetalle">Pulsa play para comenzar</string>
 
 </resources>

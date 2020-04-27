@@ -30,6 +30,9 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * Clase para recoger datos de clases convertir a Json y enviar peticion
+ */
 public class ClassToFtp {
 
     public static final int TIPO_ERROTA = 1;
@@ -48,7 +51,11 @@ public class ClassToFtp {
 
     public static final int TIPO_ZUMELTZEGI = 8;
 
-
+    /**
+     * Mandar peticion cuando haya internet
+     * @param context
+     * @param tipo
+     */
     public static void send(Context context,int tipo){
         Completable.fromAction(new Action() {
             @Override
@@ -103,6 +110,11 @@ public class ClassToFtp {
     }
 
 
+    /**
+     * Obtener tipo de actividad
+     * @param tipo
+     * @return
+     */
     private static GrupoActividad obtenerActividadGrupo(int tipo){
         Actividad responseList = null;
         if(tipo == TIPO_ERROTA) {

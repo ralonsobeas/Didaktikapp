@@ -3,6 +3,7 @@ package com.app.didaktikapp.Fragments;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,10 @@ import com.app.didaktikapp.BBDD.Modelos.ActividadUniversitatea;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.FTP.ClassToFtp;
 import com.app.didaktikapp.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.wooplr.spotlight.SpotlightConfig;
+import com.wooplr.spotlight.utils.SpotlightSequence;
+import com.wooplr.spotlight.utils.Utils;
 
 
 public class FragmentUnibertsitateaPreguntas extends Fragment {
@@ -153,6 +158,50 @@ public class FragmentUnibertsitateaPreguntas extends Fragment {
 
             }
         });
+
+          /*
+        Botón flotante de ayuda
+         */
+        FloatingActionButton floatingActionButton = view.findViewById(R.id.helpButton);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View viewBoton) {
+
+                SpotlightConfig config = new SpotlightConfig();
+                config.setMaskColor( Color.parseColor("#E63A3A3A"));
+                config.setIntroAnimationDuration(400);
+                config.setFadingTextDuration(400);
+                config.setPadding(20);
+                config.setDismissOnTouch(true);
+                config.setDismissOnBackpress(true);
+                config.setPerformClick(false);
+                config.setHeadingTvSize(24);
+                config.setHeadingTvColor(Color.parseColor("#2B82C5"));
+                config.setSubHeadingTvSize(24);
+                config.setSubHeadingTvColor(Color.parseColor("#FAFAFA"));
+                config.setLineAnimationDuration(300);
+                config.setLineStroke(Utils.dpToPx(4));
+                config.setLineAndArcColor( Color.parseColor("#2B82C5"));
+                config.setShowTargetArc(true);
+
+
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        SpotlightSequence.getInstance(getActivity(),config)
+                                .addSpotlight(view.findViewById(R.id.helpButton), getString(R.string.AyudaUniversidadTituloPregunta), getString(R.string.AyudaUniversidadDetallePregunta), "pregunta")
+                                .addSpotlight(view.findViewById(R.id.btnCorregir),  getString(R.string.AyudaUniversidadTituloRespuesta),  getString(R.string.AyudaUniversidadDetalleRespuesta), "respuesta")
+                                .addSpotlight(view.findViewById(R.id.btnContinuar), getString(R.string.AyudaZumTituloContinuar), getString(R.string.AyudaZumDetalleContinuar), "continuar")
+                                .startSequence();
+                    }
+                },0);
+            }
+        });
+
+
+
         return view;
     }
 
