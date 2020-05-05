@@ -12,12 +12,24 @@
     app:layout_constraintTop_toTopOf="parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/helpButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:src="@drawable/ic_help_outline_black_24dp"
+        android:backgroundTint="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="@+id/drawer_layout"
+        app:layout_constraintTop_toTopOf="@+id/drawer_layout"
+        app:fabCustomSize="40dp"
+        app:maxImageSize="40dp"/>
+
 <androidx.drawerlayout.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+
 
     <LinearLayout
         android:orientation="vertical"
@@ -83,10 +95,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_above="@+id/button_container"
-                android:padding="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="0dp"
                 android:clipToPadding="false"
-                android:layout_marginTop="10dp">
-            </com.yuyakaido.android.cardstackview.CardStackView>
+                android:padding="10dp"></com.yuyakaido.android.cardstackview.CardStackView>
 
         </RelativeLayout>
 

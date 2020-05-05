@@ -1,8 +1,16 @@
 <resources>
+    <!-- Shared preferences -->
+    <string name="preference_file_key" translatable="false">sharedPrefDidaktikapp</string>
     <!-- FTP -->
-    <string name="hostNameFTP" translatable="false">88.27.169.221</string>
-    <string name="hostUserFTP" translatable="false">didaktikapp</string>
-    <string name="hostpassFTP" translatable="false">Dw2*</string>
+    <string name="servidor" >Servidor</string>
+    <string name="ipCorrecta" >IP Cambiada</string>
+    <string name="ipIncorrecta" >IP Incorrecta</string>
+
+    <!-- Dialogo FTP -->
+    <string name="TituloServidor" >Servidor</string>
+    <string name="SubituloServidor" >Introduce la IP</string>
+    <string name="HintServidor">IP del servidor</string>
+    <string name="cambiar">Cambiar</string>
     <!-- Clave mapa -->
     <string name="mapbox_access_token">pk.eyJ1IjoiZGlkYWt0aWt1cHYiLCJhIjoiY2szNzhiNmt6MDNlbTNjbm8yMDNmeTZyNiJ9.10ubJTPv5AC6X6tDYZRhNw</string>
 
@@ -114,8 +122,13 @@
         <item>Vasco-Navarro</item>
     </string-array>
     <string name="TrenTextoError">Ez da </string>
+    <!-- Ayuda Tren-->
+    <string name="AyudaTrenTitulo">Elige la palabra</string>
+    <string name="AyudaTrenDetalle">Introduce cada palabra en su hueco</string>
 
-        <!-- Actividad Tren puzle -->
+
+
+    <!-- Actividad Tren puzle -->
         <string name="TrenPuzleTerminado">AMAITU</string>
 
 
@@ -124,6 +137,12 @@
     <string name="ErrotaPregunta1">Atera argazki bat tobera edo kaxari!</string>
     <string name="ErrotaPregunta2">Zein urtetan erosi zuten Santa Ana Komentuko mojek errota?</string>
     <string name="Terminar">Amaitu</string>
+    <!-- Ayuda Errota-->
+    <string name="AyudaErrotaTituloPregunta">Responde</string>
+    <string name="AyudaErrotaDetallePregunta">Saca una foto para responder a la pregunta</string>
+
+    <string name="AyudaErrotaTituloTextos">Arrastra</string>
+    <string name="AyudaErrotaDetalleTextos">Arrastra las palabras a su hueco</string>
 
 
     <string name="new_game_loading_text" translatable="false">Generating game data…</string>
@@ -167,6 +186,23 @@
     <string name="GernikaPregunta3OpcionA" translatable="false">Etxebarria</string>
     <string name="GernikaPregunta3OpcionB" translatable="false">Iparragirre</string>
     <string name="GernikaPregunta3OpcionC" translatable="false">Neruda</string>
+
+    <!-- Ayuda Gernika -->
+    <string name="AyudaGernikaTituloPregunta">Responde a la pregunta</string>
+    <string name="AyudaGernikaDetallePregunta">Elige la respuesta correcta</string>
+    <string name="AyudaGernikaTituloRespuesta">Corrige</string>
+    <string name="AyudaGernikaDetalleRespuesta">Sabrás cuantas has acertado</string>
+
+
+    <!-- Errepaso -->
+    <string name="AyudaErrepasoTituloPregunta">Elige</string>
+    <string name="AyudaErrepasoDetallePregunta">¿Coinciden imagen y título?</string>
+    <string name="AyudaErrepasoTituloCorrecta">Correcta</string>
+    <string name="AyudaErrepasoDetalleCorrecta">Desliza a la derecha o pincha aqui si es correcta</string>
+    <string name="AyudaErrepasoTituloIncorrecta">Incorrecta</string>
+    <string name="AyudaErrepasoDetalleIncorrecta">Desliza a la izquierda o pincha aqui si es incorrecta</string>
+    <string name="AyudaErrepasoTituloVolver">Volver</string>
+    <string name="AyudaErrepasoDetalleVolver">Vuelve a la imagen anterior</string>
 
     <!-- prefs -->
     <string name="pref_showGridLine" translatable="false">showGridLine</string>

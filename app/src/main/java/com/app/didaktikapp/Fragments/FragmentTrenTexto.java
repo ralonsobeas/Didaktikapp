@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextPaint;
@@ -27,6 +28,10 @@ import android.widget.VideoView;
 
 import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.wooplr.spotlight.SpotlightConfig;
+import com.wooplr.spotlight.utils.SpotlightSequence;
+import com.wooplr.spotlight.utils.Utils;
 
 import java.util.Map;
 
@@ -179,6 +184,46 @@ public class FragmentTrenTexto extends Fragment {
             public void onNothingSelected(AdapterView<?> arg0) {
                 textoError.setText("");
 
+            }
+        });
+
+         /*
+        Botón flotante de ayuda
+         */
+        FloatingActionButton floatingActionButton = view.findViewById(R.id.helpButton);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View viewBoton) {
+
+                SpotlightConfig config = new SpotlightConfig();
+                config.setMaskColor( Color.parseColor("#E63A3A3A"));
+                config.setIntroAnimationDuration(400);
+                config.setFadingTextDuration(400);
+                config.setPadding(20);
+                config.setDismissOnTouch(true);
+                config.setDismissOnBackpress(true);
+                config.setPerformClick(false);
+                config.setHeadingTvSize(24);
+                config.setHeadingTvColor(Color.parseColor("#2B82C5"));
+                config.setSubHeadingTvSize(24);
+                config.setSubHeadingTvColor(Color.parseColor("#FAFAFA"));
+                config.setLineAnimationDuration(300);
+                config.setLineStroke(Utils.dpToPx(4));
+                config.setLineAndArcColor( Color.parseColor("#2B82C5"));
+                config.setShowTargetArc(true);
+
+
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        SpotlightSequence.getInstance(getActivity(),config)
+                                .addSpotlight(view.findViewById(R.id.trenTextoSpinner), getString(R.string.AyudaTrenTitulo), getString(R.string.AyudaTrenDetalle), "pregunta")
+                                .addSpotlight(view.findViewById(R.id.btnContinuar), getString(R.string.AyudaZumTituloContinuar), getString(R.string.AyudaZumDetalleContinuar), "continuar")
+                                .startSequence();
+                    }
+                },0);
             }
         });
 

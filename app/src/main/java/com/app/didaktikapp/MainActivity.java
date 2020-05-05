@@ -10,8 +10,10 @@ import androidx.lifecycle.LifecycleOwner;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -36,6 +38,7 @@ import com.app.didaktikapp.BBDD.Modelos.Grupo;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.CircleMenu.CircleMenuView;
 
+import com.app.didaktikapp.FTP.Ftp;
 import com.app.didaktikapp.FlatDialog.FlatDialog;
 import com.facebook.stetho.Stetho;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -57,6 +60,8 @@ import com.wooplr.spotlight.utils.Utils;
 import java.lang.ref.WeakReference;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import at.markushi.ui.CircleButton;
 
@@ -66,7 +71,7 @@ public class MainActivity extends AppCompatActivity  {
 
     private ConstraintLayout layout;
     private CircleButton  botonInicio,botonContinuar;
-    private Button botonSalir;
+    private Button botonSalir,botonFTP;
     private DatabaseRepository databaseRepository;
 
     private boolean administrador = false;
@@ -111,7 +116,18 @@ public class MainActivity extends AppCompatActivity  {
         tv.setTypeface(type);
         tv.setText(Html.fromHtml(getString(R.string.html_app_name)));
 
-
+        botonFTP = findViewById(R.id.botonFTP);
+        botonFTP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogoFTP();
+            }
+        });
+        if(administrador){
+            botonFTP.setVisibility(View.VISIBLE);
+        }else{
+            botonFTP.setVisibility(View.INVISIBLE);
+        }
 
 
 
@@ -252,6 +268,7 @@ public class MainActivity extends AppCompatActivity  {
     private void activarModoAdministrador(){
         StyleableToast.makeText(getApplicationContext(), getString(R.string.activarAdmin), Toast.LENGTH_LONG, R.style.mytoast).show();
         administrador = true;
+        botonFTP.setVisibility(View.VISIBLE);
     }
 
     private void dialogoCambiarIdioma(){
@@ -588,9 +605,62 @@ public class MainActivity extends AppCompatActivity  {
 
 
 
+
+
     }
 
+    private void dialogoFTP(){
 
+
+
+        final com.app.didaktikapp.FlatDialog.FlatDialog flatDialog = new com.app.didaktikapp.FlatDialog.FlatDialog(MainActivity.this);
+        flatDialog.setTitle(getString(R.string.TituloServidor))
+                .setBackgroundColor(Color.parseColor("#2B82C5"))
+                .setSubtitle(getString(R.string.SubituloServidor))
+                .setFirstTextFieldHint("IP del servidor")
+                .setFirstButtonText(getString(R.string.Comenzar))
+                .setFirstButtonColor(Color.parseColor("#FAFAFA"))
+                .setFirstButtonTextColor(Color.parseColor("#2B82C5"))
+                .setSecondButtonText(getString(R.string.cambiar))
+                .setSecondButtonColor(Color.parseColor("#ab000d"))
+                .setSecondButtonTextColor(Color.parseColor("#FAFAFA"))
+                .withFirstButtonListner(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+
+
+                        String ip = flatDialog.getFirstTextField();
+
+                        String regex = "^(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})$";
+
+                        Pattern pattern = Pattern.compile(regex);
+                        Matcher matcher = pattern.matcher(ip);
+
+                        if(matcher.matches()) {
+                            Context context = getApplicationContext();
+                            SharedPreferences sharedPref = context.getSharedPreferences(
+                                    getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPref.edit();
+                            editor.putString(getString(R.string.servidor), ip);
+                            editor.apply();
+                            StyleableToast.makeText(getApplicationContext(), getString(R.string.ipCorrecta), Toast.LENGTH_LONG, R.style.mytoastCorrecta).show();
+                        }else{
+                            StyleableToast.makeText(getApplicationContext(), getString(R.string.ipIncorrecta), Toast.LENGTH_LONG, R.style.mytoastIncorrecta).show();
+
+                        }
+                    }
+                })
+                .withSecondButtonListner(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        flatDialog.dismiss();
+                    }
+                })
+
+                .show();
+    }
 
 
     private static class InsertTask extends AsyncTask<Void,Void,Boolean> {
