@@ -141,6 +141,8 @@ public class ClassToFtp {
         if(tipo == TIPO_ZUMELTZEGI) {
             responseList = DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(MapActivity.GRUPO_S.getId());
         }
+
+        responseList.setTipo(tipo);
         return new GrupoActividad(MapActivity.GRUPO_S, responseList);
 
     }
