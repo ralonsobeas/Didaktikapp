@@ -270,4 +270,20 @@ public class DatabaseRepository {
             database.execSQL("DROP TABLE USUARIO");
         }
     };
+
+    static final Migration MIGRATION_3_4 = new Migration(3, 4) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+            database.execSQL("DROP TABLE ERROTA");
+            database.execSQL("DROP TABLE GERNIKA");
+            database.execSQL("DROP TABLE REPASO1");
+            database.execSQL("DROP TABLE REPASO2");
+            database.execSQL("DROP TABLE SANMIGUEL");
+            database.execSQL("DROP TABLE TREN");
+            database.execSQL("DROP TABLE UNIVERSITATEA");
+            database.execSQL("DROP TABLE ZUMELTZEGI");
+            database.execSQL("DROP TABLE GRUPO");
+            database.execSQL("DROP TABLE USUARIO");
+        }
+    };
 }

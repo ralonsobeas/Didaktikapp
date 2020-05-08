@@ -58,6 +58,7 @@ public class Ftp extends Worker {
     public Result doWork() {
 
         String ip = loadData();
+        Log.v("upload result", ip);
 
         Context context = getApplicationContext();
 

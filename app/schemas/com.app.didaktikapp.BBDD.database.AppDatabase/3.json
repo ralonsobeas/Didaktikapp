@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 3,
-    "identityHash": "a39087c889d511bf4153fdbb0d0d39f5",
+    "identityHash": "953ee5c72e6b7c9b8aa928e71e73aa9e",
     "entities": [
       {
         "tableName": "GRUPO",
@@ -225,7 +225,7 @@
       },
       {
         "tableName": "ZUMELTZEGI",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ESTADO` INTEGER, `FRAGMENT` INTEGER, `FOTO1` TEXT, `FOTO2` TEXT, `SOPA` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ESTADO` INTEGER, `FRAGMENT` INTEGER, `FOTO1` TEXT, `FOTO2` TEXT, `SOPA` TEXT, `tipo` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -262,6 +262,12 @@
             "columnName": "SOPA",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "tipo",
+            "columnName": "tipo",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -275,7 +281,7 @@
       },
       {
         "tableName": "UNIVERSITATEA",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ESTADO` INTEGER, `FRAGMENT` INTEGER, `TEST` TEXT, `FOTO1` TEXT, `FOTO2` TEXT, `FOTO3` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ESTADO` INTEGER, `FRAGMENT` INTEGER, `TEST` TEXT, `FOTO1` TEXT, `FOTO2` TEXT, `FOTO3` TEXT, `tipo` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -318,6 +324,12 @@
             "columnName": "FOTO3",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "tipo",
+            "columnName": "tipo",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -331,7 +343,7 @@
       },
       {
         "tableName": "TREN",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ESTADO` INTEGER, `FRAGMENT` INTEGER, `PUZLE` TEXT, `PALABRA` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ESTADO` INTEGER, `FRAGMENT` INTEGER, `PUZLE` TEXT, `PALABRA` TEXT, `tipo` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -362,6 +374,12 @@
             "columnName": "PALABRA",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "tipo",
+            "columnName": "tipo",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -375,7 +393,7 @@
       },
       {
         "tableName": "SANMIGUEL",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ESTADO` INTEGER, `FRAGMENT` INTEGER, `TEST` TEXT, `FOTO1` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ESTADO` INTEGER, `FRAGMENT` INTEGER, `TEST` TEXT, `FOTO1` TEXT, `tipo` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -406,6 +424,12 @@
             "columnName": "FOTO1",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "tipo",
+            "columnName": "tipo",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -419,7 +443,7 @@
       },
       {
         "tableName": "ERROTA",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ESTADO` INTEGER, `FRAGMENT` INTEGER, `FRASES` TEXT, `FOTO1` TEXT, `FOTO2` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ESTADO` INTEGER, `FRAGMENT` INTEGER, `FRASES` TEXT, `FOTO1` TEXT, `FOTO2` TEXT, `tipo` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -456,6 +480,12 @@
             "columnName": "FOTO2",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "tipo",
+            "columnName": "tipo",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -469,7 +499,7 @@
       },
       {
         "tableName": "GERNIKA",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ESTADO` INTEGER, `FRAGMENT` INTEGER, `TEST` TEXT, `PUZLE` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ESTADO` INTEGER, `FRAGMENT` INTEGER, `TEST` TEXT, `PUZLE` TEXT, `tipo` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -500,6 +530,12 @@
             "columnName": "PUZLE",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "tipo",
+            "columnName": "tipo",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -513,7 +549,7 @@
       },
       {
         "tableName": "REPASO1",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ESTADO` INTEGER, `FRAGMENT` INTEGER, `FRASES` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ESTADO` INTEGER, `FRAGMENT` INTEGER, `FRASES` TEXT, `tipo` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -538,6 +574,12 @@
             "columnName": "FRASES",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "tipo",
+            "columnName": "tipo",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -551,7 +593,7 @@
       },
       {
         "tableName": "REPASO2",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ESTADO` INTEGER, `FRAGMENT` INTEGER, `SOPA` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ESTADO` INTEGER, `FRAGMENT` INTEGER, `SOPA` TEXT, `tipo` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -576,6 +618,12 @@
             "columnName": "SOPA",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "tipo",
+            "columnName": "tipo",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -590,7 +638,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"a39087c889d511bf4153fdbb0d0d39f5\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"953ee5c72e6b7c9b8aa928e71e73aa9e\")"
     ]
   }
 }

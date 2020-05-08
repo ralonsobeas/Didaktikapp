@@ -78,6 +78,21 @@ public class MainActivity extends AppCompatActivity  {
 
     private String email;
 
+    private GoogleSignInClient mGoogleSignInClient;
+    private GoogleSignInAccount account;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Check for existing Google Sign In account, if the user is already signed in
+        // the GoogleSignInAccount will be non-null.
+        account = GoogleSignIn.getLastSignedInAccount(this);
+        if(account == null){
+            Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+            startActivityForResult(signInIntent, RC_SIGN_IN);
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -85,8 +100,13 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
 
         Stetho.initializeWithDefaults(this);
-
-
+        // Configure sign-in to request the user's ID, email address, and basic
+        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        // Build a GoogleSignInClient with the options specified by gso.
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 //        //BBDD
 //        databaseRepository = new DatabaseRepository(MainActivity.this);
 //
@@ -439,11 +459,10 @@ public class MainActivity extends AppCompatActivity  {
                         //BBDD
                         databaseRepository = new DatabaseRepository(MainActivity.this);
                         email = null;
-                        AccountManager am = AccountManager.get(MainActivity.this); // "this" references the current Context
 
-                        Account[] accounts = am.getAccountsByType("com.google");
 
-                        email = accounts[0].name;
+
+                        email = account.getEmail();
                         Log.i("EMAIL",email+"...");
                         if(email!=null) {
                             i.putExtra("IDGRUPO", DatabaseRepository.insertTaskGrupo(flatDialog.getFirstTextField(), email));
@@ -618,10 +637,10 @@ public class MainActivity extends AppCompatActivity  {
                 .setBackgroundColor(Color.parseColor("#2B82C5"))
                 .setSubtitle(getString(R.string.SubituloServidor))
                 .setFirstTextFieldHint("IP del servidor")
-                .setFirstButtonText(getString(R.string.Comenzar))
+                .setFirstButtonText(getString(R.string.cambiar))
                 .setFirstButtonColor(Color.parseColor("#FAFAFA"))
                 .setFirstButtonTextColor(Color.parseColor("#2B82C5"))
-                .setSecondButtonText(getString(R.string.cambiar))
+                .setSecondButtonText(getString(R.string.Cancelar))
                 .setSecondButtonColor(Color.parseColor("#ab000d"))
                 .setSecondButtonTextColor(Color.parseColor("#FAFAFA"))
                 .withFirstButtonListner(new View.OnClickListener() {
@@ -707,7 +726,7 @@ public class MainActivity extends AppCompatActivity  {
 
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
-            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            account = completedTask.getResult(ApiException.class);
             Log.i("SIGN","LOGIN2");
             // Signed in successfully, show authenticated UI.
             email = account.getEmail();
