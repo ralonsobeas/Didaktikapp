@@ -18,7 +18,11 @@ import com.app.didaktikapp.R;
 
 import in.codeshuffle.typewriterview.TypeWriterView;
 
-
+/**
+ * Fragmento UnibertsitateaTexto, en el que el usuario puede leer un breve texto que da informacion
+ * sobre la universidad de Oñati. Cuando este acaba lo indica en la base de datos.
+ * @author gennakk
+ */
 public class FragmentUnibertsitateaTexto extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";

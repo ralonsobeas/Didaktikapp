@@ -8,6 +8,10 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.MediaController;
 
+/**
+ * Clase que maneja la reproduccion de videos
+ * @author gennakk
+ */
 public class CustomMediaController extends MediaController {
     private Context context;
     public CustomMediaController(Context context, AttributeSet attrs) {

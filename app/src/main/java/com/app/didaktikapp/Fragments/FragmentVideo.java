@@ -28,6 +28,11 @@ import com.wooplr.spotlight.SpotlightConfig;
 import com.wooplr.spotlight.utils.SpotlightSequence;
 import com.wooplr.spotlight.utils.Utils;
 
+/**
+ * Fragmento de video, que se llama desde varios sitios de la aplicación pasandole el video
+ * que debe reproducir. Dependiendo desde donde se llame, guarda información en la base de datos
+ * @author gennakk
+ */
 public class FragmentVideo extends Fragment {
 
     private View view;

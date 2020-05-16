@@ -65,6 +65,11 @@ import java.util.regex.Pattern;
 
 import at.markushi.ui.CircleButton;
 
+/**
+ * Activity principal encargada de lanzar el mapa, seguir una partida guardada y mostrar ayudas,
+ * así como manejar la base de datos y mandar información por FTP
+ * @author gennakk
+ */
 public class MainActivity extends AppCompatActivity  {
 
     private final int RC_SIGN_IN = 111;

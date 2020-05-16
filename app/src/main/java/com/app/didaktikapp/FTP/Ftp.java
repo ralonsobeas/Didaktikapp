@@ -34,7 +34,7 @@ import org.apache.commons.net.ftp.FTPClient;
 
 /**
  * Clase asíncrona encargada de el upload de datos al FTP
- *
+ * @author gennakk
  */
 public class Ftp extends Worker {
 

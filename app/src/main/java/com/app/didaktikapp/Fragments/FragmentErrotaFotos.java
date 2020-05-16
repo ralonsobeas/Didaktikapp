@@ -53,6 +53,11 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Fragmento ErrotaFotos, correspondiente a la actividad de responder preguntas con
+ * fotos en San Miguel Errota. Guarda las fotos y su estado en la base de datos
+ * @author gennakk
+ */
 public class FragmentErrotaFotos extends Fragment {
 
     private View view;

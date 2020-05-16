@@ -35,6 +35,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Fragmento ErrotaTextos, correspondiente a la actividad de arrastrar palabras a los
+ * huecos de un párrafo en San Miguel Errota. Guarda las respuestas en la BD así como su estado
+ * @author gennakk
+ */
 public class FragmentErrotaTextos extends Fragment {
 
     private View view;

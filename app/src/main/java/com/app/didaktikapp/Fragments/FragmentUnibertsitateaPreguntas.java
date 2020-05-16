@@ -25,7 +25,12 @@ import com.wooplr.spotlight.SpotlightConfig;
 import com.wooplr.spotlight.utils.SpotlightSequence;
 import com.wooplr.spotlight.utils.Utils;
 
-
+/**
+ * Fragmento UnibertsitateaPreguntas, donde se hacen preguntas sobre la universidad tras haber
+ * dado información al usuario en el fragmento anterior. Guarda las respuestas y su
+ * estado en la base de datos
+ * @author gennakk
+ */
 public class FragmentUnibertsitateaPreguntas extends Fragment {
 
 

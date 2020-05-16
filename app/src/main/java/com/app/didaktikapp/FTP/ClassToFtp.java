@@ -32,6 +32,7 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * Clase para recoger datos de clases convertir a Json y enviar peticion
+ * @author gennakk
  */
 public class ClassToFtp {
 

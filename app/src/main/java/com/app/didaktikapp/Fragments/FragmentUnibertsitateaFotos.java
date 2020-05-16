@@ -46,7 +46,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-
+/**
+ * Fragmento UnibertsitateaFotos, donde se tienen que sacar fotos para
+ * responder preguntas. Guarda las fotos y su estado en la base de datos
+ * @author gennakk
+ */
 public class FragmentUnibertsitateaFotos extends Fragment {
 
     private View view;
