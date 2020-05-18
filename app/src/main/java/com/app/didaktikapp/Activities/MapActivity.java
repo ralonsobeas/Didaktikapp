@@ -241,7 +241,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         administrador = getIntent().getExtras().getBoolean("ADMINISTRADOR");
 
         //CUIDADO
-        administrador = true;
+        //administrador = true;
 
         grupo = DatabaseRepository.getAppDatabase().getGrupoDao().getGrupo(idgrupo);
         GRUPO_S = grupo;

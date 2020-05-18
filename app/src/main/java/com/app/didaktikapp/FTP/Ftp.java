@@ -3,8 +3,12 @@ package com.app.didaktikapp.FTP;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Environment;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -21,16 +25,22 @@ import com.google.gson.JsonObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
+import org.jibble.simpleftp.*;
+
+import static com.mapbox.mapboxsdk.Mapbox.getApplicationContext;
 
 /**
  * Clase asíncrona encargada de el upload de datos al FTP
@@ -57,7 +67,7 @@ public class Ftp extends Worker {
     @Override
     public Result doWork() {
 
-        String ip = loadData();
+        String ip = loadData(getApplicationContext());
         Log.v("upload result", ip);
 
         Context context = getApplicationContext();
@@ -99,12 +109,88 @@ public class Ftp extends Worker {
         return null;
     }
 
-    public String loadData() {
+    public static String loadData(Context context) {
 
-        SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(
-                getApplicationContext().getResources().getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = context.getSharedPreferences(
+                context.getResources().getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 
-        return sharedPref.getString(getApplicationContext().getResources().getString(R.string.servidor), IPDEFAULT);
+        return sharedPref.getString(context.getResources().getString(R.string.servidor), IPDEFAULT);
+
+    }
+
+    public static void sendImage(Context context, Bitmap bitmap, String mail, String idGrupo, String act){
+
+
+        Thread thread = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                try  {
+                    try
+                    {
+                        SimpleFTP ftp = new SimpleFTP();
+                        String ip = loadData(context);
+                        // Connect to an FTP server on port 21.
+                        ftp.connect(ip, 21, USER, PASS);
+
+                        // Set binary mode.
+                        ftp.bin();
+
+                        // Change to a new working directory on the FTP server.
+                        //ftp.cwd("web");
+                        //create a file to write bitmap data
+                        // path to /data/data/yourapp/app_data/imageDir
+                        ContextWrapper cw = new ContextWrapper(context);
+                        File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
+                        File f = new File(directory, mail+"_"+idGrupo+"_"+act+".jpg");
+
+
+                        //Convert bitmap to byte array
+                        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100 /*ignored for PNG*/, bos);
+                        byte[] bitmapdata = bos.toByteArray();
+                        FileOutputStream fos = new FileOutputStream(f);
+                        /*
+                        InputStream in = context.getContentResolver().openInputStream(bitmap);
+                        //write the bytes in file
+                        FileOutputStream fos = new FileOutputStream(f);
+                        OutputStream out = new FileOutputStream(new File(mail+"_"+idGrupo+"_"+act+".jpg"));
+                        byte[] buf = new byte[1024];
+                        int len;
+                        while((len=in.read(buf))>0){
+                            out.write(buf,0,len);
+                        }
+                        out.close();
+                        in.close();
+
+                         */
+                        fos.write(bitmapdata);
+                        fos.flush();
+                        fos.close();
+                        // Upload some files.
+
+                        ftp.stor(f);
+
+
+                        // Quit from the FTP server.
+                        ftp.disconnect();
+                        Log.i("NOERROR","NOERROR");
+
+                    }
+                    catch (IOException e)
+                    {
+                        Log.i("ERROR","ERROR");
+                        e.printStackTrace();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.i("ERROR1","ERROR1");
+
+                }
+            }
+        });
+
+        thread.start();
 
     }
 

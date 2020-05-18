@@ -5,6 +5,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Entidad ActividadUniversitatea que crea la tabla en la BBDD UNIVERSITATEA.
  * Autogenera el ID.

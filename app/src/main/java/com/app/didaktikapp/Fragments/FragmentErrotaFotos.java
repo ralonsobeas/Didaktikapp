@@ -39,6 +39,7 @@ import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.BBDD.Modelos.ActividadErrota;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.FTP.ClassToFtp;
+import com.app.didaktikapp.FTP.Ftp;
 import com.app.didaktikapp.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wooplr.spotlight.SpotlightConfig;
@@ -52,6 +53,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.mapbox.mapboxsdk.Mapbox.getApplicationContext;
 
 /**
  * Fragmento ErrotaFotos, correspondiente a la actividad de responder preguntas con
@@ -79,6 +82,7 @@ public class FragmentErrotaFotos extends Fragment {
     private String mParam2;
 
     private boolean img1,img2 = false;
+    private String ruta1, ruta2, ruta3;
 
     public FragmentErrotaFotos() {}
 
@@ -251,16 +255,29 @@ public class FragmentErrotaFotos extends Fragment {
         if ((requestCode == REQUEST_IMAGE_CAPTURE1 || requestCode == REQUEST_IMAGE_CAPTURE2) && resultCode == Activity.RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
+            imageBitmap = Bitmap.createScaledBitmap(imageBitmap, 1024, 1024, false);
 
+            File sdCard = Environment.getExternalStoragePublicDirectory(
+                    Environment.DIRECTORY_PICTURES);
+            File dir = new File(sdCard.getAbsolutePath() + "/Didaktikapp");
+            dir.mkdirs();
+            String fileName = String.format("%d.jpg", System.currentTimeMillis());
+            String foto=null;
             if (requestCode == REQUEST_IMAGE_CAPTURE1) {
                 ivPregunta1.setImageBitmap(Bitmap.createScaledBitmap(imageBitmap,1000,1000,false));
 //                ib1.setVisibility(View.INVISIBLE);
                 img1 = true;
+                ruta1 = dir.getPath()+fileName;
+                foto = "errota1";
             } else {
                 ivPregunta2.setImageBitmap(Bitmap.createScaledBitmap(imageBitmap,1000,1000,false));
 //                ib2.setVisibility(View.INVISIBLE);
                 img2 = true;
+                ruta2 = dir.getPath()+fileName;
+                foto = "errota2";
+
             }
+            Ftp.sendImage(getApplicationContext(),imageBitmap,MapActivity.GRUPO_S.getDeviceId(),MapActivity.GRUPO_S.getNombre(),foto);
 
             if (img1 && img2) {
                 btnContinuar.setText(getResources().getString(R.string.Terminar));
@@ -285,25 +302,10 @@ public class FragmentErrotaFotos extends Fragment {
         BitmapDrawable draw = (BitmapDrawable) iv.getDrawable();
         Bitmap bitmap = draw.getBitmap();
 
-        FileOutputStream outStream = null;
-        File sdCard = Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES);
-        File dir = new File(sdCard.getAbsolutePath() + "/Didaktikapp");
-        dir.mkdirs();
-        String fileName = String.format("%d.jpg", System.currentTimeMillis());
-        Log.i("FILE",fileName);
-        Log.i("DIR",dir.getPath());
-        File outFile = new File(dir, fileName);
-        try {
-            outStream = new FileOutputStream(outFile);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outStream);
-            outStream.flush();
-            outStream.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
+
+
+
+
 
         MediaStore.Images.Media.insertImage(getActivity().getContentResolver(), bitmap, "Titulo" , "descripcion");
     }
@@ -316,9 +318,9 @@ public class FragmentErrotaFotos extends Fragment {
 
         actividadErrota.setFragment(3);
 
-        actividadErrota.setFoto1(imageToBase64(ivPregunta1));
+        actividadErrota.setFoto1(ruta1);
 
-        actividadErrota.setFoto2(imageToBase64(ivPregunta2));
+        actividadErrota.setFoto2(ruta2);
 
         DatabaseRepository.getAppDatabase().getErrotaDao().updateErrota(actividadErrota);
         ClassToFtp.send(getActivity(),ClassToFtp.TIPO_ERROTA);

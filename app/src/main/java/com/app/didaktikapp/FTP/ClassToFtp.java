@@ -14,6 +14,7 @@ import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.BBDD.Modelos.Actividad;
 import com.app.didaktikapp.BBDD.Modelos.ActividadErrota;
 import com.app.didaktikapp.BBDD.Modelos.ActividadGernika;
+import com.app.didaktikapp.BBDD.Modelos.ActividadUniversitatea;
 import com.app.didaktikapp.BBDD.Modelos.Grupo;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.google.gson.Gson;
@@ -74,6 +75,7 @@ public class ClassToFtp {
                     public void onComplete() {
 
 
+
                         GrupoActividad grupoActividad = obtenerActividadGrupo(tipo);
                         ArrayList<GrupoActividad> returnList = new ArrayList<GrupoActividad>();
                         returnList.add(grupoActividad);
@@ -90,6 +92,9 @@ public class ClassToFtp {
                         Data.Builder dataBuilder = new Data.Builder();
                         //Add parameter in Data class. just like bundle. You can also add Boolean and Number in parameter.
                         dataBuilder.putString(Ftp.JSON, json);
+                        Log.i("JSON",json);
+
+
                         Data data =  dataBuilder.build();
 
                         OneTimeWorkRequest onetimeJob = new OneTimeWorkRequest.Builder(Ftp.class)
@@ -101,6 +106,11 @@ public class ClassToFtp {
 
                         Log.v("upload result", "sended");
 
+                        if(grupoActividad.getActividad() instanceof ActividadUniversitatea){
+
+
+
+                        }
                     }
 
                     @Override
