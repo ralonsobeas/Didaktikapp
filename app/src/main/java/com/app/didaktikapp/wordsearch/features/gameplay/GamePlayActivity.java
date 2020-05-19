@@ -2,11 +2,13 @@ package com.app.didaktikapp.wordsearch.features.gameplay;
 
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Vibrator;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +18,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.app.didaktikapp.BBDD.Modelos.ActividadZumeltzegi;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
+import com.app.didaktikapp.FTP.ClassToFtp;
 import com.app.didaktikapp.R;
 import com.app.didaktikapp.wordsearch.WordSearchApp;
 import com.app.didaktikapp.wordsearch.commons.DurationFormatter;
@@ -285,6 +288,7 @@ public class GamePlayActivity extends FullscreenActivity {
     }
 
     private void showFinishGame(int gameId) {
+        vibrar();
         Intent intent = new Intent(this, GameOverActivity.class);
         intent.putExtra(GameOverActivity.EXTRA_GAME_ROUND_ID, gameId);
 
@@ -301,6 +305,8 @@ public class GamePlayActivity extends FullscreenActivity {
             actividadZumeltzegi.setEstado(2);
 
             DatabaseRepository.getAppDatabase().getZumeltzegiDao().updateZumeltzegi(actividadZumeltzegi);
+            ClassToFtp.send(getBaseContext(),ClassToFtp.TIPO_ZUMELTZEGI);
+
 
         }else if(nombre.equals(FRAGMENT_ERREPASO2)){
             String a = "hola";
@@ -310,6 +316,14 @@ public class GamePlayActivity extends FullscreenActivity {
 
         startActivity(intent);
         finish();
+    }
+
+    private void vibrar(){
+        // Get instance of Vibrator from current Context
+        Vibrator v = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
+
+        // Vibrate for 400 milliseconds
+        v.vibrate(400);
     }
 
     private void setGameAsAlreadyFinished() {

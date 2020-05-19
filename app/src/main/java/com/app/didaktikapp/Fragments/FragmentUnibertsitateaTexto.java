@@ -13,11 +13,16 @@ import androidx.fragment.app.FragmentTransaction;
 import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.BBDD.Modelos.ActividadUniversitatea;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
+import com.app.didaktikapp.FTP.ClassToFtp;
 import com.app.didaktikapp.R;
 
 import in.codeshuffle.typewriterview.TypeWriterView;
 
-
+/**
+ * Fragmento UnibertsitateaTexto, en el que el usuario puede leer un breve texto que da informacion
+ * sobre la universidad de Oñati. Cuando este acaba lo indica en la base de datos.
+ * @author gennakk
+ */
 public class FragmentUnibertsitateaTexto extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
@@ -105,6 +110,7 @@ public class FragmentUnibertsitateaTexto extends Fragment {
         actividadUniversitatea.setFragment(1);
 
         DatabaseRepository.getAppDatabase().getUniversitateaDao().updateUniversitatea(actividadUniversitatea);
+        ClassToFtp.send(getActivity(),ClassToFtp.TIPO_UNIVERSITATEA);
 
     }
 

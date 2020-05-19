@@ -37,7 +37,10 @@ import com.app.didaktikapp.BBDD.Modelos.Usuario;
 
 import java.util.List;
 
-
+/**
+ * Clase con la BBDD y su estructura de clases.
+ * @author gennakk
+ */
 @Database(entities = {Grupo.class,
                     Usuario.class, ActividadZumeltzegi.class,
                     ActividadUniversitatea.class,
@@ -47,28 +50,78 @@ import java.util.List;
                     ActividadGernika.class,
                     ActividadRepaso1.class,
                     ActividadRepaso2.class},
-                    version = 2 )
+                    version = 4 )
 public abstract class AppDatabase extends RoomDatabase {
 
-
+    /**
+     * Getter de GrupoDao.
+     * @return GrupoDao
+     * @author gennakk
+     */
     public abstract GrupoDao getGrupoDao();
 
+    /**
+     * Getter de UsuarioDao.
+     * Uh! Long pen!
+     * @return UsuarioDao
+     * @author gennakk
+     */
     public abstract UsuarioDao getUsuarioDao();
 
+    /**
+     * Getter de ZumeltzegiDao.
+     * @return ZumeltzegiDao
+     * @author gennakk
+     */
     public abstract ZumeltzegiDao getZumeltzegiDao();
 
+    /**
+     * Getter de UniversitateaDao.
+     * @return UniversitateaDao
+     * @author gennakk
+     */
     public abstract UniversitateaDao getUniversitateaDao();
 
+    /**
+     * Getter de TrenDao.
+     * @return TrenDao
+     * @author gennakk
+     */
     public abstract TrenDao getTrenDao();
 
+    /**
+     * Getter de SanMiguelDao.
+     * @return SanMiguelDao
+     * @author gennakk
+     */
     public abstract SanMiguelDao getSanMiguelDao();
 
+    /**
+     * Getter de ErrotaDao.
+     * @return ErrotaDao
+     * @author gennakk
+     */
     public abstract ErrotaDao getErrotaDao();
 
+    /**
+     * Getter de GernikaDao.
+     * @return GernikaDao
+     * @author gennakk
+     */
     public abstract GernikaDao getGernikaDao();
 
+    /**
+     * Getter de Repaso1Dao.
+     * @return Repaso1Dao
+     * @author gennakk
+     */
     public abstract Repaso1Dao getRepaso1Dao();
 
+    /**
+     * Getter de Repaso2Dao.
+     * @return Repaso2Dao
+     * @author gennakk
+     */
     public abstract Repaso2Dao getRepaso2Dao();
 
 

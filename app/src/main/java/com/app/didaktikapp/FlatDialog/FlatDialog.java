@@ -21,7 +21,11 @@ import com.app.didaktikapp.BBDD.Modelos.Grupo;
 import com.app.didaktikapp.R;
 import com.app.didaktikapp.wordsearch.easyadapter.SimpleAdapterDelegate;
 
-
+/**
+ * Diálogo FlatDialog customizado.
+ * Uh! Pineapple-pen!
+ * @author gennakk
+ */
 public class FlatDialog extends Dialog {
     private Context context;
 

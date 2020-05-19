@@ -11,6 +11,12 @@ import java.util.UUID;
 
 import static androidx.room.ForeignKey.CASCADE;
 
+/**
+ * Entidad Usuario que crea la tabla en la BBDD USUARIO. Con sus correspondientes dependencias.
+ * Autogenera el ID.
+ * Uh! Pineapple-pen!
+ * @author gennakk
+ */
 @Entity(tableName = "USUARIO",
         foreignKeys =@ForeignKey(entity = Grupo.class,
                 parentColumns = "ID",

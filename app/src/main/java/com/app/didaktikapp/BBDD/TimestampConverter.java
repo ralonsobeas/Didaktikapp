@@ -8,6 +8,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
+/**
+ * Clase para convertir las fechas para la BBDD.
+ * PPAP (Pen-Pineapple-Apple-Pen)
+ * @author gennakk
+ */
 public class TimestampConverter {
 
     private static DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

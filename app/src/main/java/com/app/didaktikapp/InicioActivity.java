@@ -15,6 +15,10 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 
+/**
+ * Activity que se muestra al lanzar la aplicación
+ * @author gennakk
+ */
 public class InicioActivity extends AppCompatActivity {
 
     private ImageView imageViewOniate,imageViewCJ,imageViewUPV,imageViewLetrasOniate;

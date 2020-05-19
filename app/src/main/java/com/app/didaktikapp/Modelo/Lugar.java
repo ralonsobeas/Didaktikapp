@@ -6,6 +6,10 @@ import com.mapbox.mapboxsdk.geometry.LatLng;
 
 import java.util.Objects;
 
+/**
+ * Clase que guarda un lugar en el mapa así como sus fragments
+ * @author gennakk
+ */
 public class Lugar {
 
     private String nombre;

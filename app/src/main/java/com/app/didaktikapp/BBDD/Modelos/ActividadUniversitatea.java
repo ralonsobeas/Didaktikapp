@@ -5,8 +5,16 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+/**
+ * Entidad ActividadUniversitatea que crea la tabla en la BBDD UNIVERSITATEA.
+ * Autogenera el ID.
+ * I have a pen, I have a apple.
+ * @author gennakk
+ */
 @Entity(tableName = "UNIVERSITATEA")
-public class ActividadUniversitatea {
+public class ActividadUniversitatea  extends Actividad{
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "ID")

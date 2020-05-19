@@ -11,7 +11,11 @@ import com.app.didaktikapp.BBDD.Modelos.Usuario;
 import com.app.didaktikapp.BBDD.database.AppDatabase;
 
 import java.util.List;
-
+/**
+ * Servicio de Usuario, implementa el DAO.
+ * Long pen, apple-pineapple,
+ * @author gennakk
+ */
 public class UsuarioService {
     @SuppressLint("StaticFieldLeak")
     private static UsuarioService usuarioService;

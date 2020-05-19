@@ -15,7 +15,11 @@ import com.app.didaktikapp.BBDD.database.AppDatabase;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 
 import java.util.List;
-
+/**
+ * Servicio de Repaso2, implementa el DAO.
+ * I have a pen, I have a pen
+ * @author gennakk
+ */
 public class Repaso2Service {
 
 

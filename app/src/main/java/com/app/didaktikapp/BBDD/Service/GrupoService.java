@@ -13,7 +13,11 @@ import com.app.didaktikapp.BBDD.database.AppDatabase;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 
 import java.util.List;
-
+/**
+ * Servicio de GrupoService, implementa el DAO.
+ * Pen-pineapple-apple-pen
+ * @author gennakk
+ */
 public class GrupoService {
     @SuppressLint("StaticFieldLeak")
     private static GrupoService grupoService;

@@ -1,8 +1,11 @@
 package com.app.didaktikapp.Fragments
 
 import android.content.Context
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Vibrator
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -21,8 +24,13 @@ import com.app.didaktikapp.BBDD.database.DatabaseRepository
 import com.app.didaktikapp.CardStack.CardStackAdapter
 import com.app.didaktikapp.CardStack.Spot
 import com.app.didaktikapp.CardStack.SpotDiffCallback
+import com.app.didaktikapp.FTP.ClassToFtp
 import com.app.didaktikapp.R
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.muddzdev.styleabletoast.StyleableToast
+import com.wooplr.spotlight.SpotlightConfig
+import com.wooplr.spotlight.utils.SpotlightSequence
+import com.wooplr.spotlight.utils.Utils
 import com.yuyakaido.android.cardstackview.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -67,6 +75,42 @@ class FragmentErrepasoBatKotlin : Fragment(), CardStackListener {
         setupNavigation()
         setupCardStackView()
         setupButton()
+
+        /*
+        Botón flotante de ayuda
+         */
+
+        /*
+        Botón flotante de ayuda
+         */
+        val floatingActionButton: FloatingActionButton = view!!.findViewById(R.id.helpButton)
+        floatingActionButton.setOnClickListener {
+            val config = SpotlightConfig()
+            config.maskColor = Color.parseColor("#E63A3A3A")
+            config.introAnimationDuration = 400
+            config.fadingTextDuration = 400
+            config.padding = 20
+            config.isDismissOnTouch = true
+            config.isDismissOnBackpress = true
+            config.isPerformClick = false
+            config.headingTvSize = 24
+            config.headingTvColor = Color.parseColor("#2B82C5")
+            config.subHeadingTvSize = 24
+            config.subHeadingTvColor = Color.parseColor("#FAFAFA")
+            config.lineAnimationDuration = 300
+            config.lineStroke = Utils.dpToPx(4)
+            config.lineAndArcColor = Color.parseColor("#2B82C5")
+            config.setShowTargetArc(true)
+            val handler = Handler()
+            handler.postDelayed({
+                SpotlightSequence.getInstance(activity, config)
+                        .addSpotlight(view!!.findViewById(R.id.helpButton), getString(R.string.AyudaErrepasoTituloPregunta), getString(R.string.AyudaErrepasoDetallePregunta), "pregunta")
+                        .addSpotlight(view!!.findViewById(R.id.like_button), getString(R.string.AyudaErrepasoTituloCorrecta), getString(R.string.AyudaErrepasoDetalleCorrecta), "correcta")
+                        .addSpotlight(view!!.findViewById(R.id.skip_button), getString(R.string.AyudaErrepasoTituloIncorrecta), getString(R.string.AyudaErrepasoDetalleIncorrecta), "incorrecta")
+                        .addSpotlight(view!!.findViewById(R.id.rewind_button), getString(R.string.AyudaErrepasoTituloVolver), getString(R.string.AyudaErrepasoDetalleVolver), "volver")
+                        .startSequence()
+            }, 0)
+        }
         return views
     }
 
@@ -145,6 +189,8 @@ class FragmentErrepasoBatKotlin : Fragment(), CardStackListener {
 
                 }else{
                     StyleableToast.makeText(context!!, resources.getString(R.string.Incorrecta), Toast.LENGTH_SHORT, R.style.mytoastIncorrecta  ).show()
+                    vibrar()
+
 
                 }
             }
@@ -155,6 +201,7 @@ class FragmentErrepasoBatKotlin : Fragment(), CardStackListener {
 
                 }else{
                     StyleableToast.makeText(context!!, resources.getString(R.string.Incorrecta), Toast.LENGTH_SHORT, R.style.mytoastIncorrecta  ).show()
+                    vibrar()
 
                 }
             }
@@ -171,6 +218,12 @@ class FragmentErrepasoBatKotlin : Fragment(), CardStackListener {
         }
     }
 
+    private fun vibrar() { // Get instance of Vibrator from current Context
+        val v = context!!.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        // Vibrate for 400 milliseconds
+        v.vibrate(400)
+    }
+
     private fun guardarBBDD() {
         val actividadRepaso1 = DatabaseRepository.getAppDatabase().repaso1Dao.getRepaso1(idActividad)
 
@@ -181,6 +234,7 @@ class FragmentErrepasoBatKotlin : Fragment(), CardStackListener {
         actividadRepaso1.frases = "$correcta/10"
 
         DatabaseRepository.getAppDatabase().repaso1Dao.updateRepaso1(actividadRepaso1)
+        ClassToFtp.send(activity, ClassToFtp.TIPO_REPASO1)
 
     }
 

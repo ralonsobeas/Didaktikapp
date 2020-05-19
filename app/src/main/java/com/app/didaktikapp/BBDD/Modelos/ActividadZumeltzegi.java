@@ -8,8 +8,14 @@ import androidx.room.PrimaryKey;
 
 import static androidx.room.ForeignKey.CASCADE;
 
+/**
+ * Entidad ActividadZumeltzegi que crea la tabla en la BBDD ZUMELTZEGI.
+ * Autogenera el ID.
+ * Uh! Apple-pen!
+ * @author gennakk
+ */
 @Entity(tableName = "ZUMELTZEGI")
-public class ActividadZumeltzegi {
+public class ActividadZumeltzegi  extends Actividad{
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "ID")

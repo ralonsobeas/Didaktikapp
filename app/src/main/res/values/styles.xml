@@ -61,6 +61,11 @@
         <item name="cornerSizeBottomLeft">20dp</item>
     </style>
 
+    <style name="RoundHelp">
+        <item name="shapeAppearanceOverlay"></item>
+        <item name="android:shape">@drawable/roundedbutton</item>
+    </style>
+
     <style name="mytoast">
         <item name="stTextBold">true</item>
         <item name="stTextSize">14sp</item>

@@ -1,0 +1,596 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "52b1d4a41223c251afdbecae8f4f9df9",
+    "entities": [
+      {
+        "tableName": "GRUPO",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `DEVICEID` TEXT NOT NULL, `NOMBRE` TEXT, `FECHA` TEXT, `IDZUMELTZEGI` INTEGER, `IDPARROQUIA` INTEGER, `IDUNIVERSIDAD` INTEGER, `IDERROTA` INTEGER, `IDTREN` INTEGER, `IDGERNIKA` INTEGER, `IDREPASO1` INTEGER, `IDREPASO2` INTEGER, FOREIGN KEY(`IDZUMELTZEGI`) REFERENCES `ZUMELTZEGI`(`ID`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`IDUNIVERSIDAD`) REFERENCES `UNIVERSITATEA`(`ID`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`IDTREN`) REFERENCES `TREN`(`ID`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`IDPARROQUIA`) REFERENCES `SANMIGUEL`(`ID`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`IDERROTA`) REFERENCES `ERROTA`(`ID`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`IDGERNIKA`) REFERENCES `GERNIKA`(`ID`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`IDREPASO1`) REFERENCES `REPASO1`(`ID`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`IDREPASO2`) REFERENCES `REPASO2`(`ID`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "ID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "deviceId",
+            "columnName": "DEVICEID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nombre",
+            "columnName": "NOMBRE",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "fecha",
+            "columnName": "FECHA",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "idZumeltzegi",
+            "columnName": "IDZUMELTZEGI",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "idParroquia",
+            "columnName": "IDPARROQUIA",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "idUniversidad",
+            "columnName": "IDUNIVERSIDAD",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "idErrota",
+            "columnName": "IDERROTA",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "idTren",
+            "columnName": "IDTREN",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "idGernika",
+            "columnName": "IDGERNIKA",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "idRepaso1",
+            "columnName": "IDREPASO1",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "idRepaso2",
+            "columnName": "IDREPASO2",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "ID"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": [
+          {
+            "table": "ZUMELTZEGI",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "IDZUMELTZEGI"
+            ],
+            "referencedColumns": [
+              "ID"
+            ]
+          },
+          {
+            "table": "UNIVERSITATEA",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "IDUNIVERSIDAD"
+            ],
+            "referencedColumns": [
+              "ID"
+            ]
+          },
+          {
+            "table": "TREN",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "IDTREN"
+            ],
+            "referencedColumns": [
+              "ID"
+            ]
+          },
+          {
+            "table": "SANMIGUEL",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "IDPARROQUIA"
+            ],
+            "referencedColumns": [
+              "ID"
+            ]
+          },
+          {
+            "table": "ERROTA",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "IDERROTA"
+            ],
+            "referencedColumns": [
+              "ID"
+            ]
+          },
+          {
+            "table": "GERNIKA",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "IDGERNIKA"
+            ],
+            "referencedColumns": [
+              "ID"
+            ]
+          },
+          {
+            "table": "REPASO1",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "IDREPASO1"
+            ],
+            "referencedColumns": [
+              "ID"
+            ]
+          },
+          {
+            "table": "REPASO2",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "IDREPASO2"
+            ],
+            "referencedColumns": [
+              "ID"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "USUARIO",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `NOMBRE` TEXT, `IDGRUPO` INTEGER, FOREIGN KEY(`IDGRUPO`) REFERENCES `GRUPO`(`ID`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nombre",
+            "columnName": "NOMBRE",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "idGrupo",
+            "columnName": "IDGRUPO",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": [
+          {
+            "table": "GRUPO",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "IDGRUPO"
+            ],
+            "referencedColumns": [
+              "ID"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "ZUMELTZEGI",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ESTADO` INTEGER, `FRAGMENT` INTEGER, `FOTO1` TEXT, `FOTO2` TEXT, `SOPA` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "ID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "estado",
+            "columnName": "ESTADO",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "fragment",
+            "columnName": "FRAGMENT",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "foto1",
+            "columnName": "FOTO1",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "foto2",
+            "columnName": "FOTO2",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sopa",
+            "columnName": "SOPA",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "ID"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "UNIVERSITATEA",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ESTADO` INTEGER, `FRAGMENT` INTEGER, `TEST` TEXT, `FOTO1` TEXT, `FOTO2` TEXT, `FOTO3` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "ID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "estado",
+            "columnName": "ESTADO",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "fragment",
+            "columnName": "FRAGMENT",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "test",
+            "columnName": "TEST",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "foto1",
+            "columnName": "FOTO1",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "foto2",
+            "columnName": "FOTO2",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "foto3",
+            "columnName": "FOTO3",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "ID"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "TREN",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ESTADO` INTEGER, `FRAGMENT` INTEGER, `PUZLE` TEXT, `PALABRA` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "ID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "estado",
+            "columnName": "ESTADO",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "fragment",
+            "columnName": "FRAGMENT",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "puzle",
+            "columnName": "PUZLE",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "palabra",
+            "columnName": "PALABRA",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "ID"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "SANMIGUEL",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ESTADO` INTEGER, `FRAGMENT` INTEGER, `TEST` TEXT, `FOTO1` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "ID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "estado",
+            "columnName": "ESTADO",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "fragment",
+            "columnName": "FRAGMENT",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "test",
+            "columnName": "TEST",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "fotos",
+            "columnName": "FOTO1",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "ID"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "ERROTA",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ESTADO` INTEGER, `FRAGMENT` INTEGER, `FRASES` TEXT, `FOTO1` TEXT, `FOTO2` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "ID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "estado",
+            "columnName": "ESTADO",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "fragment",
+            "columnName": "FRAGMENT",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "frases",
+            "columnName": "FRASES",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "foto1",
+            "columnName": "FOTO1",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "foto2",
+            "columnName": "FOTO2",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "ID"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "GERNIKA",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ESTADO` INTEGER, `FRAGMENT` INTEGER, `TEST` TEXT, `PUZLE` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "ID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "estado",
+            "columnName": "ESTADO",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "fragment",
+            "columnName": "FRAGMENT",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "test",
+            "columnName": "TEST",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "puzle",
+            "columnName": "PUZLE",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "ID"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "REPASO1",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ESTADO` INTEGER, `FRAGMENT` INTEGER, `FRASES` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "ID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "estado",
+            "columnName": "ESTADO",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "fragment",
+            "columnName": "FRAGMENT",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "frases",
+            "columnName": "FRASES",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "ID"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "REPASO2",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ESTADO` INTEGER, `FRAGMENT` INTEGER, `SOPA` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "ID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "estado",
+            "columnName": "ESTADO",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "fragment",
+            "columnName": "FRAGMENT",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sopa",
+            "columnName": "SOPA",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "ID"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"52b1d4a41223c251afdbecae8f4f9df9\")"
+    ]
+  }
+}

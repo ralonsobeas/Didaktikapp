@@ -11,7 +11,11 @@ import com.app.didaktikapp.BBDD.database.AppDatabase;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 
 import java.util.List;
-
+/**
+ * Servicio de SanMiguel, implementa el DAO.
+ * Uh! Long pen!
+ * @author gennakk
+ */
 public class SanMiguelService {
 
 

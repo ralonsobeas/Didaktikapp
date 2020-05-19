@@ -1,8 +1,11 @@
 package com.app.didaktikapp.Fragments
 
 import android.content.Context
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Vibrator
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -22,11 +25,16 @@ import com.app.didaktikapp.BBDD.database.DatabaseRepository
 import com.app.didaktikapp.CardStack.CardStackAdapter
 import com.app.didaktikapp.CardStack.Spot
 import com.app.didaktikapp.CardStack.SpotDiffCallback
+import com.app.didaktikapp.FTP.ClassToFtp
 import com.app.didaktikapp.R
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.muddzdev.styleabletoast.StyleableToast
+import com.wooplr.spotlight.SpotlightConfig
+import com.wooplr.spotlight.utils.SpotlightSequence
+import com.wooplr.spotlight.utils.Utils
 import com.yuyakaido.android.cardstackview.*
 
-// TODO: Rename parameter arguments, choose names that match
+
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -54,7 +62,11 @@ class FragmentSanMiguelTinderKotlin : Fragment(), CardStackListener {
     private var correcta = 0
 
 
-
+    /**
+     * Método para crear el fragment
+     * @author gennakk
+     *
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -62,20 +74,69 @@ class FragmentSanMiguelTinderKotlin : Fragment(), CardStackListener {
         }
     }
 
+    /**
+     * Método para crear la vista.
+     * @return Vista del fragment FragmentSanMiguelTinderKotlin
+     * @author gennakk
+     */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         views = inflater.inflate(R.layout.fragment_san_miguel_tinder, container, false)
         setupNavigation()
         setupCardStackView()
         setupButton()
+
+        /*
+        Botón flotante de ayuda
+         */
+        /*
+        Botón flotante de ayuda
+         */
+        val floatingActionButton: FloatingActionButton = view!!.findViewById(R.id.helpButton)
+        floatingActionButton.setOnClickListener {
+            val config = SpotlightConfig()
+            config.maskColor = Color.parseColor("#E63A3A3A")
+            config.introAnimationDuration = 400
+            config.fadingTextDuration = 400
+            config.padding = 20
+            config.isDismissOnTouch = true
+            config.isDismissOnBackpress = true
+            config.isPerformClick = false
+            config.headingTvSize = 24
+            config.headingTvColor = Color.parseColor("#2B82C5")
+            config.subHeadingTvSize = 24
+            config.subHeadingTvColor = Color.parseColor("#FAFAFA")
+            config.lineAnimationDuration = 300
+            config.lineStroke = Utils.dpToPx(4)
+            config.lineAndArcColor = Color.parseColor("#2B82C5")
+            config.setShowTargetArc(true)
+            val handler = Handler()
+            handler.postDelayed({
+                SpotlightSequence.getInstance(activity, config)
+                        .addSpotlight(view!!.findViewById(R.id.like_button), getString(R.string.AyudaSanMiguelTinderTituloCorrecta), getString(R.string.AyudaSanMiguelTinderDetalleCorrecta), "correcta")
+                        .addSpotlight(view!!.findViewById(R.id.skip_button), getString(R.string.AyudaSanMiguelTinderTituloIncorrecta), getString(R.string.AyudaSanMiguelTinderDetalleIncorrecta), "incorrecta")
+                        .addSpotlight(view!!.findViewById(R.id.rewind_button), getString(R.string.AyudaSanMiguelTinderTituloRetroceder), getString(R.string.AyudaSanMiguelTinderDetalleRetroceder), "retroceder")
+                        .addSpotlight(view!!.findViewById(R.id.btnContinuar), getString(R.string.AyudaZumTituloContinuar), getString(R.string.AyudaZumDetalleContinuar), "continuar")
+                        .startSequence()
+            }, 0)
+        }
         return views
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
+    /**
+     * Fragment interaction.
+     * @param uri
+     * @author gennakk
+     */
     fun onButtonPressed(uri: Uri) {
         listener?.onFragmentInteraction(uri)
     }
 
+    /**
+     * Método para implementar fragment.
+     * @param context Contexto de la app.
+     * @author gennakk
+     */
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is OnFragmentInteractionListener) {
@@ -85,6 +146,10 @@ class FragmentSanMiguelTinderKotlin : Fragment(), CardStackListener {
         }
     }
 
+    /**
+     * Método para quitar el fragment.
+     * @author gennakk
+     */
     override fun onDetach() {
         super.onDetach()
         listener = null
@@ -111,11 +176,9 @@ class FragmentSanMiguelTinderKotlin : Fragment(), CardStackListener {
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
          *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
+         * @param param1 Id de la actividad
          * @return A new instance of fragment FragmentSanMiguelTinderKotlin.
          */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(idActividad: Long) =
                 FragmentSanMiguelTinderKotlin().apply {
@@ -126,11 +189,18 @@ class FragmentSanMiguelTinderKotlin : Fragment(), CardStackListener {
     }
 
 
-
+    /**
+     * Evento para el drag de la carta.
+     * @author gennakk
+     */
     override fun onCardDragging(direction: Direction, ratio: Float) {
         Log.d("CardStackView", "onCardDragging: d = ${direction.name}, r = $ratio")
     }
 
+    /**
+     * Evento para el swipe de la carta.
+     * @author gennakk
+     */
     override fun onCardSwiped(direction: Direction) {
         Log.d("CardStackView", "onCardSwiped: p = ${manager.topPosition}, d = $direction")
         if (manager.topPosition == adapter.itemCount - 6) {
@@ -146,6 +216,7 @@ class FragmentSanMiguelTinderKotlin : Fragment(), CardStackListener {
 
                 }else{
                     StyleableToast.makeText(context!!, resources.getString(R.string.Incorrecta), Toast.LENGTH_SHORT, R.style.mytoastIncorrecta  ).show()
+                    vibrar()
 
                 }
             }
@@ -156,6 +227,7 @@ class FragmentSanMiguelTinderKotlin : Fragment(), CardStackListener {
 
                 }else{
                     StyleableToast.makeText(context!!, resources.getString(R.string.Incorrecta), Toast.LENGTH_SHORT, R.style.mytoastIncorrecta  ).show()
+                    vibrar()
 
                 }
             }
@@ -172,6 +244,20 @@ class FragmentSanMiguelTinderKotlin : Fragment(), CardStackListener {
         }
     }
 
+    /**
+     * Método para vibrar el dispositivo.
+     * @author gennakk
+     */
+    private fun vibrar() { // Get instance of Vibrator from current Context
+        val v = context!!.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        // Vibrate for 400 milliseconds
+        v.vibrate(400)
+    }
+
+    /**
+     * Guardar en BBDD los ejercicios.
+     * @author gennakk
+     */
     private fun guardarBBDD() {
         val actividadSanMiguel: ActividadSanMiguel? = DatabaseRepository.getAppDatabase().sanMiguelDao.getSanMiguel(idActividad)
 
@@ -182,27 +268,48 @@ class FragmentSanMiguelTinderKotlin : Fragment(), CardStackListener {
         actividadSanMiguel.fotos = "${correcta}/6"
 
         DatabaseRepository.getAppDatabase().sanMiguelDao.updateSanMiguel(actividadSanMiguel)
+        ClassToFtp.send(getActivity(), ClassToFtp.TIPO_SANMIGUEL);
 
     }
 
+    /**
+     * Evento para el rewound de la carta.
+     * @author gennakk
+     */
     override fun onCardRewound() {
         Log.d("CardStackView", "onCardRewound: ${manager.topPosition}")
     }
 
+    /**
+     * Evento para el cancel de la carta.
+     * @author gennakk
+     */
     override fun onCardCanceled() {
         Log.d("CardStackView", "onCardCanceled: ${manager.topPosition}")
     }
 
+    /**
+     * Evento para el la aparición de la carta.
+     * @author gennakk
+     */
     override fun onCardAppeared(view: View, position: Int) {
         val textView = view.findViewById<TextView>(R.id.item_name)
         Log.d("CardStackView", "onCardAppeared: ($position) ${textView.text}")
     }
 
+    /**
+     * Evento para el desaparición de la carta.
+     * @author gennakk
+     */
     override fun onCardDisappeared(view: View, position: Int) {
         val textView = view.findViewById<TextView>(R.id.item_name)
         Log.d("CardStackView", "onCardDisappeared: ($position) ${textView.text}")
     }
 
+    /**
+     * Evento para el navegación de la carta.
+     * @author gennakk
+     */
     private fun setupNavigation() {
 //        // Toolbar
 //        val toolbar = views!!.findViewById<Toolbar>(R.id.toolbar)
@@ -230,10 +337,18 @@ class FragmentSanMiguelTinderKotlin : Fragment(), CardStackListener {
 //        }
     }
 
+    /**
+     * Set up de la vista CardStack.
+     * @author gennakk
+     */
     private fun setupCardStackView() {
         initialize()
     }
 
+    /**
+     * Set up de los botones de las cartas.
+     * @author gennakk
+     */
     private fun setupButton() {
         val skip = views!!.findViewById<View>(R.id.skip_button)
         skip.setOnClickListener {
@@ -269,6 +384,10 @@ class FragmentSanMiguelTinderKotlin : Fragment(), CardStackListener {
         }
     }
 
+    /**
+     * Inicialización del CardStack View.
+     * @author gennakk
+     */
     private fun initialize() {
 
         manager.setStackFrom(StackFrom.Top)
@@ -291,6 +410,10 @@ class FragmentSanMiguelTinderKotlin : Fragment(), CardStackListener {
         }
     }
 
+    /**
+     * Paginación del CardStack.
+     * @author gennakk
+     */
     private fun paginate() {
         val old = adapter.getSpots()
         val new = old.plus(createSpots())
@@ -300,6 +423,10 @@ class FragmentSanMiguelTinderKotlin : Fragment(), CardStackListener {
         result.dispatchUpdatesTo(adapter)
     }
 
+    /**
+     * Recargar.
+     * @author gennakk
+     */
     private fun reload() {
         val old = adapter.getSpots()
         val new = createSpots()
@@ -309,6 +436,10 @@ class FragmentSanMiguelTinderKotlin : Fragment(), CardStackListener {
         result.dispatchUpdatesTo(adapter)
     }
 
+    /**
+     * Añadir primera carta.
+     * @author gennakk
+     */
     private fun addFirst(size: Int) {
         val old = adapter.getSpots()
         val new = mutableListOf<Spot>().apply {
@@ -323,6 +454,10 @@ class FragmentSanMiguelTinderKotlin : Fragment(), CardStackListener {
         result.dispatchUpdatesTo(adapter)
     }
 
+    /**
+     * Añadir última carta.
+     * @author gennakk
+     */
     private fun addLast(size: Int) {
         val old = adapter.getSpots()
         val new = mutableListOf<Spot>().apply {
@@ -335,6 +470,10 @@ class FragmentSanMiguelTinderKotlin : Fragment(), CardStackListener {
         result.dispatchUpdatesTo(adapter)
     }
 
+    /**
+     * Borrar primera carta.
+     * @author gennakk
+     */
     private fun removeFirst(size: Int) {
         if (adapter.getSpots().isEmpty()) {
             return
@@ -353,6 +492,10 @@ class FragmentSanMiguelTinderKotlin : Fragment(), CardStackListener {
         result.dispatchUpdatesTo(adapter)
     }
 
+    /**
+     * Borrar última carta.
+     * @author gennakk
+     */
     private fun removeLast(size: Int) {
         if (adapter.getSpots().isEmpty()) {
             return
@@ -371,6 +514,10 @@ class FragmentSanMiguelTinderKotlin : Fragment(), CardStackListener {
         result.dispatchUpdatesTo(adapter)
     }
 
+    /**
+     * Reemplazar carta.
+     * @author gennakk
+     */
     private fun replace() {
         val old = adapter.getSpots()
         val new = mutableListOf<Spot>().apply {
@@ -382,6 +529,10 @@ class FragmentSanMiguelTinderKotlin : Fragment(), CardStackListener {
         adapter.notifyItemChanged(manager.topPosition)
     }
 
+    /**
+     * Intercambiar carta.
+     * @author gennakk
+     */
     private fun swap() {
         val old = adapter.getSpots()
         val new = mutableListOf<Spot>().apply {
@@ -397,6 +548,11 @@ class FragmentSanMiguelTinderKotlin : Fragment(), CardStackListener {
         result.dispatchUpdatesTo(adapter)
     }
 
+    /**
+     * Crear Spot.
+     * @author gennakk
+     * @return Spot
+     */
     private fun createSpot(): Spot {
         return Spot(
                 id = count++,
@@ -406,6 +562,11 @@ class FragmentSanMiguelTinderKotlin : Fragment(), CardStackListener {
         )
     }
 
+    /**
+     * Crear lista de Spots.
+     * @author gennakk
+     * @return Lista con todos los Spots.
+     */
     private fun createSpots(): List<Spot> {
         val spots = ArrayList<Spot>()
         spots.add(Spot(id = count++,name = "", city = "", url =  R.drawable.sanmiguelcorrecta1))
@@ -418,6 +579,10 @@ class FragmentSanMiguelTinderKotlin : Fragment(), CardStackListener {
         return spots
     }
 
+    /**
+     * Método onDestroy del fragment FragmentSanMiguelKotlin.
+     * @author gennakk
+     */
     override fun onDestroy() {
         super.onDestroy()
         (activity as MapActivity?)!!.cambiarLocalizacion()

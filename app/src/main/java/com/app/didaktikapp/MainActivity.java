@@ -7,7 +7,13 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -32,8 +38,15 @@ import com.app.didaktikapp.BBDD.Modelos.Grupo;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
 import com.app.didaktikapp.CircleMenu.CircleMenuView;
 
+import com.app.didaktikapp.FTP.Ftp;
 import com.app.didaktikapp.FlatDialog.FlatDialog;
 import com.facebook.stetho.Stetho;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.muddzdev.styleabletoast.StyleableToast;
 import com.wooplr.spotlight.SpotlightConfig;
@@ -47,17 +60,43 @@ import com.wooplr.spotlight.utils.Utils;
 import java.lang.ref.WeakReference;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import at.markushi.ui.CircleButton;
 
+/**
+ * Activity principal encargada de lanzar el mapa, seguir una partida guardada y mostrar ayudas,
+ * así como manejar la base de datos y mandar información por FTP
+ * @author gennakk
+ */
 public class MainActivity extends AppCompatActivity  {
+
+    private final int RC_SIGN_IN = 111;
 
     private ConstraintLayout layout;
     private CircleButton  botonInicio,botonContinuar;
-    private Button botonSalir;
+    private Button botonSalir,botonFTP;
     private DatabaseRepository databaseRepository;
 
     private boolean administrador = false;
+
+    private String email;
+
+    private GoogleSignInClient mGoogleSignInClient;
+    private GoogleSignInAccount account;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Check for existing Google Sign In account, if the user is already signed in
+        // the GoogleSignInAccount will be non-null.
+        account = GoogleSignIn.getLastSignedInAccount(this);
+        if(account == null){
+            Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+            startActivityForResult(signInIntent, RC_SIGN_IN);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +105,13 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
 
         Stetho.initializeWithDefaults(this);
-
-
+        // Configure sign-in to request the user's ID, email address, and basic
+        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        // Build a GoogleSignInClient with the options specified by gso.
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 //        //BBDD
 //        databaseRepository = new DatabaseRepository(MainActivity.this);
 //
@@ -97,7 +141,18 @@ public class MainActivity extends AppCompatActivity  {
         tv.setTypeface(type);
         tv.setText(Html.fromHtml(getString(R.string.html_app_name)));
 
-
+        botonFTP = findViewById(R.id.botonFTP);
+        botonFTP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogoFTP();
+            }
+        });
+        if(administrador){
+            botonFTP.setVisibility(View.VISIBLE);
+        }else{
+            botonFTP.setVisibility(View.INVISIBLE);
+        }
 
 
 
@@ -238,6 +293,7 @@ public class MainActivity extends AppCompatActivity  {
     private void activarModoAdministrador(){
         StyleableToast.makeText(getApplicationContext(), getString(R.string.activarAdmin), Toast.LENGTH_LONG, R.style.mytoast).show();
         administrador = true;
+        botonFTP.setVisibility(View.VISIBLE);
     }
 
     private void dialogoCambiarIdioma(){
@@ -407,14 +463,39 @@ public class MainActivity extends AppCompatActivity  {
 
                         //BBDD
                         databaseRepository = new DatabaseRepository(MainActivity.this);
+                        email = null;
 
-                        //SE CREA EL GRUPO Y TODOS LOS FRAGMENTS CON SU ESTADO Y FRAGMENT = 0
 
 
-                        i.putExtra("IDGRUPO",DatabaseRepository.insertTaskGrupo(flatDialog.getFirstTextField()));
-                        i.putExtra("ADMINISTRADOR",administrador);
-                        startActivity(i);
-                        flatDialog.dismiss();
+                        email = account.getEmail();
+                        Log.i("EMAIL",email+"...");
+                        if(email!=null) {
+                            i.putExtra("IDGRUPO", DatabaseRepository.insertTaskGrupo(flatDialog.getFirstTextField(), email));
+                            i.putExtra("ADMINISTRADOR", administrador);
+                            startActivity(i);
+                            flatDialog.dismiss();
+                        }
+                       /* while(email==null) {
+                            //SE CREA EL GRUPO Y TODOS LOS FRAGMENTS CON SU ESTADO Y FRAGMENT = 0
+                            // Configure sign-in to request the user's ID, email address, and basic
+// profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+                             gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                                    .requestEmail()
+                                    .build();
+
+                            // Build a GoogleSignInClient with the options specified by gso.
+                             mGoogleSignInClient = GoogleSignIn.getClient(MainActivity.this, gso);
+
+                             signInIntent = mGoogleSignInClient.getSignInIntent();
+                            startActivityForResult(signInIntent, RC_SIGN_IN);
+
+                            if(email!=null) {
+                                i.putExtra("IDGRUPO", DatabaseRepository.insertTaskGrupo(flatDialog.getFirstTextField(), email));
+                                i.putExtra("ADMINISTRADOR", administrador);
+                                startActivity(i);
+                                flatDialog.dismiss();
+                            }
+                        } */
                     }
                 })
                 .withSecondButtonListner(new View.OnClickListener() {
@@ -424,6 +505,10 @@ public class MainActivity extends AppCompatActivity  {
                     }
                 })
                 .show();
+    }
+
+    private void googleAcc(){
+
     }
 
 
@@ -544,9 +629,62 @@ public class MainActivity extends AppCompatActivity  {
 
 
 
+
+
     }
 
+    private void dialogoFTP(){
 
+
+
+        final com.app.didaktikapp.FlatDialog.FlatDialog flatDialog = new com.app.didaktikapp.FlatDialog.FlatDialog(MainActivity.this);
+        flatDialog.setTitle(getString(R.string.TituloServidor))
+                .setBackgroundColor(Color.parseColor("#2B82C5"))
+                .setSubtitle(getString(R.string.SubituloServidor))
+                .setFirstTextFieldHint("IP del servidor")
+                .setFirstButtonText(getString(R.string.cambiar))
+                .setFirstButtonColor(Color.parseColor("#FAFAFA"))
+                .setFirstButtonTextColor(Color.parseColor("#2B82C5"))
+                .setSecondButtonText(getString(R.string.Cancelar))
+                .setSecondButtonColor(Color.parseColor("#ab000d"))
+                .setSecondButtonTextColor(Color.parseColor("#FAFAFA"))
+                .withFirstButtonListner(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+
+
+                        String ip = flatDialog.getFirstTextField();
+
+                        String regex = "^(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})$";
+
+                        Pattern pattern = Pattern.compile(regex);
+                        Matcher matcher = pattern.matcher(ip);
+
+                        if(matcher.matches()) {
+                            Context context = getApplicationContext();
+                            SharedPreferences sharedPref = context.getSharedPreferences(
+                                    getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPref.edit();
+                            editor.putString(getString(R.string.servidor), ip);
+                            editor.apply();
+                            StyleableToast.makeText(getApplicationContext(), getString(R.string.ipCorrecta), Toast.LENGTH_LONG, R.style.mytoastCorrecta).show();
+                        }else{
+                            StyleableToast.makeText(getApplicationContext(), getString(R.string.ipIncorrecta), Toast.LENGTH_LONG, R.style.mytoastIncorrecta).show();
+
+                        }
+                    }
+                })
+                .withSecondButtonListner(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        flatDialog.dismiss();
+                    }
+                })
+
+                .show();
+    }
 
 
     private static class InsertTask extends AsyncTask<Void,Void,Boolean> {
@@ -576,5 +714,33 @@ public class MainActivity extends AppCompatActivity  {
             }
         }
 
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.i("SIGN","LOGIN0"+requestCode);
+        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            // The Task returned from this call is always completed, no need to attach
+            // a listener.
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
+            Log.i("SIGN","LOGIN1");
+        }
+    }
+
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            account = completedTask.getResult(ApiException.class);
+            Log.i("SIGN","LOGIN2");
+            // Signed in successfully, show authenticated UI.
+            email = account.getEmail();
+            Log.i("SIGN","LOGIN3"+email);
+        } catch (ApiException e) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.i("SIGN", "signInResult:failed code=" + e.getStatusCode());
+            email = null;
+        }
     }
 }

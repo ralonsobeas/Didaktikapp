@@ -5,8 +5,15 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+
+/**
+ * Entidad ActividadGernika que crea la tabla en la BBDD GERNIKA.
+ * Autogenera el ID.
+ * Long pen, apple-pineapple,
+ * @author gennakk
+ */
 @Entity(tableName = "GERNIKA")
-public class ActividadGernika {
+public class ActividadGernika extends Actividad{
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "ID")

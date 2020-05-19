@@ -8,11 +8,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
@@ -36,7 +38,13 @@ import androidx.fragment.app.Fragment;
 import com.app.didaktikapp.Activities.MapActivity;
 import com.app.didaktikapp.BBDD.Modelos.ActividadErrota;
 import com.app.didaktikapp.BBDD.database.DatabaseRepository;
+import com.app.didaktikapp.FTP.ClassToFtp;
+import com.app.didaktikapp.FTP.Ftp;
 import com.app.didaktikapp.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.wooplr.spotlight.SpotlightConfig;
+import com.wooplr.spotlight.utils.SpotlightSequence;
+import com.wooplr.spotlight.utils.Utils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -46,6 +54,13 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.mapbox.mapboxsdk.Mapbox.getApplicationContext;
+
+/**
+ * Fragmento ErrotaFotos, correspondiente a la actividad de responder preguntas con
+ * fotos en San Miguel Errota. Guarda las fotos y su estado en la base de datos
+ * @author gennakk
+ */
 public class FragmentErrotaFotos extends Fragment {
 
     private View view;
@@ -67,6 +82,7 @@ public class FragmentErrotaFotos extends Fragment {
     private String mParam2;
 
     private boolean img1,img2 = false;
+    private String ruta1, ruta2, ruta3;
 
     public FragmentErrotaFotos() {}
 
@@ -142,6 +158,46 @@ public class FragmentErrotaFotos extends Fragment {
 
         crearPreguntas(view);
 
+         /*
+        Botón flotante de ayuda
+         */
+        FloatingActionButton floatingActionButton = view.findViewById(R.id.helpButton);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View viewBoton) {
+
+                SpotlightConfig config = new SpotlightConfig();
+                config.setMaskColor( Color.parseColor("#E63A3A3A"));
+                config.setIntroAnimationDuration(400);
+                config.setFadingTextDuration(400);
+                config.setPadding(20);
+                config.setDismissOnTouch(true);
+                config.setDismissOnBackpress(true);
+                config.setPerformClick(false);
+                config.setHeadingTvSize(24);
+                config.setHeadingTvColor(Color.parseColor("#2B82C5"));
+                config.setSubHeadingTvSize(24);
+                config.setSubHeadingTvColor(Color.parseColor("#FAFAFA"));
+                config.setLineAnimationDuration(300);
+                config.setLineStroke(Utils.dpToPx(4));
+                config.setLineAndArcColor( Color.parseColor("#2B82C5"));
+                config.setShowTargetArc(true);
+
+
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        SpotlightSequence.getInstance(getActivity(),config)
+                                .addSpotlight(view.findViewById(R.id.helpButton), getString(R.string.AyudaErrotaTituloPregunta), getString(R.string.AyudaErrotaDetallePregunta), "pregunta")
+                                .addSpotlight(view.findViewById(R.id.btnContinuar), getString(R.string.AyudaZumTituloContinuar), getString(R.string.AyudaZumDetalleContinuar), "continuar")
+                                .startSequence();
+                    }
+                },0);
+            }
+        });
+
         return view;
     }
 
@@ -199,16 +255,29 @@ public class FragmentErrotaFotos extends Fragment {
         if ((requestCode == REQUEST_IMAGE_CAPTURE1 || requestCode == REQUEST_IMAGE_CAPTURE2) && resultCode == Activity.RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
+            imageBitmap = Bitmap.createScaledBitmap(imageBitmap, 1024, 1024, false);
 
+            File sdCard = Environment.getExternalStoragePublicDirectory(
+                    Environment.DIRECTORY_PICTURES);
+            File dir = new File(sdCard.getAbsolutePath() + "/Didaktikapp");
+            dir.mkdirs();
+            String fileName = String.format("%d.jpg", System.currentTimeMillis());
+            String foto=null;
             if (requestCode == REQUEST_IMAGE_CAPTURE1) {
                 ivPregunta1.setImageBitmap(Bitmap.createScaledBitmap(imageBitmap,1000,1000,false));
 //                ib1.setVisibility(View.INVISIBLE);
                 img1 = true;
+                ruta1 = dir.getPath()+fileName;
+                foto = "errota1";
             } else {
                 ivPregunta2.setImageBitmap(Bitmap.createScaledBitmap(imageBitmap,1000,1000,false));
 //                ib2.setVisibility(View.INVISIBLE);
                 img2 = true;
+                ruta2 = dir.getPath()+fileName;
+                foto = "errota2";
+
             }
+            Ftp.sendImage(getApplicationContext(),imageBitmap,MapActivity.GRUPO_S.getDeviceId(),MapActivity.GRUPO_S.getNombre(),foto);
 
             if (img1 && img2) {
                 btnContinuar.setText(getResources().getString(R.string.Terminar));
@@ -233,25 +302,10 @@ public class FragmentErrotaFotos extends Fragment {
         BitmapDrawable draw = (BitmapDrawable) iv.getDrawable();
         Bitmap bitmap = draw.getBitmap();
 
-        FileOutputStream outStream = null;
-        File sdCard = Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES);
-        File dir = new File(sdCard.getAbsolutePath() + "/Didaktikapp");
-        dir.mkdirs();
-        String fileName = String.format("%d.jpg", System.currentTimeMillis());
-        Log.i("FILE",fileName);
-        Log.i("DIR",dir.getPath());
-        File outFile = new File(dir, fileName);
-        try {
-            outStream = new FileOutputStream(outFile);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outStream);
-            outStream.flush();
-            outStream.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
+
+
+
+
 
         MediaStore.Images.Media.insertImage(getActivity().getContentResolver(), bitmap, "Titulo" , "descripcion");
     }
@@ -264,11 +318,12 @@ public class FragmentErrotaFotos extends Fragment {
 
         actividadErrota.setFragment(3);
 
-        actividadErrota.setFoto1(imageToBase64(ivPregunta1));
+        actividadErrota.setFoto1(ruta1);
 
-        actividadErrota.setFoto2(imageToBase64(ivPregunta2));
+        actividadErrota.setFoto2(ruta2);
 
         DatabaseRepository.getAppDatabase().getErrotaDao().updateErrota(actividadErrota);
+        ClassToFtp.send(getActivity(),ClassToFtp.TIPO_ERROTA);
 
     }
 

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "592877169541",
+    "firebase_url": "https://didaktikapp-c2949.firebaseio.com",
+    "project_id": "didaktikapp-c2949",
+    "storage_bucket": "didaktikapp-c2949.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:592877169541:android:348c33b1f7658b079e32ec",
+        "android_client_info": {
+          "package_name": "com.app.didaktikapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "592877169541-lf9bkmeb8gnpgrii0hikknqfm39ito0h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.didaktikapp",
+            "certificate_hash": "a87065d26db8cc7a462b5ab19e113c3a0b8a8552"
+          }
+        },
+        {
+          "client_id": "592877169541-tt43ncdr8e31rmulknq6evjeeush4n8b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgnZWhKFvF42o_l8yz9LWh6HRlALoQ2aQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "592877169541-tt43ncdr8e31rmulknq6evjeeush4n8b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

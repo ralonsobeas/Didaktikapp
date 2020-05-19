@@ -16,6 +16,12 @@ import java.util.UUID;
 import static androidx.room.ForeignKey.CASCADE;
 
 
+/**
+ * Entidad GRUPO que crea la tabla en la BBDD GRUPO. Con sus correspondientes dependencias.
+ * Autogenera el ID.
+ * I have a pen, I have pineapple.
+ * @author gennakk
+ */
 @Entity(tableName = "GRUPO",
         foreignKeys ={ @ForeignKey(entity = ActividadZumeltzegi.class,
                                 parentColumns = "ID",
@@ -57,6 +63,9 @@ public class Grupo {
     @NonNull
     private Long id ;
 
+    @ColumnInfo(name = "DEVICEID")
+    private String deviceId ;
+
     @ColumnInfo(name = "NOMBRE")
     private String nombre;
 
@@ -96,6 +105,14 @@ public class Grupo {
 
     public void setId(@NonNull Long id) {
         this.id = id;
+    }
+
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
     }
 
     public String getNombre() {
