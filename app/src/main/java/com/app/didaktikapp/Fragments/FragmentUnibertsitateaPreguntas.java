@@ -50,6 +50,8 @@ public class FragmentUnibertsitateaPreguntas extends Fragment {
 
     private RadioButton radio1S, radio1N, radio2S, radio2N;
 
+    private int correctas;
+
 
     public FragmentUnibertsitateaPreguntas() {
 
@@ -122,14 +124,16 @@ public class FragmentUnibertsitateaPreguntas extends Fragment {
 
             @Override
             public void onClick(View v) {
-
+                correctas = 0;
                 if(grupo1.getCheckedRadioButtonId() == radio1N.getId()){
+                    correctas++;
                     radio1N.setTextColor(Color.GREEN);
                 }else{
                     radio1S.setTextColor(Color.RED);
                 }
 
                 if(grupo2.getCheckedRadioButtonId() == radio2N.getId()){
+                    correctas++;
                     radio2N.setTextColor(Color.GREEN);
                 }else{
                     radio2S.setTextColor(Color.RED);
@@ -215,9 +219,7 @@ public class FragmentUnibertsitateaPreguntas extends Fragment {
 
         actividadUniversitatea.setFragment(2);
 
-
-        //Todo: AÑADIR CUANTAS CORRECTAS SE HAN HECHO
-        actividadUniversitatea.setTest("CORRECTAS");
+        actividadUniversitatea.setTest(correctas+"/2");
 
         DatabaseRepository.getAppDatabase().getUniversitateaDao().updateUniversitatea(actividadUniversitatea);
         ClassToFtp.send(getActivity(),ClassToFtp.TIPO_UNIVERSITATEA);
