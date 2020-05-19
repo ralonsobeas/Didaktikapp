@@ -27,6 +27,9 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.app.didaktikapp.Activities.MapActivity;
+import com.app.didaktikapp.BBDD.Modelos.ActividadTren;
+import com.app.didaktikapp.BBDD.database.DatabaseRepository;
+import com.app.didaktikapp.FTP.ClassToFtp;
 import com.app.didaktikapp.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wooplr.spotlight.SpotlightConfig;
@@ -116,7 +119,14 @@ public class FragmentTrenTexto extends Fragment {
 
             @Override
             public void onClick(View v) {
+                ActividadTren actividadTren = DatabaseRepository.getAppDatabase().getTrenDao().getTren(idActividad);
 
+                actividadTren.setEstado(2);
+
+                actividadTren.setFragment(2);
+
+                DatabaseRepository.getAppDatabase().getTrenDao().updateTren(actividadTren);
+                ClassToFtp.send(getActivity(),ClassToFtp.TIPO_TREN);
                 //CERRAR FRAGMENT
                 getFragmentManager().beginTransaction().remove(FragmentTrenTexto.this).commit();
             }
