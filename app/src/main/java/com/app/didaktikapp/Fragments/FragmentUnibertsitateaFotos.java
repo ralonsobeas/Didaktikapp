@@ -247,7 +247,7 @@ public class FragmentUnibertsitateaFotos extends Fragment {
                     Environment.DIRECTORY_PICTURES);
             File dir = new File(sdCard.getAbsolutePath() + "/Didaktikapp");
             dir.mkdirs();
-            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, outuri);
+           // takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, outuri);
             int request;
             if (v == view.findViewById(R.id.uniImagen1)) {
                 request = REQUEST_IMAGE_CAPTURE1;
@@ -316,7 +316,25 @@ public class FragmentUnibertsitateaFotos extends Fragment {
     public void guardarImagen(ImageView iv){
         BitmapDrawable draw = (BitmapDrawable) iv.getDrawable();
         Bitmap bitmap = draw.getBitmap();
-
+        FileOutputStream outStream = null;
+        File sdCard = Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES);
+        File dir = new File(sdCard.getAbsolutePath() + "/Didaktikapp");
+        dir.mkdirs();
+        String fileName = String.format("%d.jpg", System.currentTimeMillis());
+        Log.i("FILE",fileName);
+        Log.i("DIR",dir.getPath());
+        File outFile = new File(dir, fileName);
+        try {
+            outStream = new FileOutputStream(outFile);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outStream);
+            outStream.flush();
+            outStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
 
         /*
         String foto=null;
