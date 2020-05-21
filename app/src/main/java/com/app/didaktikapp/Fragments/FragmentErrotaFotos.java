@@ -188,10 +188,10 @@ public class FragmentErrotaFotos extends Fragment {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-
+                         java.util.Random rndGenerator = new java.util.Random();
                         SpotlightSequence.getInstance(getActivity(),config)
-                                .addSpotlight(view.findViewById(R.id.helpButton), getString(R.string.AyudaErrotaTituloPregunta), getString(R.string.AyudaErrotaDetallePregunta), "pregunta")
-                                .addSpotlight(view.findViewById(R.id.btnContinuar), getString(R.string.AyudaZumTituloContinuar), getString(R.string.AyudaZumDetalleContinuar), "continuar")
+                                .addSpotlight(view.findViewById(R.id.helpButton), getString(R.string.AyudaErrotaTituloPregunta), getString(R.string.AyudaErrotaDetallePregunta), "preguntaEF" + rndGenerator.nextInt(999999999))
+                                .addSpotlight(view.findViewById(R.id.btnContinuar), getString(R.string.AyudaZumTituloContinuar), getString(R.string.AyudaZumDetalleContinuar), "continuarEF"+rndGenerator.nextInt(999999999))
                                 .startSequence();
                     }
                 },0);

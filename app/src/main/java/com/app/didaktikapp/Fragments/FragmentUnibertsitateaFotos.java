@@ -216,10 +216,11 @@ public class FragmentUnibertsitateaFotos extends Fragment {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        java.util.Random rndGenerator = new java.util.Random();
 
                         SpotlightSequence.getInstance(getActivity(),config)
-                                .addSpotlight(view.findViewById(R.id.helpButton), getString(R.string.AyudaUniversidadTituloFotos), getString(R.string.AyudaUniversidadDetalleFotos), "pregunta")
-                                .addSpotlight(view.findViewById(R.id.btnContinuar), getString(R.string.AyudaZumTituloContinuar), getString(R.string.AyudaZumDetalleContinuar), "continuar")
+                                .addSpotlight(view.findViewById(R.id.helpButton), getString(R.string.AyudaUniversidadTituloFotos), getString(R.string.AyudaUniversidadDetalleFotos), "preguntaUF" + rndGenerator.nextInt(999999999))
+                                .addSpotlight(view.findViewById(R.id.btnContinuar), getString(R.string.AyudaZumTituloContinuar), getString(R.string.AyudaZumDetalleContinuar), "continuarUF" + rndGenerator.nextInt(999999999))
                                 .startSequence();
                     }
                 },0);

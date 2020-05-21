@@ -1289,6 +1289,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 //                lanzarFragmentPorDistancia(latitud,longitud);
 
                 locationEngineResult[0] = result;
+
+                crearIconos();
             }
         }
 
@@ -1442,6 +1444,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     public void onResume() {
 
         super.onResume();
+
 
 
 

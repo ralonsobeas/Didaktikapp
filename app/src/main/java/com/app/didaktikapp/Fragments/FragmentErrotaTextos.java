@@ -177,10 +177,11 @@ public class FragmentErrotaTextos extends Fragment {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        java.util.Random rndGenerator = new java.util.Random();
 
                         SpotlightSequence.getInstance(getActivity(),config)
-                                .addSpotlight(view.findViewById(R.id.helpButton), getString(R.string.AyudaErrotaTituloTextos), getString(R.string.AyudaErrotaDetalleTextos), "pregunta")
-                                .addSpotlight(view.findViewById(R.id.btnContinuar), getString(R.string.AyudaZumTituloContinuar), getString(R.string.AyudaZumDetalleContinuar), "continuar")
+                                .addSpotlight(view.findViewById(R.id.helpButton), getString(R.string.AyudaErrotaTituloTextos), getString(R.string.AyudaErrotaDetalleTextos), "preguntaET" + rndGenerator.nextInt(999999999))
+                                .addSpotlight(view.findViewById(R.id.btnContinuar), getString(R.string.AyudaZumTituloContinuar), getString(R.string.AyudaZumDetalleContinuar), "continuarET" + rndGenerator.nextInt(999999999))
                                 .startSequence();
                     }
                 },0);

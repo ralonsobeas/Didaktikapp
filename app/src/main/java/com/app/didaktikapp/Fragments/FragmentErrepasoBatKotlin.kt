@@ -32,6 +32,8 @@ import com.wooplr.spotlight.SpotlightConfig
 import com.wooplr.spotlight.utils.SpotlightSequence
 import com.wooplr.spotlight.utils.Utils
 import com.yuyakaido.android.cardstackview.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -83,7 +85,7 @@ class FragmentErrepasoBatKotlin : Fragment(), CardStackListener {
         /*
         Botón flotante de ayuda
          */
-        val floatingActionButton: FloatingActionButton = view!!.findViewById(R.id.helpButton)
+        val floatingActionButton: FloatingActionButton = views!!.findViewById(R.id.helpButton)
         floatingActionButton.setOnClickListener {
             val config = SpotlightConfig()
             config.maskColor = Color.parseColor("#E63A3A3A")
@@ -103,11 +105,13 @@ class FragmentErrepasoBatKotlin : Fragment(), CardStackListener {
             config.setShowTargetArc(true)
             val handler = Handler()
             handler.postDelayed({
+                var rndGenerator: Random? = Random()
                 SpotlightSequence.getInstance(activity, config)
-                        .addSpotlight(view!!.findViewById(R.id.helpButton), getString(R.string.AyudaErrepasoTituloPregunta), getString(R.string.AyudaErrepasoDetallePregunta), "pregunta")
-                        .addSpotlight(view!!.findViewById(R.id.like_button), getString(R.string.AyudaErrepasoTituloCorrecta), getString(R.string.AyudaErrepasoDetalleCorrecta), "correcta")
-                        .addSpotlight(view!!.findViewById(R.id.skip_button), getString(R.string.AyudaErrepasoTituloIncorrecta), getString(R.string.AyudaErrepasoDetalleIncorrecta), "incorrecta")
-                        .addSpotlight(view!!.findViewById(R.id.rewind_button), getString(R.string.AyudaErrepasoTituloVolver), getString(R.string.AyudaErrepasoDetalleVolver), "volver")
+
+                        .addSpotlight(views!!.findViewById(R.id.helpButton), getString(R.string.AyudaErrepasoTituloPregunta), getString(R.string.AyudaErrepasoDetallePregunta), "preguntaEB"+  rndGenerator!!.nextInt(999999999) )
+                        .addSpotlight(views!!.findViewById(R.id.like_button), getString(R.string.AyudaErrepasoTituloCorrecta), getString(R.string.AyudaErrepasoDetalleCorrecta), "correctaEB"+ rndGenerator!!.nextInt(999999999) )
+                        .addSpotlight(views!!.findViewById(R.id.skip_button), getString(R.string.AyudaErrepasoTituloIncorrecta), getString(R.string.AyudaErrepasoDetalleIncorrecta), "incorrectaEB"+ rndGenerator!!.nextInt(999999999) )
+                        .addSpotlight(views!!.findViewById(R.id.rewind_button), getString(R.string.AyudaErrepasoTituloVolver), getString(R.string.AyudaErrepasoDetalleVolver), "volverEB"+ rndGenerator!!.nextInt(999999999) )
                         .startSequence()
             }, 0)
         }

@@ -33,6 +33,8 @@ import com.wooplr.spotlight.SpotlightConfig
 import com.wooplr.spotlight.utils.SpotlightSequence
 import com.wooplr.spotlight.utils.Utils
 import com.yuyakaido.android.cardstackview.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -92,7 +94,11 @@ class FragmentSanMiguelTinderKotlin : Fragment(), CardStackListener {
         /*
         Botón flotante de ayuda
          */
-        val floatingActionButton: FloatingActionButton = view!!.findViewById(R.id.helpButton)
+
+        /*
+        Botón flotante de ayuda
+         */
+        val floatingActionButton: FloatingActionButton = views!!.findViewById(R.id.helpButton)
         floatingActionButton.setOnClickListener {
             val config = SpotlightConfig()
             config.maskColor = Color.parseColor("#E63A3A3A")
@@ -111,14 +117,18 @@ class FragmentSanMiguelTinderKotlin : Fragment(), CardStackListener {
             config.lineAndArcColor = Color.parseColor("#2B82C5")
             config.setShowTargetArc(true)
             val handler = Handler()
+
             handler.postDelayed({
+                var rndGenerator: Random? = Random()
+
                 SpotlightSequence.getInstance(activity, config)
-                        .addSpotlight(view!!.findViewById(R.id.like_button), getString(R.string.AyudaSanMiguelTinderTituloCorrecta), getString(R.string.AyudaSanMiguelTinderDetalleCorrecta), "correcta")
-                        .addSpotlight(view!!.findViewById(R.id.skip_button), getString(R.string.AyudaSanMiguelTinderTituloIncorrecta), getString(R.string.AyudaSanMiguelTinderDetalleIncorrecta), "incorrecta")
-                        .addSpotlight(view!!.findViewById(R.id.rewind_button), getString(R.string.AyudaSanMiguelTinderTituloRetroceder), getString(R.string.AyudaSanMiguelTinderDetalleRetroceder), "retroceder")
-                        .addSpotlight(view!!.findViewById(R.id.btnContinuar), getString(R.string.AyudaZumTituloContinuar), getString(R.string.AyudaZumDetalleContinuar), "continuar")
+                        .addSpotlight(views!!.findViewById(R.id.helpButton), getString(R.string.AyudaErrepasoTituloPregunta), getString(R.string.AyudaErrepasoDetallePregunta), "preguntaSMT"+  rndGenerator!!.nextInt(999999999) )
+                        .addSpotlight(views!!.findViewById(R.id.like_button), getString(R.string.AyudaSanMiguelTinderTituloCorrecta), getString(R.string.AyudaSanMiguelTinderDetalleCorrecta), "correctaSMT"+  rndGenerator!!.nextInt(999999999) )
+                        .addSpotlight(views!!.findViewById(R.id.skip_button), getString(R.string.AyudaSanMiguelTinderTituloIncorrecta), getString(R.string.AyudaSanMiguelTinderDetalleIncorrecta), "incorrectaSMT"+  rndGenerator!!.nextInt(999999999) )
+                        .addSpotlight(views!!.findViewById(R.id.rewind_button), getString(R.string.AyudaSanMiguelTinderTituloRetroceder), getString(R.string.AyudaSanMiguelTinderDetalleRetroceder), "retrocederSMT"+  rndGenerator!!.nextInt(999999999) )
                         .startSequence()
             }, 0)
+
         }
         return views
     }

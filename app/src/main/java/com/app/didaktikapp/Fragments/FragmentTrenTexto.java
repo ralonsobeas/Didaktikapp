@@ -227,10 +227,11 @@ public class FragmentTrenTexto extends Fragment {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        java.util.Random rndGenerator = new java.util.Random();
 
                         SpotlightSequence.getInstance(getActivity(),config)
-                                .addSpotlight(view.findViewById(R.id.trenTextoSpinner), getString(R.string.AyudaTrenTitulo), getString(R.string.AyudaTrenDetalle), "pregunta")
-                                .addSpotlight(view.findViewById(R.id.btnContinuar), getString(R.string.AyudaZumTituloContinuar), getString(R.string.AyudaZumDetalleContinuar), "continuar")
+                                .addSpotlight(view.findViewById(R.id.trenTextoSpinner), getString(R.string.AyudaTrenTitulo), getString(R.string.AyudaTrenDetalle), "preguntaTT" + rndGenerator.nextInt(999999999))
+                                .addSpotlight(view.findViewById(R.id.btnContinuar), getString(R.string.AyudaZumTituloContinuar), getString(R.string.AyudaZumDetalleContinuar), "continuarTT" + rndGenerator.nextInt(999999999))
                                 .startSequence();
                     }
                 },0);

@@ -390,13 +390,14 @@ public class MainActivity extends AppCompatActivity  {
                     public void onClick(View view) {
                         Intent i = new Intent(MainActivity.this, MapActivity.class);
 
-
+                        databaseRepository = new DatabaseRepository(MainActivity.this);
                         //BBDD
 
                         //SE CREA EL GRUPO Y TODOS LOS FRAGMENTS CON SU ESTADO Y FRAGMENT = 0
 
                         if(grupoSeleccionado[0]!=null && grupoSeleccionado[0].toString().equals(flatDialog.getFirstTextField())) {
                             i.putExtra("IDGRUPO", grupoSeleccionado[0].getId());
+                            i.putExtra("ADMINISTRADOR", administrador);
 
                             startActivity(i);
                             flatDialog.dismiss();
@@ -613,12 +614,14 @@ public class MainActivity extends AppCompatActivity  {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                java.util.Random rndGenerator = new java.util.Random();
+
                 SpotlightSequence.getInstance(MainActivity.this,config)
-                        .addSpotlight(boton1, getString(R.string.ayudaAnimTituloComienzo), getString(R.string.ayudaAnimSubtituloComienzo), "circleMenuView1")
-                        .addSpotlight(boton2,  getString(R.string.ayudaAnimTituloContinuar),  getString(R.string.ayudaAnimSubtituloContinuar), "circleMenuView2")
-                        .addSpotlight(boton3, getString(R.string.ayudaAnimTituloSalir), getString(R.string.ayudaAnimSubtituloSalir), "circleMenuView3")
-                        .addSpotlight(boton4, getString(R.string.ayudaAnimTituloAyuda), getString(R.string.ayudaAnimSubtituloAyuda), "circleMenuView4")
-                        .addSpotlight(boton5, getString(R.string.ayudaAnimTituloIdioma), getString(R.string.ayudaAnimSubtituloIdioma), "circleMenuView5")
+                        .addSpotlight(boton1, getString(R.string.ayudaAnimTituloComienzo), getString(R.string.ayudaAnimSubtituloComienzo), "circleMenuView1" + rndGenerator.nextInt(999999999))
+                        .addSpotlight(boton2,  getString(R.string.ayudaAnimTituloContinuar),  getString(R.string.ayudaAnimSubtituloContinuar), "circleMenuView2" + rndGenerator.nextInt(999999999))
+                        .addSpotlight(boton3, getString(R.string.ayudaAnimTituloSalir), getString(R.string.ayudaAnimSubtituloSalir), "circleMenuView3" + rndGenerator.nextInt(999999999))
+                        .addSpotlight(boton4, getString(R.string.ayudaAnimTituloAyuda), getString(R.string.ayudaAnimSubtituloAyuda), "circleMenuView4" + rndGenerator.nextInt(999999999))
+                        .addSpotlight(boton5, getString(R.string.ayudaAnimTituloIdioma), getString(R.string.ayudaAnimSubtituloIdioma), "circleMenuView5" + rndGenerator.nextInt(999999999))
                         .startSequence();
             }
         }, 400);

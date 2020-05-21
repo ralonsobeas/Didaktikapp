@@ -198,11 +198,12 @@ public class FragmentUnibertsitateaPreguntas extends Fragment {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        java.util.Random rndGenerator = new java.util.Random();
 
                         SpotlightSequence.getInstance(getActivity(),config)
-                                .addSpotlight(view.findViewById(R.id.helpButton), getString(R.string.AyudaUniversidadTituloPregunta), getString(R.string.AyudaUniversidadDetallePregunta), "pregunta")
-                                .addSpotlight(view.findViewById(R.id.btnCorregir),  getString(R.string.AyudaUniversidadTituloRespuesta),  getString(R.string.AyudaUniversidadDetalleRespuesta), "respuesta")
-                                .addSpotlight(view.findViewById(R.id.btnContinuar), getString(R.string.AyudaZumTituloContinuar), getString(R.string.AyudaZumDetalleContinuar), "continuar")
+                                .addSpotlight(view.findViewById(R.id.helpButton), getString(R.string.AyudaUniversidadTituloPregunta), getString(R.string.AyudaUniversidadDetallePregunta), "preguntaUP" + rndGenerator.nextInt(999999999))
+                                .addSpotlight(view.findViewById(R.id.btnCorregir),  getString(R.string.AyudaUniversidadTituloRespuesta),  getString(R.string.AyudaUniversidadDetalleRespuesta), "respuestaUP" + rndGenerator.nextInt(999999999))
+                                .addSpotlight(view.findViewById(R.id.btnContinuar), getString(R.string.AyudaZumTituloContinuar), getString(R.string.AyudaZumDetalleContinuar), "continuarUP" + rndGenerator.nextInt(999999999))
                                 .startSequence();
                     }
                 },0);
