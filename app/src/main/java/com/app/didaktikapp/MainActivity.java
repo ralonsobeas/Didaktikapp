@@ -246,7 +246,7 @@ public class MainActivity extends AppCompatActivity  {
             public void onButtonLongClickAnimationStart(@NonNull CircleMenuView view, int index) {
                 Log.d("D", "onButtonLongClickAnimationStart| index: " + index);
             }
-
+            //Modo Admin
             @Override
             public void onButtonLongClickAnimationEnd(@NonNull CircleMenuView view, int index) {
                 Log.d("D", "onButtonLongClickAnimationEnd| index: " + index);
@@ -332,7 +332,7 @@ public class MainActivity extends AppCompatActivity  {
                 .show();
 
     }
-
+//Lengua
     private void setLocale(String lang) {
         Locale myLocale = new Locale(lang);
         Resources res = getResources();
@@ -512,7 +512,7 @@ public class MainActivity extends AppCompatActivity  {
 
     }
 
-
+//Prueba eventos
     private void eventos(){
         botonSalir.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -644,7 +644,7 @@ public class MainActivity extends AppCompatActivity  {
         flatDialog.setTitle(getString(R.string.TituloServidor))
                 .setBackgroundColor(Color.parseColor("#2B82C5"))
                 .setSubtitle(getString(R.string.SubituloServidor))
-                .setFirstTextFieldHint("IP del servidor")
+                .setFirstTextFieldHint(getString(R.string.HintServidor))
                 .setFirstButtonText(getString(R.string.cambiar))
                 .setFirstButtonColor(Color.parseColor("#FAFAFA"))
                 .setFirstButtonTextColor(Color.parseColor("#2B82C5"))
@@ -655,7 +655,7 @@ public class MainActivity extends AppCompatActivity  {
                     @Override
                     public void onClick(View view) {
 
-
+                        //cambiar ip servidor
 
                         String ip = flatDialog.getFirstTextField();
 
@@ -723,6 +723,7 @@ public class MainActivity extends AppCompatActivity  {
         super.onActivityResult(requestCode, resultCode, data);
         Log.i("SIGN","LOGIN0"+requestCode);
         // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
+        //LOG IN
         if (requestCode == RC_SIGN_IN) {
             // The Task returned from this call is always completed, no need to attach
             // a listener.

@@ -153,7 +153,7 @@ public class FragmentTrenTexto extends Fragment {
                         int location = texto.indexOf("________");
                         String pp = texto.substring(0,location);
                         String sp = texto.substring(location+8);
-                        textoCambiar.setText(pp+"postetxea"+sp);
+                        textoCambiar.setText(pp+getString(R.string.correos)+sp);
                     } else {
                         if (primerError)
                             textoError.setText(getResources().getString(R.string.TrenTextoError)+" "+seleccionado);
@@ -168,7 +168,7 @@ public class FragmentTrenTexto extends Fragment {
                         int location = texto.indexOf("________");
                         String pp = texto.substring(0,location);
                         String sp = texto.substring(location+8);
-                        textoCambiar.setText(pp+"vasco-navarro"+sp);
+                        textoCambiar.setText(pp+getString(R.string.vasconavarra)+sp);
                     } else {
                         textoError.setText(getResources().getString(R.string.TrenTextoError)+" "+seleccionado);
                     }
@@ -179,7 +179,7 @@ public class FragmentTrenTexto extends Fragment {
                         int location = texto.indexOf("________");
                         String pp = texto.substring(0,location);
                         String sp = texto.substring(location+8);
-                        textoCambiar.setText(pp+"gasteizetik"+sp);
+                        textoCambiar.setText(pp+getString(R.string.vitoria)+sp);
                         btnContinuar.setEnabled(true);
                     } else {
                         textoError.setText(getResources().getString(R.string.TrenTextoError)+" "+seleccionado);

@@ -187,5 +187,8 @@
     <string name="AyudaGernikaTituloRespuesta">Zuzendu</string>
     <string name="AyudaErrepasoTituloCorrecta">Zuzena</string>
     <string name="AyudaErrepasoTituloIncorrecta">Okerra</string>
+    <string name="vasconavarra">vasco-navarro</string>
+    <string name="vitoria">Gasteizetik</string>
+    <string name="correos">postetxea</string>
 
 </resources>

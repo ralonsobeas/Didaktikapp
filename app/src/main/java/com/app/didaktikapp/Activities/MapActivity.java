@@ -222,6 +222,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     private MediaPlayer mediaPlayer ;
 
+    private int cont = 0;
+
     /**
      *
      * Crea la actividad MapActivity
@@ -1029,13 +1031,22 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
      *
      */
     private void btnRepasoVisibles(){
+        /*
+        if(administrador && cont == 1){
+            cont++ ;
+            return;
+        }
+        */
+
         TranslateAnimation animate = new TranslateAnimation(0,0,btnRepaso1.getHeight(),0);
         animate.setDuration(1000);
         animate.setFillAfter(true);
-        btnRepaso1.startAnimation(animate);
+        //btnRepaso1.startAnimation(animate);
         btnRepaso1.setVisibility(View.VISIBLE);
 
-        btnRepaso2.startAnimation(animate);
+        //btnRepaso2.startAnimation(animate);
+
+
         btnRepaso2.setVisibility(View.VISIBLE);
     }
 

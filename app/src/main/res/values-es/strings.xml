@@ -59,7 +59,7 @@
     <string name="TrenTextoCambiar">La antigua estación de tren es un edificio situado en Oñati, y en la actualidad es (1) ________. Fue fundada en 1887 y su último viaje fue en 1967. La ruta era la (2) ________ e iba desde Bergara hasta Estella, pasando por (3) ________.</string>
     <string-array name="TrenTextoCambiar">
         <item>Vitoria</item>
-        <item>correos</item>
+        <item>Correos</item>
         <item>Vasco-Navarra</item>
     </string-array>
     <string name="TrenTextoError">No es</string>
@@ -141,7 +141,7 @@
     <string name="servidor">Servidor</string>
     <string name="ipCorrecta">IP Cambiada</string>
     <string name="ipIncorrecta">IP Incorrecta</string>
-    <string name="TituloServidor">Zerbitzaria</string>
+    <string name="TituloServidor">Servidor</string>
     <string name="SubituloServidor">Introduce la IP</string>
     <string name="HintServidor">IP del servidor</string>
     <string name="AyudaZumTituloPregunta">Pregunta</string>
@@ -180,11 +180,14 @@
     <string name="AyudaErrepasoDetallePregunta">¿Coinciden imagen y título?</string>
     <string name="AyudaErrepasoTituloCorrecta">Correcta</string>
     <string name="AyudaErrepasoTituloIncorrecta">Incorrecta</string>
-    <string name="AyudaErrepasoDetalleCorrecta">Desliza a la derecha o pincha aqui si es correcta</string>
-    <string name="AyudaErrepasoDetalleIncorrecta">Desliza a la izquierda o pincha aqui si es incorrecta</string>
+    <string name="AyudaErrepasoDetalleCorrecta">Desliza a la derecha o pincha aquí si es correcta</string>
+    <string name="AyudaErrepasoDetalleIncorrecta">Desliza a la izquierda o pincha aquí si es incorrecta</string>
     <string name="AyudaErrepasoTituloVolver">Volver</string>
     <string name="AyudaErrepasoDetalleVolver">Vuelve a la imagen anterior</string>
     <string name="AyudaVideoTitulo">Mira el video</string>
     <string name="AyudaVideoDetalle">Pulsa play para comenzar</string>
+    <string name="vasconavarra">vasco-navarra</string>
+    <string name="vitoria">Vitoria</string>
+    <string name="correos">correos</string>
 
 </resources>
