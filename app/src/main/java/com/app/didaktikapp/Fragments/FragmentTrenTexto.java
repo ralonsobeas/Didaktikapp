@@ -153,7 +153,7 @@ public class FragmentTrenTexto extends Fragment {
                         int location = texto.indexOf("________");
                         String pp = texto.substring(0,location);
                         String sp = texto.substring(location+8);
-                        textoCambiar.setText(pp+"postetxea"+sp);
+                        textoCambiar.setText(pp+getString(R.string.correos)+sp);
                     } else {
                         if (primerError)
                             textoError.setText(getResources().getString(R.string.TrenTextoError)+" "+seleccionado);
@@ -168,7 +168,7 @@ public class FragmentTrenTexto extends Fragment {
                         int location = texto.indexOf("________");
                         String pp = texto.substring(0,location);
                         String sp = texto.substring(location+8);
-                        textoCambiar.setText(pp+"vasco-navarro"+sp);
+                        textoCambiar.setText(pp+getString(R.string.vasconavarra)+sp);
                     } else {
                         textoError.setText(getResources().getString(R.string.TrenTextoError)+" "+seleccionado);
                     }
@@ -179,7 +179,7 @@ public class FragmentTrenTexto extends Fragment {
                         int location = texto.indexOf("________");
                         String pp = texto.substring(0,location);
                         String sp = texto.substring(location+8);
-                        textoCambiar.setText(pp+"gasteizetik"+sp);
+                        textoCambiar.setText(pp+getString(R.string.vitoria)+sp);
                         btnContinuar.setEnabled(true);
                     } else {
                         textoError.setText(getResources().getString(R.string.TrenTextoError)+" "+seleccionado);
@@ -227,10 +227,11 @@ public class FragmentTrenTexto extends Fragment {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        java.util.Random rndGenerator = new java.util.Random();
 
                         SpotlightSequence.getInstance(getActivity(),config)
-                                .addSpotlight(view.findViewById(R.id.trenTextoSpinner), getString(R.string.AyudaTrenTitulo), getString(R.string.AyudaTrenDetalle), "pregunta")
-                                .addSpotlight(view.findViewById(R.id.btnContinuar), getString(R.string.AyudaZumTituloContinuar), getString(R.string.AyudaZumDetalleContinuar), "continuar")
+                                .addSpotlight(view.findViewById(R.id.trenTextoSpinner), getString(R.string.AyudaTrenTitulo), getString(R.string.AyudaTrenDetalle), "preguntaTT" + rndGenerator.nextInt(999999999))
+                                .addSpotlight(view.findViewById(R.id.btnContinuar), getString(R.string.AyudaZumTituloContinuar), getString(R.string.AyudaZumDetalleContinuar), "continuarTT" + rndGenerator.nextInt(999999999))
                                 .startSequence();
                     }
                 },0);

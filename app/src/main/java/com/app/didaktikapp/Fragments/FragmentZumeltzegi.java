@@ -237,7 +237,7 @@ public class FragmentZumeltzegi extends Fragment {
 
                 //Añadir imagenes a base de datos
                 ActividadZumeltzegi actividadZumeltzegi = DatabaseRepository.getAppDatabase().getZumeltzegiDao().getZumeltzegi(idActividad);
-                actividadZumeltzegi.setEstado(1);
+                actividadZumeltzegi.setEstado(2);
                 actividadZumeltzegi.setFragment(1);
                 actividadZumeltzegi.setFoto1(respuesta1.getText().toString());
                 actividadZumeltzegi.setFoto2(respuesta2.getText().toString());
@@ -282,11 +282,12 @@ public class FragmentZumeltzegi extends Fragment {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        java.util.Random rndGenerator = new java.util.Random();
 
                         SpotlightSequence.getInstance(getActivity(),config)
-                                .addSpotlight(view.findViewById(R.id.helpButton), getString(R.string.AyudaZumTituloPregunta), getString(R.string.AyudaZumDetallePregunta), "pregunta")
-                                .addSpotlight(view.findViewById(R.id.helpButton),  getString(R.string.AyudaZumTituloRespuesta),  getString(R.string.AyudaZumDetalleRespuesta), "respuesta")
-                                .addSpotlight(view.findViewById(R.id.btnContinuar), getString(R.string.AyudaZumTituloContinuar), getString(R.string.AyudaZumDetalleContinuar), "continuar")
+                                .addSpotlight(view.findViewById(R.id.helpButton), getString(R.string.AyudaZumTituloPregunta), getString(R.string.AyudaZumDetallePregunta), "preguntaZ" + rndGenerator.nextInt(999999999))
+                                .addSpotlight(view.findViewById(R.id.helpButton),  getString(R.string.AyudaZumTituloRespuesta),  getString(R.string.AyudaZumDetalleRespuesta), "respuestaZ" + rndGenerator.nextInt(999999999))
+                                .addSpotlight(view.findViewById(R.id.btnContinuar), getString(R.string.AyudaZumTituloContinuar), getString(R.string.AyudaZumDetalleContinuar), "continuarZ" + rndGenerator.nextInt(999999999))
                                 .startSequence();
                     }
                 },0);
