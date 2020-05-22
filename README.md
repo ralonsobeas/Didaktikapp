@@ -17,6 +17,13 @@ This app is made by different activities that can be done when the device is nea
 
 <b>Any help is welcome.</b>
 
+Didaktikapp Web
+------------------------------------------------------------------------
+https://github.com/gorkaisasbi/didaktikappWeb
+
+Web con el análisis de los datos generados por la aplicación móvil. Necesario tener un servidor FTP conectado a la web e introducir desde el modo administrador la dirección IP del server en la aplicación móvil.
+
+
 Hall of Fame
 ------------------------------------------------------------------------
 
